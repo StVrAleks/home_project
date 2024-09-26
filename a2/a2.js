@@ -23,10 +23,7 @@ function funcStroka(myItem){
                 break; 
                 }
         }
-    var myNewItem = '';
-    for(var i = indexF; i <= indexS; i++)  
-        {
-        myNewItem = myNewItem + myItem[i];  
-        }
+        var myNewItem = '';
+        myNewItem = myItem.substring(1, 3);  
    return myNewItem;
 }
