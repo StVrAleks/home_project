@@ -24,6 +24,6 @@ function funcStroka(myItem){
                 }
         }
         var myNewItem = '';
-        myNewItem = myItem.substring(1, 3);  
+        myNewItem = myItem.substring(indexF, indexS);  
    return myNewItem;
 }
