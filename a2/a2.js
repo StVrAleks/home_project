@@ -13,7 +13,7 @@ function funcStroka(myItem){
             indexF = i;            
             break; 
         }
-    }
+    }  
     for(var i = lStroka-1; i > indexF; i = i - 1)
         {
             var indexS = myItem.length;          
@@ -22,7 +22,7 @@ function funcStroka(myItem){
                 indexS = i;
                 break; 
                 }
-        }
+        }  
         var myNewItem = '';
         myNewItem = myItem.substring(indexF, indexS);  
    return myNewItem;
