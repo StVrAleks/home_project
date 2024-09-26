@@ -3,7 +3,7 @@ var newstroka = funcStroka(myStroka);
 alert("_" + newstroka + "_");
 
 
-
+  
 function funcStroka(myItem){
     var lStroka = myItem.length;
     for(var i = 0; lStroka; i++)
