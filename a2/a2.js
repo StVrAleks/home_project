@@ -14,12 +14,12 @@ function funcStroka(myItem){
             indexF = i;           
             break; 
             }
-        if(indexF === 0 && i === lStroka-1)
-            {
-            console.log("Символов в строке: " + lStroka);    
-            return "";    
-            }    
-    }  
+    } 
+    if(indexF === 0)
+        {
+        console.log("Символов в строке: " + lStroka);    
+        return "";    
+        }    
     
     for(var i = lStroka-1; i > indexF; i = i - 1)
         {
