@@ -3,24 +3,21 @@ var newstroka = funcStroka(myStroka);
 alert("_" + newstroka + "_");
   
 function funcStroka(myItem){
-    var flag = 0;
     var lStroka = myItem.length;
-    for(var i = 0; i < lStroka; i++)
+    for(var i = 0; lStroka; i++)
     {
-        var indexF = 0;      
+        var indexF = 0;
         if(myItem[i] !== " ")
             {
-            indexF = i; 
-            flag = 'not';  
+            indexF = i;           
             break; 
             }
-        flag = i;            
+        if(indexF === 0 && i === lStroka-1)
+            {
+            console.log("Символов в строке: " + lStroka);    
+            return "";    
+            }    
     }  
-    if(flag === lStroka - 1)
-       {
-       console.log("Символов в строке: " + lStroka);    
-       return "";    
-       }    
     
     for(var i = lStroka-1; i > indexF; i = i - 1)
         {
