@@ -1,6 +1,14 @@
 var myStroka = prompt('Введите строку');
-var newstroka = funcStroka(myStroka);
-alert("_" + newstroka + "_");
+if(myStroka === null)
+  {
+    alert("Вы не ввели строку");
+  }
+ else 
+  {
+   var newstroka = funcStroka(myStroka);
+   alert("_" + newstroka + "_"); 
+  } 
+
   
 function funcStroka(myItem){
     var flag = 0;
@@ -22,12 +30,14 @@ function funcStroka(myItem){
        return "";    
        }    
     
-    for(var i = lStroka-1; i > indexF; i = i - 1)
+    for(var i = lStroka-1; i >= indexF; i = i - 1)
         {
-            var indexS = lStroka;          
+            var indexS = lStroka-1;  
+            console.log(indexS);        
             if(myItem[i] !== " ")
                 {
                 indexS = i+1;
+                console.log(indexS);
                 break; 
                 }
         }  
