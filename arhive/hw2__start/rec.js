@@ -1,7 +1,11 @@
 var myMas = [5, 7, [4, [2], 8, [1, 3], 2], 9, [], 1, 8];
 
 var myIt = 0;
-
+//for(let i = 0; i < myMas.length; i++)
+//{ 
+//    myIt = myIt + treeSum(myMas[i]);
+//    console.log("itog", i, myIt);
+//}  
 myIt = treeSum(myMas);
 console.log("Itogo", myIt);  
 
@@ -18,10 +22,7 @@ function treeSum(myArg){
     var per = 0;          
         do{
             if(myArg.length > 0)
-                {
                 per = per + treeSum(myArg[index]);
-                console.log(per);
-                }
             else
                 per = per + 0;
             index ++;
