@@ -5,16 +5,14 @@ console.log("Itogo", myIt);
 
 function treeSum(myArg)
 {
-var index = 0; 
 var per = 0;     
-    do{
-        if(Array.isArray(myArg[index])) 
-            per = per + treeSum(myArg[index]);
+    for(var i=0; i<myArg.length; i++)
+    {
+        if(Array.isArray(myArg[i])) 
+            per = per + treeSum(myArg[i]);
         else
-            per = per + parseInt(myArg[index]);     
+            per = per + myArg[i];     
         console.log(per);            
-        index ++;
-      }
-    while(index < myArg.length);    
-return parseInt(per); 
+      }     
+return per; 
 }
