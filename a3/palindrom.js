@@ -13,7 +13,7 @@ NewStr = NewStr.replace('ё', 'е');
 
 var allLenght = NewStr.length;    
 var polLenght = Math.floor(0.5 * NewStr.length);
-for(var i = 0; i <= polLenght; i++)
+for(var i = 0; i < polLenght; i++)
     {
         if(NewStr[i] !== NewStr[allLenght - i - 1])
             return false;
