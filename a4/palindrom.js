@@ -6,25 +6,25 @@ else
     alert('это не палиндром');
 
 
-function palindrom(NewStr)
+function palindrom(newStr)
 {
-NewStr = NewStr.toLowerCase();
-NewStr = NewStr.replace(/[\s.,\/#!$%\^&\*;:"{}=\-_`~()?№'+ъь]/g, '');
-NewStr = NewStr.replace('ё', 'е');
+newStr = newStr.toLowerCase();
+newStr = newStr.replace(/[\s.,\/#!$%\^&\*;:"{}=\-_`~()?№'+ъь]/g, '');
+newStr = newStr.replace('ё', 'е');
 
-return recurs(NewStr);
-}
-
-function recurs(NewStr){
-var allLenght = NewStr.length;      
+function recurs(newStr){
+var allLenght = newStr.length;      
     if(allLenght < 2)
         {
             return true;
         }
-    if(NewStr[0] === NewStr[allLenght - 1])
+    if(newStr[0] === newStr[allLenght - 1])
         {
-        NewStr = NewStr.substring(1, allLenght-1);
-        return recurs(NewStr);   
+        newStr = newStr.substring(1, allLenght-1);
+        return recurs(newStr);   
         }
     return false;        
 }
+return recurs(newStr);
+}
+
