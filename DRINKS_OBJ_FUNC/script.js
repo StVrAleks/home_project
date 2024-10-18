@@ -1,16 +1,16 @@
 
+
 class ObjStorageFunc{
     //сохраняет указанное значение под указанным ключом; если под этим ключом уже сохранено какое-то значение — оно должно быть перезаписано;
-  /*  constructor(myKey, myVal) {
-      //  this.myKey = myVal;
-        this[myKey] = myVal;
-    } */
-     drinkName = { };
-     addValue(drinkName, myVal) 
+
+     /*drinkName;*/
+     key;
+     keyVal = {};
+     addValue(key, keyVal) 
      {
-      this[drinkName] =  myVal;
-      console.log(this[drinkName], myVal);
-      console.log(myKey);
+      this.key =  keyVal;
+      console.log(this.key, this.keyVal);
+      console.log(key, this.keyVal);
      }
     //возвращает значение по указанному ключу либо undefined;
     getValue(myKey) {console.log(myKey, this.myKey);}
@@ -28,26 +28,27 @@ class ObjStorageFunc{
     getKeys(myKey) {console.log(this.keys(this.myKey));}
 }
  
-//let  drinkStorage = new ObjStorageFunc;
- 
+let  drinkStorage = {};
+drinkStorage = new ObjStorageFunc();
 function buttonForAdd()
-{
-    drinkName = prompt("Введите название напитка, пожалуйста");    
+{  
+    var drinkName = prompt("Введите название напитка, пожалуйста");    
     var alk = 'Нет';
-    if(confirm("Напиток алкогольный?")){
+    if(confirm("Напиток алкогольный?"))
         var alk = 'Да';
-    }
     var rec = prompt("Укажите рецепт его приготовления");
 
     drinkStorage = {
         [drinkName] : {'алкогольный:' : alk, 'рецепт приготовления:': rec}   
     };
     console.log(drinkName, drinkStorage[drinkName]);
-    
-    drinkStorage = new ObjStorageFunc.addValue(drinkName, drinkStorage[drinkName]);
-    for(drinkName in drinkStorage)
+  //  drinkStorage.key = drinkName;
+  //  drinkStorage.myKey = drinkStorage[drinkName];
+    drinkStorage = new ObjStorageFunc();
+    drinkStorage.addValue(drinkName, drinkStorage);
+  /*  for(drinkName in drinkStorage)
         console.log(drinkName);
-    return drinkStorage.drinkName; 
+    return drinkStorage.drinkName; */
 }
 
 function buttonForGet()
