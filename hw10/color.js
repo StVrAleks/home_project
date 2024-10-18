@@ -10,7 +10,7 @@ function randomDiap(n,m) {
 }
 
 function mood(colorsCount) {
-if(colorsCount > 8)
+if(colorsCount > 7)
     return console.log("Введите количество цветов менее 9.");
 if(colorsCount < 0)
     return console.log("Введите положительное число");  
@@ -22,7 +22,7 @@ console.log( 'цветов: ' + colorsCount );
 for ( let i=1; i<=colorsCount; i++ ) {
   do{
       n=randomDiap(1,7);
-      flag = colorName.some(item => item === colors[n])        
+      flag = colorName.some(item => item === colors[n] && colors[n] !== '')        
     } while(flag);
   colorName[n] = colors[n];
   console.log( colorName[n]);
