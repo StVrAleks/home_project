@@ -15,18 +15,17 @@ if(colorsCount > 8)
 if(colorsCount < 0)
     return console.log("Введите положительное число");  
 const colors = ['', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый' ];
-var n;
+var n, flag;
 const colorName = [];
 
 console.log( 'цветов: ' + colorsCount );
-var flag;
 for ( let i=1; i<=colorsCount; i++ ) {
   do{
       n=randomDiap(1,7);
       flag = colorName.some(item => item === colors[n])        
     } while(flag);
-      colorName[n] = colors[n];
-      console.log( colorName[n]);
+  colorName[n] = colors[n];
+  console.log( colorName[n]);
 }
 }
 
