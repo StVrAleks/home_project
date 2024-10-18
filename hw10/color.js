@@ -14,19 +14,26 @@ if(colorsCount > 7)
     return console.log("Введите количество цветов менее 9.");
 if(colorsCount < 0)
     return console.log("Введите положительное число");  
+
 const colors = ['', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый' ];
-var n, flag;
-const colorName = [];
+var n, flag = 'false';
+var colorName = {};
+var NameCount = 1;
 
 console.log( 'цветов: ' + colorsCount );
 for ( let i=1; i<=colorsCount; i++ ) {
-  do{
-      n=randomDiap(1,7);
-      flag = colorName.some(item => item === colors[n] && colors[n] !== '')        
-    } while(flag);
-  colorName[n] = colors[n];
+   for(let j=0; j<=NameCount; j++ )
+    {
+      n = randomDiap(0,7);
+       if(!(n in colorName) && colors[n] !== '')
+        {
+          colorName[n] = colors[n]; 
+          break;     
+        } 
+       NameCount = NameCount + 1;  
+    }
+    NameCount = 1;
   console.log( colorName[n]);
 }
 }
-
 mood(3);
