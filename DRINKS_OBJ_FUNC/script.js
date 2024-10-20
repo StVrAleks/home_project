@@ -4,13 +4,14 @@ class ObjStorageFunc{
     //сохраняет указанное значение под указанным ключом; если под этим ключом уже сохранено какое-то значение — оно должно быть перезаписано;
 
      /*drinkName;*/
-     key;
-     keyVal = {};
+    // key;
+    // keyVal = {};
+    drinkInfo ={};
      addValue(key, keyVal) 
      {
-      this.key =  keyVal;
-      console.log(this.key, this.keyVal);
-      console.log(key, this.keyVal);
+      this.drinkInfo.key =  keyVal;
+      console.log(key, drinkInfo.keyVal);
+     // console.log(key, this.keyVal);
      }
     //возвращает значение по указанному ключу либо undefined;
     getValue(myKey) {console.log(myKey, this.myKey);}
@@ -28,6 +29,8 @@ class ObjStorageFunc{
     getKeys(myKey) {console.log(this.keys(this.myKey));}
 }
  
+//drinkStorage = new ObjStorageFunc();
+
 let  drinkStorage = {};
 drinkStorage = new ObjStorageFunc();
 function buttonForAdd()
@@ -42,13 +45,7 @@ function buttonForAdd()
         [drinkName] : {'алкогольный:' : alk, 'рецепт приготовления:': rec}   
     };
     console.log(drinkName, drinkStorage[drinkName]);
-  //  drinkStorage.key = drinkName;
-  //  drinkStorage.myKey = drinkStorage[drinkName];
-    drinkStorage = new ObjStorageFunc();
-    drinkStorage.addValue(drinkName, drinkStorage);
-  /*  for(drinkName in drinkStorage)
-        console.log(drinkName);
-    return drinkStorage.drinkName; */
+    drinkStorage.addValue(drinkName, drinkStorage[drinkName]);
 }
 
 function buttonForGet()
