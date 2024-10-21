@@ -1,35 +1,28 @@
-
-
 class ObjStorageFunc{
     //сохраняет указанное значение под указанным ключом; если под этим ключом уже сохранено какое-то значение — оно должно быть перезаписано;
-
-     /*drinkName;*/
-    // key;
-    // keyVal = {};
-    drinkInfo ={};
-     addValue(key, keyVal) 
+    
+    self = this.drinkInfo ={};
+     addValue = function(key, keyVal) 
      {
-      this.drinkInfo.key =  keyVal;
-      console.log(key, drinkInfo.keyVal);
+      this.drinkInfo[key] =  keyVal;
+      console.log(key, this.drinkInfo.key, this.drinkInfo);
      // console.log(key, this.keyVal);
      }
     //возвращает значение по указанному ключу либо undefined;
-    getValue(myKey) {console.log(myKey, this.myKey);}
-
+    getValue = function(key) {console.log(key, this.drinkInfo.key);}
+ 
     //удаляет значение с указанным ключом, возвращает true если значение было удалено и false если такого значения не было в хранилище;
-    deleteValue(myKey) {
-            if(myKey in this.myKey)
+    deleteValue = function(key) {
+            if(key in this.drinkInfo.key)
                 {
-                  delete this[myKey];
+                  delete this.drinkInfo[key];
                   return true;
                 } 
                 return false;
     }
     //возвращает массив, состоящий из одних ключей. Класс должен быть чистым (не должен использовать никаких глобальных переменных, не должен «пачкать экран»).
-    getKeys(myKey) {console.log(this.keys(this.myKey));}
+    getKeys = function(key) {console.log(this.drinkInfo.keys(this.key));}
 }
- 
-//drinkStorage = new ObjStorageFunc();
 
 let  drinkStorage = {};
 drinkStorage = new ObjStorageFunc();
@@ -45,18 +38,17 @@ function buttonForAdd()
         [drinkName] : {'алкогольный:' : alk, 'рецепт приготовления:': rec}   
     };
     console.log(drinkName, drinkStorage[drinkName]);
-    drinkStorage.addValue(drinkName, drinkStorage[drinkName]);
+    drinkStorage.addValue(drinkName, {'алкогольный:' : alk, 'рецепт приготовления:': rec});
 }
 
 function buttonForGet()
 {
     var foundName = prompt("Укажите название напитка"); 
     console.log(foundName);
-    console.log(drinkName);
-    console.log(drinkStorage);
     console.log(drinkStorage.keys(drinkName));
     console.log('Инфо о ' + foundName, + " "+ drinkStorage.foundName);
-    if(foundName in drinkStorage){
+    if(foundName in drinkStorage.drinkInfo){
+        drinkStorage.getValue(drinkName);
         alert(drinkName, drinkStorage.drinkName);
         return getValue(drinkName);
     }
