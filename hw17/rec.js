@@ -4,7 +4,7 @@ let myIt = countGl(myStroka);
 console.log("forEach_Количество гласных в строке: ", myIt);  
 
 let myIt2 = countFilter(myStroka);
-console.log("forEach_Количество гласных в строке: ", myIt2.length);  
+console.log("forEach_Количество гласных в строке: ", myIt2);  
 
 let myIt3 = countRed(myStroka);
 console.log("forEach_Количество гласных в строке: ", myIt3);  
@@ -12,7 +12,7 @@ console.log("forEach_Количество гласных в строке: ", myI
 
 function countGl(userLine)
 {
- let masLetters = {а:0, е:0, ё:0, и:0, о:0, у:0, ы:0, э:0, ю:0, я:0};   
+  let masLetters = {о:0, а:0, е:0, и:0, ё:0, у:0, ы:0, э:0, ю:0, я:0};   
  userLine = userLine.toLowerCase();
 userLine = [...userLine];
 
@@ -25,18 +25,18 @@ return countLetters;
 
 function countFilter(userLine)
 {
- let masLetters = {а:0, е:0, ё:0, и:0, о:0, у:0, ы:0, э:0, ю:0, я:0};   
+ let masLetters = {о:0, а:0, е:0, и:0, ё:0, у:0, ы:0, э:0, ю:0, я:0};   
  userLine = (userLine.toLowerCase()).split('');
  let countLetters = 0;
  
  countLetters = userLine.filter(index => 
                       index in masLetters);
-return countLetters; 
+return countLetters.length; 
 }
 
 function countRed(userLine)
 {
- let masLetters = {а:0, е:0, ё:0, и:0, о:0, у:0, ы:0, э:0, ю:0, я:0};   
+  let masLetters = {о:0, а:0, е:0, и:0, ё:0, у:0, ы:0, э:0, ю:0, я:0};   
  userLine = (userLine.toLowerCase()).split('');
  let countLetters = 0;
 
