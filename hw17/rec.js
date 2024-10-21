@@ -1,50 +1,51 @@
 let myStroka = prompt('Введите строку на русском языке');
 
-myIt = countGl(myStroka);
+let myIt = countGl(myStroka);
 console.log("forEach_Количество гласных в строке: ", myIt);  
 
-myIt2 = countFilter(myStroka);
+let myIt2 = countFilter(myStroka);
 console.log("forEach_Количество гласных в строке: ", myIt2.length);  
 
-myIt3 = countRed(myStroka);
+let myIt3 = countRed(myStroka);
 console.log("forEach_Количество гласных в строке: ", myIt3);  
 
 
-function countGl(myArg)
+function countGl(userLine)
 {
  let masLetters = {а:0, е:0, ё:0, и:0, о:0, у:0, ы:0, э:0, ю:0, я:0};   
- myArg = myArg.toLowerCase();
- var myNewArg = new Array;
- myNewArg = [...myArg];
+ userLine = userLine.toLowerCase();
+userLine = [...userLine];
 
  let countLetters = 0;
- myNewArg.forEach((item) => {
+ userLine.forEach((item) => {
   if(item in masLetters)
       countLetters = countLetters + 1;});
 return countLetters; 
 }
 
-function countFilter(myArg)
+function countFilter(userLine)
 {
  let masLetters = {а:0, е:0, ё:0, и:0, о:0, у:0, ы:0, э:0, ю:0, я:0};   
- myArg = (myArg.toLowerCase()).split('');
+ userLine = (userLine.toLowerCase()).split('');
  let countLetters = 0;
  
- countLetters = myArg.filter(index => 
+ countLetters = userLine.filter(index => 
                       index in masLetters);
 return countLetters; 
 }
 
-function countRed(myArg)
+function countRed(userLine)
 {
  let masLetters = {а:0, е:0, ё:0, и:0, о:0, у:0, ы:0, э:0, ю:0, я:0};   
- myArg = (myArg.toLowerCase()).split('');
+ userLine = (userLine.toLowerCase()).split('');
  let countLetters = 0;
 
- countLetters = myArg.reduce((currentSum, currentNumber) => {
-              if(currentNumber in masLetters) 
+ countLetters = userLine.reduce((currentSum, currentVal) => {
+              if(currentVal in masLetters) 
               { 
                 countLetters = countLetters + 1;
-                return currentNumber, countLetters}});
+                return countLetters;
+              }
+              return countLetters;},0);
 return countLetters;  
 }
