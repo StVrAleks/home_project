@@ -4,16 +4,16 @@ class ObjStorageFunc{
       this.drinkInfo ={};
     }
 
-    addValue = function(key, keyVal) 
+    addValue(key, keyVal) 
      {
       this.drinkInfo[key] =  keyVal;
       console.log(key, this.drinkInfo);
      }
     //возвращает значение по указанному ключу либо undefined;
-    getValue = function(key) {return this.drinkInfo[key];}
+    getValue(key) {return this.drinkInfo[key];}
  
     //удаляет значение с указанным ключом, возвращает true если значение было удалено и false если такого значения не было в хранилище;
-    deleteValue = function(key) {
+    deleteValue(key) {
             if(key in this.drinkInfo)
                 {
                   delete this.drinkInfo[key];
@@ -22,7 +22,7 @@ class ObjStorageFunc{
                 return false;
     }
     //возвращает массив, состоящий из одних ключей. Класс должен быть чистым (не должен использовать никаких глобальных переменных, не должен «пачкать экран»).
-    getKeys = function() {return Object.keys(this.drinkInfo);}
+    getKeys() {return Object.keys(this.drinkInfo);}
 }
 
 let  drinkStorage = {};
