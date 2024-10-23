@@ -52,7 +52,7 @@
 
         {
             //console.log('тест 0,5,-10 -> один корень 2');
-            console.log('тест 0,5,-10 -> а не может быть равым 0');
+            console.log('тест 0,5,-10 -> а не должно быть равым 0');
             const roots=squareRoots(0,5,-10);
             //Вариант 2
             console.log(roots, ((roots.length==2))
