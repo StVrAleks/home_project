@@ -1,7 +1,15 @@
+input, label, textarea{cursor: pointer;}
 label{
     padding: 5px;
     display: block;
 }
+label > label{
+    display: inline;
+}
 input{
     display: inline-block;
+}
+form{
+    width: 70%;
+    border-top: 1px solid gray;
 }
