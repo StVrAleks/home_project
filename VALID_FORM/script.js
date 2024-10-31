@@ -111,7 +111,3 @@ function addForm(teg, formСontent){
         }}
 return teg.appendChild(divElement);
 } 
-/*
-function addProp(){
-
-}*/
