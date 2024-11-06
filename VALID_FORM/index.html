@@ -26,7 +26,7 @@
 
 <p>
     <span>URL сайта:</span>
-    <input id="sait" type="text" minlength="7"  onblur="forInput('sait', 7, 'spanIII');">
+    <input id = "sait" type = "text" minlength = "7"  onblur="forInput('sait', 7, 'spanIII');">
     <span class="invalid_info spanIII">Внесенные данные содержат ошибки</span>
 </p>
 <span class="span_valid">Начинается с "www", "http",
@@ -34,21 +34,21 @@
 
 <p>
     <span>Дата запуска сайта:</span>
-    <input type="date">
+    <input type="date" id = "start" onblur="forDate('start')">
 </p>
    <span class="span_valid">Поле обязательное для заполнения</span> 
 
 <p>
     <span>Посетителей в сутки:</span>
-    <input id="viziters" type="number" min="0">
-    <span class="invalid_info">Внесенные данные содержат ошибки</span>
+    <input id="viziters" type = "number" min = "0" onblur = "forInput('viziters', 1, 'spanIV');">
+    <span class="invalid_info spanIV">Внесенные данные содержат ошибки</span>
 </p>
 <span class="span_valid">Поле должно содержать числовые данные</span> 
 
 <p>
     <span>E-mail для связи:</span>
-    <input id="email" type="text" minlength="4">
-    <span class="invalid_info">Внесенные данные содержат ошибки</span>
+    <input id="email" type = "text" minlength="4" onblur = "forInput('email', 4, 'spanV');">
+    <span class="invalid_info spanV">Внесенные данные содержат ошибки</span>
 </p>
 <span class="span_valid">Содержит "@"</span>    
 
