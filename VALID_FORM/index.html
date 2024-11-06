@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>VALID_FORM</title>
+</head>
+<body>
+ 
+<form action="https://fe.it-academy.by/TestForm.php" id="formI" class="I">
+
+<p>
+    <span>Разработчики:</span>
+    <input id="developer" type="text" minlength="5" onblur="forInput('developer', 5, 'spanI');">
+    <span class="invalid_info spanI">Внесенные данные содержат ошибки</span>
+</p>
+<span class="span_valid">Не менее 5 символов</span>
+
+<p><span>Название сайта:</span>
+    <input id="nameSait" type="text" minlength="3"  onblur="forInput('nameSait', 3, 'spanII');">
+    <span class="invalid_info spanII">Внесенные данные содержат ошибки</span>
+</p>
+<span class="span_valid">Начинается с большой буквы</span>
+
+<p>
+    <span>URL сайта:</span>
+    <input id="sait" type="text" minlength="7"  onblur="forInput('sait', 7, 'spanIII');">
+    <span class="invalid_info spanIII">Внесенные данные содержат ошибки</span>
+</p>
+<span class="span_valid">Начинается с "www", "http",
+         "https", содержит "."</span>
+
+<p>
+    <span>Дата запуска сайта:</span>
+    <input type="date">
+</p>
+   <span class="span_valid">Поле обязательное для заполнения</span> 
+
+<p>
+    <span>Посетителей в сутки:</span>
+    <input id="viziters" type="number" min="0">
+    <span class="invalid_info">Внесенные данные содержат ошибки</span>
+</p>
+<span class="span_valid">Поле должно содержать числовые данные</span> 
+
+<p>
+    <span>E-mail для связи:</span>
+    <input id="email" type="text" minlength="4">
+    <span class="invalid_info">Внесенные данные содержат ошибки</span>
+</p>
+<span class="span_valid">Содержит "@"</span>    
+
+<p><span>Рубрика каталога:</span>
+<select name="rubriki" id="sel_rub">
+    <option value="0">здоровье</option>
+    <option value="1">домашний уют</option>
+    <option value="2">бытовая техника</option>
+</select></p>
+<span class="span_valid">Поле обязательное для заполнения</span>
+
+<p><span>Размещение:</span>
+    <input type="radio" id="radio1" class="radioType">
+    <label for="radio1" class="radioType">бесплатное</label>
+    <input type="radio" id="radio2" class="radioType">
+    <label for="radio2" class="radioType">платное</label>
+    <input type="radio" id="radio3" class="radioType">
+    <label for="radio3" class="radioType">VIP</label>
+</p>
+<span class="span_valid">Поле обязательное для заполнения</span>
+
+<p><span>Разрешить отзывы</span>
+<input type="checkbox"></p>
+
+<p><span>Описание</span>
+<textarea name="view" id="full-view"></textarea>
+
+
+</form>
+
+</body>    <script src="script.js"></script>
+</html>
