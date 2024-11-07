@@ -72,8 +72,9 @@ function validSelect(tegId){
   var selectElement = document.getElementById(tegId);
   var spanElement = document.querySelector('#' + tegId + ' ~ span');    
   spanElement.style.display = 'none'; 
-  if(selectElement.options[0].selected === true)
-        spanElement.style.display = 'inline';
+  if(selectElement.options[0].selected === true)   
+    spanElement.style.display = 'inline';
+
   return true;
 }
 
@@ -138,9 +139,15 @@ function validAll(){
   item = validArea('full-view');
 
   var spanInfo = document.getElementsByClassName('invalid_info');
+  var InputInfo = document.getElementsByClassName('input-info');
+
   for(i=0; i<spanInfo.length;i++){
     if(spanInfo[i].style.display === 'inline')
+    {
+      InputInfo[i].focus();
       return event.preventDefault();
+    }
+      
   }
 
   return allForm.submit();
