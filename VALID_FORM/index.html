@@ -9,10 +9,11 @@
 </head>
 <body>
  <!--
-<form action="https://fe.it-academy.by/TestForm.php" id="formI" class="I">
+<form >  
 
     -->
-<form >  
+
+<form action="https://fe.it-academy.by/TestForm.php" id="formI" class="I">    
 <p>
     <span>Разработчики:</span>
     <input id="developer" type="text" minlength="5" onblur="forInput('developer', 5);">
@@ -72,6 +73,7 @@
     <label for="radio2" class="radioType">платное</label>
     <input type="radio" id="radio3" class="radioType" name = 'radioGroup'>
     <label for="radio3" class="radioType">VIP</label>
+    <span class="invalid_info">Пожалуйста, укажите размещение.</span>    
 </p>
 <span class="span_valid">Поле обязательное для заполнения</span>
 
@@ -85,7 +87,7 @@
 <textarea name="view" id="full-view"></textarea>
 <span class="invalid_info">Внесенные данные содержат ошибки</span>
 </p>
-<button onclick="validAll();">Отправить</button>
+<button type="submit" onclick="validAll();">Отправить</button>
 <p>
 <input type="button" value="hhhh" onclick="validAll();" class="newButton">
 </p>

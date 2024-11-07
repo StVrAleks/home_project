@@ -3,18 +3,28 @@ function forInput(tegId, len){
     var proverka = true;
     var inputElement = document.getElementById(tegId).value; 
     var spanElement = document.querySelector('#' + tegId + ' ~ span');   
-    spanElement.style.display = 'none'; 
+    spanElement.style.display = 'none';     
+    
+    if(inputElement === '')
+    {
+      spanElement.style.display = 'inline';
+      return false;
+    } 
 
     if(tegId === 'nameSait')        
-        proverka = validStart(inputElement);   
+        proverka = validStart(inputElement); 
 
     if(tegId === 'sait')        
         proverka = validStroka(inputElement);   
 
     if(tegId === 'email')        
         proverka = validEmail(inputElement);  
+  
+    if(tegId === 'viziters')  
+      if(inputElement < 0) 
+        proverka = false;    
 
-    if(inputElement.length < len || proverka===false) 
+    if(inputElement.length < len || proverka === false) 
         spanElement.style.display = 'inline';
 }
 
@@ -43,13 +53,13 @@ function validStroka(stroka){
 }
 
 function validStart(stroka){
-   var regex = /[А-ЯЁ A-Z]/g;
+   var regex = /[А-ЯЁA-Z]/g;
    if(stroka === '')
-    return false;
+      return false;
    var found = stroka[0].match(regex);
-   if(found !== 'null')
-      return true;
-return false;
+   if(found === null)
+      return false;
+return true;
 }
 
 function validEmail(stroka){
@@ -60,7 +70,6 @@ return false;
 
 function validSelect(tegId){
   var selectElement = document.getElementById(tegId);
-  //var spanElement = document.getElementsByClassName(tegClass);  
   var spanElement = document.querySelector('#' + tegId + ' ~ span');    
   spanElement.style.display = 'none'; 
   if(selectElement.options[0].selected === true)
@@ -68,8 +77,8 @@ function validSelect(tegId){
   return true;
 }
 /*
-$("form").on("submit", function() {
- 
+$("#formI").on("submit", function() {
+ alert('1');
   return false; //для наглядности
 });*/
 
@@ -77,10 +86,8 @@ function validAll(){
   var item;
   var allForm = document.getElementsByTagName('form')[0];
   var inputsForm = allForm.querySelectorAll('p > input');
-  //var selectForm = allForm.querySelectorAll('p > select');
  
   for(var i = 0; i<inputsForm.length; i++){
-   // console.log(inputsForm[i].id);
     if(inputsForm[i].type === 'text')
         item = forInput(inputsForm[i].id, inputsForm[i].minLength);
     else if(inputsForm[i].type === 'number')
@@ -89,24 +96,43 @@ function validAll(){
       item = forDate(inputsForm[i].id);
   }
 
-
+//SELECT
   var selectForm = document.querySelectorAll('p > select');
   item = validSelect(selectForm[0].id);
+//RADIO
+  var radioForm = document.getElementsByName('radioGroup');
+  var radioClass = document.querySelector('p > .radioType ~ span'); 
 
-
+  radioClass.style.display = 'none';
+  var flag=0;
+  for(var i=0; i<radioForm.length;i++)
+    {
+      if(!radioForm[i].checked)
+         flag=flag+1;
+    }
+   if(flag === 3) 
+    radioClass.style.display = 'inline';
+//CHECK
   var checkedForm = document.getElementById('checkForm');
   var checkedClass = document.querySelector('p > #checkForm ~ span'); 
+
   checkedClass.style.display = 'none';  
   if(checkedForm.checked === false)
     checkedClass.style.display = 'inline';
-
+//TEXTAREA
   var textForm = allForm.querySelectorAll('p > textarea');
   var textClass = allForm.querySelectorAll('p > textarea ~ span'); 
   textClass[0].style.display = 'none';
   if(textForm[0].value === '' || textForm[0].value === ' ') 
     textClass[0].style.display = 'inline';
 
-  return false;
- // allForm.submit();
+  var spanInfo = document.getElementsByClassName('invalid_info');
+  for(i=0; i<spanInfo.length;i++){
+    if(spanInfo[i].style.display === 'inline')
+      return false;
+  }
+  
+  return allForm.submit();
+ // 
 }
 //onsubmit="validAll();
