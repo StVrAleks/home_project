@@ -76,11 +76,39 @@ function validSelect(tegId){
         spanElement.style.display = 'inline';
   return true;
 }
-/*
-$("#formI").on("submit", function() {
- alert('1');
-  return false; //для наглядности
-});*/
+
+function validRadio(tegId){
+  var radioForm = document.getElementsByName(tegId);
+  var radioClass = document.querySelector('p > .radioType ~ span'); 
+
+  radioClass.style.display = 'none';
+  var flag=0;
+  for(var i=0; i<radioForm.length;i++)
+    {
+      if(!radioForm[i].checked)
+         flag=flag+1;
+    }
+   if(flag === 3) 
+    radioClass.style.display = 'inline';
+}
+
+function validCheck(tegId){
+  var checkedForm = document.getElementById(tegId);
+  var checkedClass = document.querySelector('p > #checkForm ~ span'); 
+
+  checkedClass.style.display = 'none';  
+  if(checkedForm.checked === false)
+    checkedClass.style.display = 'inline';
+}
+
+function validArea(tegId){
+  var textForm = document.getElementById(tegId);
+  var textClass = document.querySelectorAll('p > textarea ~ span'); 
+  textClass[0].style.display = 'none';
+  if(textForm.value === '' || textForm.value === ' ') 
+    textClass[0].style.display = 'inline';
+}
+
 
 function validAll(){
   var item;
@@ -100,39 +128,20 @@ function validAll(){
   var selectForm = document.querySelectorAll('p > select');
   item = validSelect(selectForm[0].id);
 //RADIO
-  var radioForm = document.getElementsByName('radioGroup');
-  var radioClass = document.querySelector('p > .radioType ~ span'); 
 
-  radioClass.style.display = 'none';
-  var flag=0;
-  for(var i=0; i<radioForm.length;i++)
-    {
-      if(!radioForm[i].checked)
-         flag=flag+1;
-    }
-   if(flag === 3) 
-    radioClass.style.display = 'inline';
+  item = validRadio('radioGroup');
+
 //CHECK
-  var checkedForm = document.getElementById('checkForm');
-  var checkedClass = document.querySelector('p > #checkForm ~ span'); 
+  item = validCheck('checkForm');
 
-  checkedClass.style.display = 'none';  
-  if(checkedForm.checked === false)
-    checkedClass.style.display = 'inline';
 //TEXTAREA
-  var textForm = allForm.querySelectorAll('p > textarea');
-  var textClass = allForm.querySelectorAll('p > textarea ~ span'); 
-  textClass[0].style.display = 'none';
-  if(textForm[0].value === '' || textForm[0].value === ' ') 
-    textClass[0].style.display = 'inline';
+  item = validArea('full-view');
 
   var spanInfo = document.getElementsByClassName('invalid_info');
   for(i=0; i<spanInfo.length;i++){
     if(spanInfo[i].style.display === 'inline')
-      return false;
+      return event.preventDefault();
   }
-  
+
   return allForm.submit();
- // 
 }
-//onsubmit="validAll();

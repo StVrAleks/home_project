@@ -8,10 +8,6 @@
     <title>VALID_FORM</title>
 </head>
 <body>
- <!--
-<form >  
-
-    -->
 
 <form action="https://fe.it-academy.by/TestForm.php" id="formI" class="I">    
 <p>
@@ -67,29 +63,30 @@
 <span class="span_valid">Поле обязательное для заполнения</span>
 
 <p><span>Размещение:</span>
-    <input type="radio" id="radio1" class="radioType" name = 'radioGroup'>
+    <input type="radio" id="radio1" class="radioType" name = 'radioGroup' onclick="validRadio('radioGroup');">
     <label for="radio1" class="radioType">бесплатное</label>
-    <input type="radio" id="radio2" class="radioType" name = 'radioGroup'>
+    <input type="radio" id="radio2" class="radioType" name = 'radioGroup' onclick="validRadio('radioGroup');">
     <label for="radio2" class="radioType">платное</label>
-    <input type="radio" id="radio3" class="radioType" name = 'radioGroup'>
+    <input type="radio" id="radio3" class="radioType" name = 'radioGroup' onclick="validRadio('radioGroup');">
     <label for="radio3" class="radioType">VIP</label>
     <span class="invalid_info">Пожалуйста, укажите размещение.</span>    
 </p>
 <span class="span_valid">Поле обязательное для заполнения</span>
 
 <p><span>Разрешить отзывы</span>
-<input type="checkbox" id="checkForm">
+<input type="checkbox" id="checkForm" onchange="validCheck('checkForm');">
 <span class="invalid_info">Для отправки формы отзывы разрешить обязательно</span>
 </p>
 <span class="span_valid">Поле обязательное для заполнения</span>
 <p>
 <span>Описание</span>
-<textarea name="view" id="full-view"></textarea>
+<textarea name="view" id="full-view" onchange="validArea('full-view');"></textarea>
 <span class="invalid_info">Внесенные данные содержат ошибки</span>
 </p>
 <button type="submit" onclick="validAll();">Отправить</button>
 <p>
-<input type="button" value="hhhh" onclick="validAll();" class="newButton">
+ <!--<input type="button" value="hhhh" onclick="validAll();" class="newButton">
+-->
 </p>
 </form>
 
