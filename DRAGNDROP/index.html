@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>drag&amp;drop</title>
+</head>
+<body style="min-height: 100vh">
+<img src="http://fe.it-academy.by/Sites/0000007/sax.jpg"
+    id = 'imgI'
+    onmousedown="imgDragStart(event)"
+    onmouseup="imgDragEnd(event)">
+<img src="http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png" width="100"
+    id = 'imgII'
+    onmousedown="imgDragStart(event)"
+    onmouseup="imgDragEnd(event)">
+<img src="http://fe.it-academy.by/Sites/0000007/Man-and-woman.png" width="150"
+    id = 'imgIII'
+    onmousedown="imgDragStart(event)"
+    onmouseup="imgDragEnd(event)">
+<img src="http://fe.it-academy.by/Sites/0000007/No_smoking.png" style="padding-left: 50px"
+    id = 'imgIV'
+    onmousedown="imgDragStart(event)"
+    onmouseup="imgDragEnd(event)">
+
+<script>
+ var imgs = document.getElementsByTagName('img');
+  
+ document.body.addEventListener('click',clickedHandler,false);
+ 
+
+
+ function imgDragStart(event){
+    eo = window.event;
+    const draggedImg = event.target; 
+    var clickImg = draggedImg.id;
+    eo.preventDefault();
+    console.log(draggedImg);
+    draggedImg.del;
+    //document.getElementById(clickImg).style.left = event.screenX+"px";
+    //document.getElementById(clickImg).style.top = event.screenY+"px";   
+    console.log('onmousedown' + event.target.id);
+    console.log(event.screenX, event.screenY);
+  }
+
+  function imgDragEnd(event){
+    eo = window.event;
+    const draggedImg = event.target; 
+    var clickImg = draggedImg.id;
+
+  //  eo.preventDefault();
+    document.getElementById(clickImg).style.left = event.screenX+"px";
+    document.getElementById(clickImg).style.top = event.screenY+"px";
+    document.getElementById(clickImg).style.zIndex = '10';  
+    eo.currentTarget.appendChild(draggedImg); 
+    console.log('onmouseup' + event.target.id);
+    console.log(event.screenX, event.screenY);
+  }
+
+
+function clickedHandler(eo) {
+  eo=eo||window.event;
+  /*const markerObj=document.getElementById('MARKER');
+  markerObj.style.position='absolute';
+  markerObj.style.left=eo.pageX+"px";
+  markerObj.style.top=eo.pageY+"px";*/
+}
+</script>
+
+  
+
+</body></html>
+/*
+<div style='border: solid red 1px; width: 220px; height: 120px'
+    ondrop="divDrop(event)"
+    ondragover="divDragOver(event)">
+</div>
+
+<br />
+
+<div style='border: solid blue 1px; width: 220px; height: 120px'
+    ondrop="divDrop(event)"
+    ondragover="divDragOver(event)">
+</div>
+
+<br /><br />
+
+<img id='BALL1' width=50 src="Examples/ball3.png"
+    ondragstart="ballDragStart(event)"
+    ondragend="ballDragEnd(event)">
+<img id='BALL2' width=70 src="Examples/ball3.png"
+    ondragstart="ballDragStart(event)"
+    ondragend="ballDragEnd(event)">
+<img id='BALL3' width=100 src="Examples/ball3.png"
+    ondragstart="ballDragStart(event)"
+    ondragend="ballDragEnd(event)">
+
+<script>
+
+// какой мяч сейчас перетаскивается
+let draggedBall=null;
+
+function ballDragStart(eo) {
+    // началось перетаскивание мячика
+    eo=eo||window.event;
+    console.log('starting drag id='+eo.target.id);
+    draggedBall=eo.target;
+}
+
+function ballDragEnd(eo) {
+    // закончилось перетаскивание мячика (неважно куда он уронен)
+    eo=eo||window.event;
+    console.log('drag finished');
+    draggedBall=null;
+}
+
+function divDragOver(eo) {
+    eo=eo||window.event;
+    // по-умолчанию ронять элементы в div запрещено, отменяем:
+    eo.preventDefault();
+}
+
+function divDrop(eo) {
+    // мячик уронен
+    eo=eo||window.event;
+    eo.preventDefault();
+    if ( draggedBall )
+        eo.currentTarget.appendChild(draggedBall);
+}
+
+</script>
+*/
