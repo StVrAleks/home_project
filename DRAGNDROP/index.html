@@ -4,11 +4,15 @@
  <meta charset="UTF-8">
  <title>drag&amp;drop</title>
 </head>
-<body style="min-height: 100vh">
+<body style="min-height: 100vh" 
+    onmousedown="imgDragStart(event)"
+    onmouseup="imgDragEnd(event)"
+   >
 <img src="http://fe.it-academy.by/Sites/0000007/sax.jpg"
     id = 'imgI'
     onmousedown="imgDragStart(event)"
-    onmouseup="imgDragEnd(event)">
+    onmouseup="imgDragEnd(event)"
+    >
 <img src="http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png" width="100"
     id = 'imgII'
     onmousedown="imgDragStart(event)"
@@ -26,39 +30,54 @@
  var imgs = document.getElementsByTagName('img');
   
  document.body.addEventListener('click',clickedHandler,false);
- 
-
-
  function imgDragStart(event){
     eo = window.event;
-    const draggedImg = event.target; 
+    const draggedImg = eo.target; 
     var clickImg = draggedImg.id;
-    eo.preventDefault();
     console.log(draggedImg);
-    draggedImg.del;
-    //document.getElementById(clickImg).style.left = event.screenX+"px";
-    //document.getElementById(clickImg).style.top = event.screenY+"px";   
-    console.log('onmousedown' + event.target.id);
-    console.log(event.screenX, event.screenY);
+  }
+
+  function mUP(event){
+    eo = window.event;
+        eo.preventDefault();   
   }
 
   function imgDragEnd(event){
     eo = window.event;
-    const draggedImg = event.target; 
+     console.log(eo);   
+    eo.preventDefault();   
+    const draggedImg = eo.target; 
     var clickImg = draggedImg.id;
 
-  //  eo.preventDefault();
-    document.getElementById(clickImg).style.left = event.screenX+"px";
-    document.getElementById(clickImg).style.top = event.screenY+"px";
-    document.getElementById(clickImg).style.zIndex = '10';  
-    eo.currentTarget.appendChild(draggedImg); 
+    draggedImg.style.left = eo.pageX - draggedImg.offsetWidth / 2  +"px";
+    console.log(draggedImg);
+   // draggedImg.style.top = eo.screenY + "px";
+   draggedImg.style.top = eo.pageY - draggedImg.offsetHeight / 2 + "px";
+    draggedImg.style.zIndex = '10';  
+    
     console.log('onmouseup' + event.target.id);
     console.log(event.screenX, event.screenY);
+    eo.currentTarget.append(draggedImg); 
   }
 
+  /*function imgMove(event){
+    eo = window.event;
+    eo.preventDefault();   
+    const draggedImg = eo.target; 
+    var clickImg = draggedImg.id;
+    console.log("2");
+    draggedImg.style.left = eo.screenX+"px";
+    console.log(eo.screenX);
+    draggedImg.style.top = eo.screenY+"px";
+    draggedImg.style.zIndex = '10';  
+    /*eo.currentTarget.appendChild(clickImg); 
+    console.log('onmouseup' + event.target.id);
+    console.log(event.screenX, event.screenY);*/
+  //}
 
 function clickedHandler(eo) {
   eo=eo||window.event;
+  eo.preventDefault();   
   /*const markerObj=document.getElementById('MARKER');
   markerObj.style.position='absolute';
   markerObj.style.left=eo.pageX+"px";
@@ -69,65 +88,7 @@ function clickedHandler(eo) {
   
 
 </body></html>
-/*
-<div style='border: solid red 1px; width: 220px; height: 120px'
-    ondrop="divDrop(event)"
-    ondragover="divDragOver(event)">
-</div>
-
-<br />
-
-<div style='border: solid blue 1px; width: 220px; height: 120px'
-    ondrop="divDrop(event)"
-    ondragover="divDragOver(event)">
-</div>
-
-<br /><br />
-
-<img id='BALL1' width=50 src="Examples/ball3.png"
-    ondragstart="ballDragStart(event)"
-    ondragend="ballDragEnd(event)">
-<img id='BALL2' width=70 src="Examples/ball3.png"
-    ondragstart="ballDragStart(event)"
-    ondragend="ballDragEnd(event)">
-<img id='BALL3' width=100 src="Examples/ball3.png"
-    ondragstart="ballDragStart(event)"
-    ondragend="ballDragEnd(event)">
-
-<script>
-
-// какой мяч сейчас перетаскивается
-let draggedBall=null;
-
-function ballDragStart(eo) {
-    // началось перетаскивание мячика
-    eo=eo||window.event;
-    console.log('starting drag id='+eo.target.id);
-    draggedBall=eo.target;
-}
 
 
 
-function ballDragEnd(eo) {
-    // закончилось перетаскивание мячика (неважно куда он уронен)
-    eo=eo||window.event;
-    console.log('drag finished');
-    draggedBall=null;
-}
 
-function divDragOver(eo) {
-    eo=eo||window.event;
-    // по-умолчанию ронять элементы в div запрещено, отменяем:
-    eo.preventDefault();
-}
-
-function divDrop(eo) {
-    // мячик уронен
-    eo=eo||window.event;
-    eo.preventDefault();
-    if ( draggedBall )
-        eo.currentTarget.appendChild(draggedBall);
-}
-
-</script>
-*/
