@@ -5,4 +5,5 @@
 }*/
 body{
     position: absolute;
+    pointer-events:painted
 }

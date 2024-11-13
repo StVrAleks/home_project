@@ -4,121 +4,74 @@
  <meta charset="UTF-8">
  <title>drag&amp;drop</title>
 </head>
-<body style="min-height: 100vh"
-      onmouseup="bodyStart(event)">
-<img src="http://fe.it-academy.by/Sites/0000007/sax.jpg"
-    id = 'imgI'
-    onmouseup="imgDragEnd(event)"
-    onmousemove="imgMove(event)"
-    onmousedown="imgDragStart(event)"
-    >
-<img src="http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png" width="100"
-    id = 'imgII'
-    onmouseup="imgDragEnd(event)"
-    onmousemove="imgMove(event)"
-    onmousedown="imgDragStart(event)">
-<img src="http://fe.it-academy.by/Sites/0000007/Man-and-woman.png" width="150"
-    id = 'imgIII'
-    onmouseup="imgDragEnd(event)"
-    onmousemove="imgMove(event)"
-    onmousedown="imgDragStart(event)"
-   >
-<img src="http://fe.it-academy.by/Sites/0000007/No_smoking.png" style="padding-left: 50px"
-    id = 'imgIV'
-    onmouseup="imgDragEnd(event)"
-    onmousemove="imgMove(event)"
-    onmousedown="imgDragStart(event)"
-    >
+<body style="min-height: 100vh">
+<img src="http://fe.it-academy.by/Sites/0000007/sax.jpg">
+<img src="http://fe.it-academy.by/Sites/0000007/Yin_and_Yang.png" width="100">
+<img src="http://fe.it-academy.by/Sites/0000007/Man-and-woman.png" width="150">
+<img src="http://fe.it-academy.by/Sites/0000007/No_smoking.png" style="padding-left: 50px">
 
 <script>
+ window.addEventListener('load', bodyStart, false); 
  var imgs = document.getElementsByTagName('img');
- 
+
  var x=10, y=10; 
  for(var i = 0; i<imgs.length; i++)
 {
+  imgs[i].id = 'img' + i;
+  imgs[i].addEventListener('mouseup', imgDragEnd);
+  imgs[i].addEventListener('mousedown', imgDragStart);
   imgs[i].style.position = 'absolute';
   imgs[i].style.left = x +"px";
   imgs[i].style.top = y +"px";
   imgs[i].style.position = 'absolute'; 
-   x = x + 150;
+   x = x + 150;  //у первого элемента нет width
    y = y + imgs[i].offsetHeight;
 }
- //document.body.addEventListener('click',clickedHandler,false);
- window.addEventListener('load',imgDragStart,false);
 
   function imgDragStart(event){
     eo = window.event;
-    const draggedImg = eo.target;
-   // var clickImg = draggedImg.id;
-  //  draggedImg.style.cursor = 'grabbing';
-   // console.log(draggedImg);
+    eo.preventDefault();
+    const draggedImg = eo.target; 
+    const movImg = document.getElementById(draggedImg.id);
+    movImg.addEventListener('mousemove', imgMove);
   }
 
   function imgDragEnd(event){
+    //eo = eo||window.event;
     eo = window.event;
-    console.log(eo);   
     eo.preventDefault();   
     const draggedImg = eo.target; 
     const movImg = document.getElementById(draggedImg.id);
+    movImg.style.zIndex = '5';
     console.log(movImg); 
-
-    var raznicaX1 = eo.screenX;
-    var raznicaY1 = eo.screenY;
-    console.log(raznicaX1, raznicaY1);
-    var raznicaX = eo.screenX - movImg.offsetWidth;
-    var raznicaY = eo.screenY - movImg.offsetHeight;
-    console.log(raznicaX, raznicaY);
-    movImg.style.position = 'absolute';
-    movImg.style.left = raznicaX +"px";
-    movImg.style.top = raznicaY +"px";
-    movImg.style.zIndex = '10';
-    movImg.style.cursor = 'grabbing';
-    console.log(movImg);  
     document.body.appendChild(movImg);
-   // draggedImg.style.top = eo.screenY + "px";
- /*   eo.pageX - raznica  +"px";
-    movImg.style.top = eo.pageY - draggedImg.offsetHeight / 2 + "px";
-    
-    console.log('onmouseup' + event.target.id);
-    console.log(event.screenX, event.screenY);
-    document.body.target.append(movImg);*/
-    
+    movImg.removeEventListener('mouseup', imgDragEnd);
+    movImg.removeEventListener('mousemove', imgMove);
+    movImg.onmousedown = null;
   }
 function imgMove(event){
-  eo = window.event;
+  //eo = eo||window.event;
+   eo = window.event;
   eo.preventDefault(); 
-  
   const draggedImg = eo.target;
   const movImg = document.getElementById(draggedImg.id);
-  movImg.style.cursor = 'grabbing';
+ 
+      movImg.style.cursor = 'grabbing';
+      var raznicaX1 = eo.screenX;
+      var raznicaY1 = eo.screenY;
+      var raznicaX = eo.screenX - movImg.offsetWidth;
+      var raznicaY = eo.screenY - movImg.offsetHeight;
+      movImg.style.position = 'absolute';
+      movImg.style.left = raznicaX +"px";
+      movImg.style.top = raznicaY +"px";
+      movImg.style.zIndex = '100';
+      movImg.style.cursor = 'grabbing';
 }
+
+
 function bodyStart(event){
     eo = window.event;
     eo.preventDefault();
-    document.body.appendChild(movImg);
-}
-  /*function imgMove(event){
-    eo = window.event;
-    eo.preventDefault();   
-    const draggedImg = eo.target; 
-    var clickImg = draggedImg.id;
-    console.log("2");
-    draggedImg.style.left = eo.screenX+"px";
-    console.log(eo.screenX);
-    draggedImg.style.top = eo.screenY+"px";
-    draggedImg.style.zIndex = '10';  
-    /*eo.currentTarget.appendChild(clickImg); 
-    console.log('onmouseup' + event.target.id);
-    console.log(event.screenX, event.screenY);*/
-  //}
-
-function clickedHandler(eo) {
-  eo=eo||window.event;
-  eo.preventDefault();   
-  /*const markerObj=document.getElementById('MARKER');
-  markerObj.style.position='absolute';
-  markerObj.style.left=eo.pageX+"px";
-  markerObj.style.top=eo.pageY+"px";*/
 }
 </script>
 
