@@ -45,9 +45,8 @@
     movImg.style.zIndex = '5';
     console.log(movImg); 
     document.body.appendChild(movImg);
-    movImg.removeEventListener('mouseup', imgDragEnd);
     movImg.removeEventListener('mousemove', imgMove);
-    movImg.onmousedown = null;
+     movImg = null;
   }
 function imgMove(event){
   //eo = eo||window.event;
@@ -55,13 +54,12 @@ function imgMove(event){
   eo.preventDefault(); 
   const draggedImg = eo.target;
   const movImg = document.getElementById(draggedImg.id);
- 
-      movImg.style.cursor = 'grabbing';
-      var raznicaX1 = eo.screenX;
-      var raznicaY1 = eo.screenY;
-      var raznicaX = eo.screenX - movImg.offsetWidth;
-      var raznicaY = eo.screenY - movImg.offsetHeight;
-      movImg.style.position = 'absolute';
+
+      var raznicaX1 = eo.pageX;
+      var raznicaY1 = eo.pageY;
+      var raznicaX = eo.pageX - movImg.offsetWidth / 2;
+      var raznicaY = eo.pageY -movImg.offsetHeight / 2;
+     // movImg.style.position = 'absolute';
       movImg.style.left = raznicaX +"px";
       movImg.style.top = raznicaY +"px";
       movImg.style.zIndex = '100';
