@@ -56,16 +56,19 @@ function bodyStart(event){
  eo.preventDefault();
     
 var imgs = document.getElementsByTagName('img');
-var posY = imgs[imgs.length-1].clientHeight + imgs[imgs.length-1].offsetTop;
  for(var i = imgs.length-1; i>=0; i--)
     {
       imgs[i].id = 'img' + i;
       imgs[i].addEventListener('mouseup', imgDragEnd);
       imgs[i].addEventListener('mousedown', imgDragStart);
       imgs[i].style.left = imgs[i].offsetLeft +"px";
-      imgs[i].style.top = posY - imgs[i].clientHeight +"px";
-      imgs[i].style.position = 'absolute'; 
+      imgs[i].style.top = imgs[i].offsetTop +"px";
     }
+  for(var i = imgs.length-1; i>=0; i--)
+    {
+      imgs[i].style.position = 'absolute'; 
+    }  
+    console.log('Ура!');
 }
 </script>
 
