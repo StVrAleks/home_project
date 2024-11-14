@@ -13,29 +13,26 @@
 <script>
  window.addEventListener('load', bodyStart, false); 
 
- let shiftX = 0;
- let shiftY=0;
- let movImg = null;
-
   function imgDragStart(event){
     eo = window.event;
     eo.preventDefault();
     const draggedImg = eo.target; 
     movImg = document.getElementById(draggedImg.id);
-    movImg.addEventListener('mousemove', imgMove);   
     shiftX = eo.pageX - movImg.offsetLeft;
-    shiftY = eo.pageY - movImg.offsetTop;   
+    shiftY = eo.pageY - movImg.offsetTop;       
+    movImg.style.zIndex = '100';
+    movImg.style.cursor = 'grabbing'; 
+    document.addEventListener('mousemove', imgMove, false);   
+    imgMove();
   }
 
   function imgDragEnd(event){
     eo = window.event;
     eo.preventDefault();   
     const draggedImg = eo.target; 
-    movImg = document.getElementById(draggedImg.id);
-    movImg.style.zIndex = '5';
-    console.log(movImg); 
+    movImg.style.zIndex = '5'; 
     document.body.appendChild(movImg);
-    movImg.removeEventListener('mousemove', imgMove);
+    document.onmousemove = null;
     movImg = null;
   }
 
@@ -43,32 +40,31 @@ function imgMove(event){
   eo = window.event;
   eo.preventDefault(); 
   const draggedImg = eo.target;
-  movImg = document.getElementById(draggedImg.id);
+  console.log(movImg); 
   movImg.style.left = (eo.pageX - shiftX) + "px";
   movImg.style.top = (eo.pageY - shiftY) + "px";
-  movImg.style.zIndex = '100';
-  movImg.style.cursor = 'grabbing';
 }
 
 
 function bodyStart(event){
  eo = window.event;
  eo.preventDefault();
-    
+ 
+ let shiftX = 0;
+ let shiftY=0;
+ let movImg = null;
 var imgs = document.getElementsByTagName('img');
  for(var i = imgs.length-1; i>=0; i--)
     {
       imgs[i].id = 'img' + i;
-      imgs[i].addEventListener('mouseup', imgDragEnd);
-      imgs[i].addEventListener('mousedown', imgDragStart);
+      imgs[i].addEventListener('mouseup', imgDragEnd, false);
+      imgs[i].addEventListener('mousedown', imgDragStart, false);
       imgs[i].style.left = imgs[i].offsetLeft +"px";
       imgs[i].style.top = imgs[i].offsetTop +"px";
     }
   for(var i = imgs.length-1; i>=0; i--)
-    {
       imgs[i].style.position = 'absolute'; 
-    }  
-    console.log('Ура!');
+    console.log('Ура! Ура!');
 }
 </script>
 
