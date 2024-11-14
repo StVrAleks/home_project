@@ -12,24 +12,10 @@
 
 <script>
  window.addEventListener('load', bodyStart, false); 
- var imgs = document.getElementsByTagName('img');
+
  let shiftX = 0;
  let shiftY=0;
  let movImg = null;
- var x=10, y=10; 
-
- for(var i = 0; i<imgs.length; i++)
-{
-  imgs[i].id = 'img' + i;
-  imgs[i].addEventListener('mouseup', imgDragEnd);
-  imgs[i].addEventListener('mousedown', imgDragStart);
-  imgs[i].style.position = 'absolute';
-  imgs[i].style.left = x +"px";
-  imgs[i].style.top = y +"px";
-  imgs[i].style.position = 'absolute'; 
-   x = x + 150;  //у первого элемента нет width
-   y = y + imgs[i].offsetHeight;
-}
 
   function imgDragStart(event){
     eo = window.event;
@@ -66,8 +52,20 @@ function imgMove(event){
 
 
 function bodyStart(event){
-    eo = window.event;
-    eo.preventDefault();
+ eo = window.event;
+ eo.preventDefault();
+    
+var imgs = document.getElementsByTagName('img');
+var posY = imgs[imgs.length-1].clientHeight + imgs[imgs.length-1].offsetTop;
+ for(var i = imgs.length-1; i>=0; i--)
+    {
+      imgs[i].id = 'img' + i;
+      imgs[i].addEventListener('mouseup', imgDragEnd);
+      imgs[i].addEventListener('mousedown', imgDragStart);
+      imgs[i].style.left = imgs[i].offsetLeft +"px";
+      imgs[i].style.top = posY - imgs[i].clientHeight +"px";
+      imgs[i].style.position = 'absolute'; 
+    }
 }
 </script>
 
