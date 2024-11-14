@@ -13,7 +13,9 @@
 <script>
  window.addEventListener('load', bodyStart, false); 
  var imgs = document.getElementsByTagName('img');
-
+ let shiftX = 0;
+ let shiftY=0;
+ let movImg = null;
  var x=10, y=10; 
  for(var i = 0; i<imgs.length; i++)
 {
@@ -28,42 +30,36 @@
    y = y + imgs[i].offsetHeight;
 }
 
-  function imgDragStart(event){
-    eo = window.event;
+  function imgDragStart(eo){
+    eo = eo||window.event;
     eo.preventDefault();
     const draggedImg = eo.target; 
-    const movImg = document.getElementById(draggedImg.id);
-    movImg.addEventListener('mousemove', imgMove);
+    movImg = document.getElementById(draggedImg.id);
+    movImg.addEventListener('mousemove', imgMove);   
+    shiftX = eo.pageX - movImg.offsetLeft;
+    shiftY = eo.pageY - movImg.offsetTop;   
   }
 
-  function imgDragEnd(event){
-    //eo = eo||window.event;
-    eo = window.event;
+  function imgDragEnd(eo){
+    eo = eo||window.event;
     eo.preventDefault();   
     const draggedImg = eo.target; 
-    const movImg = document.getElementById(draggedImg.id);
+    movImg = document.getElementById(draggedImg.id);
     movImg.style.zIndex = '5';
     console.log(movImg); 
     document.body.appendChild(movImg);
     movImg.removeEventListener('mousemove', imgMove);
-     movImg = null;
+    movImg = null;
   }
-function imgMove(event){
-  //eo = eo||window.event;
-   eo = window.event;
+function imgMove(eo){
+  eo = eo||window.event;
   eo.preventDefault(); 
   const draggedImg = eo.target;
-  const movImg = document.getElementById(draggedImg.id);
-
-      var raznicaX1 = eo.pageX;
-      var raznicaY1 = eo.pageY;
-      var raznicaX = eo.pageX - movImg.offsetWidth / 2;
-      var raznicaY = eo.pageY -movImg.offsetHeight / 2;
-     // movImg.style.position = 'absolute';
-      movImg.style.left = raznicaX +"px";
-      movImg.style.top = raznicaY +"px";
-      movImg.style.zIndex = '100';
-      movImg.style.cursor = 'grabbing';
+  movImg = document.getElementById(draggedImg.id);
+  movImg.style.left = (eo.pageX - shiftX) + "px";
+  movImg.style.top = (eo.pageY - shiftY) + "px";
+  movImg.style.zIndex = '100';
+  movImg.style.cursor = 'grabbing';
 }
 
 

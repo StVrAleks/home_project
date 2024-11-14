@@ -1,9 +1,0 @@
-/*img{
-    position: absolute;
-    z-index: 1;
-
-}*/
-body{
-    position: absolute;
-    pointer-events:painted
-}
