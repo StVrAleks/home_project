@@ -17,6 +17,7 @@
  let shiftY=0;
  let movImg = null;
  var x=10, y=10; 
+
  for(var i = 0; i<imgs.length; i++)
 {
   imgs[i].id = 'img' + i;
@@ -30,8 +31,8 @@
    y = y + imgs[i].offsetHeight;
 }
 
-  function imgDragStart(eo){
-    eo = eo||window.event;
+  function imgDragStart(event){
+    eo = window.event;
     eo.preventDefault();
     const draggedImg = eo.target; 
     movImg = document.getElementById(draggedImg.id);
@@ -40,8 +41,8 @@
     shiftY = eo.pageY - movImg.offsetTop;   
   }
 
-  function imgDragEnd(eo){
-    eo = eo||window.event;
+  function imgDragEnd(event){
+    eo = window.event;
     eo.preventDefault();   
     const draggedImg = eo.target; 
     movImg = document.getElementById(draggedImg.id);
@@ -51,8 +52,9 @@
     movImg.removeEventListener('mousemove', imgMove);
     movImg = null;
   }
-function imgMove(eo){
-  eo = eo||window.event;
+
+function imgMove(event){
+  eo = window.event;
   eo.preventDefault(); 
   const draggedImg = eo.target;
   movImg = document.getElementById(draggedImg.id);
