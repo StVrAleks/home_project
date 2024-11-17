@@ -1,6 +1,7 @@
 function addClock(){
     var diametr = document.getElementsByTagName('input')[0].value;
-    console.log(diametr);
+    document.getElementsByTagName('input')[0].style.display = 'none';
+    document.getElementsByTagName('bytton')[0].style.display = 'none';    
     var clock = document.createElement("div"); 
     clock.id = 'bigClock';
     clock.style.width = Number(diametr) + 'px';
@@ -28,7 +29,25 @@ function addClock(){
     }
     for(var i = 0; i<12; i++)
             clockItems[i].style.position = 'absolute';
+
+    var hour = document.createElement("div"); 
+    hour.id = 'clockHour';
+    hour.style.width = 0.1 * Number(diametr)  + 'px';
+    hour.style.height = '30px';   
+    hour.style.backgroundColor = 'black'; 
+    var min  = document.createElement("div"); 
+    min.id = 'clockMin';
+    min.style.width = 0.1 * Number(diametr)  + 'px';
+    min.style.height = '20px';
+    min.style.backgroundColor = 'black';
+    var sec  = document.createElement("div"); 
+    sec.id = 'clockSec';
+    sec.style.width = 0.1 * Number(diametr)  + 'px';
+    sec.style.height = '10px';
+    sec.style.backgroundColor = 'black';
 }
+
+
 function positionX(num, diam){
  if(num === 1 || num === 5)
     return 0.68;
