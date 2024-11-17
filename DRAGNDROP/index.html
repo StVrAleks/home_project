@@ -32,7 +32,7 @@
     const draggedImg = eo.target; 
     movImg.style.zIndex = '5'; 
     document.body.appendChild(movImg);
-    document.onmousemove = null;
+    document.removeEventListener('mousemove', imgMove, false);   
     movImg = null;
   }
 
