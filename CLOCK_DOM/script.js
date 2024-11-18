@@ -44,9 +44,10 @@ function addClock(){
 
     var min  = document.createElement("div"); 
     min.id = 'clockMin';
-    min.style.width = 0.1 * Number(diametr)  + 'px';
-    min.style.height = '20px';
+    min.style.width = 0.5 * Number(diametr)+20  + 'px';
+    min.style.height = '5px';
     min.style.backgroundColor = 'black';
+    min.style.position = 'absolute'; 
     min.style.left = Number(diametr) *( 0.5-0.1/2) + 'px';
     min.style.top = Number(diametr) *( 0.5-0.1/2)  + 'px';
 
@@ -72,22 +73,22 @@ function addClock(){
 
 function positionX(num, partClock){
  if(num === 1 || num === 5)
-   return (100/6*4 - partClock)/100; 
+   return (100/6*4 - partClock*0.5)/100; 
    //return 0.68;
  if(num === 2 || num === 4)
-   return (100/6*5 - partClock)/100;
+   return (100/6*5 - partClock*0.5)/100;
    // return 0.82;
  if(num === 3)
-   return (100/6*6 - partClock)/100;
+   return (100/6*6 - partClock*0.5)/100;
    // return 1-0.11;
  if(num === 6 || num === 12)
-   return (100/6*3 - partClock)/100;
+   return (100/6*3 - partClock*0.5)/100;
   //  return 0.5-0.1*0.5;
  if(num === 7 || num === 11)
-   return (100/6*2 - partClock)/100;
+   return (100/6*2 - partClock*0.5)/100;
   //  return 0.23;
  if(num === 8 || num === 10)
-   return (100/6 - partClock)/100;
+   return (100/6 - partClock*0.5)/100;
    // return 0.075;
  if(num === 9)
     return 0;
@@ -95,19 +96,19 @@ function positionX(num, partClock){
 
 function positionY(num, partClock){
     if(num === 1 || num === 11)
-      return (100/6 - partClock)/100;
+      return (100/6 - partClock*0.5)/100;
       // return 0.08; //100/6-10/100
     if(num === 2 || num === 10)
-      return (100/6*2 - partClock)/100;
+      return (100/6*2 - partClock*0.5)/100;
        //return 0.22;
     if(num === 3 || num === 9)
-      return (100/6*3 - partClock)/100;
+      return (100/6*3 - partClock*0.5)/100;
       // return 0.5-0.1*0.5;
     if(num === 4 || num === 8)
-      return (100/6*4 - partClock)/100;
+      return (100/6*4 - partClock*0.5)/100;
       // return 0.66;
     if(num === 5 || num === 7)
-      return (100/6*5 - partClock)/100;
+      return (100/6*5 - partClock*0.5)/100;
      // return 0.825;
     if(num === 6)
        return 1-0.11;
