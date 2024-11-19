@@ -10,35 +10,45 @@ function addClock(){
     clock.style.width = Number(diametr) + 'px';
     clock.style.height = Number(diametr) + 'px';
     clock.style.borderRadius = '50%';
-    clock.style.backgroundColor = 'yellow';
+    clock.style.padding = '2%';
+    clock.style.backgroundColor = '#FCCA66';
     clock.style.position = 'absolute';
     document.body.appendChild(clock); 
     
     var clockItems = [];
-    var clockNumber = 10;
+    var clockSpan = [];
+    var clockNumber = 15;
     for(var i = 0; i<12; i++)
     {
       clockItems[i] = document.createElement("div"); 
-      clockItems[i].id = 'item' + i;
+      clockSpan[i] = document.createElement("span"); 
+      clockSpan[i].innerText = i+1;
+      clockSpan[i].style.top = '50%';
+      clockSpan[i].style.left = '50%';
+      clockSpan[i].style.position = 'absolute';
+      clockSpan[i].style.transform = 'translate(-50%, -50%)';
       clockItems[i].style.width = clockNumber/100 * Number(diametr)  + 'px';
       clockItems[i].style.height = clockNumber/100 * Number(diametr)  + 'px';
       clockItems[i].style.borderRadius = '50%';
-      clockItems[i].style.backgroundColor = 'green';
-      clockItems[i].innerText = i+1;
-      clockItems[i].style.fontSize = '11px';
-      clockItems[i].style.textAlign= 'center';
+      clockItems[i].style.backgroundColor = '#48B382';
+
+      //clockItems[i].innerText = i+1;
+      clockItems[i].style.fontSize = '20px';
+      //clockItems[i].style.textAlign= 'center';
       clockItems[i].style.left = Number(diametr) * positionX(i+1, clockNumber) + 'px';
       clockItems[i].style.top = Number(diametr) * positionY(i+1, clockNumber)  + 'px';
+      clockItems[i].appendChild(clockSpan[i]);
       clock.appendChild(clockItems[i]);   
     }
     for(var i = 0; i<12; i++)
-            clockItems[i].style.position = 'absolute';
+       clockItems[i].style.position = 'absolute';
+       
 
     var hour = document.createElement("div"); 
     hour.id = 'clockHour';
     hour.style.width = 0.4 * Number(diametr)  + 'px';
     hour.style.height = '10px';   
-    hour.style.backgroundColor = 'green';
+    hour.style.backgroundColor = 'black';
     hour.style.position = 'absolute'; 
     hour.style.left = Number(diametr) / 2 + 'px';
     hour.style.top = Number(diametr) / 2  + 'px';
@@ -50,7 +60,7 @@ function addClock(){
     min.id = 'clockMin';
     min.style.width = 0.5 * Number(diametr)+20  + 'px';
     min.style.height = '7px';
-    min.style.backgroundColor = 'pink';
+    min.style.backgroundColor = 'black';
     min.style.position = 'absolute'; 
     min.style.left = Number(diametr) / 2 + 'px';
     min.style.top = Number(diametr) / 2  + 'px';
@@ -74,69 +84,63 @@ function addClock(){
     //const currTime=new Date();
     var timeNew = document.createElement("span"); 
     timeNew.id = 'curD';
+    timeNew.style.fontStyle = 'italic';
+    timeNew.style.fontWeight = 'bold';
+    timeNew.style.fontSize = '25px';
     timeNew.style.position = 'absolute';
-    timeNew.style.left = Number(diametr)*0.4 + 'px';
-    timeNew.style.top = Number(diametr)*0.2 + 'px';
+    timeNew.style.left = Number(diametr)*0.5 + 'px';
+    timeNew.style.top = Number(diametr)*0.3 + 'px';
+    timeNew.style.transform = 'translate(-50%, -50%)';
     clock.appendChild(timeNew);     
 
 }
 
 
 function positionX(num, partClock){
+  var x =  addPartX(num, partClock);
  if(num === 1 || num === 5)
-  return  (100 - 4*100/6 - 0.83)/100;  
-  //return (100/6*4 - partClock*0.5)/100; 
-   //return 0.68;
+  return 8/12 + x; 
  if(num === 2 || num === 4)
-  return  (100 - 5*100/6 - 0.83)/100; 
-  // return (100/6*5 - partClock*0.5)/100;
-   // return 0.82;
+  return 10/12 + x; 
  if(num === 3)
-   return (100/6*6 - partClock*0.5)/100;
-   // return 1-0.11;
+   return (100 - partClock)/100;
  if(num === 6 || num === 12)
-  return  (100 - 3*100/6 - 0.83)/100;  
-  //return (100/6*3 - partClock*0.5)/100;
-  //  return 0.5-0.1*0.5;
+  return  6/12 - partClock*0.5/100; 
  if(num === 7 || num === 11)
-  return  (100 - 2*100/6 - 0.83)/100; 
-  // return (100/6*2 - partClock*0.5)/100;
-  //  return 0.23;
+  return  4/12 +x; 
  if(num === 8 || num === 10)
-  return  (100 - 100/6 - 0.83)/100;  
-  //return (100/6 - partClock*0.5)/100;
-   // return 0.075;
+  return  2/12 + x; 
  if(num === 9)
-    return 0;
+    return partClock*0.5/100;
 }
 
 function positionY(num, partClock){
+  var y =  addPartY(num, partClock);
     if(num === 1 || num === 11)
-      return  (100 - 5*100/6 - 0.83)/100; 
-      //return (100/6 - partClock*0.5)/100;
-      // return 0.08; //100/6-10/100
+      return  2/12 + y; 
     if(num === 2 || num === 10)
-      return  (100 - 4*100/6 - 0.83)/100; 
-      //return (100/6*2 - partClock*0.5)/100;
-       //return 0.22;
+      return  4/12 + y; 
     if(num === 3 || num === 9)
-      return  (100 - 3*100/6 - 0.83)/100; 
-      //return (100/6*3 - partClock*0.5)/100;
-      // return 0.5-0.1*0.5;
+      return  6/12 - partClock*0.5/100; 
     if(num === 4 || num === 8)
-      return  (100 - 2*100/6 - 0.83)/100; 
-      //return (100/6*4 - partClock*0.5)/100;
-      // return 0.66;
+      return 8/12 + y; 
     if(num === 5 || num === 7)
-      return (100 - 100/6 - 0.83)/100; 
-      //  return (100/6*5 - partClock*0.5)/100;
-     // return 0.825;
+      return 10/12 + y; 
     if(num === 6)
-       return 1-0.01;
+       return (100 - partClock)/100;
     if(num === 12)
-       return 0;
+       return partClock*0.5/100;
    }
-
+function addPartY(num, partClock){
+  if(num > 6 || num < 12)
+    return Number(-partClock*0.5/100);
+  return Number(partClock*0.5/100);
+}
+function addPartX(num, partClock){
+  if(num < 6 && num !== 3 )
+    return Number(partClock*0.5/100);
+  return Number(-partClock*0.5/100);
+}
    function updateTime() {
       const currTime=new Date();
       var currTimeStr = formatDateTime(currTime);
@@ -155,7 +159,8 @@ function positionY(num, partClock){
       const seconds=dt.getSeconds();
       const ygolSec = -90 + seconds * 6;
       const ygolMin = -90 + minutes * 6;
-      const ygolHours = -90 + hours * 30;
+      const ygolHours = -90 + (hours-12) * 30 + 5/60*minutes*6;
+      console.log(-90 + (hours-12)*30 , 5/60*minutes*6);
       if(document.getElementById('clockSec'))
         document.getElementById('clockSec').style.transform = 'rotate(' + ygolSec + 'deg)';
       if(document.getElementById('clockMin'))
