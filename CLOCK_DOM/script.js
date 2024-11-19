@@ -36,27 +36,38 @@ function addClock(){
 
     var hour = document.createElement("div"); 
     hour.id = 'clockHour';
-    hour.style.width = 0.1 * Number(diametr)  + 'px';
-    hour.style.height = '30px';   
-    hour.style.backgroundColor = 'black'; 
-
+    hour.style.width = 0.4 * Number(diametr)  + 'px';
+    hour.style.height = '10px';   
+    hour.style.backgroundColor = 'green';
+    hour.style.position = 'absolute'; 
+    hour.style.left = Number(diametr) / 2 + 'px';
+    hour.style.top = Number(diametr) / 2  + 'px';
+    hour.style.transformOrigin = 'top left'; 
+    hour.style.transform = 'rotate(-90deg)';   
     clock.appendChild(hour);  
 
     var min  = document.createElement("div"); 
     min.id = 'clockMin';
     min.style.width = 0.5 * Number(diametr)+20  + 'px';
-    min.style.height = '5px';
-    min.style.backgroundColor = 'black';
+    min.style.height = '7px';
+    min.style.backgroundColor = 'pink';
     min.style.position = 'absolute'; 
-    min.style.left = Number(diametr) *( 0.5-0.1/2) + 'px';
-    min.style.top = Number(diametr) *( 0.5-0.1/2)  + 'px';
+    min.style.left = Number(diametr) / 2 + 'px';
+    min.style.top = Number(diametr) / 2  + 'px';
+    min.style.transformOrigin = 'top left'; 
+    min.style.transform = 'rotate(-90deg)';   
 
     clock.appendChild(min);  
     var sec  = document.createElement("div"); 
     sec.id = 'clockSec';
-    sec.style.width = 0.1 * Number(diametr)  + 'px';
-    sec.style.height = '10px';
+    sec.style.width = 0.5 * Number(diametr)  + 'px';
+    sec.style.height = '3px';
     sec.style.backgroundColor = 'black';
+    sec.style.position = 'absolute'; 
+    sec.style.left = Number(diametr) / 2 + 'px';
+    sec.style.top = Number(diametr) / 2  + 'px';
+    sec.style.transformOrigin = 'top left';
+    sec.style.transform = 'rotate(-90deg)';
     clock.appendChild(sec); 
     
  
@@ -73,22 +84,27 @@ function addClock(){
 
 function positionX(num, partClock){
  if(num === 1 || num === 5)
-   return (100/6*4 - partClock*0.5)/100; 
+  return  (100 - 4*100/6 - 0.83)/100;  
+  //return (100/6*4 - partClock*0.5)/100; 
    //return 0.68;
  if(num === 2 || num === 4)
-   return (100/6*5 - partClock*0.5)/100;
+  return  (100 - 5*100/6 - 0.83)/100; 
+  // return (100/6*5 - partClock*0.5)/100;
    // return 0.82;
  if(num === 3)
    return (100/6*6 - partClock*0.5)/100;
    // return 1-0.11;
  if(num === 6 || num === 12)
-   return (100/6*3 - partClock*0.5)/100;
+  return  (100 - 3*100/6 - 0.83)/100;  
+  //return (100/6*3 - partClock*0.5)/100;
   //  return 0.5-0.1*0.5;
  if(num === 7 || num === 11)
-   return (100/6*2 - partClock*0.5)/100;
+  return  (100 - 2*100/6 - 0.83)/100; 
+  // return (100/6*2 - partClock*0.5)/100;
   //  return 0.23;
  if(num === 8 || num === 10)
-   return (100/6 - partClock*0.5)/100;
+  return  (100 - 100/6 - 0.83)/100;  
+  //return (100/6 - partClock*0.5)/100;
    // return 0.075;
  if(num === 9)
     return 0;
@@ -96,22 +112,27 @@ function positionX(num, partClock){
 
 function positionY(num, partClock){
     if(num === 1 || num === 11)
-      return (100/6 - partClock*0.5)/100;
+      return  (100 - 5*100/6 - 0.83)/100; 
+      //return (100/6 - partClock*0.5)/100;
       // return 0.08; //100/6-10/100
     if(num === 2 || num === 10)
-      return (100/6*2 - partClock*0.5)/100;
+      return  (100 - 4*100/6 - 0.83)/100; 
+      //return (100/6*2 - partClock*0.5)/100;
        //return 0.22;
     if(num === 3 || num === 9)
-      return (100/6*3 - partClock*0.5)/100;
+      return  (100 - 3*100/6 - 0.83)/100; 
+      //return (100/6*3 - partClock*0.5)/100;
       // return 0.5-0.1*0.5;
     if(num === 4 || num === 8)
-      return (100/6*4 - partClock*0.5)/100;
+      return  (100 - 2*100/6 - 0.83)/100; 
+      //return (100/6*4 - partClock*0.5)/100;
       // return 0.66;
     if(num === 5 || num === 7)
-      return (100/6*5 - partClock*0.5)/100;
+      return (100 - 100/6 - 0.83)/100; 
+      //  return (100/6*5 - partClock*0.5)/100;
      // return 0.825;
     if(num === 6)
-       return 1-0.11;
+       return 1-0.01;
     if(num === 12)
        return 0;
    }
@@ -121,6 +142,7 @@ function positionY(num, partClock){
       var currTimeStr = formatDateTime(currTime);
       if(document.getElementById('curD'))
          document.getElementById('curD').innerText = currTimeStr;
+      console.log(currTimeStr);  
    }
 
   // форматирует дату-время в формате дд.мм.гггг чч:мм:сс
@@ -131,6 +153,15 @@ function positionY(num, partClock){
       const hours=dt.getHours();
       const minutes=dt.getMinutes();
       const seconds=dt.getSeconds();
+      const ygolSec = -90 + seconds * 6;
+      const ygolMin = -90 + minutes * 6;
+      const ygolHours = -90 + hours * 30;
+      if(document.getElementById('clockSec'))
+        document.getElementById('clockSec').style.transform = 'rotate(' + ygolSec + 'deg)';
+      if(document.getElementById('clockMin'))
+        document.getElementById('clockMin').style.transform = 'rotate(' + ygolMin  + 'deg)';
+      if(document.getElementById('clockHour'))
+        document.getElementById('clockHour').style.transform = 'rotate(' + ygolHours + 'deg)';
       return str0l(hours,2) + ':' + str0l(minutes,2) + ':' + str0l(seconds,2);
   }
    // дополняет строку val слева нулями до длины Len
