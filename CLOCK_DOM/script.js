@@ -32,9 +32,7 @@ function addClock(){
       clockItems[i].style.borderRadius = '50%';
       clockItems[i].style.backgroundColor = '#48B382';
 
-      //clockItems[i].innerText = i+1;
       clockItems[i].style.fontSize = '20px';
-      //clockItems[i].style.textAlign= 'center';
       clockItems[i].style.left = Number(diametr) * positionX(i+1, clockNumber) + 'px';
       clockItems[i].style.top = Number(diametr) * positionY(i+1, clockNumber)  + 'px';
       clockItems[i].appendChild(clockSpan[i]);
@@ -50,8 +48,9 @@ function addClock(){
     hour.style.height = '10px';   
     hour.style.backgroundColor = 'black';
     hour.style.position = 'absolute'; 
-    hour.style.left = Number(diametr) / 2 + 'px';
-    hour.style.top = Number(diametr) / 2  + 'px';
+    hour.style.left = '50%';// Number(diametr)*0.5 + 'px';
+    hour.style.top = '50%'; //Number(diametr)*0.5  + 'px';
+    hour.style.transform = 'translate(-50%, -50%)';
     hour.style.transformOrigin = 'top left'; 
     hour.style.transform = 'rotate(-90deg)';   
     clock.appendChild(hour);  
@@ -62,20 +61,23 @@ function addClock(){
     min.style.height = '7px';
     min.style.backgroundColor = 'black';
     min.style.position = 'absolute'; 
-    min.style.left = Number(diametr) / 2 + 'px';
-    min.style.top = Number(diametr) / 2  + 'px';
+    min.style.left = '50%';//Number(diametr) / 2 + 'px';
+    min.style.top = '50%';//Number(diametr) / 2  + 'px';
+    min.style.transform = 'translate(-50%, -50%)';
     min.style.transformOrigin = 'top left'; 
     min.style.transform = 'rotate(-90deg)';   
 
     clock.appendChild(min);  
     var sec  = document.createElement("div"); 
     sec.id = 'clockSec';
-    sec.style.width = 0.5 * Number(diametr)  + 'px';
+    sec.style.width = 0.7 * Number(diametr)  + 'px';
     sec.style.height = '3px';
     sec.style.backgroundColor = 'black';
     sec.style.position = 'absolute'; 
-    sec.style.left = Number(diametr) / 2 + 'px';
-    sec.style.top = Number(diametr) / 2  + 'px';
+    sec.style.left = '50%';//Number(diametr) / 2 + 'px';
+    sec.style.top = '50%';//Number(diametr) / 2  + 'px';
+    sec.style.transform = 'translate(-50%, -50%)';
+    console.log(Number(diametr) / 2);
     sec.style.transformOrigin = 'top left';
     sec.style.transform = 'rotate(-90deg)';
     clock.appendChild(sec); 
@@ -97,50 +99,43 @@ function addClock(){
 
 
 function positionX(num, partClock){
-  var x =  addPartX(num, partClock);
+ //partClock = 15
  if(num === 1 || num === 5)
-  return 8/12 + x; 
+  return 8/12 + partClock*0.5/100; 
  if(num === 2 || num === 4)
-  return 10/12 + x; 
- if(num === 3)
-   return (100 - partClock)/100;
- if(num === 6 || num === 12)
-  return  6/12 - partClock*0.5/100; 
+  return 10/12 + partClock*0.5/100; 
  if(num === 7 || num === 11)
-  return  4/12 +x; 
+  return  4/12 - partClock*0.5/100; 
  if(num === 8 || num === 10)
-  return  2/12 + x; 
+  return  2/12 - partClock*0.5/100; 
+
+ if(num === 6 || num === 12)
+  return  6/12 - 0.5/100; 
+ if(num === 3)
+   return 1 - 0.5/100;
  if(num === 9)
-    return partClock*0.5/100;
+    return 0.5/100;
 }
 
 function positionY(num, partClock){
-  var y =  addPartY(num, partClock);
     if(num === 1 || num === 11)
-      return  2/12 + y; 
+      return  2/12 - partClock*0.5/100;  
     if(num === 2 || num === 10)
-      return  4/12 + y; 
-    if(num === 3 || num === 9)
-      return  6/12 - partClock*0.5/100; 
+      return  4/12 - partClock*0.5/100; 
     if(num === 4 || num === 8)
-      return 8/12 + y; 
+      return 8/12 + partClock*0.5/100;  
     if(num === 5 || num === 7)
-      return 10/12 + y; 
+      return 10/12 + partClock*0.5/100; 
+
     if(num === 6)
-       return (100 - partClock)/100;
+       return 1 - partClock/100;
     if(num === 12)
-       return partClock*0.5/100;
+       return 0.5/100;
+
+    if(num === 3 || num === 9)
+      return  6/12 - 0.5/100;       
    }
-function addPartY(num, partClock){
-  if(num > 6 || num < 12)
-    return Number(-partClock*0.5/100);
-  return Number(partClock*0.5/100);
-}
-function addPartX(num, partClock){
-  if(num < 6 && num !== 3 )
-    return Number(partClock*0.5/100);
-  return Number(-partClock*0.5/100);
-}
+
    function updateTime() {
       const currTime=new Date();
       var currTimeStr = formatDateTime(currTime);
@@ -149,11 +144,8 @@ function addPartX(num, partClock){
       console.log(currTimeStr);  
    }
 
-  // форматирует дату-время в формате дд.мм.гггг чч:мм:сс
+  // форматирует дату-время в формате чч:мм:сс
   function formatDateTime(dt) {
-      //const year=dt.getFullYear();
-      //const month=dt.getMonth()+1;
-      //const day=dt.getDate();
       const hours=dt.getHours();
       const minutes=dt.getMinutes();
       const seconds=dt.getSeconds();
