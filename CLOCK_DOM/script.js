@@ -24,7 +24,7 @@ function addClock(){
     
     var clockItems = [];
     var clockSpan = [];
-    var clockNumber = 15;
+    var clockNumber = 14;
     for(var i = 0; i<12; i++)
     {
       clockItems[i] = document.createElement("div"); 
@@ -109,32 +109,41 @@ function positionX(num, partClock){
  //partClock = 15
 
  if( num === 1 || num === 5)
-  return 8/12 - partClock*0.5/100; 
+ // return 8/12 - partClock*0.5/100; 
+   return 5/7 - partClock*0.5/100; 
  if(num === 2 || num === 4)
-  return 10/12 - partClock*0.5/100; 
+  //return 10/12 - partClock*0.5/100; 
+  return 6/7 - partClock*0.5/100; 
  if(num === 7 || num === 11)
-  return  4/12 - partClock*0.5/100; 
+  //return  4/12 - partClock*0.5/100; 
+  return  2/7 -  partClock*0.5/100; 
  if(num === 8 || num === 10)
-  return  2/12 - partClock*0.5/100; 
+  //return  2/12 - partClock*0.5/100; 
+  return  1/7 - partClock*0.5/100; 
 
  if(num === 6 || num === 12)
-  return  6/12 - partClock*0.5/100; 
+  //return  6/12 - partClock*0.5/100; 
+  return  0.5 - 1/14; 
  if(num === 3)
-   return 1 - partClock/100;
+   return 6/7;
  if(num === 9)
-    return 0.5/100;
+    return 1/7 - partClock/100;
 }
 
 function positionY(num, partClock){
     if(num === 1 || num === 11)
-      return  2/12 - 0.5*partClock/100;  
+     // return  2/12 - 0.5*partClock/100;  
+     return  1/7 - partClock*0.5/100;//partClock/100;  
     if(num === 2 || num === 10)
-      return  4/12 - partClock*0.5/100; 
+      //return  4/12 - partClock*0.5/100; 
+    return  2/7 - partClock*0.5/100; 
 
     if(num === 4 || num === 8)
-      return 8/12 - partClock*0.5/100;  
+      //return 8/12 - partClock*0.5/100;  
+      return 4/7 + partClock*0.5/100;    
     if(num === 5 || num === 7)
-      return 10/12 - partClock*0.5/100; 
+      //return 10/12 - partClock*0.5/100; 
+      return 5/7 + partClock*0.5/100; 
 
     if(num === 6)
        return 1 - partClock/100;
