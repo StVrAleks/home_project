@@ -10,4 +10,37 @@
     <button onclick="addClock();">Построить часы</button>
 </body>
 <script src="script.js"></script>
+
+
+<style>
+#bigClock{
+    background-color: #FCCA66;
+    border-radius: 50%;  
+    position: absolute;
+}
+
+#clockMin{
+    width: 5px;
+    position: absolute;
+}
+#clockSec{
+    width: 3px;
+    position: absolute;
+}
+#clockHour{
+    width: 10px;    
+    position: absolute;
+}
+#clockMin,
+#clockSec,
+#clockHour{
+  background-color: black;
+  border-radius: 5px;  
+  transform: translate(-50%, -50%);
+  left: calc(50% + 0px);
+  top: calc(50% - 40px); 
+  transform-origin: 0px 40px;   
+}
+</style>
+
 </html>
