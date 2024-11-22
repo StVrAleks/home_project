@@ -51,10 +51,11 @@ function addClock(){
        
     setInterval(updateTime,1000);
 
+
     var min  = document.createElement("div"); 
+ 
     min.id = 'clockMin';
     min.style.height = 0.40 * Number(diametr)  + 'px'; 
-
 
     var sec  = document.createElement("div"); 
     sec.id = 'clockSec';
@@ -64,12 +65,12 @@ function addClock(){
     var hour = document.createElement("div"); 
     hour.id = 'clockHour';
     hour.style.height = 0.25 * Number(diametr) + 'px';
-   
-    const currTime=new Date();
-    var gegRot = formatDateTime(currTime);
-    
- 
-    //const currTime=new Date();
+     
+    clock.appendChild(min);   
+    clock.appendChild(sec); 
+    clock.appendChild(hour);  
+
+
     var timeNew = document.createElement("span"); 
     timeNew.id = 'curD';
     timeNew.style.fontStyle = 'italic';
@@ -81,11 +82,7 @@ function addClock(){
     timeNew.style.transform = 'translate(-50%, -50%)';
     clock.appendChild(timeNew);     
 
- clock.appendChild(min);   
- clock.appendChild(sec); 
- clock.appendChild(hour);  
-
-
+   var gegRot = updateTime(); 
 
 return true;
 }
