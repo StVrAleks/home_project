@@ -2,7 +2,7 @@
 
 window.addEventListener('load', document.getElementsByTagName('input')[0].focus(), false); 
 function validInp(){
-  if(document.getElementsByTagName('input')[0].value < 200 || document.getElementsByTagName('input')[0].value >600)
+  if(document.getElementsByTagName('input')[0].value < 200 || document.getElementsByTagName('input')[0].value >800)
     return alert('Введено не верное значение');
   return true;
 }
@@ -21,11 +21,11 @@ function addClock(){
     
     var clockItems = [];
     var clockSpan = [];
-
-    //100% экрана часов разделим условно на 7 частей (9; 8,10; 7,11; 6,12; 5,1; 4,2; 3), 
-    //получаем, что максимальный по размеру диаметр круга с цифрами может быть 14% от объема большего диаметра,
-    //что и запишем в clockNumber
-    var clockNumber = 100/7;
+    var radius = 0.5*diametr*0.85;
+    
+    var clockNumber = 10;
+    var ygolCkockX;
+    var ygolCkockY;
     for(var i = 0; i<12; i++)
     {
       clockItems[i] = document.createElement("div"); 
@@ -39,10 +39,11 @@ function addClock(){
       clockItems[i].style.height = clockNumber/100 * Number(diametr)  + 'px';
       clockItems[i].style.borderRadius = '50%';
       clockItems[i].style.backgroundColor = '#48B382';
-
-      clockItems[i].style.fontSize = '20px';
-      clockItems[i].style.left = 100*positionX(i+1, clockNumber) + '%';
-      clockItems[i].style.top = 100*positionY(i+1, clockNumber) + '%';
+      clockItems[i].style.fontSize = Number(diametr)*0.07  + 'px';
+      ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
+      ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
+      clockItems[i].style.left = ygolCkockX + 'px';
+      clockItems[i].style.top = ygolCkockY + 'px';
       clockItems[i].appendChild(clockSpan[i]);
       clock.appendChild(clockItems[i]);   
     }
@@ -75,7 +76,7 @@ function addClock(){
     timeNew.id = 'curD';
     timeNew.style.fontStyle = 'italic';
     timeNew.style.fontWeight = 'bold';
-    timeNew.style.fontSize = '25px';
+    timeNew.style.fontSize = Number(diametr)*0.07  + 'px';
     timeNew.style.position = 'absolute';
     timeNew.style.left = Number(diametr)*0.5 + 'px';
     timeNew.style.top = Number(diametr)*0.3 + 'px';
@@ -87,47 +88,6 @@ function addClock(){
 return true;
 }
 
-
-function positionX(num, partClock){
- //partClock = 14%
-//всего 7 частей, отсюда выводим коэффициент для расоложения каждого из кругов и смещаем туда центр "пациента"
- if( num === 1 || num === 5)
-    return 5/7 - partClock*0.5/100; 
- if(num === 2 || num === 4)
-    return 6/7 - partClock*0.5/100; 
- if(num === 7 || num === 11)
-    return  2/7 -  partClock*0.5/100; 
- if(num === 8 || num === 10)
-    return  1/7 - partClock*0.5/100; 
-
- if(num === 6 || num === 12)
-    return  4/7 - partClock/100; 
- if(num === 3)
-   return 6/7;
- if(num === 9)
-    return 1/7 - partClock/100;
-}
-
-function positionY(num, partClock){
-    if(num === 1 || num === 11)  
-      return  1/7 - partClock*0.5/100;
-    if(num === 2 || num === 10)
-      return  2/7 - partClock*0.5/100; 
-
-    if(num === 4 || num === 8)
-      return 4/7 + partClock*0.5/100;    
-    if(num === 5 || num === 7)
-      return 5/7 + partClock*0.5/100; 
-
-    if(num === 6)
-       return 5/7 + partClock/100;
-    if(num === 12)
-       return 1/7 - partClock/100;
-
-    if(num === 3 || num === 9)
-      return  4/7 - partClock/100;       
-   }
-
    function updateTime() {
       const currTime=new Date();
       var currTimeStr = formatDateTime(currTime);
@@ -138,25 +98,21 @@ function positionY(num, partClock){
 
   // форматирует дату-время в формате чч:мм:сс
   function formatDateTime(dt) {
-      const degSec = 360/60;
-      const degSectionHour = 5/60;
+      const degSec = 360/12;
       const hours=dt.getHours();
       const minutes=dt.getMinutes();
       const seconds=dt.getSeconds();
-      const ygolSec = 180 + seconds * degSec;
-      const ygolMin = 180 + minutes * degSec;
-      const ygolHours = 180 + (hours-12) * 30 + degSectionHour*minutes*degSec;
+      const ygolSec = 180 + seconds * 360/60;
+      const ygolMin = 180 + minutes * 360/60;
+      const ygolHours = 180 + (hours+minutes/60) * degSec;
    
-      //  console.log(-90 + (hours-12)*30 , 5/60*minutes*6);
+      
       if(document.getElementById('clockSec'))
-        document.getElementById('clockSec').style.transform = 'rotate(' + ygolSec + 'deg)';
+        document.getElementById('clockSec').style.transform = 'rotate('+ygolSec+'deg)';
       if(document.getElementById('clockMin'))
         document.getElementById('clockMin').style.transform = 'rotate(' + ygolMin  + 'deg)';
       if(document.getElementById('clockHour'))
         document.getElementById('clockHour').style.transform = 'rotate(' + ygolHours + 'deg)';
-      
-
-
       return str0l(hours,2) + ':' + str0l(minutes,2) + ':' + str0l(seconds,2);
   }
 
