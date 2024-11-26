@@ -44,15 +44,16 @@ function addClock(){
     var clockNumber = 10;
     var ygolCkockX;
     var ygolCkockY;
+    var clockM;
     for(var i = 0; i<12; i++)
     {
-      clockItems[i] = document.createElementNS(svg.namespaceURI, clockItems[i]);
+      clockM = document.createElementNS(svg.namespaceURI, 'circle');
       ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
 
-      clock.setAttribute('cx',  ygolCkockX);
-      clock.setAttribute('cy', ygolCkockX);
-      clock.setAttribute('r', ygolCkockX);
-      clock.setAttribute("fill", "#48B382");
+      clockM.setAttribute('cx',  ygolCkockX);
+      clockM.setAttribute('cy', ygolCkockX);
+      clockM.setAttribute('r', diametr*0.1);
+      clockM.setAttribute("fill", "#48B382");
     //  clockItems[i] = document.createElement("div"); 
       clockSpan[i] = document.createElement("span"); 
       clockSpan[i].innerText = i+1;
@@ -60,7 +61,7 @@ function addClock(){
       clockSpan[i].style.left = '50%';
       clockSpan[i].style.position = 'absolute';
       clockSpan[i].style.transform = 'translate(-50%, -50%)';
-      svg.appendChild(clock);
+      svg.appendChild(clockM);
     //  clockItems[i].style.width = clockNumber/100 * Number(diametr)  + 'px';
    //   clockItems[i].style.height = clockNumber/100 * Number(diametr)  + 'px';
    //   clockItems[i].style.borderRadius = '50%';
