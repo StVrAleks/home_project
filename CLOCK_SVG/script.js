@@ -2,23 +2,40 @@
 
 window.addEventListener('load', document.getElementsByTagName('input')[0].focus(), false); 
 function validInp(){
-  if(document.getElementsByTagName('input')[0].value < 200 || document.getElementsByTagName('input')[0].value > 800)
+  if(document.getElementsByTagName('input')[0].value < 200 || document.getElementsByTagName('input')[0].value >800)
     return alert('Введено не верное значение');
   return true;
 }
 
 function addClock(){
-  const xmlns = "http://www.w3.org/2000/svg";  
-  var diametr = document.getElementsByTagName('input')[0].value;
+    var diametr = document.getElementsByTagName('input')[0].value;
     document.getElementsByTagName('input')[0].style.display = 'none';
     document.getElementsByTagName('button')[0].style.display = 'none';  
 
-   var clock = document.createElement("div"); 
+    const xmlns = "http://www.w3.org/2000/svg";  
+    var diametr = document.getElementsByTagName('input')[0].value;
+      document.getElementsByTagName('input')[0].style.display = 'none';
+      document.getElementsByTagName('button')[0].style.display = 'none';  
+  
+     // var clock = document.createElement("div"); 
+    // var clockSVG = document.createElementNS(xmlns, "svg");
+     var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+     svg.setAttribute('width',  diametr);
+     svg.setAttribute('height', diametr);
+     var clock = document.createElementNS(svg.namespaceURI, 'circle');
+     clock.setAttribute('cx',  diametr/2);
+     clock.setAttribute('cy', diametr/2);
+     clock.setAttribute('r', diametr/2);
+     clock.setAttribute("fill", "#FCCA66");
+     svg.appendChild(clock);
+     document.body.appendChild(svg);
 
-    clock.style.width = Number(diametr) + 'px';
+
+
+   /* clock.style.width = Number(diametr) + 'px';
     clock.style.height = Number(diametr) + 'px';
     clock.id = 'bigClock';   
-    document.body.appendChild(clock); 
+    document.body.appendChild(clock); */
     
     var clockItems = [];
     var clockSpan = [];
@@ -29,22 +46,30 @@ function addClock(){
     var ygolCkockY;
     for(var i = 0; i<12; i++)
     {
-      clockItems[i] = document.createElement("div"); 
+      clockItems[i] = document.createElementNS(svg.namespaceURI, clockItems[i]);
+      ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
+
+      clock.setAttribute('cx',  ygolCkockX);
+      clock.setAttribute('cy', ygolCkockX);
+      clock.setAttribute('r', ygolCkockX);
+      clock.setAttribute("fill", "#48B382");
+    //  clockItems[i] = document.createElement("div"); 
       clockSpan[i] = document.createElement("span"); 
       clockSpan[i].innerText = i+1;
       clockSpan[i].style.top = '50%';
       clockSpan[i].style.left = '50%';
       clockSpan[i].style.position = 'absolute';
       clockSpan[i].style.transform = 'translate(-50%, -50%)';
-      clockItems[i].style.width = clockNumber/100 * Number(diametr)  + 'px';
-      clockItems[i].style.height = clockNumber/100 * Number(diametr)  + 'px';
-      clockItems[i].style.borderRadius = '50%';
-      clockItems[i].style.backgroundColor = '#48B382';
+      svg.appendChild(clock);
+    //  clockItems[i].style.width = clockNumber/100 * Number(diametr)  + 'px';
+   //   clockItems[i].style.height = clockNumber/100 * Number(diametr)  + 'px';
+   //   clockItems[i].style.borderRadius = '50%';
+      //clockItems[i].style.backgroundColor = '#48B382';
       clockItems[i].style.fontSize = Number(diametr)*0.07  + 'px';
-      ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
-      ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
-      clockItems[i].style.left = ygolCkockX + 'px';
-      clockItems[i].style.top = ygolCkockY + 'px';
+    //  ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
+    //  ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
+    //  clockItems[i].style.left = ygolCkockX + 'px';
+     // clockItems[i].style.top = ygolCkockY + 'px';
       clockItems[i].appendChild(clockSpan[i]);
       clock.appendChild(clockItems[i]);   
     }
