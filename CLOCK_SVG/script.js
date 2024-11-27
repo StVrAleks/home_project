@@ -38,64 +38,73 @@ function addClock(){
     document.body.appendChild(clock); */
     
     var clockItems = [];
-    var clockSpan = [];
-    var radius = 0.5*diametr*0.85;
+    var clockText = [];
+    var clockTextPath;
+    var radius = 0.5*diametr*0.8;
     
-    var clockNumber = 10;
+    var clockNumber = 8;
     var ygolCkockX;
     var ygolCkockY;
     var clockM;
     for(var i = 0; i<12; i++)
     {
-      clockM = document.createElementNS(svg.namespaceURI, 'circle');
-      ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
+      clockItems[i] = document.createElementNS(svg.namespaceURI, 'circle');
+      ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1));
+      ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(i+1));
+      clockItems[i].setAttribute('cx',  ygolCkockX);
+      clockItems[i].setAttribute('cy', ygolCkockY);
+      clockItems[i].setAttribute('r', diametr*clockNumber/100);
+      clockItems[i].setAttribute("fill", "#48B382");
+      clockItems[i].setAttribute("id", 'num' + i + 1);
+      clockText[i] = document.createElementNS(svg.namespaceURI, 'text'); 
+      clockText[i].setAttribute("fill", "black");
+      clockText[i].setAttribute("font-size", "15px");
+     /* clockText[i].setAttribute("x", ygolCkockX);
+      clockText[i].setAttribute("y", ygolCkockY);
+    */  clockTextPath = document.createElementNS(svg.namespaceURI, 'textPath'); 
+      clockTextPath.setAttribute("xlink:href", 'num' + i + 1);
+      clockTextPath.textContent = 1;
 
-      clockM.setAttribute('cx',  ygolCkockX);
-      clockM.setAttribute('cy', ygolCkockX);
-      clockM.setAttribute('r', diametr*0.1);
-      clockM.setAttribute("fill", "#48B382");
-    //  clockItems[i] = document.createElement("div"); 
-      clockSpan[i] = document.createElement("span"); 
-      clockSpan[i].innerText = i+1;
-      clockSpan[i].style.top = '50%';
-      clockSpan[i].style.left = '50%';
-      clockSpan[i].style.position = 'absolute';
-      clockSpan[i].style.transform = 'translate(-50%, -50%)';
-      svg.appendChild(clockM);
-    //  clockItems[i].style.width = clockNumber/100 * Number(diametr)  + 'px';
-   //   clockItems[i].style.height = clockNumber/100 * Number(diametr)  + 'px';
-   //   clockItems[i].style.borderRadius = '50%';
-      //clockItems[i].style.backgroundColor = '#48B382';
-      clockItems[i].style.fontSize = Number(diametr)*0.07  + 'px';
-    //  ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
-    //  ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(i+1)) - diametr*clockNumber/100*0.5;
-    //  clockItems[i].style.left = ygolCkockX + 'px';
-     // clockItems[i].style.top = ygolCkockY + 'px';
-      clockItems[i].appendChild(clockSpan[i]);
-      clock.appendChild(clockItems[i]);   
+      clockText[i].appendChild(clockTextPath);   
+      clockItems[i].appendChild(clockText[i]);    
+      svg.appendChild(clockItems[i]); 
     }
-    for(var i = 0; i<12; i++)
-       clockItems[i].style.position = 'absolute';
+
        
     setInterval(updateTime,1000);
 
+    var min = document.createElementNS(svg.namespaceURI, 'line');
+    min.setAttribute('x1',  diametr*0.5);
+    min.setAttribute('y1', diametr*0.5);
+    min.setAttribute('x2',  diametr*0.7);
+    min.setAttribute('y2', diametr*0.7 - 20);
+    min.setAttribute('stroke', 'black');
+    min.setAttribute('stroke-width', 5);
+    min.setAttribute('id', 'clockMin');
+    svg.appendChild(min);
 
-    var min  = document.createElement("div"); 
- 
-    min.id = 'clockMin';
-    min.style.height = 0.40 * Number(diametr)  + 'px'; 
 
-    var sec  = document.createElement("div"); 
+    var sec = document.createElementNS(svg.namespaceURI, 'line');
+    sec.setAttribute('x1',  diametr*0.5);
+    sec.setAttribute('y1', diametr*0.5);
+    sec.setAttribute('x2',  diametr*0.8);
+    sec.setAttribute('y2', diametr*0.8);
+    sec.setAttribute('stroke', 'black');
+    sec.setAttribute('stroke-width', 5);
+    sec.setAttribute('id', 'clockSec');
+    svg.appendChild(sec);
+
+   /* var sec  = document.createElement("div"); 
     sec.id = 'clockSec';
-    sec.style.height = 0.5 * Number(diametr)  + 'px';
+    sec.style.height = 0.5 * Number(diametr)  + 'px';*/
 
 
     var hour = document.createElement("div"); 
     hour.id = 'clockHour';
     hour.style.height = 0.25 * Number(diametr) + 'px';
      
-    clock.appendChild(min);   
-    clock.appendChild(sec); 
+   // clock.appendChild(min);   
+   // clock.appendChild(sec); 
     clock.appendChild(hour);  
 
 

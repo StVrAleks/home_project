@@ -19,20 +19,25 @@
     position: absolute;
 }
 
-#clockMin{
+/*#clockMin{
     width: 0.5%;
     position: absolute;
 }
 #clockSec{
     width: 0.3%;
     position: absolute;
-}
+}*/
 #clockHour{
     width: 0.9%;    
     position: absolute;
 }
 #clockMin,
-#clockSec,
+#clockSec{
+    transform-origin: 0px 20px;    
+ /* left: calc(50% + 0px);
+  top: calc(50% - 20px); */
+
+}
 #clockHour{
   background-color: black;
   border-radius: 5px;  
