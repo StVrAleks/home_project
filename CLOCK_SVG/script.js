@@ -30,42 +30,33 @@ function addClock(){
      svg.appendChild(clock);
      document.body.appendChild(svg);
 
-
-
-   /* clock.style.width = Number(diametr) + 'px';
-    clock.style.height = Number(diametr) + 'px';
-    clock.id = 'bigClock';   
-    document.body.appendChild(clock); */
     
-    var clockItems = [];
-    var clockText = [];
-    var clockTextPath;
+    var clockItems, clockText;
     var radius = 0.5*diametr*0.8;
-    
+    var fontClock = diametr*0.06;
     var clockNumber = 8;
-    var ygolCkockX;
-    var ygolCkockY;
-    var clockM;
+    var ygolCkockX, ygolCkockY;
+
     for(var i = 0; i<12; i++)
     {
-      clockItems[i] = document.createElementNS(svg.namespaceURI, 'circle');
+      clockItems = document.createElementNS(svg.namespaceURI, 'circle');
       ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(i+1));
       ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(i+1));
-      clockItems[i].setAttribute('cx',  ygolCkockX);
-      clockItems[i].setAttribute('cy', ygolCkockY);
-      clockItems[i].setAttribute('r', diametr*clockNumber/100);
-      clockItems[i].setAttribute("fill", "#48B382");
-      clockItems[i].setAttribute("id", 'num' + i + 1);
-      clockText[i] = document.createElementNS(svg.namespaceURI, 'text'); 
-      clockText[i].setAttribute("fill", "black");
-      clockText[i].setAttribute("font-size", "15px");
-      clockTextPath = document.createElementNS(svg.namespaceURI, 'textPath'); 
-      clockTextPath.setAttribute("xlink:href", 'num' + i + 1);
-      clockTextPath.textContent = 1;
+      clockItems.setAttribute('cx',  ygolCkockX);
+      clockItems.setAttribute('cy', ygolCkockY);
+      clockItems.setAttribute('r', diametr*clockNumber/100);
+      clockItems.setAttribute("fill", "#48B382");
+      clockItems.setAttribute("id", 'num' + i + 1);
 
-      clockText[i].appendChild(clockTextPath);   
-      clockItems[i].appendChild(clockText[i]);    
-      svg.appendChild(clockItems[i]); 
+      clockText = document.createElementNS(svg.namespaceURI, 'text'); 
+      clockText.setAttribute("x", ygolCkockX - 0.4*diametr*clockNumber/100);
+      clockText.setAttribute("y", ygolCkockY + 0.5*diametr*clockNumber/100 - fontClock/2);    
+      clockText.setAttribute("fill", "#000000");
+      clockText.setAttribute("font-size", fontClock  + 'px');
+      clockText.textContent = i + 1; 
+         
+      svg.appendChild(clockItems); 
+      svg.appendChild(clockText); //не могу в clockItems добавить clockText. По разметки тогда верно, но цифры не видны
     }
 
        
@@ -73,11 +64,11 @@ function addClock(){
 
     var min = document.createElementNS(svg.namespaceURI, 'line');
     min.setAttribute('x1',  diametr*0.5);
-    min.setAttribute('y1', diametr*0.5);
-    min.setAttribute('x2',  diametr*0.7);
-    min.setAttribute('y2', diametr*0.7 - 20);
+    min.setAttribute('y1', diametr*0.25);
+    min.setAttribute('x2',  diametr*0.5);
+    min.setAttribute('y2', diametr*0.5);
     min.setAttribute('stroke', 'black');
-    min.setAttribute('stroke-width', 5);
+    min.setAttribute('stroke-width', diametr*0.01);
     min.setAttribute('id', 'clockMin');
     min.style.transformOrigin = '50% 50%'; 
        
@@ -86,11 +77,11 @@ function addClock(){
 
     var sec = document.createElementNS(svg.namespaceURI, 'line');
     sec.setAttribute('x1',  diametr*0.5);
-    sec.setAttribute('y1', diametr*0.5);
-    sec.setAttribute('x2',  diametr*0.8);
-    sec.setAttribute('y2', diametr*0.8);
+    sec.setAttribute('y1', diametr*0.15);
+    sec.setAttribute('x2',  diametr*0.5);
+    sec.setAttribute('y2', diametr*0.5);
     sec.setAttribute('stroke', 'black');
-    sec.setAttribute('stroke-width', 5);
+    sec.setAttribute('stroke-width', diametr*0.005);
     sec.setAttribute('id', 'clockSec');
     sec.style.transformOrigin = '50% 50%'; 
     svg.appendChild(sec);
@@ -98,27 +89,27 @@ function addClock(){
 
     var hour = document.createElementNS(svg.namespaceURI, 'line');
     hour.setAttribute('x1',  diametr*0.5);
-    hour.setAttribute('y1', diametr*0.5);
-    hour.setAttribute('x2',  diametr*0.65);
-    hour.setAttribute('y2', diametr*0.65);
+    hour.setAttribute('y1', diametr*0.3);
+    hour.setAttribute('x2',  diametr*0.5);
+    hour.setAttribute('y2', diametr*0.5);
     hour.setAttribute('stroke', 'black');
-    hour.setAttribute('stroke-width', 5);
+    hour.setAttribute('stroke-width', diametr*0.015);
     hour.setAttribute('id', 'clockHour');
     hour.style.transformOrigin = '50% 50%'; 
     svg.appendChild(hour); 
  
 
 
-    var timeNew = document.createElement("span"); 
-    timeNew.id = 'curD';
-    timeNew.style.fontStyle = 'italic';
-    timeNew.style.fontWeight = 'bold';
-    timeNew.style.fontSize = Number(diametr)*0.07  + 'px';
-    timeNew.style.position = 'absolute';
-    timeNew.style.left = Number(diametr)*0.5 + 'px';
-    timeNew.style.top = Number(diametr)*0.3 + 'px';
-    timeNew.style.transform = 'translate(-50%, -50%)';
-    clock.appendChild(timeNew);     
+    var timeNew = document.createElementNS(svg.namespaceURI, 'text'); 
+    timeNew.setAttribute("x", Number(diametr)*0.37); //как отцентрировать картинку
+    timeNew.setAttribute("y", Number(diametr)*0.35);
+    timeNew.setAttribute("fill", "black");
+    timeNew.setAttribute("font-size", Number(diametr)*0.07  + 'px');
+    timeNew.setAttribute("font-weight", 'bold');
+    timeNew.setAttribute("font-style", 'italic');
+    timeNew.setAttribute("id", 'curD');    
+    svg.appendChild(timeNew);    
+    
 
    var gegRot = updateTime(); 
 
@@ -129,7 +120,7 @@ return true;
       const currTime=new Date();
       var currTimeStr = formatDateTime(currTime);
       if(document.getElementById('curD'))
-         document.getElementById('curD').innerText = currTimeStr;
+         document.getElementById('curD').textContent = currTimeStr;
       console.log(currTimeStr);  
    }
 
@@ -139,9 +130,9 @@ return true;
       const hours=dt.getHours();
       const minutes=dt.getMinutes();
       const seconds=dt.getSeconds();
-      const ygolSec = 225 + seconds * 360/60;
-      const ygolMin = 225 + minutes * 360/60;
-      const ygolHours = 225 + (hours+minutes/60) * degSec;
+      const ygolSec = seconds * 360/60;
+      const ygolMin = minutes * 360/60;
+      const ygolHours = (hours+minutes/60) * degSec;
    
       
       if(document.getElementById('clockSec'))
