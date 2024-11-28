@@ -8,7 +8,7 @@ function validInp(){
 }
 
 function addClock(){
-  const xmlns = "http://www.w3.org/2000/svg";  
+  //const xmlns = "http://www.w3.org/2000/svg";  
   var diametr = document.getElementsByTagName('input')[0].value;
     document.getElementsByTagName('input')[0].style.display = 'none';
     document.getElementsByTagName('button')[0].style.display = 'none';  
