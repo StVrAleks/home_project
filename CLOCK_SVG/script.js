@@ -59,9 +59,7 @@ function addClock(){
       clockText[i] = document.createElementNS(svg.namespaceURI, 'text'); 
       clockText[i].setAttribute("fill", "black");
       clockText[i].setAttribute("font-size", "15px");
-     /* clockText[i].setAttribute("x", ygolCkockX);
-      clockText[i].setAttribute("y", ygolCkockY);
-    */  clockTextPath = document.createElementNS(svg.namespaceURI, 'textPath'); 
+      clockTextPath = document.createElementNS(svg.namespaceURI, 'textPath'); 
       clockTextPath.setAttribute("xlink:href", 'num' + i + 1);
       clockTextPath.textContent = 1;
 
@@ -81,6 +79,8 @@ function addClock(){
     min.setAttribute('stroke', 'black');
     min.setAttribute('stroke-width', 5);
     min.setAttribute('id', 'clockMin');
+    min.style.transformOrigin = '50% 50%'; 
+       
     svg.appendChild(min);
 
 
@@ -92,20 +92,21 @@ function addClock(){
     sec.setAttribute('stroke', 'black');
     sec.setAttribute('stroke-width', 5);
     sec.setAttribute('id', 'clockSec');
+    sec.style.transformOrigin = '50% 50%'; 
     svg.appendChild(sec);
 
-   /* var sec  = document.createElement("div"); 
-    sec.id = 'clockSec';
-    sec.style.height = 0.5 * Number(diametr)  + 'px';*/
 
-
-    var hour = document.createElement("div"); 
-    hour.id = 'clockHour';
-    hour.style.height = 0.25 * Number(diametr) + 'px';
-     
-   // clock.appendChild(min);   
-   // clock.appendChild(sec); 
-    clock.appendChild(hour);  
+    var hour = document.createElementNS(svg.namespaceURI, 'line');
+    hour.setAttribute('x1',  diametr*0.5);
+    hour.setAttribute('y1', diametr*0.5);
+    hour.setAttribute('x2',  diametr*0.65);
+    hour.setAttribute('y2', diametr*0.65);
+    hour.setAttribute('stroke', 'black');
+    hour.setAttribute('stroke-width', 5);
+    hour.setAttribute('id', 'clockHour');
+    hour.style.transformOrigin = '50% 50%'; 
+    svg.appendChild(hour); 
+ 
 
 
     var timeNew = document.createElement("span"); 
@@ -138,13 +139,13 @@ return true;
       const hours=dt.getHours();
       const minutes=dt.getMinutes();
       const seconds=dt.getSeconds();
-      const ygolSec = 180 + seconds * 360/60;
-      const ygolMin = 180 + minutes * 360/60;
-      const ygolHours = 180 + (hours+minutes/60) * degSec;
+      const ygolSec = 225 + seconds * 360/60;
+      const ygolMin = 225 + minutes * 360/60;
+      const ygolHours = 225 + (hours+minutes/60) * degSec;
    
       
       if(document.getElementById('clockSec'))
-        document.getElementById('clockSec').style.transform = 'rotate('+ygolSec+'deg)';
+        document.getElementById('clockSec').style.transform = 'rotate(' + ygolSec + 'deg)';
       if(document.getElementById('clockMin'))
         document.getElementById('clockMin').style.transform = 'rotate(' + ygolMin  + 'deg)';
       if(document.getElementById('clockHour'))
