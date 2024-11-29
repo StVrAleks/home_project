@@ -53,7 +53,7 @@ function picClock(diametr){
           contextClock.fillStyle = "black"; 
           contextClock.textAlign = 'center';
         //  contextClock.fontSize = '50px';
-          contextClock.font = '20px Arial';
+          contextClock.font = diametr*0.07 +'px Arial';
           contextClock.textBaseline = 'middle';
           contextClock.fillText(i + 1, ygolCkockX, ygolCkockY);
           contextClock.fill();
