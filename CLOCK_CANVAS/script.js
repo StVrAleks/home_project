@@ -11,6 +11,8 @@ function addClock(){
     var diametr = document.getElementsByTagName('input')[0].value;
     document.getElementsByTagName('input')[0].style.display = 'none';
     document.getElementsByTagName('button')[0].style.display = 'none';  
+    
+    picClock();
     updateTime();
    
 }
@@ -21,15 +23,12 @@ function picClock(){
       var elClock = document.getElementById('bigClock');
         
       const contextClock = elClock.getContext("2d");
+      contextClock.clearRect(0, 0, contextClock.canvas.width, contextClock.canvas.height);      
       contextClock.canvas.width = diametr;
       contextClock.canvas.height = diametr;
       var radius =  contextClock.canvas.width / 2;
       
-      contextClock.clearRect(0, 0, contextClock.canvas.width, contextClock.canvas.height);
       contextClock.beginPath();
-
-
-
       contextClock.arc(radius, radius, radius, 0, Math.PI *2);      
       contextClock.fillStyle = "#FCCA66";  
       contextClock.fill();
@@ -68,16 +67,18 @@ function picClock(){
       const ygolHours = (hours+minutes/60) * degSec;
 
       //sec
+      var startCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*((seconds+30)/5))*0.2;
+      var startCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*((seconds+30)/5))*0.2;
       ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(seconds/5))*0.85;
       ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(seconds/5))*0.85;
       contextClock.moveTo(radius, radius);   
       contextClock.beginPath();  
       var lines = [
-        {x: radius, y: radius},
+        {x: startCkockX, y: startCkockY},
        // {x: radius - 5, y: radius - radius /2 },
         {x: ygolCkockX, y: ygolCkockY},
       //  {x: radius + 5, y: radius - radius /2},
-        {x: radius, y: radius},
+        {x: startCkockX, y: startCkockY},
       ],
       line = lines.shift();
       contextClock.lineWidth = radius*0.01;
@@ -88,23 +89,25 @@ function picClock(){
       } while (lines.length);
       contextClock.stroke();
       contextClock.moveTo(ygolCkockX, ygolCkockY); 
-      contextClock.arc(ygolCkockX, ygolCkockY, radius*0.0015, 0, 2 * Math.PI);
+      contextClock.arc(ygolCkockX, ygolCkockY, radius*0.002, 0, 2 * Math.PI);
       contextClock.fill();
 
 //********************* */
       //min
+      startCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*((minutes+30)/5))*0.2;
+      startCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*((minutes+30)/5))*0.2;
       ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(minutes/5))*0.75;
       ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(minutes/5))*0.75;
  
        contextClock.moveTo(radius, radius);
        contextClock.beginPath();
        var lines = [
-         {x: radius, y: radius},
+         {x: startCkockX, y: startCkockY},
        //  {x: radius - 10, y: radius - radius /3},
          {x: ygolCkockX, y: ygolCkockY},
          {x: ygolCkockX, y: ygolCkockY},
        //  {x: radius + 10, y: radius - radius /3},
-         {x: radius, y: radius},
+         {x: startCkockX, y: startCkockY},
        ],
        line = lines.shift();
        contextClock.lineWidth = radius*0.015;
@@ -120,18 +123,20 @@ function picClock(){
 
 
 //************* 
-        //hour    
+        //hour   
+      startCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*((hours+70 + minutes+30)/60))*0.2;
+      startCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*((hours+70 + minutes+30)/60))*0.2; 
        ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(hours + minutes/60))*0.65;
        ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(hours + minutes/60))*0.65;
   
        contextClock.moveTo(radius, radius);
        contextClock.beginPath();
        var lines = [
-         {x: radius, y: radius},
+         {x: startCkockX, y: startCkockY},
        //  {x: radius - 20, y: radius - radius / 4},
          {x: ygolCkockX, y: ygolCkockY},
        //  {x: radius + 20, y: radius - radius / 4},
-         {x: radius, y: radius},
+         {x: startCkockX, y: startCkockY},
        ],
        line = lines.shift();
        
@@ -154,6 +159,7 @@ function picClock(){
        contextClock.textBaseline = 'middle';
        contextClock.fillText(str0l(hours,2) + ':' + str0l(minutes,2) + ':' + str0l(seconds,2), diametr*0.5, diametr*0.25);
        contextClock.fill();  
+       console.log(str0l(hours,2) + ':' + str0l(minutes,2) + ':' + str0l(seconds,2));  
 
 return true;
 }
