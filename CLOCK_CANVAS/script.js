@@ -62,9 +62,9 @@ function picClock(){
       const hours=currTime.getHours();
       const minutes=currTime.getMinutes();
       const seconds=currTime.getSeconds();
-      const ygolSec = seconds * 360/60;
+    /*  const ygolSec = seconds * 360/60;
       const ygolMin = minutes * 360/60;
-      const ygolHours = (hours+minutes/60) * degSec;
+      const ygolHours = (hours+minutes/60) * degSec;*/
 
       //sec
       var startCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*((seconds+30)/5))*0.2;
@@ -124,8 +124,8 @@ function picClock(){
 
 //************* 
         //hour   
-      startCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*((hours+70 + minutes+30)/60))*0.2;
-      startCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*((hours+70 + minutes+30)/60))*0.2; 
+      startCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*((hours + minutes+30)/5))*0.2;
+      startCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*((hours + minutes+30)/5))*0.2; 
        ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(hours + minutes/60))*0.65;
        ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(hours + minutes/60))*0.65;
   
