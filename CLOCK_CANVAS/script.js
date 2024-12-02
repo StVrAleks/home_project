@@ -124,8 +124,8 @@ function picClock(){
 
 //************* 
         //hour   
-      startCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*((hours + minutes+30)/5))*0.2;
-      startCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*((hours + minutes+30)/5))*0.2; 
+      startCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(hours+30 + minutes/60))*0.2;
+      startCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(hours+30 + minutes/60))*0.2; 
        ygolCkockX = diametr*0.5 + radius * Math.sin(360/12/180*Math.PI*(hours + minutes/60))*0.65;
        ygolCkockY = diametr*0.5 - radius * Math.cos(360/12/180*Math.PI*(hours + minutes/60))*0.65;
   
