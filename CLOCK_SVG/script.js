@@ -26,7 +26,7 @@ function addClock(){
      clock.setAttribute('cx',  diametr/2);
      clock.setAttribute('cy', diametr/2);
      clock.setAttribute('r', diametr/2);
-     clock.setAttribute("fill", "#FCCA66");
+    clock.setAttribute("fill", "#FCCA66"); 
      svg.appendChild(clock);
      document.body.appendChild(svg);
 
