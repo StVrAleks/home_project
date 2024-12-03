@@ -1,10 +1,19 @@
 //setInterval(picClock,1000);
+window.addEventListener('load', bodyStart, false); 
 
-function addPlay(){
-  document.getElementsByTagName('button')[0].style.display = 'none';
+
+
+
+
+function bodyStart(event){
+    eo = window.event;
+    eo.preventDefault();
+}
+
+  //document.getElementsByTagName('button')[0].style.display = 'none';
   var gamePartsvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  var partWidth = 1200;
-  var partHeight = 800;
+  var partWidth = 1000;
+  var partHeight = 600;
       gamePartsvg.setAttribute('width',  partWidth);
       gamePartsvg.setAttribute('height', partHeight);
   var gamePart = document.createElementNS(gamePartsvg.namespaceURI, 'rect');
@@ -16,7 +25,7 @@ function addPlay(){
       gamePartsvg.appendChild(gamePart);
       document.body.appendChild(gamePartsvg);
 
-  var posHeight = 40;  
+  var posHeight = partHeight*0.15;  
   var posWidth = 10;   
 
   var leftPos = document.createElementNS(gamePartsvg.namespaceURI, 'rect');
@@ -32,56 +41,94 @@ function addPlay(){
   var rightPos = document.createElementNS(gamePartsvg.namespaceURI, 'rect');   
       rightPos.setAttribute('id', 'rightPos');
       rightPos.setAttribute('x',  partWidth - posWidth);
-      rightPos.setAttribute('y', partHeight/2 - posHeight/2);   
+      rightPos.setAttribute('y', partHeight/2 + posHeight/2);   
       rightPos.setAttribute('width',  posWidth);
       rightPos.setAttribute('height', posHeight); 
       rightPos.setAttribute("fill", "black");
       rightPos.style.position = 'absolute';
       gamePartsvg.appendChild(rightPos);
 
-      setInterval(plashkaMove(), 1000);
+  var ballH = document.createElementNS(gamePartsvg.namespaceURI, 'circle');
+      ballH.setAttribute('id', 'IBall');
+      ballH.setAttribute('x',  partWidth / 2);
+      ballH.setAttribute('y', 0);   
+      ballH.setAttribute('width',  partWidth/15);
+      ballH.setAttribute('height', partWidth/15);    
+      ballH.setAttribute("fill", "white");  
+      gamePartsvg.appendChild(ballH);
+    
+     /*   update : function() {
+            const ballElem=
+                document.getElementById('IBall');
+            ballElem.style.left=this.posX+"px";
+            ballElem.style.top=this.posY+"px";
+        }*/
 
-    /*  eo = window.event;
-      if (event.shiftKey) {
-        alert('нажат Shift');
-      }*/
-  //leftPos.addEventListener('click', plashkaMove, false);
+function addPlay(){
+  // const eo = window.event;
+  // eo.preventDefault();
+    setInterval(plashkaMove(partHeight, posHeight), 1000/80); //80 раз в секунду
       
  }
 
 
- function plashkaMove(){
-    eo = window.event;
+ function plashkaMove(partHeight, posHeight){
+   // eo = window.event;
    // eo.preventDefault(); 
     var leftPlashka = document.getElementById('leftPos');
     var rightPlashka = document.getElementById('rightPos');
     var transformAttr;
-    var flag;
+    var flagLeft = partHeight/2 - posHeight/2;
+    var flagRight = partHeight/2 - posHeight/2;
     console.log(leftPlashka.value, rightPlashka);  
     
     document.addEventListener('keydown', function(e) {
         if (e.ctrlKey) {
-            flag = partHeight/2 - posHeight/2 - 1;
-            transformAttr = ' translate(' + '0'+ ',' + flag + ')';
-            domElemnt.setAttribute('transform', transformAttr);
-            console.log(leftPlashka);        
-            //leftPos = leftPos - 1;   
+            flagLeft = flagLeft + 1;
+            leftPos.setAttribute('y', flagLeft); 
+            //transformAttr = ' translate(' + '0'+ ',' + flag + 'px)';
+           // leftPlashka.setAttribute('transform', transformAttr);
+            console.log(leftPlashka);         
         }
         if (e.shiftKey) {
-            flag = partHeight/2 - posHeight/2 + 1;
-            transformAttr = ' translate(' + '0'+ ',' + flag + ')';
-            domElemnt.setAttribute('transform', transformAttr);
+            flagLeft =flagLeft - 1;
+            leftPos.setAttribute('y', flagLeft);
+           // transformAttr = ' translate(' + '0'+ ',' + flag + 'px)';
+           // leftPlashka.setAttribute('transform', transformAttr);
             console.log(leftPlashka);        
             }
-        console.log('Нажата клавиша Ctrl?', e.ctrlKey);
+            if (e.code === 'ArrowUp') {
+                flagRight = flagRight - 1;
+                rightPos.setAttribute('y', flagRight); 
+                //transformAttr = ' translate(' + '0'+ ',' + flag + 'px)';
+               // leftPlashka.setAttribute('transform', transformAttr);
+                console.log(rightPlashka);         
+            }
+            if (e.code === 'ArrowDown') {
+                flagRight =flagRight + 1;
+                rightPos.setAttribute('y', flagRight);
+               // transformAttr = ' translate(' + '0'+ ',' + flag + 'px)';
+               // leftPlashka.setAttribute('transform', transformAttr);
+                console.log(rightPlashka);        
+                }  
+                
+                
       })
 
-	/*if (eo.ctrlKey) {
-        console.log(leftPlashka.y);        
-		leftPos.setAttribute('y', partHeight/2 - posHeight/2 - 1);   
-	}
-	if (eo.shiftKey) {
-    console.log(leftPlashka.y);           
-		leftPos.setAttribute('y', partHeight/2 - posHeight/2 + 1);   
-	}*/
+
+      ballH.posX+=ballH.speedX;
+
+      // вылетел ли мяч правее стены
+      if ( ballH.posX+ballH.width>areaH.width ) {
+          ballH.speedX=-ballH.speedX;
+          ballH.posX=areaH.width-ballH.width;
+      }
+      // вылетел ли мяч левее стены
+      if ( ballH.posX<0 ) {
+          ballH.speedX=-ballH.speedX;
+          ballH.posX=0;
+      }
+
+   //   ballH.update();
+
 }
