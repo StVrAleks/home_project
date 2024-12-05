@@ -9,9 +9,9 @@ var posWidth = 10;
 var speedRight = 0;
 var speedLeft = 0;
 var ballPosX = partWidth / 2;
-var ballSpeed = 1;
+var ballSpeed = 0;
 var ballPosY = IBlockHeight;
-var ballSpeedY = 1;
+var ballSpeedY = 0;
 var shet1 = 0;
 var shet2 = 0;
 var radiusBall = Math.round(partWidth / 15 * 0.5);
@@ -49,18 +49,22 @@ rightPos.setAttribute('height', posHeight);
 rightPos.setAttribute("fill", "black");
 rightPos.style.position = 'absolute';
 gamePartsvg.appendChild(rightPos);
+
 var ballH = document.createElementNS(gamePartsvg.namespaceURI, 'circle');
 gamePartsvg.appendChild(ballH);
 
+    document.addEventListener('keydown', changeLeft, false);
+    document.addEventListener('keydown', changeRight, false);
+    setInterval(plashkaMove, 1000 / 80); //80 раз в секунду 
 
-
-function addPlace() {
+function addPlay() {
     speedRight = 0;
     speedLeft = 0;
     ballPosX = partWidth / 2;
+     ballPosY = posHeight - radiusBall; //IBlockHeight;
     ballSpeed = 1;
-    ballPosY = posHeight - radiusBall; //IBlockHeight;
     ballSpeedY = 1;
+   // ballSpeed = 1;
 
     ballH.setAttribute('id', 'IBall');
     ballH.setAttribute('cx', partWidth / 2);
@@ -72,14 +76,6 @@ function addPlace() {
     document.getElementById('schet').innerHTML = ":";
     document.getElementById('schet2').innerHTML = shet1;
 
-}
-
-function addPlay() {
-    addPlace();
-    document.addEventListener('keydown', changeLeft, false);
-    document.addEventListener('keydown', changeRight, false);
-    // clearInterval(setInterval(plashkaMove, 1000/80));
-    setInterval(plashkaMove, 1000 / 80); //80 раз в секунду     
 }
 
 function changeLeft(event) {
@@ -114,17 +110,15 @@ function changeRight(event) {
 }
 
 function plashkaMove() {
-
-    //    var transformAttr = flagLeft + speedLeft;
     var flagLeft = partHeight / 2 - posHeight / 2 + speedLeft;
-    var flagRight = partHeight / 2 - posHeight / 2 + speedRight;
-    if (flagLeft > 0 && flagLeft < partHeight)
-        leftPos.setAttribute('y', flagLeft);
-    // var transformAttrText = ' translate(' + '0'+ ',' + transformAttr + 'px)';
-    // leftPos.setAttribute('transform', transformAttrText);
-    if (flagRight > 0 && flagRight < partHeight)
-        rightPos.setAttribute('y', flagRight);
-
+    var flagRight =  partHeight / 2 - posHeight / 2  + speedRight; 
+    if (flagLeft > 0 && flagLeft + posHeight <= partHeight)
+        leftPos.style.transform = ' translate(' + '0'+ ',' + speedLeft + 'px)';
+    //    leftPos.setAttribute('y', flagLeft);
+    if (flagRight > 0 && flagRight + posHeight <= partHeight)
+        rightPos.style.transform = ' translate(' + '0'+ ',' + speedRight + 'px)';
+      //  rightPos.setAttribute('y', flagRight);
+    
     //*********** ball */  
 
     ballPosX = ballPosX + ballSpeed;  //смещение мяча по X
@@ -156,10 +150,9 @@ function plashkaMove() {
         ballSpeedY = -ballSpeedY;
         ballPosY = radiusBall;
     }
-    //posWidth, posHeight
     ballH.setAttribute('cx', ballPosX);
     ballH.setAttribute('cy', ballPosY);
-
+    
     if (ballPosY > flagLeft && ballPosY < flagLeft + posHeight && ballPosX - radiusBall == posWidth) {
         ballSpeed = -ballSpeed;
         ballSpeedY = -ballSpeedY;
@@ -172,6 +165,9 @@ function plashkaMove() {
         ballPosX = ballPosX - radiusBall;
         ballPosY = ballPosY;
     }
+ /*   var a = ballPosX + radiusBall;
+    var b = 50 + ballPosY + radiusBall;
+  ballH.style.transform = ' translate(' + a +'px,' + b + 'px)'; */ 
 }
 /*function randomDiap(n, m) {
     return Math.floor(Math.random() * (m - n + 1)) + n;
