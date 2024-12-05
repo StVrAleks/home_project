@@ -1,12 +1,3 @@
-//window.addEventListener('load', bodyStart, false); 
-
- 
-/*function bodyStart(event){
-    eo = window.event;
-    eo.preventDefault();
-   
-}*/
-
 
   var partWidth = 800;
   var partHeight = 500;
@@ -30,11 +21,13 @@
   var gamePartsvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       gamePartsvg.setAttribute('width',  partWidth);
       gamePartsvg.setAttribute('height', partHeight);
+
   var gamePart = document.createElementNS(gamePartsvg.namespaceURI, 'rect');
       gamePart.setAttribute('x',  '0');
-      gamePart.setAttribute('y', IBlockHeight);   
+      gamePart.setAttribute('y', '0');   
       gamePart.setAttribute('width',  partWidth);
-      gamePart.setAttribute('height', partHeight); 
+      gamePart.setAttribute('height', partHeight);
+      gamePart.setAttribute('stroke', 'grey'); 
       gamePart.setAttribute("fill", "#FCCA66");
       gamePartsvg.appendChild(gamePart);
       document.body.appendChild(gamePartsvg);
@@ -50,7 +43,7 @@
   var rightPos = document.createElementNS(gamePartsvg.namespaceURI, 'rect');   
       rightPos.setAttribute('id', 'rightPos');
       rightPos.setAttribute('x',  partWidth - posWidth);
-      rightPos.setAttribute('y', partHeight/2 + posHeight/2);   
+      rightPos.setAttribute('y', partHeight/2 - posHeight/2);   
       rightPos.setAttribute('width',  posWidth);
       rightPos.setAttribute('height', posHeight); 
       rightPos.setAttribute("fill", "black");
@@ -59,30 +52,26 @@
   var ballH = document.createElementNS(gamePartsvg.namespaceURI, 'circle');
       gamePartsvg.appendChild(ballH);
 
-  function addPlace(){
+
+
+function addPlace(){
       speedRight = 0;
       speedLeft = 0;
-      ballPosX = partWidth/2;
+      ballPosX = partWidth/2  + randomDiap(0,10);
       ballSpeed = 1;  
-      ballPosY = IBlockHeight;
+      ballPosY = posHeight - radiusBall; //IBlockHeight;
       ballSpeedY = 1;  
-
- 
-   
+  
       ballH.setAttribute('id', 'IBall');
       ballH.setAttribute('cx',  partWidth / 2);
-      ballH.setAttribute('cy', IBlockHeight);   
+      ballH.setAttribute('cy', 0);   
       ballH.setAttribute('r', radiusBall); 
       ballH.setAttribute("fill", "orange"); 
       ballH.style.position = 'absolute'; 
-       
- // document.getElementById('schet1').innerHTML = shet2;
+  document.getElementById('schet1').innerHTML = shet2;
   document.getElementById('schet').innerHTML = ":";
- // document.getElementById('schet2').innerHTML = shet1;
+  document.getElementById('schet2').innerHTML = shet1;
 
-  //randomX = Math.random();
-  //randomY = Math.random();
-  //console.log(randomX, randomY);
   }
   
 function addPlay(){
@@ -96,6 +85,7 @@ function addPlay(){
 function changeLeft(event){
     eo = window.event;
     eo.preventDefault();   
+    eo.repeat = false;
     
     if (eo.ctrlKey) {
         speedLeft = speedLeft + 2;
@@ -128,67 +118,62 @@ function changeRight(event){
 //    var transformAttr = flagLeft + speedLeft;
    var flagLeft = partHeight/2 - posHeight/2 + speedLeft;
    var flagRight = partHeight/2 - posHeight/2 + speedRight;
-   leftPos.setAttribute('y', flagLeft); 
+   if(flagLeft > 0 && flagLeft < partHeight)
+      leftPos.setAttribute('y', flagLeft); 
   // var transformAttrText = ' translate(' + '0'+ ',' + transformAttr + 'px)';
   // leftPos.setAttribute('transform', transformAttrText);
-   rightPos.setAttribute('y', flagRight); 
-
+    if(flagRight > 0 && flagRight < partHeight)
+      rightPos.setAttribute('y', flagRight); 
 
    //*********** ball */  
 
     ballPosX = ballPosX + ballSpeed;  //смещение мяча по X
       // вылетел ли мяч правее стены
-      if ( ballPosX + radiusBall > partWidth ) {
-      //  console.log(partWidth, ballPosX + radiusBall);
-           ballSpeed = 0;
-           ballSpeedY = 0;
-           ballPosX = partWidth - radiusBall;
-           shet2 = shet2 + 1; 
-           document.getElementById('schet2').innerHTML = shet2;
+    if ( ballPosX + radiusBall > partWidth ) {
+        ballSpeed = 0;
+        ballSpeedY = 0;
+        ballPosX = partWidth - radiusBall;
+        shet2 = shet2 + 1; 
+        document.getElementById('schet1').innerHTML = shet2;
        }
       // вылетел ли мяч левее стены
-      if ( ballPosX <= 0 ) {
-           ballSpeed = 0;
-           ballSpeedY = 0;
-           ballPosX = radiusBall;
-           shet1 = shet1 + 1;
-           document.getElementById('schet1').innerHTML = shet1;
+     // console.log(ballPosX - radiusBall);
+    if ( ballPosX - radiusBall <= 0 ) {
+        ballSpeed = 0;
+        ballSpeedY = 0;
+        ballPosX = radiusBall;
+        shet1 = shet1 + 1;
+        document.getElementById('schet2').innerHTML = shet1;
        }
 var ballPosHeight = ballPosY + radiusBall;    
     ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
       // вылетел ли мяч ниже пола?
-      if (ballPosHeight > partHeight) {
-          ballSpeedY = -ballSpeedY;
-          ballPosY = partHeight - radiusBall;
+    if (ballPosHeight >= partHeight) {
+        ballSpeedY = -ballSpeedY;
+         ballPosY = partHeight - radiusBall;
         }
       // вылетел ли мяч выше потолка?
-        if ( ballPosY < 0 ) {
-            ballSpeedY = -ballSpeedY;
-            ballPosY = 0;
-        }
- //var leftH = partHeight/2 - posHeight/2;
- //var leftW = partHeight/2 - posHeight/2;  
+    if ( ballPosY - radiusBall <= 0 ) {
+        ballSpeedY = -ballSpeedY;
+        ballPosY = radiusBall;
+        }  
  //posWidth, posHeight
     ballH.setAttribute('cx', ballPosX);
     ballH.setAttribute('cy', ballPosY);           
 
-    if ( ballPosY > flagLeft && ballPosY < flagLeft + posHeight && ballPosX <= posWidth) {
-        //  console.log(partWidth, ballPosX + radiusBall);
-             ballSpeed = -ballSpeed;
-             ballSpeedY = -ballSpeedY;
-             ballPosX =  posWidth + 1;
-             ballPosY = ballPosY + 1;
+    if ( ballPosY - radiusBall > flagLeft && ballPosY + radiusBall < flagLeft + posHeight && ballPosX-radiusBall == posWidth) {
+        ballSpeed = -ballSpeed;
+        ballSpeedY = -ballSpeedY;
+        ballPosX =  radiusBall + posWidth;
+        ballPosY = ballPosY;
          }   
-         if ( ballPosY > flagRight && ballPosY < flagRight + posHeight && ballPosX + radiusBall*2 >= partWidth-posWidth) {
-         //  console.log(ballPosY, flagRight, flagRight + posHeight);
-                 ballSpeed = -ballSpeed;
-                 ballSpeedY = -ballSpeedY;
-                 console.log('a' + ballPosX, ballPosY);
-                 ballPosX = partWidth - radiusBall - posWidth - 10;//radiusBall - posWidth + 1;
-                 ballPosY = ballPosY; 
-               //  console.log('b' + ballPosX, ballPosY);
-             }   
-         
-
-
+    if ( ballPosY > flagRight && ballPosY < flagRight + posHeight && ballPosX + radiusBall <= partWidth-posWidth) {
+        ballSpeed = -ballSpeed;
+        ballSpeedY = -ballSpeedY;
+        ballPosX = ballPosX - radiusBall;
+        ballPosY = ballPosY; 
+        }   
 }
+function randomDiap(n,m) {
+    return Math.floor(Math.random()*(m-n+1))+n;
+  }
