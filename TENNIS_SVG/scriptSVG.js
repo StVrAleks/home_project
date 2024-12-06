@@ -135,9 +135,8 @@ function plashkaMove() {
     var flagLeft = partHeight / 2 - posHeight / 2 + speedL;
     if (flagLeft > 0 && flagLeft < partHeight - posHeight)
         var bum;
-        //speedLeft = 0;  //прибавляет тормозов, но ракетка останавливается во время
     else 
-        speedLeft = speedLeft*(-1);
+        speedL = speedL + speedLeft*(-1); 
     leftPos.style.transform = ' translate(' + '0'+ ',' + speedL + 'px)';   
 
         speedR = speedR + speedRight;             
@@ -145,9 +144,8 @@ function plashkaMove() {
 
     if (flagRight > 0 && flagRight < partHeight - posHeight)
         var bum2;
-        //speedRight = 0; //прибавляет тормозов, но ракетка останавливается во время
     else 
-        speedRight = speedRight*(-1); 
+        speedR = speedR + speedRight*(-1); 
  rightPos.style.transform = ' translate(' + '0'+ ',' + speedR + 'px)';
      
         //leftPos.style.transform = ' translate(' + '0'+ ',' + speedLeft + 'px)';
