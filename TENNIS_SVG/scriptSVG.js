@@ -133,31 +133,23 @@ function changeRightUP(){
 }
 
 function plashkaMove() {
-         
+         speedL = speedL + speedLeft;       
     var flagLeft = partHeight / 2 - posHeight / 2 + speedL;
     if (flagLeft > 0 && flagLeft < partHeight - posHeight)
-    {
-        speedL = speedL + speedLeft; 
-        leftPos.style.transform = ' translate(' + '0'+ ',' + speedL + 'px)'; 
         speedLeft = 0; //прибавляет тормозов, но ракетка останавливается во время
-    }
     else 
-        speedL = speedL + speedLeft;
-
+        speedL = speedL - speedLeft;
+    leftPos.style.transform = ' translate(' + '0'+ ',' + speedL + 'px)'; 
         //leftPos.style.transform = ' translate(' + '0'+ ',' + speedLeft + 'px)';
         //leftPos.setAttribute('y', flagLeft);
-           
+      speedR = speedR + speedRight;             
   var flagRight =partHeight / 2 - posHeight / 2  + speedR; 
 
     if (flagRight > 0 && flagRight < partHeight - posHeight)
-    {
-        speedR = speedR + speedRight;  
-        rightPos.style.transform = ' translate(' + '0'+ ',' + speedR + 'px)';
         speedRight = 0; //прибавляет тормозов, но ракетка останавливается во время
-    }
     else 
-        speedR = speedR + speedRight;  
-
+        speedR = speedR - speedRight;  
+ rightPos.style.transform = ' translate(' + '0'+ ',' + speedR + 'px)';
        // rightPos.style.transform = ' translate(' + '0'+ ',' + speedRight + 'px)';
       //  rightPos.setAttribute('y', flagRight);
     
