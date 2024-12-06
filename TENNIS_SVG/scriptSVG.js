@@ -159,7 +159,9 @@ ballH.setAttribute('cx', ballPosX);
 ballH.setAttribute('cy', ballPosY);
     
     //отбила ли левая ракетка
-    if (ballPosY > flagLeft && ballPosY < flagLeft + posHeight && ballPosX - radiusBall == posWidth) {
+    //центр мяча > верхней У позиции ракетки И центр мяча < нижней точки У ракетки (т.е. мяч попал в ракетку по коорд. у)
+    //и крайняя левая точка мяча <= крайней точке ракетки по коорд. х
+    if (ballPosY > flagLeft && ballPosY < flagLeft + posHeight && ballPosX - radiusBall <= posWidth) {
         ballSpeed = -ballSpeed;
         ballSpeedY = -ballSpeedY;
         ballPosX = radiusBall + posWidth;
