@@ -136,7 +136,7 @@ ballPosX = ballPosX + ballSpeed;  //смещение мяча по X
         document.getElementById('schet1').innerHTML = shet2;
     }
     // вылетел ли мяч левее стены
-    if (ballPosX - radiusBall < 0) {
+    if (ballPosX - radiusBall < 0) {    
         ballSpeed = 0;
         ballSpeedY = 0;
         ballPosX = radiusBall;
@@ -146,7 +146,7 @@ ballPosX = ballPosX + ballSpeed;  //смещение мяча по X
     var ballPosHeight = ballPosY + radiusBall;
 ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
     // вылетел ли мяч ниже пола?
-    if (ballPosHeight >= partHeight) {
+    if (ballPosHeight - radiusBall >= partHeight) {
         ballSpeedY = -ballSpeedY;
         ballPosY = partHeight - radiusBall;
     }
@@ -155,13 +155,13 @@ ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
         ballSpeedY = -ballSpeedY;
         ballPosY = radiusBall;
     }
-ballH.setAttribute('cx', ballPosX);
-ballH.setAttribute('cy', ballPosY);
+//ballH.setAttribute('cx', ballPosX);
+//ballH.setAttribute('cy', ballPosY);
     
     //отбила ли левая ракетка
     //центр мяча > верхней У позиции ракетки И центр мяча < нижней точки У ракетки (т.е. мяч попал в ракетку по коорд. у)
     //и крайняя левая точка мяча <= крайней точке ракетки по коорд. х
-    if (ballPosY > flagLeft && ballPosY < flagLeft + posHeight && ballPosX - radiusBall <= posWidth) {
+    if (ballPosY > flagLeft && ballPosY < flagLeft + posHeight && ballPosX - radiusBall <= posWidth) {    
         ballSpeed = -ballSpeed;
         ballSpeedY = -ballSpeedY;
         ballPosX = radiusBall + posWidth;
@@ -174,9 +174,9 @@ ballH.setAttribute('cy', ballPosY);
         ballPosX = ballPosX - radiusBall;
         ballPosY = ballPosY;
     }
- //   var a = ballPosX -partWidth/2;
- //   var b = ballPosY + radiusBall;
- // ballH.style.transform = ' translate(' + a +'px,' + b + 'px)'; 
+    var a = ballPosX -partWidth/2;
+    var b = ballPosY;
+  ballH.style.transform = ' translate(' + a +'px,' + b + 'px)'; 
 }
 /*function randomDiap(n, m) {
     return Math.floor(Math.random() * (m - n + 1)) + n;
