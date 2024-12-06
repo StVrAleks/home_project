@@ -13,12 +13,17 @@ var radiusBall = Math.round(partWidth / 15 * 0.5);
 //обнуление скорости ракеток и мяча(по х и у)
 var speedRight = 0;
 var speedLeft = 0;
+var speedR = 0;
+var speedL = 0;
 var ballSpeed = 0;
 var ballSpeedY = 0;
 //обнуление счета игры при обновлении страницы
 var shet1 = 0;
 var shet2 = 0;
 
+//
+//var flagLeft = 0;
+//var flagRight =  0; 
 //var randomX=0;
 // var randomY=0;
 
@@ -38,7 +43,7 @@ document.body.appendChild(gamePartsvg);
 var leftPos = document.createElementNS(gamePartsvg.namespaceURI, 'rect');
 leftPos.setAttribute('id', 'leftPos');
 leftPos.setAttribute('x', '0');
-leftPos.setAttribute('y', partHeight / 2 - posHeight / 2);
+leftPos.setAttribute('y', partHeight/2 - posHeight/2);
 leftPos.setAttribute('width', posWidth);
 leftPos.setAttribute('height', posHeight);
 leftPos.setAttribute("fill", "red");
@@ -47,7 +52,7 @@ gamePartsvg.appendChild(leftPos);
 var rightPos = document.createElementNS(gamePartsvg.namespaceURI, 'rect');
 rightPos.setAttribute('id', 'rightPos');
 rightPos.setAttribute('x', partWidth - posWidth);
-rightPos.setAttribute('y', partHeight / 2 - posHeight / 2);
+rightPos.setAttribute('y', partHeight/2 - posHeight/2);
 rightPos.setAttribute('width', posWidth);
 rightPos.setAttribute('height', posHeight);
 rightPos.setAttribute("fill", "black");
@@ -59,6 +64,8 @@ gamePartsvg.appendChild(ballH);
 
     document.addEventListener('keydown', changeLeft, false);
     document.addEventListener('keydown', changeRight, false);
+    document.addEventListener('keyup', changeLeftUP, false);
+    document.addEventListener('keyup', changeRightUP, false);
     setInterval(plashkaMove, 1000 / 80); //80 раз в секунду 
 
 function addPlay() {
@@ -72,7 +79,7 @@ function addPlay() {
    
 
     ballH.setAttribute('id', 'IBall');
-    ballH.setAttribute('cx', partWidth / 2);
+    ballH.setAttribute('cx', partWidth/2);
     ballH.setAttribute('cy', 0);
     ballH.setAttribute('r', radiusBall);
     ballH.setAttribute("fill", "orange");
@@ -88,40 +95,60 @@ function changeLeft(event) {
     eo.preventDefault();
     eo.repeat = false;
 
-    if (eo.ctrlKey) {
-        speedLeft = speedLeft + 2; //увеличиваем на 2, чтобы была фора у ракеток
-        return speedLeft;
-    }
-    if (eo.shiftKey) {
-        speedLeft = speedLeft - 2;
-        return speedLeft;
-    }
+    if (eo.ctrlKey)
+        speedLeft = 1;
+    if (eo.shiftKey) 
+        speedLeft = - 1;
     return speedLeft || 0;
 }
 
 function changeRight(event) {
     eo = window.event;
     eo.preventDefault();
+    eo.repeat = false;   
 
-    if (eo.code === 'ArrowUp') {
-        speedRight = speedRight - 2;
-        return speedRight;
-    }
-    if (eo.code === 'ArrowDown') {
-        speedRight = speedRight + 2;
-        return speedRight;
-    }
+    if (eo.code === 'ArrowUp')
+        speedRight = - 1;
+    if (eo.code === 'ArrowDown')
+        speedRight = 1;
+    return speedRight || 0;
+}
+
+function changeLeftUP() {
+    if (eo.code === 'ArrowUp') 
+        speedRight = 0;
+    if (eo.code === 'ArrowDown') 
+        speedRight = 0;
+    return speedRight || 0;
+}
+
+function changeRightUP(){
+    if (eo.code === 'ArrowUp')
+        speedRight = 0;
+    if (eo.code === 'ArrowDown')
+        speedRight = 0;
     return speedRight || 0;
 }
 
 function plashkaMove() {
-    var flagLeft = partHeight / 2 - posHeight / 2 + speedLeft;
-    var flagRight =  partHeight / 2 - posHeight / 2  + speedRight; 
+   var flagLeft = +speedL;//partHeight / 2 - posHeight / 2 + speedLeft;
+       speedL = speedL+speedLeft;
+ 
+   console.log(flagLeft, speedL, flagRight);
+        leftPos.style.transform = ' translate(' + '0'+ ',' + flagLeft + 'px)';
     if (flagLeft > 0 && flagLeft + posHeight <= partHeight)
-        leftPos.style.transform = ' translate(' + '0'+ ',' + speedLeft + 'px)';
-    //    leftPos.setAttribute('y', flagLeft);
+        
+        speedL = 0;
+
+        //leftPos.style.transform = ' translate(' + '0'+ ',' + speedLeft + 'px)';
+        //leftPos.setAttribute('y', flagLeft);
+
+  var flagRight = +speedR;//partHeight / 2 - posHeight / 2  + speedRight; 
+  speedR = speedR + speedRight;
     if (flagRight > 0 && flagRight + posHeight <= partHeight)
-        rightPos.style.transform = ' translate(' + '0'+ ',' + speedRight + 'px)';
+        speedR=-speedR;
+    rightPos.style.transform = ' translate(' + '0'+ ',' + flagRight + 'px)';
+       // rightPos.style.transform = ' translate(' + '0'+ ',' + speedRight + 'px)';
       //  rightPos.setAttribute('y', flagRight);
     
     //*********** ball */  
@@ -172,7 +199,7 @@ ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
         ballSpeed = -ballSpeed;
         ballSpeedY = -ballSpeedY;
         ballPosX = ballPosX - radiusBall;
-        ballPosY = ballPosY;
+        //ballPosY = ballPosY;
     }
     var a = ballPosX -partWidth/2;
     var b = ballPosY;
