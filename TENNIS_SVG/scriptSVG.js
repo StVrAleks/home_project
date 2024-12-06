@@ -96,9 +96,9 @@ function changeLeft(event) {
     eo.repeat = false;
 
     if (eo.ctrlKey)
-        speedLeft = 1;
+        speedLeft = 2;
     if (eo.shiftKey) 
-        speedLeft = - 1;
+        speedLeft = -2;
     return speedLeft || 0;
 }
 
@@ -108,46 +108,56 @@ function changeRight(event) {
     eo.repeat = false;   
 
     if (eo.code === 'ArrowUp')
-        speedRight = - 1;
+        speedRight = -2;
     if (eo.code === 'ArrowDown')
-        speedRight = 1;
+        speedRight = 2;
     return speedRight || 0;
 }
 
 function changeLeftUP() {
-    if (eo.code === 'ArrowUp') 
-        speedRight = 0;
-    if (eo.code === 'ArrowDown') 
-        speedRight = 0;
-    return speedRight || 0;
+    eo = window.event;
+    if (eo.ctrlKey)
+        speedLeft = 2;
+    if (eo.shiftKey) 
+        speedLeft = -2;
+    return speedLeft || 0;
 }
 
 function changeRightUP(){
+    eo = window.event;
     if (eo.code === 'ArrowUp')
-        speedRight = 0;
+        speedRight = -2;
     if (eo.code === 'ArrowDown')
-        speedRight = 0;
+        speedRight = 2;
     return speedRight || 0;
 }
 
 function plashkaMove() {
-   var flagLeft = +speedL;//partHeight / 2 - posHeight / 2 + speedLeft;
-       speedL = speedL+speedLeft;
- 
-   console.log(flagLeft, speedL, flagRight);
-        leftPos.style.transform = ' translate(' + '0'+ ',' + flagLeft + 'px)';
-    if (flagLeft > 0 && flagLeft + posHeight <= partHeight)
-        
-        speedL = 0;
+         
+    var flagLeft = partHeight / 2 - posHeight / 2 + speedL;
+    if (flagLeft > 0 && flagLeft < partHeight - posHeight)
+    {
+        speedL = speedL + speedLeft; 
+        leftPos.style.transform = ' translate(' + '0'+ ',' + speedL + 'px)'; 
+        speedLeft = 0; //прибавляет тормозов, но ракетка останавливается во время
+    }
+    else 
+        speedL = speedL + speedLeft;
 
         //leftPos.style.transform = ' translate(' + '0'+ ',' + speedLeft + 'px)';
         //leftPos.setAttribute('y', flagLeft);
+           
+  var flagRight =partHeight / 2 - posHeight / 2  + speedR; 
 
-  var flagRight = +speedR;//partHeight / 2 - posHeight / 2  + speedRight; 
-  speedR = speedR + speedRight;
-    if (flagRight > 0 && flagRight + posHeight <= partHeight)
-        speedR=-speedR;
-    rightPos.style.transform = ' translate(' + '0'+ ',' + flagRight + 'px)';
+    if (flagRight > 0 && flagRight < partHeight - posHeight)
+    {
+        speedR = speedR + speedRight;  
+        rightPos.style.transform = ' translate(' + '0'+ ',' + speedR + 'px)';
+        speedRight = 0; //прибавляет тормозов, но ракетка останавливается во время
+    }
+    else 
+        speedR = speedR + speedRight;  
+
        // rightPos.style.transform = ' translate(' + '0'+ ',' + speedRight + 'px)';
       //  rightPos.setAttribute('y', flagRight);
     
@@ -198,13 +208,10 @@ ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
     if (ballPosY > flagRight && ballPosY < flagRight + posHeight && ballPosX + radiusBall >= partWidth - posWidth) {
         ballSpeed = -ballSpeed;
         ballSpeedY = -ballSpeedY;
-        ballPosX = ballPosX - radiusBall;
-        //ballPosY = ballPosY;
+        ballPosX = ballPosX;
+        ballPosY = ballPosY;
     }
     var a = ballPosX -partWidth/2;
     var b = ballPosY;
   ballH.style.transform = ' translate(' + a +'px,' + b + 'px)'; 
 }
-/*function randomDiap(n, m) {
-    return Math.floor(Math.random() * (m - n + 1)) + n;
-}*/
