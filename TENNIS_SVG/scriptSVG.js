@@ -1,20 +1,24 @@
-
+//ширина и высота svg части
 var partWidth = 800;
 var partHeight = 500;
-var IBlockHeight = 10;
 
+//высота и ширина ракеток
 var posHeight = partHeight * 0.15;
 var posWidth = 10;
 
+//точка центра мяча
+var ballPosX = partWidth / 2;
+var ballPosY = 0;
+var radiusBall = Math.round(partWidth / 15 * 0.5);
+//обнуление скорости ракеток и мяча(по х и у)
 var speedRight = 0;
 var speedLeft = 0;
-var ballPosX = partWidth / 2;
 var ballSpeed = 0;
-var ballPosY = IBlockHeight;
 var ballSpeedY = 0;
+//обнуление счета игры при обновлении страницы
 var shet1 = 0;
 var shet2 = 0;
-var radiusBall = Math.round(partWidth / 15 * 0.5);
+
 //var randomX=0;
 // var randomY=0;
 
@@ -58,13 +62,14 @@ gamePartsvg.appendChild(ballH);
     setInterval(plashkaMove, 1000 / 80); //80 раз в секунду 
 
 function addPlay() {
+//обнуляем нужные переменные, задаем позицию мяча на новый раунд
     speedRight = 0;
     speedLeft = 0;
     ballPosX = partWidth / 2;
-     ballPosY = posHeight - radiusBall; //IBlockHeight;
+    ballPosY = posHeight - radiusBall; 
     ballSpeed = 1;
     ballSpeedY = 1;
-   // ballSpeed = 1;
+   
 
     ballH.setAttribute('id', 'IBall');
     ballH.setAttribute('cx', partWidth / 2);
@@ -84,7 +89,7 @@ function changeLeft(event) {
     eo.repeat = false;
 
     if (eo.ctrlKey) {
-        speedLeft = speedLeft + 2;
+        speedLeft = speedLeft + 2; //увеличиваем на 2, чтобы была фора у ракеток
         return speedLeft;
     }
     if (eo.shiftKey) {
@@ -121,7 +126,7 @@ function plashkaMove() {
     
     //*********** ball */  
 
-    ballPosX = ballPosX + ballSpeed;  //смещение мяча по X
+ballPosX = ballPosX + ballSpeed;  //смещение мяча по X
     // вылетел ли мяч правее стены
     if (ballPosX + radiusBall > partWidth) {
         ballSpeed = 0;
@@ -139,7 +144,7 @@ function plashkaMove() {
         document.getElementById('schet2').innerHTML = shet1;
     }
     var ballPosHeight = ballPosY + radiusBall;
-    ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
+ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
     // вылетел ли мяч ниже пола?
     if (ballPosHeight >= partHeight) {
         ballSpeedY = -ballSpeedY;
@@ -150,24 +155,26 @@ function plashkaMove() {
         ballSpeedY = -ballSpeedY;
         ballPosY = radiusBall;
     }
-    ballH.setAttribute('cx', ballPosX);
-    ballH.setAttribute('cy', ballPosY);
+ballH.setAttribute('cx', ballPosX);
+ballH.setAttribute('cy', ballPosY);
     
+    //отбила ли левая ракетка
     if (ballPosY > flagLeft && ballPosY < flagLeft + posHeight && ballPosX - radiusBall == posWidth) {
         ballSpeed = -ballSpeed;
         ballSpeedY = -ballSpeedY;
         ballPosX = radiusBall + posWidth;
         ballPosY = ballPosY;
     }
+    //отбила ли правая ракетка?
     if (ballPosY > flagRight && ballPosY < flagRight + posHeight && ballPosX + radiusBall >= partWidth - posWidth) {
         ballSpeed = -ballSpeed;
         ballSpeedY = -ballSpeedY;
         ballPosX = ballPosX - radiusBall;
         ballPosY = ballPosY;
     }
- /*   var a = ballPosX + radiusBall;
-    var b = 50 + ballPosY + radiusBall;
-  ballH.style.transform = ' translate(' + a +'px,' + b + 'px)'; */ 
+ //   var a = ballPosX -partWidth/2;
+ //   var b = ballPosY + radiusBall;
+ // ballH.style.transform = ' translate(' + a +'px,' + b + 'px)'; 
 }
 /*function randomDiap(n, m) {
     return Math.floor(Math.random() * (m - n + 1)) + n;
