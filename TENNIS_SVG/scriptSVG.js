@@ -93,13 +93,11 @@ function addPlay() {
 function changeLeft(event) {
     eo = window.event;
     eo.preventDefault();
-  //  eo.repeat = true;
     speedLeft=0;
     if (eo.ctrlKey)
         speedLeft = 1;
     if (eo.shiftKey) 
         speedLeft = -1;
-  //  return speedLeft || 0;
 }
 
 function changeRight(event) {
@@ -175,7 +173,7 @@ ballPosX = ballPosX + ballSpeed;  //смещение мяча по X
     var ballPosHeight = ballPosY + radiusBall;
 ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
     // вылетел ли мяч ниже пола?
-    if (ballPosHeight - radiusBall >= partHeight) {
+    if (ballPosY + radiusBall >= partHeight) {
         ballSpeedY = -ballSpeedY;
         ballPosY = partHeight - radiusBall;
     }
@@ -192,14 +190,12 @@ ballPosY = ballPosY + ballSpeedY;  //смещение мяча по Y
     //и крайняя левая точка мяча <= крайней точке ракетки по коорд. х
     if (ballPosY > flagLeft && ballPosY < flagLeft + posHeight && ballPosX - radiusBall <= posWidth) {    
         ballSpeed = -ballSpeed;
-        ballSpeedY = -ballSpeedY;
         ballPosX = radiusBall + posWidth;
         ballPosY = ballPosY;
     }
     //отбила ли правая ракетка?
     if (ballPosY > flagRight && ballPosY < flagRight + posHeight && ballPosX + radiusBall >= partWidth - posWidth) {
         ballSpeed = -ballSpeed;
-        ballSpeedY = -ballSpeedY;
         ballPosX = ballPosX;
         ballPosY = ballPosY;
     }
