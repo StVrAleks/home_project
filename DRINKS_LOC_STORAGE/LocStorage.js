@@ -104,7 +104,7 @@ function buttonForDel()
 function buttonForDelFood()
 {
   var foundName = prompt("Укажите блюдо, которое необходимо удалить");
-  var infoLine = FoodStorage.deleteValue(foundName);
+  var infoLine = foodStorage.deleteValue(foundName);
   if(!JSON.parse(infoLine)){ 
       alert("Блюдо " + foundName + " было не найдено.");
   }
@@ -121,7 +121,7 @@ ${infoLine}`);
 
 function buttonForGetKeysFood()
 {
-  var infoLine = drinkStorage.getKeys();
+  var infoLine = foodStorage.getKeys();
   alert(`
 Перечень введенных блюд:
 ${infoLine}`);
