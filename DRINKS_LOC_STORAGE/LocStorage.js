@@ -17,19 +17,25 @@ class LocStorageClass{
  
     //удаляет значение с указанным ключом, возвращает true если значение было удалено и false если такого значения не было в хранилище;
     deleteValue(key) {
-            if(key in this.drinkInfo)
+            if(key in localStorage)
                 {
                   localStorage.removeItem(key);
-                  localStorage.clear(this.drinkInfo[key]);
                   return true;
                 } 
                 return false;
     }
     //возвращает массив, состоящий из одних ключей. Класс должен быть чистым (не должен использовать никаких глобальных переменных, не должен «пачкать экран»).
     getKeys() {
+      var countKey='';
+      for(var i =0; i<localStorage.length; i++)
+   //     if(localStorage.key(i) in this.drinkInfo)
+        countKey = countKey + localStorage.key(i) + " ";
+      console.log(countKey);
       //return Object.keys(this.drinkInfo);
-      var infoKeys = Object.keys(this.drinkInfo);
-     return Object.keys(this.drinkInfo);
+    //  var infoKeys = Object.keys(this.drinkInfo);
+   //  return Object.keys(this.drinkInfo);
+
+   return countKey;
     }
 }
 
@@ -115,7 +121,7 @@ function buttonForGetKeys()
 {
   var infoLine = drinkStorage.getKeys();
   alert(`
-Перечень введенных напитков:
+Перечень введенных напитков и блюд:
 ${infoLine}`);
 }
 
@@ -123,6 +129,6 @@ function buttonForGetKeysFood()
 {
   var infoLine = foodStorage.getKeys();
   alert(`
-Перечень введенных блюд:
+Перечень введенных блюд и напитков:
 ${infoLine}`);
 }
