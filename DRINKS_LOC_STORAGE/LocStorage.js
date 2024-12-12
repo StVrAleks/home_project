@@ -1,13 +1,14 @@
 class LocStorageClass{
     //сохраняет указанное значение под указанным ключом; если под этим ключом уже сохранено какое-то значение — оно должно быть перезаписано;
     constructor(){
-      this.drinkInfo ={};
+      this.storage ={};
     }
 
-    addValue(key, keyVal) 
+    addValue(key, keyObj, keyVal) 
      {
-      this.drinkInfo[key] =  JSON.parse(keyVal);
-      localStorage.setItem(key, JSON.stringify(this.drinkInfo[key]));
+     // this.drinkInfo[key] =  keyVal;
+      this.storage[keyObj] =  JSON.parse(keyVal);
+      localStorage[key] = this.storage[keyObj];
      console.log(localStorage);
      }
     //возвращает значение по указанному ключу либо undefined;
@@ -26,14 +27,13 @@ class LocStorageClass{
     }
     //возвращает массив, состоящий из одних ключей. Класс должен быть чистым (не должен использовать никаких глобальных переменных, не должен «пачкать экран»).
     getKeys() {
-      var countKey='';
+  /*    var countKey='';
       for(var i =0; i<localStorage.length; i++)
-   //     if(localStorage.key(i) in this.drinkInfo)
         countKey = countKey + localStorage.key(i) + " ";
-      console.log(countKey);
+      console.log(countKey);*/
       //return Object.keys(this.drinkInfo);
-    //  var infoKeys = Object.keys(this.drinkInfo);
-   //  return Object.keys(this.drinkInfo);
+     // var infoKeys = Object.keys(this.storage);
+     return Object.keys(this.storage);
 
    return countKey;
     }
@@ -44,6 +44,7 @@ drinkStorage = new LocStorageClass();
 let  foodStorage = {};
 foodStorage = new LocStorageClass();
 
+
 function buttonForAdd()
 {  
     var drinkName = prompt("Введите название напитка, пожалуйста");    
@@ -51,7 +52,8 @@ function buttonForAdd()
     if(confirm("Напиток алкогольный?"))
         var alk = 'Да';
     var rec = prompt("Укажите рецепт его приготовления");
-    drinkStorage.addValue(drinkName, JSON.stringify({'алкогольный:' : alk, 'рецепт приготовления:': rec}));
+    console.log(drinkName);
+    drinkStorage.addValue("DRINKS", drinkName, JSON.stringify({'алкогольный:' : alk, 'рецепт приготовления:': rec}));
 }
 
 function buttonForAddFood()
