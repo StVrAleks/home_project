@@ -6,10 +6,13 @@ class LocStorageClass{
 
     addValue(key, keyObj, keyVal) 
      {
-     // this.drinkInfo[key] =  keyVal;
-      this.storage[keyObj] =  JSON.parse(keyVal);
-      localStorage[key] = this.storage[keyObj];
-     console.log(localStorage);
+      if(key in localStorage)
+        {
+          this.storage =  JSON.parse(localStorage[key]);
+        }
+      this.storage[keyObj] =  JSON.parse(keyVal); 
+      localStorage.setItem(key, JSON.stringify(this.storage));
+      console.log(localStorage);
      }
     //возвращает значение по указанному ключу либо undefined;
     getValue(key) {
@@ -17,23 +20,24 @@ class LocStorageClass{
     }
  
     //удаляет значение с указанным ключом, возвращает true если значение было удалено и false если такого значения не было в хранилище;
-    deleteValue(key) {
-            if(key in localStorage)
+    deleteValue(key, keyObj) {
+            if(keyObj in JSON.parse(localStorage[key]))
                 {
-                  localStorage.removeItem(key);
+                  var keyVal = JSON.parse(localStorage[key]);
+                  localStorage.removeItem(keyObj);
+                  delete this.storage[keyObj];  
+                  localStorage.setItem(key, JSON.stringify(this.storage));
                   return true;
                 } 
                 return false;
     }
     //возвращает массив, состоящий из одних ключей. Класс должен быть чистым (не должен использовать никаких глобальных переменных, не должен «пачкать экран»).
-    getKeys() {
-  /*    var countKey='';
-      for(var i =0; i<localStorage.length; i++)
-        countKey = countKey + localStorage.key(i) + " ";
-      console.log(countKey);*/
-      //return Object.keys(this.drinkInfo);
-     // var infoKeys = Object.keys(this.storage);
-     return Object.keys(this.storage);
+    getKeys(key) {
+      if(key in localStorage)
+        {
+          this.storage =  JSON.parse(localStorage[key]);
+        }
+     return Object.keys(JSON.parse(localStorage[key]));
 
    return countKey;
     }
@@ -43,6 +47,7 @@ let  drinkStorage = {};
 drinkStorage = new LocStorageClass();
 let  foodStorage = {};
 foodStorage = new LocStorageClass();
+let drink = {};
 
 
 function buttonForAdd()
@@ -52,8 +57,9 @@ function buttonForAdd()
     if(confirm("Напиток алкогольный?"))
         var alk = 'Да';
     var rec = prompt("Укажите рецепт его приготовления");
-    console.log(drinkName);
-    drinkStorage.addValue("DRINKS", drinkName, JSON.stringify({'алкогольный:' : alk, 'рецепт приготовления:': rec}));
+    var drink = {};
+   drink[drinkName] = {'алкогольный:' : alk, 'рецепт приготовления:': rec};
+   drinkStorage.addValue('drink', drinkName, JSON.stringify(drink[drinkName]));
 }
 
 function buttonForAddFood()
@@ -63,19 +69,23 @@ function buttonForAddFood()
     if(confirm("Это десерт?"))
         var alk = 'Да';
     var rec = prompt("Укажите рецепт его приготовления");
-    foodStorage.addValue(foodName, JSON.stringify({'десерт:' : alk, 'рецепт приготовления:': rec}));
+    var dishes = {};
+    dishes[foodName] = {'десерт:' : alk, 'рецепт приготовления:': rec};
+    foodStorage.addValue('dishes', foodName, JSON.stringify(dishes[foodName]));
 }
-
+//-*-*-*-*-*-*-*-*-*-*-*
 function buttonForGet()
 {
    var foundName = prompt("Укажите название напитка"); 
-   var infoLine = drinkStorage.getValue(foundName);
-   console.log(JSON.parse(infoLine));
+   var infoLine = drinkStorage.getValue("drink");
+   infoLine = JSON.parse(infoLine);
+   infoLine = infoLine[foundName];  
+
    if(infoLine){
       alert(`
  Название напитка: ${foundName}
- Алкогольность: ${JSON.parse(infoLine)['алкогольный:']}
- Рецепт: \n ${JSON.parse(infoLine)['рецепт приготовления:']}
+ Алкогольность: ${infoLine['алкогольный:']}
+ Рецепт: \n ${infoLine['рецепт приготовления:']}
             `);
    }
    else{
@@ -86,42 +96,45 @@ function buttonForGet()
 function buttonForGetFood()
 {
    var foundName = prompt("Укажите название блюда"); 
-   var infoLine = foodStorage.getValue(foundName);
-   console.log(JSON.parse(infoLine));
+   var infoLine = drinkStorage.getValue("dishes");   
+   infoLine = JSON.parse(infoLine);
+   infoLine = infoLine[foundName];  
    if(infoLine){
       alert(`
  Название блюда: ${foundName}
- Десерт: ${JSON.parse(infoLine)['десерт:']}
- Рецепт: \n ${JSON.parse(infoLine)['рецепт приготовления:']}
+ Десерт: ${infoLine['десерт:']}
+ Рецепт: \n ${infoLine['рецепт приготовления:']}
             `);
    }
    else{
        alert('Такого блюда нет.');
    }
 }
-
+//-*-*-*-*-*-*-*-*
 function buttonForDel()
 {
   var foundName = prompt("Укажите напиток, который необходимо удалить");
-  var infoLine = drinkStorage.deleteValue(foundName);
+  var infoLine = drinkStorage.deleteValue("drink", foundName);
+
   if(!infoLine){ 
       alert("Напиток " + foundName + " был не найден.");
   }
-  else{ alert("Напиток " + foundName + " удален."); }
+  else {alert("Напиток " + foundName + " удален."); }
 }
+
 function buttonForDelFood()
 {
   var foundName = prompt("Укажите блюдо, которое необходимо удалить");
-  var infoLine = foodStorage.deleteValue(foundName);
-  if(!JSON.parse(infoLine)){ 
+  var infoLine = foodStorage.deleteValue("dishes", foundName);
+  if(!infoLine){ 
       alert("Блюдо " + foundName + " было не найдено.");
   }
-  else{ alert("Блюдо " + foundName + " удалено."); }
+  else {alert("Блюдо " + foundName + " удалено."); }
 }
-
+//-*-*-*-*-*-*-*-*
 function buttonForGetKeys()
 {
-  var infoLine = drinkStorage.getKeys();
+  var infoLine = drinkStorage.getKeys('drink');
   alert(`
 Перечень введенных напитков и блюд:
 ${infoLine}`);
@@ -129,7 +142,7 @@ ${infoLine}`);
 
 function buttonForGetKeysFood()
 {
-  var infoLine = foodStorage.getKeys();
+  var infoLine = foodStorage.getKeys('dishes');
   alert(`
 Перечень введенных блюд и напитков:
 ${infoLine}`);
