@@ -1,21 +1,20 @@
 class LocStorageClass{
     //сохраняет указанное значение под указанным ключом; 
     // если под этим ключом уже сохранено какое-то значение — оно должно быть перезаписано;
-    constructor(){
-      this.storage = {
-        drink:'',
-        dishes:''
-      };
+    constructor(keyObj){
+      this.storage = {};
+      this.keyObj = keyObj;
+      this.storage.keyObj = localStorage.keyObj;
     }
 
     addValue(key, keyVal) 
      {
       if(key in localStorage)
         {
-          this.storage[key] =  JSON.parse(localStorage[key]);
+          this.storage[this.keyObj] =  JSON.parse(localStorage[this.keyObj]);
         }
         console.log(key);     
-      this.storage[key] = JSON.parse(keyVal); 
+      this.storage[key] = JSON.parse(keyVal);
       localStorage.setItem(key, JSON.stringify(this.storage[key]));
       console.log(localStorage);
      }
@@ -50,10 +49,10 @@ class LocStorageClass{
 }
 
 let  drinkStorage = {};
-drinkStorage = new LocStorageClass();
+drinkStorage = new LocStorageClass('drink');
 let  foodStorage = {};
-foodStorage = new LocStorageClass();
-let drinks = {};
+foodStorage = new LocStorageClass('dishes');
+//let drinks = {};
 
 
 function buttonForAdd()
@@ -63,11 +62,11 @@ function buttonForAdd()
     if(confirm("Напиток алкогольный?"))
         var alk = 'Да';
     var rec = prompt("Укажите рецепт его приготовления");
-  //  var drink = {};
-   drinks[drinkName] = {'алкогольный:' : alk, 'рецепт приготовления:': rec};
+ //   var drinks = {};
+  // drinks[drinkName] = {'алкогольный:' : alk, 'рецепт приготовления:': rec};
    //drinkStorage.drink=drinkName;
    
-   drinkStorage.addValue('drink', JSON.stringify(drinks));
+   drinkStorage.addValue(drinkName, JSON.stringify({'алкогольный:' : alk, 'рецепт приготовления:': rec}));
    console.log(drinkStorage.drink, drinkStorage);
    //drinkStorage.addValue(drinkName, JSON.stringify(drinks));
   // drinkStorage.addValue('drink', JSON.stringify(drink));

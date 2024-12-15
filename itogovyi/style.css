@@ -1,0 +1,267 @@
+#place_game_out{
+    width: 700px;
+    height: 400px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,25%);
+    border: 10px solid #DB2323;
+}
+#place_game_in{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: -2px;
+    height: inherit;
+    background-color: #CECDC8;
+    display: flex;
+    flex-direction: row;
+}
+#place_game_I{
+    width: 15%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#logo{
+    margin-top: 30%;
+    margin-left: 35%;
+    width: 60px;
+    height: 60px;
+    border: 1px solid black;
+}
+#but_left{
+    width: 85%;
+    height: 150px;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 30% 50%;
+    grid-template-areas: 
+    "img_1 bord_1"
+    "img_2 bord_2";
+    justify-content: space-evenly;
+    justify-items: end;
+    align-items: center;
+}
+#img1{grid-area: img_1;}
+#top_bord{grid-area: bord_1;}
+#img2{grid-area: img_2;}
+#bot_bord{grid-area: bord_2;}
+
+#img1{
+    border: 7px solid transparent;
+    border-top: 28px solid black;
+    transform: rotate(118deg);
+    margin-right: -2px;
+    margin-top: -38px;
+}
+#img2{
+    border: 7px solid transparent;
+    border-left: 28px solid black;
+    transform: rotate(149deg);
+    margin-right: -12px;
+    margin-bottom: -43px;
+}
+.borderBut{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 4px solid #DB2323;
+    position: relative;
+}
+
+#but1, #but2{
+    top: 0;
+    left: 0;
+}
+.for_button{
+    border-radius: 50%;
+    border: 2px solid #B40E07;
+    background: #ff0000; 
+    width: 30px;
+    height: 30px;  
+}
+#place_game_II{
+    width: 70%;
+    height: inherit;
+    perspective: 700px;
+}
+#place_game_III{
+    width: 15%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/*----*/
+#place_for_game{
+    width: 460px;
+    height: 360px;
+    margin-top: 5%;
+    border-radius: 5px;
+    transform-style: preserve-3d;
+}
+.side {
+    position: absolute;
+    box-sizing: border-box;
+    opacity: 0.7;
+  }
+  .left {
+    transform: translateX(0)  rotateY(90deg);
+    background-color: #847C7C;
+    width:40px;
+    height: 357px;
+  }
+  .right {
+    transform: translateX(460px) rotateY(90deg);
+    background-color: #847C7C;
+    width:40px;
+    height: 357px;
+  }
+  .top {
+    transform: translateY(-17px) translateX(20px) rotateX(90deg);
+    background-color: #9A9EA2;
+    width:460px;
+    height: 32px;
+  }
+  .bottom {
+    transform: translateY(339px) translateX(20px) rotateX(90deg);
+    background-color: #7E6961;
+    width:460px;
+    height: 36px;
+  }
+  #for_game_layer1{
+    position: absolute;
+    top: 3px;
+    width: 449px;
+    height: 350px;
+    background: #c3c0c0;
+    margin-left: 25px;
+  }
+  .for_label{
+    position: absolute;
+    left:45%;
+    top: 1%;    
+    background: #c3c0c0;
+    padding: 0px 3px 0px 3px;
+    font-weight: 900;
+    font-family: "Roboto", sans-serif;
+    transform: translate(-15%);
+  }
+  .to_bottom{
+    top: 333px;
+    margin-bottom: 2px;
+  }
+  #for_game_layer2{
+    position: absolute;
+    top: 10px;
+    left: 27px;
+    width: 437px;
+    height: 327px;
+    border: 4px solid black;
+    border-radius: 2%;
+  }
+  #for_game_layer3{
+    position: absolute;
+    top: 23px;
+    transform: translate(9%);
+    width: 421px;
+    height: 307px;
+    border: 1px solid black;
+    border-radius: 2%;
+    background: #ff0000;
+  }
+  #for_game_layer4{
+    position: absolute;
+    top: 29px;
+    transform: translate(12%);
+    width: 402px;
+    height: 295px;
+    border: 1px solid black;
+    border-radius: 1%;
+    background: #5E6C5A;
+  }
+
+  #control{
+    width: 85%;
+    height: 150px;
+    display: grid;
+    grid-template-rows: 16% 10% 16% 10% 16% 10%;
+    grid-template-columns: 50% 30%;
+    grid-template-areas: 
+    "but_control1 control_img_1"
+    "lab1 control1"
+    "but_control2 control_img_2"
+    "lab2 control2"
+    "but_control3 ."
+    "lab3 .";
+    justify-content: space-evenly;
+    justify-items: center;
+  
+    align-items: center;
+    padding-top: 15px;
+}
+#control_1{grid-area: but_control1;}
+#control_2{grid-area: control_img_1;}
+#control_3{grid-area: lab1;}
+#control_4{grid-area: control1;}
+#control_5{grid-area: but_control2;}
+#control_6{grid-area: control_img_2;}
+#control_7{grid-area: lab2;}
+#control_8{grid-area: control2;}
+#control_9{grid-area: but_control3;}
+#control_10{grid-area: lab3;}
+
+#but_right{
+    width: 85%;
+    height: 150px;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 50% 30%;
+    grid-template-areas: 
+    "bord_3 img_3"
+    "bord_4 img_4";
+    justify-content: space-evenly;
+    justify-items: end;
+    align-items: center;
+    padding-left: 10px;
+}
+#img3{grid-area: img_3;}
+#top_bord_right{grid-area: bord_3;}
+#img4{grid-area: img_4;}
+#bot_bord_right{grid-area: bord_4;}
+#img3{
+    border: 7px solid transparent;
+    border-top: 28px solid black;
+    transform: rotate(240deg);
+    margin-right: 11px;
+    margin-top: -37px;
+}
+#img4{
+    border: 7px solid transparent;
+    border-right: 28px solid black;
+    transform: rotate(209deg);
+    margin-right: 1px;
+    margin-bottom: -39px;
+}
+.for_control_button{
+    width: 30px;
+    height: 15px;
+    border-radius: 8px;
+    border: 3px solid #DB2323;
+    background-color: #ffe5b4;
+}
+.for_control_text{
+    color: black;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    padding-right: 6px;
+    font-weight: bold;
+}
+.impuls{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: black;
+}
