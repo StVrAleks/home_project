@@ -265,3 +265,10 @@
     border-radius: 50%;
     background: black;
 }
+#control_6{
+    border: dashed black; 
+    padding: 1px;
+    border-radius: 50%;
+    font-size: 10px;
+    overflow: hidden;
+}
