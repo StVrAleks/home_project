@@ -26,42 +26,84 @@ ctx.lineTo(logoX + 110, logoY + 45);
 ctx.lineTo(logoX + 60, logoY + logoH*2 - 10);
 ctx.lineTo(logoX + 180, logoY + 45);
 ctx.lineTo(logoX + 140, logoY + logoH*2 - 2);
+ctx.closePath();
 ctx.stroke();
 
+
 var gamePart = document.getElementById('for_game_layer4');
+var gameX = gamePart.offsetTop;
+var gameY = gamePart.offsetLeft;
+//var gameX = gamePart.offsetParent;
+console.log('offsetTop'+gameX, gameY);
 var gPart = gamePart.getBoundingClientRect();
+console.log('gPart'+gPart.left);
 var gamePartW = gPart.width;
 var gamePartX = Math.round(gPart.x);
 var gamePartH = gPart.height;
 var gamePartY = Math.round(gPart.y);
 console.log(gamePartW, gamePartX, gamePartH, gamePartY);
+
+
 var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-varsvgX = 228;
-varsvgY = -252;
+var svgX = gPart.top;
+var svgY = gPart.left;
 svg.style.width = gamePartW;
 svg.style.height = gamePartH;
 svg.style.position = 'absolute';
-svg.style.transform = 'translate(228px,-252px)';
+svg.style.top = svgX + 'px';
+svg.style.left = svgY + 'px';
 
-//svg.style.transform = translateX(gamePartX);
-//svg.style.transform = translateY(gamePartY);
-
-//svg.style.x = gamePartX;
-//svg.y = gamePartY;
+//координаты крыши
+/*var homeXY = {
+    x1: 0,
+    y1: gamePartH/7,
+    x2: gamePartH/7,
+    y2: 0,
+    x3: gamePartH/3,
+    y3: gamePartH*2/7
+  };*/
+  
+  //var home = document.createElementNS(svg.namespaceURI, 'line');  
+//  home = svg.getContext("2d");
+//var home = svg.getContext("2d");
 var home = document.createElementNS(svg.namespaceURI, 'line');
-    home.setAttribute('x1', 0);
-    home.setAttribute('y1', gamePartH/5);
-    home.setAttribute('x2',  gamePartW/15);
-    home.setAttribute('y2', 0);
-    home.setAttribute('x3',  Math.round(gamePartW*2/15));
-    home.setAttribute('y3', gamePartH*2/5);    
     home.setAttribute('stroke', 'grey');
-    home.setAttribute('fill', 'red');
+    home.setAttribute('stroke', 'grey');
     home.setAttribute('stroke-linecap', 'butt');    
     home.setAttribute('stroke-width', '4px');
-  
-   home.style.position = 'absolute';
+    home.setAttribute('y1', gamePartH/7);
+    home.setAttribute('x2',  gamePartH/7);
+    home.setAttribute('y2', 0);
+var home1 = document.createElementNS(svg.namespaceURI, 'line'); 
+   // home.setAttribute('fill', 'red');  
+   home1.setAttribute('stroke', 'grey');
+   home1.setAttribute('stroke-linecap', 'butt');    
+   home1.setAttribute('stroke-width', '4px');
+   home1.setAttribute('x1', gamePartH/7);
+   home1.setAttribute('y1', 0);
+   home1.setAttribute('x2', gamePartH/3);
+   home1.setAttribute('y2', gamePartH*2/7);      
+var truba = document.createElementNS(svg.namespaceURI, 'line');
+    truba.setAttribute('stroke', 'grey');
+    truba.setAttribute('stroke-linecap', 'butt');    
+    truba.setAttribute('stroke-width', '4px');
+    truba.setAttribute('x1', gamePartH/3*0.8);
+    truba.setAttribute('y1', gamePartH*2/7*0.2);
+    truba.setAttribute('x2', gamePartH/3*0.8);
+    truba.setAttribute('y2', gamePartH*2/7*0.6);   
+var truba2 = document.createElementNS(svg.namespaceURI, 'line');
+    truba2.setAttribute('stroke', 'grey');
+    truba2.setAttribute('stroke-linecap', 'butt');    
+    truba2.setAttribute('stroke-width', '4px');
+    truba2.setAttribute('x1', gamePartH/3*0.65);
+    truba2.setAttribute('y1', gamePartH*2/7*0.2);
+    truba2.setAttribute('x2', gamePartH/3*0.8);
+    truba2.setAttribute('y2', gamePartH*2/7*0.2);   
+  // home.style.position = 'absolute';
     svg.appendChild(home);
+    svg.appendChild(home1);
+    svg.appendChild(truba);    
+    svg.appendChild(truba2);     
     document.body.appendChild(svg);
 
 
