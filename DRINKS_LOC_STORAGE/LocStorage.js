@@ -2,25 +2,34 @@ class LocStorageClass{
     //сохраняет указанное значение под указанным ключом; 
     // если под этим ключом уже сохранено какое-то значение — оно должно быть перезаписано;
     constructor(keyObj){
-      this.storage = {};
-      this.keyObj = keyObj;
-      this.storage.keyObj = localStorage.keyObj;
-    }
+      this.keyObj = keyObj;   
+      this.storage = {}; 
+      this.localChanges(this.keyObj);
+    } 
+        saveChanges(){
+          localStorage[this.keyObj] = JSON.stringify(this.storage);
+        }
 
+        localChanges(keyObj){
+          if(localStorage[keyObj])
+          {
+            try
+            {
+              this.storage = JSON.parse(localStorage[keyObj]);   
+            }
+            catch{}  
+          }  
+        }  
+       
     addValue(key, keyVal) 
      {
-      if(key in localStorage)
-        {
-          this.storage[this.keyObj] =  JSON.parse(localStorage[this.keyObj]);
-        }
-        console.log(key);     
-      this.storage[key] = JSON.parse(keyVal);
-      localStorage.setItem(key, JSON.stringify(this.storage[key]));
-      console.log(localStorage);
+      this.storage[key] =  keyVal; //JSON.parse(localStorage[this.keyObj]);
+      this.saveChanges();
+       console.log(localStorage, this.storage, '***', key);     
      }
     //возвращает значение по указанному ключу либо undefined;
     getValue(key) {
-      return localStorage.getItem(key);
+      return this.storage.getItem(key);
     }
  
     //удаляет значение с указанным ключом, возвращает true если значение было удалено и false если такого значения не было в хранилище;
@@ -52,7 +61,7 @@ let  drinkStorage = {};
 drinkStorage = new LocStorageClass('drink');
 let  foodStorage = {};
 foodStorage = new LocStorageClass('dishes');
-//let drinks = {};
+
 
 
 function buttonForAdd()
@@ -61,15 +70,8 @@ function buttonForAdd()
     var alk = 'Нет';
     if(confirm("Напиток алкогольный?"))
         var alk = 'Да';
-    var rec = prompt("Укажите рецепт его приготовления");
- //   var drinks = {};
-  // drinks[drinkName] = {'алкогольный:' : alk, 'рецепт приготовления:': rec};
-   //drinkStorage.drink=drinkName;
-   
+    var rec = prompt("Укажите рецепт его приготовления");  
    drinkStorage.addValue(drinkName, JSON.stringify({'алкогольный:' : alk, 'рецепт приготовления:': rec}));
-   console.log(drinkStorage.drink, drinkStorage);
-   //drinkStorage.addValue(drinkName, JSON.stringify(drinks));
-  // drinkStorage.addValue('drink', JSON.stringify(drink));
 }
 
 function buttonForAddFood()
@@ -79,9 +81,7 @@ function buttonForAddFood()
     if(confirm("Это десерт?"))
         var alk = 'Да';
     var rec = prompt("Укажите рецепт его приготовления");
-    var dishes = {};
-    dishes[foodName] = {'десерт:' : alk, 'рецепт приготовления:': rec};
-    foodStorage.addValue('dishes', JSON.stringify(dishes));
+    foodStorage.addValue(foodName, JSON.stringify({'десерт:' : alk, 'рецепт приготовления:': rec}));
 }
 //-*-*-*-*-*-*-*-*-*-*-*
 function buttonForGet()
@@ -124,7 +124,7 @@ function buttonForGetFood()
 function buttonForDel()
 {
   var foundName = prompt("Укажите напиток, который необходимо удалить");
-  var infoLine = drinkStorage.drink.deleteValue(foundName);
+  var infoLine = drinkStorage.deleteValue(foundName);
 
   if(!infoLine){ 
       alert("Напиток " + foundName + " был не найден.");
