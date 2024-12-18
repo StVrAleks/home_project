@@ -1,5 +1,6 @@
 body{
   background-color: black;
+  position: relative;
 }
 #place_game_out{
     width: 700px;
@@ -28,8 +29,11 @@ body{
     align-items: center;
 }
 #logo{
-    margin-top: 30%;
-    margin-left: 35%;
+    position: relative;
+    top: 15%;
+    left: 21%;
+   /* margin-top: 30%;
+    margin-left: 35%;*/
     width: 60px;
     height: 60px;
     border: 1px solid black;
