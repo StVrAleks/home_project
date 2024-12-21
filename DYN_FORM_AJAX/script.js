@@ -1,58 +1,26 @@
-//https://fe.it-academy.by/Examples/dyn_form_ajax/formDef1.json
-//https://fe.it-academy.by/Examples/dyn_form_ajax/formDef2.json
 
-function testLoadData() {
     $.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef1.json",
         { type:'GET', dataType:'json', success:dataLoaded, error:errorHandler }
     );
     $.ajax("https://fe.it-academy.by/Examples/dyn_form_ajax/formDef2.json",
-        { type:'GET', dataType:'json', success:addForm, error:errorHandler }
+        { type:'GET', dataType:'json', success:dataLoaded2, error:errorHandler }
     );   
-}
 
-/*function dataLoaded(data) {
-    console.log('загруженные через AJAX данные:');
-    console.log(data);
-}*/
-function errorHandler(jqXHR,statusStr,errorStr) {
+
+function dataLoaded(data) {
+    const form1 = document.getElementById('formI');
+    const addNewFORM = addForm(form1, data);
+}
+function dataLoaded2(data) {
+    const form2 = document.getElementById('formII');
+    const addNewFORM2 = addForm(form2, data);
+}
+function errorHandler() {
     alert(statusStr+' '+errorStr);
 }
-/*
-const formDef1=
-[
-{label:'Название сайта:',kind:'longtext',name:'sitename'},
-{label:'URL сайта:',kind:'longtext',name:'siteurl'},
-{label:'Посетителей в сутки:',kind:'number',name:'visitors'},
-{label:'E-mail для связи:',kind:'shorttext',name:'email'},
-{label:'Рубрика каталога:',kind: 'dropdown',name:'division',
-variants:[{text:'здоровье',value:1},
-          {text:'домашний уют',value:2},
-          {text:'бытовая техника',value:3}]},
-{label:'Размещение:',kind:'radio',name:'payment',
-variants:[{text:'бесплатное',value:1},
-          {text:'платное',value:2},
-          {text:'VIP',value:3}]},
-{label:'Разрешить отзывы:',kind:'check',name:'votes'},
-{label:'Описание сайта:',kind:'memo',name:'description'},
-{caption:'Опубликовать',kind:'submit'},
-];
 
-const formDef2=
-[
-{label:'Фамилия:',kind:'longtext',name:'lastname'},
-{label:'Имя:',kind:'longtext',name:'firstname'},
-{label:'Отчество:',kind:'longtext',name:'secondname'},
-{label:'Возраст:',kind:'number',name:'age'},
-{caption:'Зарегистрироваться',kind:'submit'},
-];
-const form1 = document.getElementById('formI');
-const form2 = document.getElementById('formII');
-const addNewFORM = addForm(form1, formDef1);
-const addNewFORM2 = addForm(form2, formDef2);
-*/
-function addForm(data){
-    const formDef1 = JSON.parse(data);
-    console.log(formDef1);
+
+function addForm(teg, formСontent){
     var objKinds = {'longtext':'text', 
                     'number':'number', 
                     'shorttext':'text', 
@@ -66,7 +34,8 @@ function addForm(data){
     var divElement = document.createElement("div");
     for(var i = 0; i < formСontent.length; i++)
         {
-        labelElement[i] = document.createElement("label");  
+        labelElement[i] = document.createElement("label"); 
+        console.log(formСontent[i].label); 
         if(formСontent[i].label)
             labelElement[i].innerText = formСontent[i].label || formСontent[i].text;
         if(formСontent[i].text)
