@@ -1,20 +1,20 @@
 
-import { LocStorageClass } from './LocStorage.js';
+import {LocStorageClass} from './LocStorage.js';
 
 let  drinkStorage = {};
 drinkStorage = new LocStorageClass('drink');
 let  foodStorage = {};
 foodStorage = new LocStorageClass('dishes');
 
-document.getElementById('dr1').onclick = buttonForAdd();
-document.getElementById('dr2').onclick = buttonForGet();
-document.getElementById('dr3').onclick = buttonForDel();
-document.getElementById('dr4').onclick = buttonForGetKeys();
+document.getElementById('dr1').onclick = buttonForAdd;
+document.getElementById('dr2').onclick = buttonForGet;
+document.getElementById('dr3').onclick = buttonForDel;
+document.getElementById('dr4').onclick = buttonForGetKeys;
 
-document.getElementById('ds1').onclick = buttonForAddFood();
-document.getElementById('ds2').onclick = buttonForGetFood();
-document.getElementById('ds3').onclick = buttonForDelFood();
-document.getElementById('ds4').onclick = buttonForGetKeysFood();
+document.getElementById('ds1').onclick = buttonForAddFood;
+document.getElementById('ds2').onclick = buttonForGetFood;
+document.getElementById('ds3').onclick = buttonForDelFood;
+document.getElementById('ds4').onclick = buttonForGetKeysFood;
 
 function buttonForAdd()
 {  

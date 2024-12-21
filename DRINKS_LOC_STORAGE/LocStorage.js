@@ -36,9 +36,7 @@
     //удаляет значение с указанным ключом, возвращает true если значение было удалено и false если такого значения не было в хранилище;
     deleteValue(key) {
       this.loadChanges(); 
-      console.log(key, this.storage.hasOwnProperty['key']);//undefinde
-      console.log(key, this.storage.hasOwnProperty[key]);//undefinde
-      if ( this.storage.hasOwnProperty[key] )
+      if ( this.storage.hasOwnProperty(key) )
                 {
                   delete this.storage[key];
                   this.saveChanges();  
@@ -53,4 +51,4 @@
     }
 }
 
-export  { LocStorageClass }
+export  { LocStorageClass };
