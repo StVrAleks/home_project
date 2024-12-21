@@ -32,7 +32,7 @@ function addForm(teg, formСontent){
 
     var inputElement = [], labelElement = [], selectElement = [], labelForElement = [];  
     var divElement = document.createElement("div");
-    for(var i = 0; i < formСontent.length; i++)
+    for(var i = 0; i < formСontent.length-1; i++)
         {
         labelElement[i] = document.createElement("label"); 
         console.log(formСontent[i].label); 
