@@ -121,7 +121,7 @@ body{
     
   }
   .left {
-    transform: translate(-20px, 0px) rotateY(90deg);
+    transform: translate(-18px, 0px) rotateY(90deg);
     background-color: #847C7C;
     width: 7%;
     height: 100%;
@@ -132,7 +132,7 @@ body{
     height: 100%;
   }
   .top {
-    transform: translate(0px, -20px) rotateX(90deg);
+    transform: translate(0px, -18px) rotateX(90deg);
     background-color: #9A9EA2;
     width: 100%;
     height: 8%;
@@ -156,7 +156,7 @@ body{
   .for_label{
     position: absolute;
     left: 50%;
-    top: 2%;    
+    top: 1%;    
     background: #c3c0c0;
     padding: 0px 3px 0px 3px;
     font-weight: 900;
@@ -199,7 +199,7 @@ body{
   }
 
   #control{
-    width: 90%;
+    width: 95%;
     height: 37.5%;
     display: grid;
     grid-template-rows: 16% 10% 16% 10% 16% 10%;
@@ -287,6 +287,19 @@ body{
     font-size: 10px;
     overflow: hidden;
 }
+#zayac{
+  display: block;
+  width: 13%;
+  height: 17%;
+   z-index: 15; 
+  transform: translate(137%, 40%);
+}
+#img_game{
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+}
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
@@ -307,10 +320,10 @@ body{
         align-items: center;
         }
         #place_game_I{
-        width: 100%;
-        height: 22%;
-        flex-direction: row;
-        transform: rotate(180deg);
+          width: 100%;
+          height: 19%;
+          flex-direction: row;
+          transform: rotate(180deg);
         }
         #logo{
         top: 0%;
@@ -319,7 +332,7 @@ body{
         #but_left{
         width: 20%;
         height: 100%;
-        transform: rotate(-90deg) translate(-20%, -22%);
+        transform: rotate(-90deg) translate(-20%, -31%);
         }
         #img1{ 
         border-top: 24px solid black; 
@@ -341,20 +354,19 @@ body{
     
         #place_game_II{
         width: 90%; 
-        height: 80%;
+        height: 62%;
         transform: rotate(180deg) translate(0%, 0%);
-        margin-top: -25px;
+      /*  margin-top: -25px;*/
         }
         #for_game_layer1,
         #for_game_layer2,
-        #for_game_layer3,
-        #for_game_layer4{
+        #for_game_layer3{
           transform: rotate(180deg) translate(50%, 50%);
         }
     
         #place_game_III{
           width: 100%;
-          height: 12%;
+          height: 19%;
           transform: rotate(180deg);
           justify-content: space-between;
           flex-direction: row;
@@ -362,22 +374,22 @@ body{
         /*----*/
         #place_for_game{
           width: 91%; 
-          height: 90%;
+          height: 100%;
        /*   margin-top: 5%;*/
        /*   border-radius: 5px;
           transform-style: preserve-3d;*/
         }
           .left {
-            height: 20px;
-            width: 108%;
+            height: 26px;
+            width: 112%;
           }
           .right {
-            height: 20px;
-            width: 108%;
-            transform: translate(-20px, -6px) rotateX(90deg);
+            height: 26px;
+            width: 112%;
+            transform: translate(-28px, -11px) rotateX(90deg);
           }
           .top {
-            transform: translate(-34px, 4px) rotateY(90deg);
+            transform: translate(-40px, 4px) rotateY(90deg);
             height: 98%;
             width: 26px;
     }
@@ -395,7 +407,7 @@ body{
             height: 15px;
           }
           #for_game_layer1{
-            width: 106.5%;
+            width: 109%;
             height: 96.5%;
             margin-left: 0;
           }
@@ -409,8 +421,9 @@ body{
             height: 89%;
           }
           #for_game_layer4{
-            width: 87%;
-            height: 86.06%;
+            width: 63%;
+            height: 119.06%;
+            transform: rotate(90deg) translate(-70%, 35.5%);
           }
           #control{
             width: 105px;
@@ -423,11 +436,11 @@ body{
             transform: rotate(-90deg) translate(-16px, 16px);
         }
         #but_right{
-          width: 17%;
+          width: 20%;
           height: 100%;
-          transform: rotate(-90deg) translate(-10%, -78%);
-          grid-template-rows: 72% 100%;
-          grid-template-columns: 42% 56%;
+          transform: rotate(-90deg) translate(5%, -31%);
+         /* grid-template-rows: 72% 100%;
+          grid-template-columns: 42% 56%;*/
         }
         #img3{ 
           border-top: 24px solid black;
@@ -441,12 +454,15 @@ body{
             width: 30px;
             height: 15px;
         }
+      /*  #game_canvas{
+          transform: rotate(180deg);
+        }*/
 }
 /*смартфоны в альбомной ориентации (горизонтально)*/
 @media  all and (min-width : 10px) and (max-width : 620px) {
   body{ width: 50px; height: 50px;}
   #place_game_out{
-    max-width: 600px;
+   /* max-width: 600px;*/
     height: 30%; 
     position: relative; 
     left: 0%;
@@ -602,7 +618,9 @@ body{
         width: 30px;
         height: 15px;
     }
-
+ /*   #game_canvas{
+      transform: rotate(180deg);
+    }*/
 
 
 }

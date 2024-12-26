@@ -21,31 +21,57 @@ function addGame()
 
   //var widthGran;
   //var heightGran;
+if(newWid < 621){
+//  widthEl = document.getElementById('place_game_out').offsetWidth;
+//  heightEl = document.getElementById('place_game_out').offsetHeight;
+/*var forLabelTop = document.getElementById('for_game_layer1').offsetWidth + 21;
+var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
 
- if( newWid < 1061){
+ document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + (gran.width-25) + 'px, 4px) rotateY(90deg)';
+ document.getElementsByClassName('left')[0].style.transform = 'translate(-21px,' + gran.height + 'px) rotateX(90deg)';
+
+ //console.log('label', forLabelTop, forLabelBot);
+  document.getElementsByClassName('for_label')[0].style.left = forLabelTop - forLabelBot/2 - 26 +'px';
+  document.getElementsByClassName('to_bottom')[0].style.left = forLabelBot - 51 + 'px';
+*/
+}
+ else if( newWid > 620 && newWid < 1061){
   widthEl = newWid*0.92;
   heightEl = newHeig*0.92;
   var allPartGame = document.getElementById('place_game_out');
   allPartGame.style.width = widthEl + 'px';
   allPartGame.style.height = heightEl + 'px';
 
-var bottomgran = document.getElementsByClassName('right')[0];
-var gran = bottomgran.getBoundingClientRect();
+
+var botgran = document.getElementById('for_game_layer1');
+var gran = botgran.getBoundingClientRect();
 
 var topgran = document.getElementsByClassName('top')[0];
 var granTop = topgran.getBoundingClientRect();
-
+/*
 var forLabelTop = document.getElementById('for_game_layer1').offsetWidth + 21;
 var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
 
-  //console.log('widthGran  ' + document.getElementById('for_game_layer2').offsetLeft );   
-  //document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + ( gran.width-38 ) + 'px, 4px) rotateY(90deg)';
-  //document.getElementsByClassName('left')[0].style.transform = 'translate(-17px,' + (granTop.height -15) + 'px) rotateX(90deg)';
-  document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forLabelBot + 'px, 4px) rotateY(90deg)';
-  document.getElementsByClassName('left')[0].style.transform = 'translate(-17px,' + forLabelTop + 'px) rotateX(90deg)';
-  console.log('label', forLabelTop, forLabelBot);
+ document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + (gran.width-25) + 'px, 4px) rotateY(90deg)';
+ document.getElementsByClassName('left')[0].style.transform = 'translate(-21px,' + gran.height + 'px) rotateX(90deg)';
+
+ //console.log('label', forLabelTop, forLabelBot);
   document.getElementsByClassName('for_label')[0].style.left = forLabelTop - forLabelBot/2 - 26 +'px';
-  document.getElementsByClassName('to_bottom')[0].style.left = forLabelBot - 51 + 'px';
+  document.getElementsByClassName('to_bottom')[0].style.left = forLabelBot - 51 + 'px';*/
+
+  var botGran = document.getElementById('for_game_layer1');
+    var elemGran = botGran.getBoundingClientRect();
+    var forLabelTop = elemGran.height-3;
+    //var forGranBot = document.getElementsByClassName('top')[0].offsetTop + document.getElementById('for_game_layer1').offsetHeight-6;
+    var forGranBot = elemGran.width - 29;
+    console.log( elemGran.top, elemGran.height, elemGran.width, elemGran.left);
+    var forLabelBot = forGranBot -14;
+
+
+    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forGranBot + 'px, 4px) rotateY(90deg)';
+    document.getElementsByClassName('left')[0].style.transform = 'translate(-27px, '+ forLabelTop + 'px) rotateX(90deg)';
+    document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot  + 'px';
+
  }
  else if(newWid > 1060){
     widthEl = 0.68*newWid;
@@ -53,15 +79,23 @@ var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
     allPartGame.style.width = widthEl+ 'px';
     allPartGame.style.height = heightEl+ 'px';
 
-
-    var forLabelTop = document.getElementById('for_game_layer1').offsetWidth - 1;
-    var forGranBot = document.getElementsByClassName('top')[0].offsetTop + document.getElementById('for_game_layer1').offsetHeight-6;
-    var forLabelBot = forGranBot -18;
+    var imgs = document.getElementById('img_game');
+imgs.style.width = widthEl + 'px';
+imgs.style.height = heightEl + 'px';
+    var botGran = document.getElementById('for_game_layer1');
+    var elemGran = botGran.getBoundingClientRect();
+    var forLabelTop = elemGran.width-7;
+    //var forGranBot = document.getElementsByClassName('top')[0].offsetTop + document.getElementById('for_game_layer1').offsetHeight-6;
+    var forGranBot = elemGran.height - 7;
+   // console.log(elemBot.bottom, elemBot.top, elemBot.height);
+    var forLabelBot = forGranBot -14;
 
 
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(0px,' + forGranBot + 'px) rotateX(90deg)';
     document.getElementsByClassName('right')[0].style.transform = 'translate('+ forLabelTop + 'px, 0px) rotateY(90deg)';
     document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot  + 'px';
+
+
  }
  console.log("w",widthEl, 'h',heightEl);
  sizePart.gamePartW = widthEl;
@@ -131,8 +165,8 @@ ctx.lineTo(posLogoX*1.7, posLogoY*1.4);
 ctx.lineTo(posLogoX*1.5, posLogoY*1.75);
 ctx.lineTo(posLogoX*1.9, posLogoY*1.4);
 ctx.lineTo(posLogoX*1.7, posLogoY*1.8);
-ctx.closePath();
-//ctx.stroke();
+//ctx.closePath();
+ctx.stroke();
 
 
 
@@ -142,17 +176,24 @@ var posGameY = Math.round(sizeP.layerH ,2);
 console.log(sizeP.layerW, sizeP.layerH);
 
 //крыша
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.fillStyle = "#941121";
-
-ctx.strokeStyle ='grey';  
-ctx.moveTo(posGameX, posGameY*1.5);
-ctx.lineTo(posGameX*1.15, posGameY*1.02);
-ctx.lineTo(posGameX*1.5, posGameY*2.3);
-ctx.stroke();
-ctx.closePath();
-
+    ctx.beginPath();
+    ctx.lineWidth = 8;
+    ctx.fillStyle = "#941121";
+    ctx.strokeStyle ='grey';    
+for(var i=0; i<2; i++)
+{
+    ctx.moveTo(posGameX*1.02, posGameY*1.5);
+    ctx.lineTo(posGameX*1.15, posGameY*1.07);
+    ctx.lineTo(posGameX*1.5, posGameY*2.3);
+    ctx.stroke();
+    if(i===0)
+    {
+      ctx.beginPath();
+      ctx.lineWidth = 3;
+      ctx.fillStyle = "#851E1F";   
+      ctx.strokeStyle ='#851E1F'; 
+    } 
+}
 
 //труба
 ctx.beginPath();
@@ -176,118 +217,146 @@ ctx.lineTo(posGameX*1.4, posGameY*1.8);
 ctx.lineTo(posGameX*1.5, posGameY*2);
 ctx.lineTo(posGameX*1.5, posGameY*1.3);
 ctx.lineTo(posGameX*1.4, posGameY*1.45);
-
-ctx.stroke();
-ctx.closePath();
 //окно
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.strokeStyle = "#5A5F60";  
 ctx.moveTo(posGameX*1.4, posGameY*1.6);
 ctx.lineTo(posGameX*1.5, posGameY*1.62);
-
 ctx.stroke();
-ctx.closePath();
-//склон
+
+//склон left 2 шт
+var posY = [0, 1.2, 0, 1.2];
+var posX = {0:{0:1, 1:1.2, 2:1.6, 3:1.45, 4:1.45},
+            1:{0:1, 1:1.2, 2:1.6, 3:1.45, 4:1.45},
+            2:{0:3.725, 1:3.5, 2:3.1, 3:3.25, 4:3.25},
+            3:{0:3.725, 1:3.5, 2:3.1, 3:3.25, 4:3.25}
+           };
 ctx.beginPath();
-ctx.lineWidth = 2;
+ctx.lineWidth = 3;
 ctx.strokeStyle = "#6B4C21";  
-ctx.moveTo(posGameX*1, posGameY*2.6);
-ctx.lineTo(posGameX*1.2, posGameY*2.6);
-ctx.lineTo(posGameX*1.6, posGameY*3.2);
+  for(i = 0; i < 4; i++)
+  { 
+      ctx.moveTo(posGameX*posX[i][0], posGameY*(2.6 + posY[i]));
+      ctx.lineTo(posGameX*posX[i][1], posGameY*(2.6 + posY[i]));
+      ctx.lineTo(posGameX*posX[i][2], posGameY*(3.2 + posY[i]));
 
-ctx.stroke();
-ctx.closePath();
-//подпорка
+      //подпорка
+      ctx.moveTo(posGameX*posX[i][3], posGameY*(3 + posY[i]));
+      ctx.lineTo(posGameX*posX[i][4], posGameY*(3.4 + posY[i]));
+      ctx.stroke();
+  } 
+//забоор
 ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.strokeStyle = "#6B4C21";  
-ctx.moveTo(posGameX*1.45, posGameY*3);
-ctx.lineTo(posGameX*1.45, posGameY*3.4);
+ctx.lineWidth = 5;
+ctx.strokeStyle = "#6B4C21"; 
+    ctx.moveTo(posGameX*1.02, posGameY*3.85);
+    ctx.lineTo(posGameX*1.02, posGameY*4.2);
+    ctx.moveTo(posGameX*1.09, posGameY*3.85);
+    ctx.lineTo(posGameX*1.09, posGameY*4.2);
+    ctx.moveTo(posGameX*1.18, posGameY*3.85);
+    ctx.lineTo(posGameX*1.18, posGameY*4.2);
 
+ctx.moveTo(posGameX*1.27, posGameY*4);
+ctx.lineTo(posGameX*1.27, posGameY*4.35);
+ctx.moveTo(posGameX*1.36, posGameY*4.1);
+ctx.lineTo(posGameX*1.36, posGameY*4.45);
+ctx.fillStyle = "#6B4C21";
 ctx.stroke();
-//ctx.closePath();
-//склон2
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.strokeStyle = "#6B4C21";  
-ctx.moveTo(posGameX*1, posGameY*3.8);
-ctx.lineTo(posGameX*1.2, posGameY*3.8);
-ctx.lineTo(posGameX*1.6, posGameY*4.4);
-
-ctx.stroke();
-//ctx.closePath();
-//подпорка2
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.strokeStyle = "#6B4C21";  
-ctx.moveTo(posGameX*1.45, posGameY*4.2);//3,4
-ctx.lineTo(posGameX*1.45, posGameY*4.6);//3,8
-
-ctx.stroke();
-//ctx.closePath();
 
 //забоор
 ctx.beginPath();
 ctx.lineWidth = 5;
 ctx.strokeStyle = "#6B4C21"; 
-ctx.moveTo(posGameX*1.02, posGameY*3.85);//3
-ctx.lineTo(posGameX*1.02, posGameY*4.2);//3
-ctx.stroke();
-ctx.moveTo(posGameX*1.09, posGameY*3.85);//3
-ctx.lineTo(posGameX*1.09, posGameY*4.2);//3
-ctx.stroke();
-ctx.moveTo(posGameX*1.18, posGameY*3.85);//3
-ctx.lineTo(posGameX*1.18, posGameY*4.2);//3
-ctx.stroke();
-ctx.moveTo(posGameX*1.27, posGameY*4);//3
-ctx.lineTo(posGameX*1.27, posGameY*4.35);//3
-ctx.stroke();
-ctx.moveTo(posGameX*1.36, posGameY*4.1);//3
-ctx.lineTo(posGameX*1.36, posGameY*4.45);//3
+ctx.moveTo(posGameX*3.7, posGameY*3.85);
+ctx.lineTo(posGameX*3.7, posGameY*4.2);
+ctx.moveTo(posGameX*3.6, posGameY*3.85);
+ctx.lineTo(posGameX*3.6, posGameY*4.2);
+ctx.moveTo(posGameX*3.51, posGameY*3.85);
+ctx.lineTo(posGameX*3.51, posGameY*4.2);
+ctx.moveTo(posGameX*3.42, posGameY*4);
+ctx.lineTo(posGameX*3.42, posGameY*4.35);
+ctx.moveTo(posGameX*3.33, posGameY*4.1);
+ctx.lineTo(posGameX*3.33, posGameY*4.45);
 ctx.fillStyle = "#6B4C21";
-
 ctx.stroke();
-//ctx.closePath();
 
 //куст
-var radiusKust = 25;
+var setRad = [20, 8, 8, 20, 8]; //радиусы большого круга для отрисовки кустов
 var flag = 1;
+var setX = [1, 1.25, 2.65, 2.9, 2.97], setY = [1, 1.03, 1.03, 1, 0.26]; //смещение кустов по оси х, у
 ctx.beginPath();
 ctx.lineWidth = 1;
-ctx.arc(posGameX*1.17, posGameY*4.9, radiusKust, 0, Math.PI * 2, true); // Внешняя окружность
-for(var i = 0; i<12; i++)
-  {
-    var degX = posGameX*1.17 - radiusKust * Math.sin(360/12/180*Math.PI*(i+1))*0.85;
-    var degY = posGameY*4.9 - radiusKust * Math.cos(360/12/180*Math.PI*(i+1))*0.85;
-    ctx.moveTo(degX, degY);
-       ctx.arc(degX, degY, 5 + flag, 0, Math.PI * 2, true);
-       flag = flag + 1;
-    if (flag == 3)
-      flag = flag + 3;  
-    if (flag == 7)
-      flag = 2;      
-  }
-  flag = 1;
- var degX1 = posGameX*1.17 + radiusKust + 30;
- var degY1 = posGameY*4.9 +  radiusKust - 15;
-ctx.moveTo(degX1, degY1);
-ctx.arc(degX1, degY1, 15, 0, Math.PI * 2, true);
-for(var i = 0; i<12; i++)
-  {
-    degX = degX1 - 15 * Math.sin(360/12/180*Math.PI*(i+1))*0.85;
-    degY = degY1 - 15 * Math.cos(360/12/180*Math.PI*(i+1))*0.85;
-    ctx.moveTo(degX, degY);
-       ctx.arc(degX, degY, 5 + flag, 0, Math.PI * 2, true);
-       flag = flag + 1;
-    if (flag == 3)
-      flag = flag + 3;  
-    if (flag == 7)
-      flag = 2;      
-  }
-ctx.fillStyle = "#2C390B";
-ctx.fill();
-//ctx.stroke();
+for(var i=0; i < 5; i++) //всего 4 куста в ряд
+{
+    ctx.moveTo(posGameX*1.21 *setX[i] + setRad[i], posGameY*4.9 * setY[i]);
+    ctx.arc(posGameX*1.21 * setX[i], posGameY*4.9 * setY[i], setRad[i], 0, Math.PI * 2, true); 
+    for(var j = 0; j < 12; j++)
+          {
+            var degX = posGameX*1.21 * setX[i] - setRad[i] * Math.sin(360/12/180*Math.PI*(j+1));
+            var degY = posGameY*4.9 * setY[i] - setRad[i] * Math.cos(360/12/180*Math.PI*(j+1));
+            ctx.moveTo(degX, degY);
+               ctx.arc(degX, degY, 5 + flag, 0, Math.PI * 2, true);
+              flag = flag + 1;
+            if (flag == 3)
+              flag = flag + 3;  
+            if (flag == 7)
+              flag = 2;      
+          }
+      flag = 1;
+      ctx.fillStyle = "#2C390B";
+      ctx.fill();     
+  } 
 
-//ctx.moveTo(110, 75);
-//ctx.arc(75, 75, 35, 0, Math.PI, false); // рот (по часовой стрелке)
+
+//большая трава
+ctx.beginPath();
+ctx.lineWidth = 3;
+ctx.strokeStyle = "#2C390B"; 
+var flag=0;
+for(var i=0; i<2; i++)
+{ 
+  x=0;
+  if(i==1)
+    flag=2.1;
+  ctx.moveTo(posGameX*(1+flag), posGameY*5.8);
+  for(var j=1; j<4; j++)
+    {
+    ctx.lineTo(posGameX*(1.02 + x + flag), posGameY*6);
+    ctx.lineTo(posGameX*(1.04 + x + flag), posGameY*5.9);
+    ctx.lineTo(posGameX*(1.08 + x + flag), posGameY*6);
+    ctx.lineTo(posGameX*(1.13 + x + flag), posGameY*5.9);
+    ctx.lineTo(posGameX*(1.17 + x + flag), posGameY*6.1);
+    ctx.lineTo(posGameX*(1.19 + x + flag), posGameY*5.9);
+    ctx.lineTo(posGameX*(1.21 + x + flag), posGameY*6.1);
+    x = j * 0.19; //0.19 - разница между х-ми первой и последней точки
+    }
+    ctx.lineTo(posGameX*(1.02 + flag), posGameY*6.1);
+    ctx.fill();
+    ctx.stroke();
+}
+//трава 4 шт. по центру
+ctx.beginPath();
+ctx.lineWidth = 3;
+ctx.strokeStyle = "#2C390B"; 
+var flag=1, x;
+var sdvigX = [0, 0.25, 0.65, 0.8];
+var sdvigY = [0, 0.53, 0, -0.3];
+ for(var i = 0; i < 4; i++)
+ {
+  x=0;
+  if(i==3)
+    flag = 0.8;
+  ctx.moveTo(posGameX*(1.92+ sdvigX[i]), posGameY*(5.7*flag + sdvigY[i]));//3
+    for(var j=0; j<2; j++)
+        {
+        ctx.lineTo(posGameX*(1.92 + x + sdvigX[i]), posGameY*(5.8*flag + sdvigY[i]));//-0.1
+        ctx.lineTo(posGameX*(1.94 + x + sdvigX[i]), posGameY*(5.7*flag + sdvigY[i]));//3
+        ctx.lineTo(posGameX*(1.98 + x + sdvigX[i]), posGameY*(5.8*flag + sdvigY[i]));//3
+        ctx.lineTo(posGameX*(2.03 + x + sdvigX[i]), posGameY*(5.7*flag + sdvigY[i]));//3
+        ctx.lineTo(posGameX*(2.07 + x + sdvigX[i]), posGameY*(5.9*flag + sdvigY[i]));//3
+        ctx.lineTo(posGameX*(2.09 + x + sdvigX[i]), posGameY*(5.7*flag + sdvigY[i]));//3
+        ctx.lineTo(posGameX*(2.11 + x + sdvigX[i]), posGameY*(5.9*flag + sdvigY[i]));
+        x = x + 0.19; //0.19 - разница между х-ми первой и последней точки
+        }
+    ctx.lineTo(posGameX*(1.94 + sdvigX[i]), posGameY*(5.9*flag + sdvigY[i]));
+    ctx.fill();
+    ctx.stroke();
+ }  
