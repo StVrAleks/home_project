@@ -14,22 +14,22 @@ function addGame()
   const newWid = window.innerWidth;
   const newHeig = window.innerHeight;
   allPartGame = document.getElementById('place_game_out');
- // var bodyPart = document.getElementsByTagName('body')[0];
-  //var plashkaRight = document.getElementsByClassName('right')[0];
-  //var plashkaBottom = document.getElementsByClassName('bottom')[0];
-  //var labelBottom = document.getElementsByClassName('to_bottom')[0];
 
-  //var widthGran;
-  //var heightGran;
 if(newWid < 621){
   widthEl = newWid*0.92;
   heightEl = newHeig*0.92;
+
   var allPartGame = document.getElementById('place_game_out');
   allPartGame.style.width = widthEl + 'px';
   allPartGame.style.height = heightEl + 'px';
+ 
+  widthEl = newHeig*0.87;
+  heightEl = newWid*0.905;
+
   var placeForGame = document.getElementById('place_for_game');
   var placeGame = placeForGame.getBoundingClientRect();
   var placeLayer4 = document.getElementById('for_game_layer4');
+
   placeLayer4.style.width = 0.85 * placeGame.height + 'px';
   placeLayer4.style.height = 0.88* placeGame.width + 'px';
   placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5*(0.88* placeGame.width) + 'px,' + 0.5*(0.85 * placeGame.height) + 'px)';
@@ -64,6 +64,9 @@ if(newWid < 621){
   allPartGame.style.width = widthEl + 'px';
   allPartGame.style.height = heightEl + 'px';
 
+  widthEl = newHeig*0.847;
+  heightEl = newWid*0.805;
+  
   var gameLayer4 = document.getElementById('for_game_layer4');
   var layer4 = gameLayer4.getBoundingClientRect();
 
@@ -93,11 +96,11 @@ var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
 
   var botGran = document.getElementById('for_game_layer1');
     var elemGran = botGran.getBoundingClientRect();
-    var forLabelTop = elemGran.height-3;
+    var forLabelTop = elemGran.height - 3;
     //var forGranBot = document.getElementsByClassName('top')[0].offsetTop + document.getElementById('for_game_layer1').offsetHeight-6;
     var forGranBot = elemGran.width - 29;
-    console.log( elemGran.top, elemGran.height, elemGran.width, elemGran.left);
-    var forLabelBot = forGranBot -14;
+    console.log(elemGran.top, elemGran.height, elemGran.width, elemGran.left);
+    var forLabelBot = forGranBot - 14;
 
 
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forGranBot + 'px, 4px) rotateY(90deg)';
@@ -119,13 +122,13 @@ var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
       imgs.style.height = layer4.height + 'px';
    
    
-      var botGran = document.getElementById('for_game_layer1');
+    var botGran = document.getElementById('for_game_layer1');
     var elemGran = botGran.getBoundingClientRect();
     var forLabelTop = elemGran.width-7;
     //var forGranBot = document.getElementsByClassName('top')[0].offsetTop + document.getElementById('for_game_layer1').offsetHeight-6;
     var forGranBot = elemGran.height - 7;
    // console.log(elemBot.bottom, elemBot.top, elemBot.height);
-    var forLabelBot = forGranBot -14;
+    var forLabelBot = forGranBot - 14;
 
 
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(0px,' + forGranBot + 'px) rotateX(90deg)';
@@ -157,10 +160,10 @@ canvasPart.canvas.width = sizeP.gamePartW;
 canvasPart.canvas.height = sizeP.gamePartH;
 
 
-canvas.style.position = 'absolute';
+/*canvas.style.position = 'absolute';
 canvas.style.top = 50 + '%';
 canvas.style.left = 50 + '%';
-canvas.style.transform = 'translate(-50%,-50%)';
+canvas.style.transform = 'translate(-50%,-50%)';*/
 canvas.style.zIndex = '10';
 
 
@@ -174,7 +177,6 @@ var posLogoX = Math.round(sizeP.logoW, 2);
 var posLogoY = Math.round(sizeP.logoH, 2);
 
 
-//console.log(posLogoX, posLogoY);
 const ctx = canvas.getContext("2d");
 ctx.beginPath();
 ctx.lineWidth = 3;

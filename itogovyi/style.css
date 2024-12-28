@@ -461,6 +461,12 @@ body{
   left: 82%;
   top: 10%;
 }
+#game_canvas{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
@@ -600,8 +606,6 @@ body{
           width: 20%;
           height: 100%;
           transform: rotate(-90deg) translate(5%, -31%);
-         /* grid-template-rows: 72% 100%;
-          grid-template-columns: 42% 56%;*/
         }
         #img3{ 
           border-top: 24px solid black;
@@ -615,6 +619,9 @@ body{
             width: 30px;
             height: 15px;
         }
+        #game_canvas{
+          transform: translate(-50%,-50%) rotate(90deg);
+        }
       /*  #game_canvas{
           transform: rotate(180deg);
         }*/
@@ -623,8 +630,6 @@ body{
 @media  all and (min-width : 10px) and (max-width : 620px) {
   body{ width: 50px; height: 50px;}
   #place_game_out{
-   /* max-width: 600px;*/
-    /*height: 30%; */
     position: relative; 
     left: 0%;
     top: 0%;
@@ -765,5 +770,7 @@ body{
         width: 30px;
         height: 15px;
     }
-
+#game_canvas{
+  transform: translate(-51%,-52%) rotate(90deg);
+}
 }
