@@ -287,18 +287,179 @@ body{
     font-size: 10px;
     overflow: hidden;
 }
-#zayac{
-  display: block;
-  width: 13%;
-  height: 17%;
-   z-index: 15; 
-  transform: translate(137%, 40%);
-}
+
 #img_game{
   position: absolute;
-  left: 0%;
-  top: 0%;
+  left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
+     z-index: 15; 
+}
+.var_game{
+  position: absolute;  
+  font-weight: bold;
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  top: 95%;  
+}
+#gameA{
+  left: 1%;
+}
+#gameB{
+  left: 89%;
+}
+.imgsGame{
+    display: block;
+  position: absolute;
+}
+#zayac{
+  width: 14%;
+  height: 18%;
+  left: 15%;
+  top: 1%;
+}
+#zayac_top{
+  width: 10%;
+  height: 12%;
+  left: 28%;
+  top: 0%;
+}
+#zayac_bottom{
+  width: 12%;
+  height: 12%;
+  left: 23%;
+  top: 12%;
+}
+#ch_top_left{
+  width: 9%;
+  height: 13%;
+  left: 0%;
+  top: 14%;
+}
+#ch_top_right{
+  width: 12%;
+  height: 13%;
+  left: 88%;
+  top: 15%;
+}
+#ch_bottom_left{
+  width: 12%;
+  height: 12%;
+  left: 0%;
+  top: 37%;
+}
+#ch_bottom_right{
+  width: 11%;
+  height: 14%;
+  left: 89%;
+  top: 35%;
+}
+#volk_right{
+  width: 20%;
+  height: 40%;
+  left: 47%;
+  top: 36%;
+}
+#volk_left{
+  width: 20%;
+  height: 41%;
+  left: 32%;
+  top: 35%;
+}
+#hend_top_left{
+  width: 12%;
+  height: 16%;
+  left: 23%;
+  top: 35%;
+}
+#hend_top_right{
+  width: 10%;
+  height: 13%;
+  left: 66%;
+  top: 56%;
+}
+#hend_bottom_right{
+  width: 10%;
+  height: 17%;
+  left: 65%;
+  top: 38%;
+}
+#hend_bottom_left{
+  width: 12%;
+  height: 16%;
+  left: 23%;
+  top: 53%;
+}
+#bdyj_right{
+  width: 11%;
+  height: 9%;
+  left: 70%;
+  top: 82%;
+}
+#bdyj_left{
+  width: 11%;
+  height: 9%;
+  left: 21%;
+  top: 81%;
+}
+.cyplenok_left{
+  width: 9%;
+  height: 7%;
+}
+#cyplenok1_left{
+  left: 17%;
+  top: 77%;
+}
+#cyplenok2_left{
+  left: 11%;
+  top: 79%;
+}
+#cyplenok3_left{
+  left: 6%;
+  top: 79%;
+}
+#cyplenok4_left{ 
+  height: 8%;
+  left: 0%;
+  top: 78%;
+}
+#cyplenok1_right{
+  width: 9%;
+  height: 7%;
+}
+.cyplenok_right{
+  left: 90%;
+  top: 78%;
+}
+#cyplenok2_right{
+  left: 84%;
+  top: 78%;
+}
+#cyplenok3_right{
+  left: 78%;
+  top: 78%;
+}
+#cyplenok4_right{
+  left: 73%;
+  top: 76%;
+}
+#bant1{
+  width: 4%;
+  height: 6%;
+  left: 72%;
+  top: 10%;
+}
+#bant2{  
+  width: 4%;
+  height: 6%;
+  left: 77%;
+  top: 10%;
+}
+#bant3{  
+  width: 4%;
+  height: 6%;
+  left: 82%;
+  top: 10%;
 }
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
@@ -463,7 +624,7 @@ body{
   body{ width: 50px; height: 50px;}
   #place_game_out{
    /* max-width: 600px;*/
-    height: 30%; 
+    /*height: 30%; */
     position: relative; 
     left: 0%;
     top: 0%;
@@ -503,7 +664,7 @@ body{
     #but_left{
       width: 20%;
       height: 100%;
-      transform: rotate(-90deg) translate(-20%, -31%);
+      transform: rotate(-90deg) translate(-18%, -31%);
     }
     #img1{ 
       border-top: 24px solid black; 
@@ -526,8 +687,7 @@ body{
 
     #for_game_layer1,
     #for_game_layer2,
-    #for_game_layer3,
-    #for_game_layer4{
+    #for_game_layer3{
       transform: rotate(180deg) translate(50%, 50%);
     }
 
@@ -536,62 +696,49 @@ body{
     #place_for_game{
       width: 91%; 
       height: 100%;
-    /*  margin-top: 5%;*/
       border-radius: 5px;
       transform-style: preserve-3d;
     }
       .left {
-        height: 20px;
-        width: 110%;
+        height: 24px;
+        width: 112%;
       }
       .right {
-        height: 20px;
-        width: 110%;
-        transform: translate(-17px, -5px) rotateX(90deg);
+        height: 24px;
+        width: 111%;
+        transform: translate(-5%, -9px) rotateX(90deg);
       }
       .top {
-        transform: translate(-30px, 6px) rotateY(90deg);
+        transform: translate(-32px, 1%) rotateY(90deg);
         height: 98%;
         width: 26px;
 }
       .bottom {
-        transform: translate(288px, 10px) rotateY(90deg);
         height: 98%;
         width: 26px;
       }
 
-      .for_label{
+      #top_label{
         top: 50%;    
-        transform: rotate(-90deg);/* translateX(-50%);*/
+      /*  transform: rotate(-90deg) translateY(-50%);*/
         font-size: 14px;
       }
-      .to_bottom{
-       /* top: 50%;*/
+      #bottom_label{
+        top:50%;
         height: 15px;
+        font-size: 14px;
       }
       #for_game_layer1{
-    /*    top: 3.5%;
-        left: 0%;*/
         width: 109%;
         height: 96.5%;
-      /*  margin-left: 0;*/
       }
       #for_game_layer2{
-   /*     left: 8px;
-        top: 19px;*/
         width: 100%;
         height: 92%;
-    /*    margin-left: 0;*/
       }
       #for_game_layer3{
-     /*   transform: translate(8%, 3px);*/
         width: 92%; 
         height: 89%;
-      }
-      #for_game_layer4{
-     /*   transform: translate(11.5%, 2px);*/
-        width: 87%;
-        height: 86.06%;
       }
       #control{
         width: 105px;
@@ -599,12 +746,12 @@ body{
         grid-template-rows: 18% 18% 18% 18% 18% 18%;
         grid-template-columns: 50% 21%;
         padding-top: 0;
-        transform: rotate(-90deg) translate(-15px, 22px);
+        transform: rotate(-90deg) translate(-5px, 22px);
     }
     #but_right{
       width: 20%;
       height: 100%;
-      transform: rotate(-90deg) translate(14%, -31%);
+      transform: rotate(-90deg) translate(18%, -31%);
     }
     #img3{ 
       border-top: 24px solid black;
@@ -618,25 +765,5 @@ body{
         width: 30px;
         height: 15px;
     }
- /*   #game_canvas{
-      transform: rotate(180deg);
-    }*/
-
 
 }
-/*смартфоны в портретной ориентации (вертикально);*/
-/*@media  all and (min-width : 10px) and (max-width : 575px) {
- 
-  body{
-      transform: rotate(90deg);
-  }
-/*  #place_game_out{*/
-  /*  top: 20px;
-    left: -20px;      
-    transform: translate(-25%, -50%); */
-      
-  /*  transform: translate(0%,0%);*/
- /*   top: 1%;
-    left: 1%;    
-}*/
-/*}*/

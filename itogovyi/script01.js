@@ -22,18 +22,40 @@ function addGame()
   //var widthGran;
   //var heightGran;
 if(newWid < 621){
-//  widthEl = document.getElementById('place_game_out').offsetWidth;
-//  heightEl = document.getElementById('place_game_out').offsetHeight;
-/*var forLabelTop = document.getElementById('for_game_layer1').offsetWidth + 21;
-var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
+  widthEl = newWid*0.92;
+  heightEl = newHeig*0.92;
+  var allPartGame = document.getElementById('place_game_out');
+  allPartGame.style.width = widthEl + 'px';
+  allPartGame.style.height = heightEl + 'px';
+  var placeForGame = document.getElementById('place_for_game');
+  var placeGame = placeForGame.getBoundingClientRect();
+  var placeLayer4 = document.getElementById('for_game_layer4');
+  placeLayer4.style.width = 0.85 * placeGame.height + 'px';
+  placeLayer4.style.height = 0.88* placeGame.width + 'px';
+  placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5*(0.88* placeGame.width) + 'px,' + 0.5*(0.85 * placeGame.height) + 'px)';
 
- document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + (gran.width-25) + 'px, 4px) rotateY(90deg)';
- document.getElementsByClassName('left')[0].style.transform = 'translate(-21px,' + gran.height + 'px) rotateX(90deg)';
+  var gameLayer4 = document.getElementById('for_game_layer4');
+  var layer4 = gameLayer4.getBoundingClientRect();
 
- //console.log('label', forLabelTop, forLabelBot);
-  document.getElementsByClassName('for_label')[0].style.left = forLabelTop - forLabelBot/2 - 26 +'px';
-  document.getElementsByClassName('to_bottom')[0].style.left = forLabelBot - 51 + 'px';
-*/
+  var imgs = document.getElementById('img_game');
+    imgs.style.width = layer4.height + 'px';
+    imgs.style.height = layer4.width + 'px';
+    imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+
+
+  var placeLayer1 = document.getElementById('for_game_layer1');
+  var layer1 = placeLayer1.getBoundingClientRect();
+  
+  var placeLayer2 = document.getElementById('for_game_layer2');
+  var layer2 = placeLayer1.getBoundingClientRect();
+
+  var botWidth = document.getElementsByClassName('bottom')[0].offsetWidth;
+
+  console.log(layer1.top, layer1.width, botWidth, placeLayer1.offsetWidth);
+  document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + (layer1.width-botWidth) + 'px, 3px) rotateY(90deg)';
+  document.getElementsByClassName('left')[0].style.transform = 'translate(-21px, '+ layer1.height + 'px) rotateX(90deg)';
+  document.getElementById('bottom_label').style.transform = 'translate('+layer1.height/4 +'px,-50%) rotate(270deg)';
+  document.getElementById('top_label').style.transform = 'translate(-'+ layer2.height/2 + 'px, 0px) rotate(270deg)';
 }
  else if( newWid > 620 && newWid < 1061){
   widthEl = newWid*0.92;
@@ -42,12 +64,22 @@ var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
   allPartGame.style.width = widthEl + 'px';
   allPartGame.style.height = heightEl + 'px';
 
+  var gameLayer4 = document.getElementById('for_game_layer4');
+  var layer4 = gameLayer4.getBoundingClientRect();
 
+  var imgs = document.getElementById('img_game');
+  imgs.style.width = layer4.height + 'px';
+  imgs.style.height = layer4.width + 'px';
+  imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+
+/*
 var botgran = document.getElementById('for_game_layer1');
 var gran = botgran.getBoundingClientRect();
 
 var topgran = document.getElementsByClassName('top')[0];
 var granTop = topgran.getBoundingClientRect();
+document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forGranBot + 'px, 4px) rotateY(90deg)';
+document.getElementsByClassName('left')[0].style.transform = 'translate(-27px, '+ forLabelTop + 'px) rotateX(90deg)';
 /*
 var forLabelTop = document.getElementById('for_game_layer1').offsetWidth + 21;
 var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
@@ -79,10 +111,15 @@ var forLabelBot = document.getElementById('for_game_layer1').offsetHeight - 26;
     allPartGame.style.width = widthEl+ 'px';
     allPartGame.style.height = heightEl+ 'px';
 
+    var gameLayer4 = document.getElementById('for_game_layer4');
+    var layer4 = gameLayer4.getBoundingClientRect();
+
     var imgs = document.getElementById('img_game');
-imgs.style.width = widthEl + 'px';
-imgs.style.height = heightEl + 'px';
-    var botGran = document.getElementById('for_game_layer1');
+      imgs.style.width = layer4.width + 'px';
+      imgs.style.height = layer4.height + 'px';
+   
+   
+      var botGran = document.getElementById('for_game_layer1');
     var elemGran = botGran.getBoundingClientRect();
     var forLabelTop = elemGran.width-7;
     //var forGranBot = document.getElementsByClassName('top')[0].offsetTop + document.getElementById('for_game_layer1').offsetHeight-6;
@@ -107,10 +144,7 @@ imgs.style.height = heightEl + 'px';
  
  console.log(document.getElementById('for_game_layer4').offsetWidth, document.getElementById('for_game_layer4').offsetLeft);
  return sizePart;
-/*var allPart = allPartGame.getBoundingClientRect();
-var allPartWidth = allPart.width; 
-var allPartHeight = allPart.height;
-console.log(allPartWidth, allPartHeight);*/
+
   // Время для адаптивной магии!
 }
 
@@ -122,11 +156,15 @@ canvasPart.clearRect(0, 0, canvasPart.canvas.width, canvasPart.canvas.height);
 canvasPart.canvas.width = sizeP.gamePartW;
 canvasPart.canvas.height = sizeP.gamePartH;
 
+
 canvas.style.position = 'absolute';
 canvas.style.top = 50 + '%';
 canvas.style.left = 50 + '%';
 canvas.style.transform = 'translate(-50%,-50%)';
 canvas.style.zIndex = '10';
+
+
+
 var allPartGame = 0;
 
 
@@ -226,8 +264,8 @@ ctx.stroke();
 var posY = [0, 1.2, 0, 1.2];
 var posX = {0:{0:1, 1:1.2, 2:1.6, 3:1.45, 4:1.45},
             1:{0:1, 1:1.2, 2:1.6, 3:1.45, 4:1.45},
-            2:{0:3.725, 1:3.5, 2:3.1, 3:3.25, 4:3.25},
-            3:{0:3.725, 1:3.5, 2:3.1, 3:3.25, 4:3.25}
+            2:{0:3.710, 1:3.5, 2:3.1, 3:3.25, 4:3.25},
+            3:{0:3.710, 1:3.5, 2:3.1, 3:3.25, 4:3.25}
            };
 ctx.beginPath();
 ctx.lineWidth = 3;
@@ -243,7 +281,7 @@ ctx.strokeStyle = "#6B4C21";
       ctx.lineTo(posGameX*posX[i][4], posGameY*(3.4 + posY[i]));
       ctx.stroke();
   } 
-//забоор
+//забор
 ctx.beginPath();
 ctx.lineWidth = 5;
 ctx.strokeStyle = "#6B4C21"; 
@@ -281,7 +319,7 @@ ctx.stroke();
 //куст
 var setRad = [20, 8, 8, 20, 8]; //радиусы большого круга для отрисовки кустов
 var flag = 1;
-var setX = [1, 1.25, 2.65, 2.9, 2.97], setY = [1, 1.03, 1.03, 1, 0.26]; //смещение кустов по оси х, у
+var setX = [1, 1.25, 2.65, 2.9, 2.95], setY = [1, 1.03, 1.03, 1, 0.26]; //смещение кустов по оси х, у
 ctx.beginPath();
 ctx.lineWidth = 1;
 for(var i=0; i < 5; i++) //всего 4 куста в ряд
@@ -337,8 +375,8 @@ ctx.beginPath();
 ctx.lineWidth = 3;
 ctx.strokeStyle = "#2C390B"; 
 var flag=1, x;
-var sdvigX = [0, 0.25, 0.65, 0.8];
-var sdvigY = [0, 0.53, 0, -0.3];
+var sdvigX = [0, 0.25, 0.65, 0.4];
+var sdvigY = [0, 0.53, 0, 0.9];
  for(var i = 0; i < 4; i++)
  {
   x=0;
