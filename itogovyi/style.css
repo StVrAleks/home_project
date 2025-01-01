@@ -48,9 +48,10 @@ body{
     grid-template-areas: 
     "img_1 bord_1"
     "img_2 bord_2";
-    justify-content: space-evenly;
+    justify-content: space-between;
     justify-items: end;
     align-items: center;
+    
 }
 #img1{grid-area: img_1;}
 #top_bord{grid-area: bord_1;}
@@ -62,7 +63,7 @@ body{
     border-top: 28px solid black;
     transform: rotate(118deg);
     margin-right: -2px;
-    margin-top: -38px;
+    margin-top: -38px; 
 }
 #img2{
     border: 7px solid transparent;
@@ -121,29 +122,29 @@ body{
     
   }
   .left {
-    transform: translate(-18px, 0px) rotateY(90deg);
+    transform: translate(-15px, 0px) rotateY(90deg);
     background-color: #847C7C;
-    width: 7%;
+    width: 30px;/*7%;*/
     height: 100%;
   }
   .right {
     background-color: #847C7C;
-    width:7%;
+    width:30px;/*7%;*/
     height: 100%;
   }
   .top {
-    transform: translate(0px, -18px) rotateX(90deg);
+    transform: translate(0px, -15px) rotateX(90deg);
     background-color: #9A9EA2;
     width: 100%;
-    height: 8%;
+    height: 30px;/*8%;*/
   }
   .bottom {
     background-color: #7E6961;
     width: 100%;
-    height: 8%;
+    height: 30px;/*8%;*/
   }
   #for_game_layer1{
-    width: 97.5%;
+    width: 98.5%;
     height: 98%;      
     position: absolute;
     top: 50%;
@@ -237,10 +238,10 @@ body{
     grid-template-areas: 
     "bord_3 img_3"
     "bord_4 img_4";
-    justify-content: space-evenly;
+    justify-content: space-between;
     justify-items: end;
     align-items: center;
-    padding-left: 10px;
+   /* padding-left: 10px;*/
 }
 #img3{grid-area: img_3;}
 #top_bord_right{grid-area: bord_3;}
@@ -490,7 +491,7 @@ margin-bottom: -10px;
         }
         #place_game_I{
           width: 100%;
-          height: 19%;
+          height: 15%;/*19%;*/
           flex-direction: row;
           transform: rotate(180deg);
         }
@@ -500,8 +501,8 @@ margin-bottom: -10px;
         }
         #but_left{
         width: 20%;
-        height: 100%;
-        transform: rotate(-90deg) translate(-20%, -31%);
+        height: 150%;
+        transform: rotate(-90deg) translate(-11%, -31%);
         }
         #img1{ 
         border-top: 24px solid black; 
@@ -523,7 +524,7 @@ margin-bottom: -10px;
     
         #place_game_II{
         width: 90%; 
-        height: 62%;
+        height: 70%;/*62%;*/
         transform: rotate(180deg) translate(0%, 0%);
       /*  margin-top: -25px;*/
         }
@@ -535,53 +536,54 @@ margin-bottom: -10px;
     
         #place_game_III{
           width: 100%;
-          height: 19%;
+          height: 15%;/*19%;*/
           transform: rotate(180deg);
           justify-content: space-between;
           flex-direction: row;
         }
         /*----*/
         #place_for_game{
-          width: 91%; 
-          height: 100%;
+          width: 100%;/*91%; */
+          height: 98%;/*100%;*/
        /*   margin-top: 5%;*/
        /*   border-radius: 5px;
           transform-style: preserve-3d;*/
         }
           .left {
             height: 26px;
-            width: 112%;
+            width: 102%;
           }
           .right {
             height: 26px;
-            width: 112%;
-            transform: translate(-28px, -11px) rotateX(90deg);
+            width: 102%;
+            transform: translate(-6px, -10px) rotateX(90deg);
           }
           .top {
-            transform: translate(-40px, 4px) rotateY(90deg);
+            transform: translate(-18px, 4px) rotateY(90deg);
             height: 98%;
             width: 26px;
     }
           .bottom {
-            transform: translate(288px, 10px) rotateY(90deg);
+         /*   transform: translate(288px, 10px) rotateY(90deg);*/
             height: 98%;
             width: 26px;
           }   
           .for_label{
-            top: 50%;    
-            transform: rotate(-90deg) translateY(-50%);
+            /*left: 50%;  */
+            top:50%;  
+            transform: rotate(-90deg) translate(0%,0%);
             font-size: 14px;
           }
           .to_bottom{
             height: 15px;
           }
           #for_game_layer1{
-            width: 109%;
+            width: 100%;/*109%;*/
             height: 96.5%;
             margin-left: 0;
           }
           #for_game_layer2{
-            width: 100%;
+            width: 96%;/*100%;*/
             height: 92%;
             margin-left: 0;
           }
@@ -590,9 +592,9 @@ margin-bottom: -10px;
             height: 89%;
           }
           #for_game_layer4{
-            width: 63%;
-            height: 119.06%;
-            transform: rotate(90deg) translate(-70%, 35.5%);
+            width: 64%;/*63%;*/
+            height: 119%;/*119.06%;*/
+            transform: rotate(90deg) translate(-69%, 36.5%);
           }
           #control{
             width: 105px;
@@ -602,12 +604,12 @@ margin-bottom: -10px;
             transform: translate(4%, -61%);
             justify-content: center;
             padding-top: 0;
-            transform: rotate(-90deg) translate(-16px, 16px);
+            transform: rotate(-90deg) translate(0px, 16px);
         }
         #but_right{
           width: 20%;
-          height: 100%;
-          transform: rotate(-90deg) translate(5%, -31%);
+          height: 150%;
+          transform: rotate(-90deg) translate(11%, -31%);
         }
         #img3{ 
           border-top: 24px solid black;
@@ -623,6 +625,9 @@ margin-bottom: -10px;
         }
         #game_canvas{
           transform: translate(-50%,-50%) rotate(90deg);
+        }
+        #gameB{
+          left: 84%;
         }
       /*  #game_canvas{
           transform: rotate(180deg);
@@ -650,7 +655,7 @@ margin-bottom: -10px;
         transform: rotate(180deg);
     }
     #place_game_II{
-     width: 90%; 
+     width: 94%; 
      height: 64%;
       transform: rotate(180deg) translate(0%, 0%);
      /* margin-top: -25px;*/
@@ -675,11 +680,11 @@ margin-bottom: -10px;
     }
     #img1{ 
       border-top: 24px solid black; 
-      transform: rotate(126deg) translate(7px, 14px);
+      transform: rotate(126deg) translate(7px, 0px);
     }
     #img2{ 
       border-left: 24px solid black;
-      transform: rotate(143deg) translate(14px, 10px);
+      transform: rotate(143deg) translate(0px, 4px);
     }
     .borderBut,
     .for_button{
@@ -701,27 +706,27 @@ margin-bottom: -10px;
 
     /*----*/
     #place_for_game{
-      width: 91%; 
+      width: 100%; 
       height: 100%;
       border-radius: 5px;
       transform-style: preserve-3d;
     }
       .left {
-        height: 24px;
-        width: 112%;
+        height: 26px;
+        width: 101.5%;
       }
       .right {
-        height: 24px;
-        width: 111%;
-        transform: translate(-5%, -9px) rotateX(90deg);
+        height: 26px;
+        width: 101.5%;
+        transform: translate(-0.5%, -10px) rotateX(90deg);
       }
       .top {
-        transform: translate(-32px, 1%) rotateY(90deg);
+        transform: translate(-64%, 1%) rotateY(90deg);
         height: 98%;
         width: 26px;
 }
       .bottom {
-        height: 98%;
+        height: 98.5%;
         width: 26px;
       }
 
@@ -736,15 +741,15 @@ margin-bottom: -10px;
         font-size: 14px;
       }
       #for_game_layer1{
-        width: 109%;
+        width: 100%;
         height: 96.5%;
       }
       #for_game_layer2{
-        width: 100%;
+        width: 94%;
         height: 92%;
       }
       #for_game_layer3{
-        width: 92%; 
+        width: 90%; 
         height: 89%;
       }
       #control{
@@ -758,21 +763,24 @@ margin-bottom: -10px;
     #but_right{
       width: 20%;
       height: 100%;
-      transform: rotate(-90deg) translate(18%, -31%);
+      transform: rotate(-90deg) translate(12%, -31%);
     }
     #img3{ 
       border-top: 24px solid black;
-      transform: rotate(240deg) translate(1px, 4px);
+      transform: rotate(240deg) translate(1px, -2px);
     }
     #img4{ 
       border-right: 24px solid black;
-      transform: rotate(215deg) translate(-2px, 0px);
+      transform: rotate(215deg) translate(1px, -2px);
     }
     .for_control_button{
         width: 30px;
         height: 15px;
     }
 #game_canvas{
-  transform: translate(-51%,-52%) rotate(90deg);
+  transform: translate(-52%,-54%) rotate(90deg);
+}
+#gameB{
+  left: 84%;
 }
 }

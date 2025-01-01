@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ну погоди!</title>
+    <link rel="stylesheet" href="style.css" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -37,16 +38,46 @@
                     <div id="top_label" style="color: #DB2323;" class="for_label">НУ, ПОГОДИ!</div>
                     <div id="bottom_label" style="color: black;" class="for_label to_bottom">ЭЛЕКТРОНИКА</div>
                     <div id="for_game_layer3"></div> 
-                    <div id="for_game_layer4"></div> 
+                    <div id="for_game_layer4"></div>  
                 </div>
+            </div>
+            <div id="img_game" class="img_game_class">
+                <span id="gameA" class="imgsGame var_game">GAME A</span>
+                <span id="gameB" class="imgsGame var_game">GAME B</span>
+                <img id="zayac" class='imgsGame' src="img/zayac.png" alt="zayac">
+                <img id="zayac_top" class='imgsGame hend_z' src="img/zayac_hend_top-fotor.png" alt="zayac_hend">
+                <img id="zayac_bottom" class='imgsGame hend_z' src="img/zayac_hend_bottom.png" alt="zayac_hend">
+                <img id="ch_top_left" class='imgsGame chiken' src="img/chiken_top_left.png" alt="chiken_top_left">
+                <img id="ch_top_right" class='imgsGame chiken' src="img/chiken_top_right.png" alt="chiken_top_right">
+                <img id="ch_bottom_left" class='imgsGame chiken' src="img/chiken_bottom_left.png" alt="chiken_bottom_left">
+                <img id="ch_bottom_right" class='imgsGame chiken' src="img/chiken_bottom_right.png" alt="chiken_bottom_right">
+                <img id="volk_right" class='imgsGame volk' src="img/volk1.png" alt="volk_right">
+                <img id="volk_left" class='imgsGame volk' src="img/volk2.png" alt="volk_left">
+                <img id="hend_top_left" class='imgsGame hend' src="img/hend3.png" alt="hend_left">
+                <img id="hend_top_right" class='imgsGame hend' src="img/hend2.png" alt="hend_right">
+                <img id="hend_bottom_right" class='imgsGame hend' src="img/hend1.png" alt="hend_right">
+                <img id="hend_bottom_left" class='imgsGame hend' src="img/hand4.png" alt="hend_left">                
+                <img id="bant1" class='imgsGame' src="img/bant.png" alt="bant1">
+                <img id="bant2" class='imgsGame' src="img/bant.png" alt="bant2">
+                <img id="bant3" class='imgsGame' src="img/bant.png" alt="bant3">
+                <img id="bdyj_right" class='imgsGame' src="img/bdyj_right.png" alt="bdyj">
+                <img id="bdyj_left" class='imgsGame' src="img/bdyj_right.png" alt="bdyj">
+                <img id="cyplenok1_left" class='imgsGame cyplenok_left' src="img/l1.png" alt="cyplenok1_left">
+                <img id="cyplenok2_left" class='imgsGame cyplenok_left' src="img/l2.png" alt="cyplenok2_left">
+                <img id="cyplenok3_left" class='imgsGame cyplenok_left' src="img/l3.png" alt="cyplenok3_left">
+                <img id="cyplenok4_left" class='imgsGame cyplenok_left' src="img/l4.png" alt="cyplenok4_left">
+                <img id="cyplenok1_right" class='imgsGame cyplenok_right' src="img/r1.png" alt="cyplenok1_right">
+                <img id="cyplenok2_right" class='imgsGame cyplenok_right' src="img/r2.png" alt="cyplenok2_right">
+                <img id="cyplenok3_right" class='imgsGame cyplenok_right' src="img/r3.png" alt="cyplenok3_right">
+                <img id="cyplenok4_right" class='imgsGame cyplenok_right' src="img/r4.png" alt="cyplenok4_right">
             </div>
             <div id="place_game_III">
                 <div id="control">
-                    <button id="control_1" class="for_control_button"></button>
+                    <button id="control_1" class="for_control_button" onclick="control1();"></button>
                     <div id="control_2"></div>
                     <div id="control_3" class="for_control_text">игра А</div>
                     <div id="control_4" class="impuls"></div>
-                    <button id="control_5" class="for_control_button"></button>
+                    <button id="control_5" class="for_control_button" onclick="control2();"></button>
                     <div id="control_6">L</div>
                     <div id="control_7" class="for_control_text">игра Б</div>
                     <div id="control_8"  class="impuls"></div>
@@ -66,7 +97,7 @@
             </div>
         </div>
     </div>
-    <canvas id="game_canvas" style="display: none;"></canvas>
+    <canvas id="game_canvas" ></canvas>
 </body>
 <script src="script01.js"></script>
 </html>
@@ -122,9 +153,10 @@
     grid-template-areas: 
     "img_1 bord_1"
     "img_2 bord_2";
-    justify-content: space-evenly;
+    justify-content: space-between;
     justify-items: end;
     align-items: center;
+    
 }
 #img1{grid-area: img_1;}
 #top_bord{grid-area: bord_1;}
@@ -136,7 +168,7 @@
     border-top: 28px solid black;
     transform: rotate(118deg);
     margin-right: -2px;
-    margin-top: -38px;
+    margin-top: -38px; 
 }
 #img2{
     border: 7px solid transparent;
@@ -195,26 +227,26 @@
     
   }
   .left {
-    transform: translate(-20px, 3px) rotateY(90deg);
+    transform: translate(-15px, 0px) rotateY(90deg);
     background-color: #847C7C;
-    width: 7%;
-    height: 99.5%;
+    width: 30px;/*7%;*/
+    height: 100%;
   }
   .right {
     background-color: #847C7C;
-    width:7%;
-    height: 99.5%;
+    width:30px;/*7%;*/
+    height: 100%;
   }
   .top {
-    transform: translate(0px, -20px) rotateX(90deg);
+    transform: translate(0px, -15px) rotateX(90deg);
     background-color: #9A9EA2;
-    width: 99.5%;
-    height: 8%;
+    width: 100%;
+    height: 30px;/*8%;*/
   }
   .bottom {
     background-color: #7E6961;
-    width: 99.5%;
-    height: 8%;
+    width: 100%;
+    height: 30px;/*8%;*/
   }
   #for_game_layer1{
     width: 97.5%;
@@ -230,7 +262,7 @@
   .for_label{
     position: absolute;
     left: 50%;
-    top: 2%;    
+    top: 1%;    
     background: #c3c0c0;
     padding: 0px 3px 0px 3px;
     font-weight: 900;
@@ -273,7 +305,7 @@
   }
 
   #control{
-    width: 85%;
+    width: 95%;
     height: 37.5%;
     display: grid;
     grid-template-rows: 16% 10% 16% 10% 16% 10%;
@@ -311,10 +343,10 @@
     grid-template-areas: 
     "bord_3 img_3"
     "bord_4 img_4";
-    justify-content: space-evenly;
+    justify-content: space-between;
     justify-items: end;
     align-items: center;
-    padding-left: 10px;
+   /* padding-left: 10px;*/
 }
 #img3{grid-area: img_3;}
 #top_bord_right{grid-area: bord_3;}
@@ -355,11 +387,193 @@
     background: black;
 }
 #control_6{
-    border: dashed black; 
-    padding: 1px;
-    border-radius: 50%;
-    font-size: 10px;
+   /* border: dashed black; */
+  /*  padding: 1px;*/
+ /*   border-radius: 50%;*/
+margin-bottom: -10px;
+   font-size: 12px;
     overflow: hidden;
+}
+
+#img_game{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+     z-index: 15; 
+}
+.var_game{
+  position: absolute;  
+  font-weight: bold;
+  font-size: 12px;
+  font-family: "Roboto", sans-serif;
+  top: 95%;  
+}
+#gameA{
+  left: 1%;
+}
+#gameB{
+  left: 89%;
+}
+.imgsGame{
+    display: block;
+  position: absolute;
+}
+#zayac{
+  width: 14%;
+  height: 18%;
+  left: 15%;
+  top: 1%;
+}
+#zayac_top{
+  width: 10%;
+  height: 12%;
+  left: 28%;
+  top: 0%;
+}
+#zayac_bottom{
+  width: 12%;
+  height: 12%;
+  left: 23%;
+  top: 12%;
+}
+#ch_top_left{
+  width: 9%;
+  height: 13%;
+  left: 0%;
+  top: 14%;
+}
+#ch_top_right{
+  width: 12%;
+  height: 13%;
+  left: 88%;
+  top: 15%;
+}
+#ch_bottom_left{
+  width: 12%;
+  height: 12%;
+  left: 0%;
+  top: 37%;
+}
+#ch_bottom_right{
+  width: 11%;
+  height: 14%;
+  left: 89%;
+  top: 35%;
+}
+#volk_right{
+  width: 20%;
+  height: 40%;
+  left: 47%;
+  top: 36%;
+}
+#volk_left{
+  width: 20%;
+  height: 41%;
+  left: 32%;
+  top: 35%;
+}
+#hend_top_left{
+  width: 12%;
+  height: 16%;
+  left: 23%;
+  top: 35%;
+}
+#hend_top_right{
+  width: 10%;
+  height: 13%;
+  left: 66%;
+  top: 56%;
+}
+#hend_bottom_right{
+  width: 10%;
+  height: 17%;
+  left: 65%;
+  top: 38%;
+}
+#hend_bottom_left{
+  width: 12%;
+  height: 16%;
+  left: 23%;
+  top: 53%;
+}
+#bdyj_right{
+  width: 11%;
+  height: 9%;
+  left: 70%;
+  top: 82%;
+}
+#bdyj_left{
+  width: 11%;
+  height: 9%;
+  left: 21%;
+  top: 81%;
+}
+.cyplenok_left{
+  width: 9%;
+  height: 7%;
+}
+#cyplenok1_left{
+  left: 17%;
+  top: 77%;
+}
+#cyplenok2_left{
+  left: 11%;
+  top: 79%;
+}
+#cyplenok3_left{
+  left: 6%;
+  top: 79%;
+}
+#cyplenok4_left{ 
+  height: 8%;
+  left: 0%;
+  top: 78%;
+}
+#cyplenok1_right{
+  width: 9%;
+  height: 7%;
+}
+.cyplenok_right{
+  left: 90%;
+  top: 78%;
+}
+#cyplenok2_right{
+  left: 84%;
+  top: 78%;
+}
+#cyplenok3_right{
+  left: 78%;
+  top: 78%;
+}
+#cyplenok4_right{
+  left: 73%;
+  top: 76%;
+}
+#bant1{
+  width: 4%;
+  height: 6%;
+  left: 72%;
+  top: 10%;
+}
+#bant2{  
+  width: 4%;
+  height: 6%;
+  left: 77%;
+  top: 10%;
+}
+#bant3{  
+  width: 4%;
+  height: 6%;
+  left: 82%;
+  top: 10%;
+}
+#game_canvas{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10;
 }
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
@@ -381,10 +595,10 @@
         align-items: center;
         }
         #place_game_I{
-        width: 100%;
-        height: 22%;
-        flex-direction: row;
-        transform: rotate(180deg);
+          width: 100%;
+          height: 15%;/*19%;*/
+          flex-direction: row;
+          transform: rotate(180deg);
         }
         #logo{
         top: 0%;
@@ -392,8 +606,8 @@
         }
         #but_left{
         width: 20%;
-        height: 100%;
-        transform: rotate(-90deg) translate(-20%, -22%);
+        height: 150%;
+        transform: rotate(-90deg) translate(-11%, -31%);
         }
         #img1{ 
         border-top: 24px solid black; 
@@ -415,66 +629,66 @@
     
         #place_game_II{
         width: 90%; 
-        height: 80%;
+        height: 70%;/*62%;*/
         transform: rotate(180deg) translate(0%, 0%);
-        margin-top: -25px;
+      /*  margin-top: -25px;*/
         }
         #for_game_layer1,
         #for_game_layer2,
-        #for_game_layer3,
-        #for_game_layer4{
+        #for_game_layer3{
           transform: rotate(180deg) translate(50%, 50%);
         }
     
         #place_game_III{
           width: 100%;
-          height: 12%;
+          height: 15%;/*19%;*/
           transform: rotate(180deg);
           justify-content: space-between;
           flex-direction: row;
         }
         /*----*/
         #place_for_game{
-          width: 91%; 
-          height: 90%;
+          width: 100%;/*91%; */
+          height: 98%;/*100%;*/
        /*   margin-top: 5%;*/
        /*   border-radius: 5px;
           transform-style: preserve-3d;*/
         }
           .left {
-            height: 20px;
-            width: 108%;
+            height: 26px;
+            width: 102%;
           }
           .right {
-            height: 20px;
-            width: 108%;
-            transform: translate(-20px, -6px) rotateX(90deg);
+            height: 26px;
+            width: 102%;
+            transform: translate(-6px, -10px) rotateX(90deg);
           }
           .top {
-            transform: translate(-34px, 4px) rotateY(90deg);
+            transform: translate(-18px, 4px) rotateY(90deg);
             height: 98%;
             width: 26px;
     }
           .bottom {
-            transform: translate(288px, 10px) rotateY(90deg);
+         /*   transform: translate(288px, 10px) rotateY(90deg);*/
             height: 98%;
             width: 26px;
           }   
           .for_label{
-            top: 50%;    
-            transform: rotate(-90deg) translateY(-50%);
+            /*left: 50%;  */
+            top:50%;  
+            transform: rotate(-90deg) translate(0%,0%);
             font-size: 14px;
           }
           .to_bottom{
             height: 15px;
           }
           #for_game_layer1{
-            width: 106.5%;
+            width: 100%;/*109%;*/
             height: 96.5%;
             margin-left: 0;
           }
           #for_game_layer2{
-            width: 100%;
+            width: 96%;/*100%;*/
             height: 92%;
             margin-left: 0;
           }
@@ -483,25 +697,24 @@
             height: 89%;
           }
           #for_game_layer4{
-            width: 87%;
-            height: 86.06%;
+            width: 64%;/*63%;*/
+            height: 119%;/*119.06%;*/
+            transform: rotate(90deg) translate(-69%, 36.5%);
           }
           #control{
-            width: 86px;
+            width: 105px;
             height: 100%;
             grid-template-rows: 25% 25% 25% 25% 33% 18%;
             grid-template-columns: 50% 21%;
             transform: translate(4%, -61%);
             justify-content: center;
             padding-top: 0;
-            transform: rotate(-90deg) translate(-16px, 16px);
+            transform: rotate(-90deg) translate(0px, 16px);
         }
         #but_right{
-          width: 17%;
-          height: 100%;
-          transform: rotate(-90deg) translate(-10%, -78%);
-          grid-template-rows: 72% 100%;
-          grid-template-columns: 42% 56%;
+          width: 20%;
+          height: 150%;
+          transform: rotate(-90deg) translate(11%, -31%);
         }
         #img3{ 
           border-top: 24px solid black;
@@ -515,13 +728,17 @@
             width: 30px;
             height: 15px;
         }
+        #game_canvas{
+          transform: translate(-50%,-50%) rotate(90deg);
+        }
+      /*  #game_canvas{
+          transform: rotate(180deg);
+        }*/
 }
 /*смартфоны в альбомной ориентации (горизонтально)*/
 @media  all and (min-width : 10px) and (max-width : 620px) {
   body{ width: 50px; height: 50px;}
   #place_game_out{
-    max-width: 600px;
-    height: 30%; 
     position: relative; 
     left: 0%;
     top: 0%;
@@ -561,15 +778,15 @@
     #but_left{
       width: 20%;
       height: 100%;
-      transform: rotate(-90deg) translate(-20%, -31%);
+      transform: rotate(-90deg) translate(-18%, -31%);
     }
     #img1{ 
       border-top: 24px solid black; 
-      transform: rotate(126deg) translate(7px, 14px);
+      transform: rotate(126deg) translate(7px, 0px);
     }
     #img2{ 
       border-left: 24px solid black;
-      transform: rotate(143deg) translate(14px, 10px);
+      transform: rotate(143deg) translate(0px, 4px);
     }
     .borderBut,
     .for_button{
@@ -584,8 +801,7 @@
 
     #for_game_layer1,
     #for_game_layer2,
-    #for_game_layer3,
-    #for_game_layer4{
+    #for_game_layer3{
       transform: rotate(180deg) translate(50%, 50%);
     }
 
@@ -594,62 +810,49 @@
     #place_for_game{
       width: 91%; 
       height: 100%;
-    /*  margin-top: 5%;*/
       border-radius: 5px;
       transform-style: preserve-3d;
     }
       .left {
-        height: 20px;
-        width: 111%;
+        height: 24px;
+        width: 112%;
       }
       .right {
-        height: 20px;
-        width: 110%;
-        transform: translate(-17px, -5px) rotateX(90deg);
+        height: 24px;
+        width: 111%;
+        transform: translate(-5%, -9px) rotateX(90deg);
       }
       .top {
-        transform: translate(-30px, 6px) rotateY(90deg);
+        transform: translate(-32px, 1%) rotateY(90deg);
         height: 98%;
         width: 26px;
 }
       .bottom {
-        transform: translate(288px, 10px) rotateY(90deg);
         height: 98%;
         width: 26px;
       }
 
-      .for_label{
-        top: 48%;    
-        transform: rotate(-90deg);
+      #top_label{
+        top: 50%;    
+      /*  transform: rotate(-90deg) translateY(-50%);*/
         font-size: 14px;
       }
-      .to_bottom{
-        top: 50%;
+      #bottom_label{
+        top:50%;
         height: 15px;
+        font-size: 14px;
       }
       #for_game_layer1{
-    /*    top: 3.5%;
-        left: 0%;*/
         width: 109%;
         height: 96.5%;
-      /*  margin-left: 0;*/
       }
       #for_game_layer2{
-   /*     left: 8px;
-        top: 19px;*/
         width: 100%;
         height: 92%;
-    /*    margin-left: 0;*/
       }
       #for_game_layer3{
-     /*   transform: translate(8%, 3px);*/
         width: 92%; 
         height: 89%;
-      }
-      #for_game_layer4{
-     /*   transform: translate(11.5%, 2px);*/
-        width: 87%;
-        height: 86.06%;
       }
       #control{
         width: 105px;
@@ -657,243 +860,558 @@
         grid-template-rows: 18% 18% 18% 18% 18% 18%;
         grid-template-columns: 50% 21%;
         padding-top: 0;
-        transform: rotate(-90deg) translate(-15px, 22px);
+        transform: rotate(-90deg) translate(-5px, 22px);
     }
     #but_right{
-      width: 17%;
+      width: 20%;
       height: 100%;
-      transform: rotate(-90deg) translate(-10%, -78%);
-      grid-template-rows: 72% 100%;
-      grid-template-columns: 42% 56%;
+      transform: rotate(-90deg) translate(12%, -31%);
     }
     #img3{ 
       border-top: 24px solid black;
-      transform: rotate(240deg) translate(1px, 4px);
+      transform: rotate(240deg) translate(1px, -2px);
     }
     #img4{ 
       border-right: 24px solid black;
-      transform: rotate(215deg) translate(-2px, 0px);
+      transform: rotate(215deg) translate(1px, -2px);
     }
     .for_control_button{
         width: 30px;
         height: 15px;
     }
-
-
-
+#game_canvas{
+  transform: translate(-51%,-52%) rotate(90deg);
 }
-/*смартфоны в портретной ориентации (вертикально);*/
-/*@media  all and (min-width : 10px) and (max-width : 575px) {
- 
-  body{
-      transform: rotate(90deg);
-  }
-/*  #place_game_out{*/
-  /*  top: 20px;
-    left: -20px;      
-    transform: translate(-25%, -50%); */
-      
-  /*  transform: translate(0%,0%);*/
- /*   top: 1%;
-    left: 1%;    
-}*/
-/*}*/
-
+}
 
 </style>
 <script>
-window.addEventListener('load', addGame); 
+
+
+window.addEventListener('load', addGame);
 window.addEventListener('resize', addGame);
-function addGame()
-{
+
+var contr1 = document.getElementById('control_1');
+var contr2 = document.getElementById('control_1');
+contr1.addEventListener('keydown', control1, false);
+contr2.addEventListener('keydown', control2, false);
+//const sizeP = addGame();
+const n = 1;
+function addGame() {
+  var sizePart = {};
+  var widthEl = 0;
+  var heightEl = 0;
   const newWid = window.innerWidth;
   const newHeig = window.innerHeight;
-  var allPartGame = document.getElementById('place_game_out');
-  var bodyPart = document.getElementsByTagName('body')[0];
-  var plashkaRight = document.getElementsByClassName('right')[0];
-  var plashkaBottom = document.getElementsByClassName('bottom')[0];
-  //var labelBottom = document.getElementsByClassName('to_bottom')[0];
+  allPartGame = document.getElementById('place_game_out');
 
-  var widthGran;
-  var heightGran;
+  if (newWid < 621) {
+    widthEl = newWid * 0.92;
+    heightEl = newHeig * 0.92;
 
- if( newWid < 1061){
-  var widthEl = newWid*0.92;
-  var heightEl = newHeig*0.92;
-  allPartGame.style.width = widthEl + 'px';
-  allPartGame.style.height = heightEl + 'px';
+    var allPartGame = document.getElementById('place_game_out');
+    allPartGame.style.width = widthEl + 'px';
+    allPartGame.style.height = heightEl + 'px';
 
-var bottomgran = document.getElementsByClassName('right')[0];
-var gran = bottomgran.getBoundingClientRect();
+    //для канвас делаем новые размеры после ротейт
+    widthEl = newHeig * 0.87;
+    heightEl = newWid * 0.905;
 
-var topgran = document.getElementsByClassName('top')[0];
-var granTop = topgran.getBoundingClientRect();
+    var placeForGame = document.getElementById('place_for_game');
+    var placeGame = placeForGame.getBoundingClientRect();
 
-var forLabelTop = document.getElementById('for_game_layer2').offsetTop;
-var forLabelBot = document.getElementById('for_game_layer2').offsetWidth;
+    var placeLayer4 = document.getElementById('for_game_layer4');
+    placeLayer4.style.width = 0.85 * placeGame.height + 'px';
+    placeLayer4.style.height = 0.88 * placeGame.width + 'px';
+    placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * (0.88 * placeGame.width) + 'px,' + 0.5 * (0.85 * placeGame.height) + 'px)';
 
-  //console.log('widthGran  ' + document.getElementById('for_game_layer2').offsetLeft );   
-  document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + ( gran.width-38 ) + 'px, 4px) rotateY(90deg)';
-  document.getElementsByClassName('left')[0].style.transform = 'translate(-20px,' + (granTop.height -14) + 'px) rotateX(90deg)';
-var forLabelBot = document.getElementById('for_game_layer2').offsetWidth;
-  document.getElementsByClassName('for_label')[0].style.left = forLabelTop - forLabelBot/2 - 26 +'px';
-  document.getElementsByClassName('to_bottom')[0].style.left = forLabelBot - 51 + 'px';
- }
- else if(newWid > 1060){
-    allPartGame.style.width = 0.68*newWid + 'px';
-    allPartGame.style.height = 0.7*newHeig + 'px';
+    // var gameLayer4 = document.getElementById('for_game_layer4');
+    var layer4 = placeLayer4.getBoundingClientRect();
 
-    var forLabelTop = document.getElementById('for_game_layer2').offsetWidth - 1;
-    var forLabelBot = document.getElementById('for_game_layer2').offsetHeight + 20;
+    var imgs = document.getElementById('img_game');
+    imgs.style.width = layer4.height + 'px';
+    imgs.style.height = layer4.width + 'px';
+    imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
 
-    document.getElementsByClassName('bottom')[0].style.transform = 'translate(2px,' + forLabelBot + 'px) rotateX(90deg)';
-    document.getElementsByClassName('right')[0].style.transform = 'translate('+ forLabelTop + 'px, 0px) rotateY(90deg)';
-    document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot - 15  + 'px';
- }
- console.log("w",newWid, 'h',newHeig);
+    var placeLayer1 = document.getElementById('for_game_layer1');
+    var layer1 = placeLayer1.getBoundingClientRect();
+    var botWidth = document.getElementsByClassName('bottom')[0].offsetWidth;
+    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + (layer1.width - botWidth) + 'px, 3px) rotateY(90deg)';
+    document.getElementsByClassName('left')[0].style.transform = 'translate(-21px, ' + layer1.height + 'px) rotateX(90deg)';
+    var placeLayer2 = document.getElementById('for_game_layer2');
+    var layer2 = placeLayer2.getBoundingClientRect();
+    //console.log(layer1.top, layer1.width, botWidth, placeLayer1.offsetWidth);
+    document.getElementById('bottom_label').style.transform = 'translate(' + layer1.height / 4 + 'px,-50%) rotate(270deg)';
+    document.getElementById('top_label').style.transform = 'translate(-' + layer2.height / 2 + 'px, 0px) rotate(270deg)';
+    sizePart.logo = 'rotate(90deg)';
+  }
+  else if (newWid > 620 && newWid < 1061) {
+    widthEl = newWid * 0.92;
+    heightEl = newHeig * 0.92;
+    var allPartGame = document.getElementById('place_game_out');
+    allPartGame.style.width = widthEl + 'px';
+    allPartGame.style.height = heightEl + 'px';
 
-var allPart = allPartGame.getBoundingClientRect();
-var allPartWidth = allPart.width; 
-var allPartHeight = allPart.height;
-console.log(allPartWidth, allPartHeight);
+    widthEl = newHeig * 0.847;
+    heightEl = newWid * 0.805;
+
+    var gameLayer4 = document.getElementById('for_game_layer4');
+    var layer4 = gameLayer4.getBoundingClientRect();
+
+    var imgs = document.getElementById('img_game');
+    imgs.style.width = layer4.height + 'px';
+    imgs.style.height = layer4.width + 'px';
+    imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+
+
+    var botGran = document.getElementById('place_for_game');
+    var elemGran = botGran.getBoundingClientRect();
+    var forLeft = elemGran.height - document.getElementsByClassName('left')[0].offsetHeight / 2 - 2;
+    var forBottom = elemGran.width - document.getElementsByClassName('bottom')[0].offsetWidth / 2 + 4;
+    var forLabelBot = document.getElementById('for_game_layer2');
+    var elemLabel = document.getElementById('for_game_layer2').offsetWidth - document.getElementById('place_for_game').offsetWidth;
+
+    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 4px) rotateY(90deg)';
+    document.getElementsByClassName('left')[0].style.transform = 'translate(-6px, ' + forLeft + 'px) rotateX(90deg)';
+    document.getElementsByClassName('for_label')[0].style.left = elemLabel + 'px';
+    document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
+    console.log('lay2', elemLabel.top, elemLabel.left, elemLabel.height, elemLabel.x, elemLabel.y, elemLabel.width);
+    sizePart.logo = 'rotate(90deg)';
+  }
+  else if (newWid > 1060) {
+    widthEl = 0.68 * newWid;
+    heightEl = 0.7 * newHeig;
+    allPartGame.style.width = widthEl + 'px';
+    allPartGame.style.height = heightEl + 'px';
+
+    var gameLayer4 = document.getElementById('for_game_layer4');
+    var layer4 = gameLayer4.getBoundingClientRect();
+
+    var imgs = document.getElementById('img_game');
+    imgs.style.width = layer4.width + 'px';
+    imgs.style.height = layer4.height + 'px';
+
+
+    var botGran = document.getElementById('place_for_game');
+    var elemGran = botGran.getBoundingClientRect();
+    var forRight = elemGran.width - document.getElementsByClassName('right')[0].offsetWidth / 2;
+    var forBottom = elemGran.height - document.getElementsByClassName('bottom')[0].offsetHeight / 2;;
+    var forLabelBot = document.getElementById('for_game_layer2').offsetHeight;
+
+    document.getElementsByClassName('bottom')[0].style.transform = 'translate(0px,' + forBottom + 'px) rotateX(90deg)';
+    document.getElementsByClassName('right')[0].style.transform = 'translate(' + forRight + 'px, 0px) rotateY(90deg)';
+    document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot + 'px';
+    sizePart.logo = 'rotate(0deg)';
+
+    
+  }
+
+
+
+
+
+
+
+
+
+
+  console.log("w", widthEl, 'h', heightEl);
+  sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;//widthEl;
+  sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;// heightEl;
+  sizePart.logoW = document.getElementById('logo').offsetWidth;
+  sizePart.logoH = document.getElementById('logo').offsetHeight;
+  sizePart.logoL = document.getElementById('logo').offsetLeft;
+  sizePart.logoT = document.getElementById('logo').offsetTop;
+  sizePart.layerW = (widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2;
+  sizePart.layerH = (heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2;
+  sizePart.placeIW = document.getElementById('place_game_I').offsetWidth;
+  sizePart.placeIH = document.getElementById('place_game_I').offsetHeight;
+  var add_canva = add_canvas(sizePart);
+  //console.log(document.getElementById('for_game_layer4').offsetWidth, document.getElementById('for_game_layer4').offsetLeft);
+  //return sizePart;
+  add_svg(sizePart);
   // Время для адаптивной магии!
 }
+function add_svg(transfLogo) {
+  //рисуем логотип
+  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  var logoW = transfLogo.logoW;// document.getElementById('logo').offsetWidth;
+  var logoH = transfLogo.logoH;//document.getElementById('logo').offsetHeight;
+  var svgX = transfLogo.placeIW + transfLogo.logoW + transfLogo.logoL;//document.getElementById('place_game_I').offsetWidth + document.getElementById('logo').offsetLeft + document.getElementById('logo').offsetWidth;
+  var svgY = transfLogo.placeIH / 2 - logoH;//document.getElementById('place_game_I').offsetHeight/2 - document.getElementById('logo').offsetHeight;
+  svg.setAttribute('width', logoW);
+  svg.setAttribute('height', logoH);
+  svg.style.position = 'absolute';
+  svg.style.top = svgY + 'px';
+  svg.style.left = svgX + 'px';
+  svg.style.transform = transfLogo.logo;
 
-const xmlns = "http://www.w3.org/2000/svg"; 
+  var part = [];
+  var masXY = {
+    0: { 11: 0.1, 12: 0.2, 21: 0.3, 22: 0.2 },//и
+    1: { 11: 0.3, 12: 0.2, 21: 0.1, 22: 0.65 },//и
+    2: { 11: 0.1, 12: 0.65, 21: 0.55, 22: 0.2 },//и
+    3: { 11: 0.55, 12: 0.2, 21: 0.35, 22: 0.65 },//и
+    4: { 11: 0.1, 12: 0.9, 21: 0.25, 22: 0.9 },//m
+    5: { 11: 0.25, 12: 0.9, 21: 0.7, 22: 0.45 },//m
+    6: { 11: 0.7, 12: 0.45, 21: 0.5, 22: 0.9 },//m
+    7: { 11: 0.5, 12: 0.9, 21: 0.9, 22: 0.45 },//m
+    8: { 11: 0.9, 12: 0.45, 21: 0.7, 22: 0.9 }//m
+  };
 
-var allPartGame = document.getElementById('place_game_out');
-console.log(allPartGame);
-var allPart = allPartGame.getBoundingClientRect();
-var allPartWidth = allPart.width -10*2; //10px -border 'place_game_out'
-var allPartHeight = allPart.height - 10*2;
-var allPartY = (allPartHeight - allPartGame.offsetTop)/2;
-var allPartX = (allPartWidth - allPartGame.offsetLeft)/4;
-var posY = allPartX - allPartHeight/2;
+  for (var i = 0; i < 9; i++) {
+    part[i] = document.createElementNS(svg.namespaceURI, 'line');
+    part[i].setAttribute('x1', logoW * masXY[i][11]);
+    part[i].setAttribute('y1', logoH * masXY[i][12]);
+    part[i].setAttribute('x2', logoW * masXY[i][21]);
+    part[i].setAttribute('y2', logoH * masXY[i][22]);
+    part[i].setAttribute('stroke', 'black');
+    part[i].setAttribute('stroke-width', 3);
+    svg.appendChild(part[i]);
+  }
+  document.body.appendChild(svg);
+
+  var svg2 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+  var control_6 = document.getElementById('control_6');
+  var control = control_6.getBoundingClientRect();
+  console.log('tyt', control.top, control.x);
+  var controlW = 2.5 * document.getElementById('control_6').offsetWidth;
+  var controlH = 2.5 * document.getElementById('control_6').offsetHeight;
+
+  for (var i = 0; i < 11; i++) {
+    if (i < 3 || i > 7) {
+      var curcleItem = document.createElementNS(svg2.namespaceURI, 'circle');
+      var curcleItemX = controlW * 0.5 + controlW * 0.5 * Math.sin(360 / 12 / 180 * Math.PI * (i + 1));
+      var curcleItemY = controlW * 0.5 - controlW * 0.5 * Math.cos(360 / 12 / 180 * Math.PI * (i + 1));
+      curcleItem.setAttribute('cx', curcleItemX + 0.5);
+      curcleItem.setAttribute('cy', curcleItemY + 0.5);
+      curcleItem.setAttribute('r', 1.5);
+      curcleItem.setAttribute("fill", "black");
+      svg2.appendChild(curcleItem);
+    }
+  }
+
+  svg2.setAttribute('width', controlW);
+  svg2.setAttribute('height', controlH);
+  svg2.style.position = 'absolute';
+  svg2.style.top = control.top + 'px';
+  svg2.style.left = control.x - 7 + 'px';
+
+  document.body.appendChild(svg2);
+}
+
+function add_canvas(sizeP) {
+  const xmlns = "http://www.w3.org/2000/svg";
+  var canvas = document.getElementById('game_canvas');
+  const canvasPart = canvas.getContext("2d");
+  canvasPart.clearRect(0, 0, canvasPart.canvas.width, canvasPart.canvas.height);
+  canvasPart.canvas.width = sizeP.gamePartW;
+  canvasPart.canvas.height = sizeP.gamePartH;
+
+  const ctx = canvas.getContext("2d");
+  var posGameX = Math.round(sizeP.gamePartW, 2);
+  var posGameY = Math.round(sizeP.gamePartH, 2);
+
+  //console.log(posGameX, posGameY);
+
+  //крыша
+  ctx.beginPath();
+  ctx.lineWidth = 8;
+  ctx.fillStyle = "#941121";
+  ctx.strokeStyle = 'grey';
+  for (var i = 0; i < 2; i++) {
+    ctx.moveTo(posGameX * 0.01, posGameY * 0.13);
+    ctx.lineTo(posGameX * 0.075, posGameY * 0.01);
+    ctx.lineTo(posGameX * 0.18, posGameY * 0.23);
+    ctx.stroke();
+    if (i === 0) {
+      ctx.beginPath();
+      ctx.lineWidth = 3;
+      ctx.fillStyle = "#851E1F";
+      ctx.strokeStyle = '#851E1F';
+    }
+  }
+
+  //труба
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#ff0000";
+  ctx.moveTo(posGameX * 0.11, posGameY * 0.07);
+  ctx.lineTo(posGameX * 0.15, posGameY * 0.07);
+  ctx.lineTo(posGameX * 0.15, posGameY * 0.15);
+  ctx.fill();
+
+  ctx.stroke();
+  ctx.closePath();
+  //выход
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#5A5F60";
+  ctx.moveTo(posGameX * 0.15, posGameY * 0.15);
+  ctx.lineTo(posGameX * 0.15, posGameY * 0.09);
+  ctx.lineTo(posGameX * 0.17, posGameY * 0.09);
+  ctx.lineTo(posGameX * 0.17, posGameY * 0.16);
+  ctx.lineTo(posGameX * 0.21, posGameY * 0.2);
+  ctx.lineTo(posGameX * 0.21, posGameY * 0.03);
+  ctx.lineTo(posGameX * 0.17, posGameY * 0.09);
+  //окно
+  ctx.moveTo(posGameX * 0.17, posGameY * 1.6);
+  ctx.lineTo(posGameX * 0.21, posGameY * 1.62);
+  ctx.stroke();
+
+  //склон left 2 шт
+  var posY = [0, 0.215, 0, 0.215];
+  var posX = {
+    0: { 0: 0, 1: 0.11, 2: 0.2, 3: 0.165, 4: 0.165 },
+    1: { 0: 0, 1: 0.11, 2: 0.2, 3: 0.165, 4: 0.165 },
+    2: { 0: 1, 1: 0.89, 2: 0.8, 3: 0.835, 4: 0.835 },
+    3: { 0: 1, 1: 0.89, 2: 0.8, 3: 0.835, 4: 0.835 }
+  };
+  ctx.beginPath();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "#6B4C21";
+  for (i = 0; i < 4; i++) {
+    ctx.moveTo(posGameX * posX[i][0], posGameY * (0.27 + posY[i]));
+    ctx.lineTo(posGameX * posX[i][1], posGameY * (0.27 + posY[i]));
+    ctx.lineTo(posGameX * posX[i][2], posGameY * (0.385 + posY[i]));
+
+    //подпорка
+    ctx.moveTo(posGameX * posX[i][3], posGameY * (0.35 + posY[i]));
+    ctx.lineTo(posGameX * posX[i][4], posGameY * (0.45 + posY[i]));
+    ctx.stroke();
+  }
+  //забор
+  ctx.beginPath();
+  ctx.lineWidth = 7;
+  ctx.strokeStyle = "#6B4C21";
+  ctx.moveTo(posGameX * 0.01, posGameY * 0.495);
+  ctx.lineTo(posGameX * 0.01, posGameY * 0.62);
+  ctx.moveTo(posGameX * 0.043, posGameY * 0.495);
+  ctx.lineTo(posGameX * 0.043, posGameY * 0.62);
+  ctx.moveTo(posGameX * 0.083, posGameY * 0.495);
+  ctx.lineTo(posGameX * 0.083, posGameY * 0.62);
+
+  ctx.moveTo(posGameX * 0.120, posGameY * 0.52);
+  ctx.lineTo(posGameX * 0.120, posGameY * 0.645);
+  ctx.moveTo(posGameX * 0.152, posGameY * 0.55);
+  ctx.lineTo(posGameX * 0.152, posGameY * 0.675);
+  ctx.fillStyle = "#6B4C21";
+  ctx.stroke();
+
+  //забор
+  ctx.beginPath();
+  ctx.lineWidth = 7;
+  ctx.strokeStyle = "#6B4C21";
+  ctx.moveTo(posGameX * 0.99, posGameY * 0.495);
+  ctx.lineTo(posGameX * 0.99, posGameY * 0.62);
+  ctx.moveTo(posGameX * 0.957, posGameY * 0.495);
+  ctx.lineTo(posGameX * 0.957, posGameY * 0.62);
+  ctx.moveTo(posGameX * 0.917, posGameY * 0.495);
+  ctx.lineTo(posGameX * 0.917, posGameY * 0.62);
+  ctx.moveTo(posGameX * 0.88, posGameY * 0.52);
+  ctx.lineTo(posGameX * 0.88, posGameY * 0.645);
+  ctx.moveTo(posGameX * 0.848, posGameY * 0.55);
+  ctx.lineTo(posGameX * 0.848, posGameY * 0.675);
+  ctx.fillStyle = "#6B4C21";
+  ctx.stroke();
+
+  //куст
+  var setRad = [20, 8, 8, 20, 8]; //радиусы большого круга для отрисовки кустов
+  var flag = 1;
+  var setX = [1, 2.95, 16.7, 18.8, 18.8], setY = [1, 1.04, 1.04, 1, 0.1]; //смещение кустов по оси х, у
+  ctx.beginPath();
+  ctx.lineWidth = 1;
+  for (var i = 0; i < 5; i++) //всего 4 куста в ряд
+  {
+    ctx.moveTo(posGameX * 0.05 * setX[i] + setRad[i], posGameY * 0.7 * setY[i]);
+    ctx.arc(posGameX * 0.05 * setX[i], posGameY * 0.7 * setY[i], setRad[i], 0, Math.PI * 2, true);
+    for (var j = 0; j < 12; j++) {
+      var degX = posGameX * 0.05 * setX[i] - setRad[i] * Math.sin(360 / 12 / 180 * Math.PI * (j + 1));
+      var degY = posGameY * 0.7 * setY[i] - setRad[i] * Math.cos(360 / 12 / 180 * Math.PI * (j + 1));
+      ctx.moveTo(degX, degY);
+      ctx.arc(degX, degY, 5 + flag, 0, Math.PI * 2, true);
+      flag = flag + 1;
+      if (flag == 3)
+        flag = flag + 3;
+      if (flag == 7)
+        flag = 2;
+    }
+    flag = 1;
+    ctx.fillStyle = "#2C390B";
+    ctx.fill();
+  }
 
 
-var itemLogo = document.getElementById('logo');
-var partLogo = itemLogo.getBoundingClientRect();
-var logoWidth = partLogo.width;
-var logoHeight = partLogo.height;
-var logoY = itemLogo.offsetTop;
-var logoX = itemLogo.offsetLeft;
-var posLogoX = Math.round((logoWidth - logoX)*1.21, 2);
-//var posLogoX = (logoX - logoWidth*0.21);
-var posLogoY = Math.round((logoY - logoHeight *0.15)/2 , 2);
+  //большая трава
+  ctx.beginPath();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "#2C390B";
+  var flag = 0;
+  for (var i = 0; i < 2; i++) {
+    x = 0;
+    if (i == 1)
+      flag = 0.8;
+    ctx.moveTo(posGameX * (flag), posGameY * 0.85);
+    for (var j = 1; j < 4; j++) {
+      ctx.lineTo(posGameX * (0.01 + x + flag), posGameY * 0.88);
+      ctx.lineTo(posGameX * (0.02 + x + flag), posGameY * 0.86);
+      ctx.lineTo(posGameX * (0.05 + x + flag), posGameY * 0.88);
+      ctx.lineTo(posGameX * (0.09 + x + flag), posGameY * 0.86);
+      ctx.lineTo(posGameX * (0.11 + x + flag), posGameY * 0.89);
+      ctx.lineTo(posGameX * (0.15 + x + flag), posGameY * 0.86);
+      ctx.lineTo(posGameX * (0.16 + x + flag), posGameY * 0.89);
+      x = j * 0.015;
+    }
+    ctx.lineTo(posGameX * (0.01 + flag), posGameY * 0.89);
+    ctx.fill();
+    ctx.stroke();
+  }
+  //трава 4 шт. по центру
+  ctx.beginPath();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "#2C390B";
+  var flag = 1, x;
+  var sdvigX = [0.1, 0.25, 0.4, 0.3];
+  var sdvigY = [0, 0.053, 0, 0.09];
+  for (var i = 0; i < 4; i++) {
+    x = 0;
+    if (i == 3)
+      flag = 0.8;
+    ctx.moveTo(posGameX * (0.186 + sdvigX[i]), posGameY * (0.89 * flag + sdvigY[i]));//3
+    for (var j = 0; j < 2; j++) {
+      ctx.lineTo(posGameX * (0.186 + x + sdvigX[i]), posGameY * (0.91 * flag + sdvigY[i]));//-0.1
+      ctx.lineTo(posGameX * (0.195 + x + sdvigX[i]), posGameY * (0.89 * flag + sdvigY[i]));//3
+      ctx.lineTo(posGameX * (0.201 + x + sdvigX[i]), posGameY * (0.91 * flag + sdvigY[i]));//3
+      ctx.lineTo(posGameX * (0.211 + x + sdvigX[i]), posGameY * (0.89 * flag + sdvigY[i]));//3
+      ctx.lineTo(posGameX * (0.224 + x + sdvigX[i]), posGameY * (0.91 * flag + sdvigY[i]));//3
+      ctx.lineTo(posGameX * (0.235 + x + sdvigX[i]), posGameY * (0.89 * flag + sdvigY[i]));//3
+      ctx.lineTo(posGameX * (0.241 + x + sdvigX[i]), posGameY * (0.91 * flag + sdvigY[i]));
+      x = x + 0.055; //0.19 - разница между х-ми первой и последней точки
+    }
+    ctx.lineTo(posGameX * (0.186 + sdvigX[i]), posGameY * (0.91 * flag + sdvigY[i]));
+    ctx.fill();
+    ctx.stroke();
+  }
+}
 
-var canvas = document.getElementById('game_canvas');
+function control1(event) {
+  eo = window.event;
+  eo.preventDefault();
+  control_event();
+  document.getElementById('gameA').style.opacity = 1;
+  setInterval(timer_game, 1000/n); //80 раз в секунду 
+}
+function control2(event) {
+  eo = window.event;
+  eo.preventDefault();
+  control_event();
+  document.getElementById('gameB').style.opacity = 1;
+  setInterval(timer_game, 1000/n); //80 раз в секунду 
+}
+function control_event(){
+  var but1 = document.getElementById('but1');
+  var but2 = document.getElementById('but2');
+  var but3 = document.getElementById('but3');
+  var but4 = document.getElementById('but4');
 
-canvas.style.width = allPartWidth + 'px';
-canvas.style.height = allPartHeight + 'px';
-canvas.style.position = 'absolute';
-canvas.style.top = -500 + '%';//'112px';//
-//canvas.style.left = 50 + '%';//'281px';//
-/*canvas.style.top = 50 + '%';//'112px';//
-canvas.style.left = 50 + '%';//'281px';//*/
-canvas.style.transform = 'translate(-50%,-43%)';
-canvas.style.zIndex = '10';
+  
+  document.addEventListener('keydown', but_press, false);
+  document.addEventListener('keydown', but_press, false);
+  document.addEventListener('keydown', but_press, false);
+  document.addEventListener('keydown', but_press, false);
 
-console.log(posLogoX, posLogoY);
-const ctx = canvas.getContext("2d");
-ctx.beginPath();
-ctx.lineWidth = 1;
-ctx.fillStyle = "black"; 
-var lines = [
-  {x: Math.round(posLogoX*1.1 ,1), y: Math.round(posLogoY*1.1 ,1)},
-  {x: Math.round(posLogoX*1.3 ,1), y: Math.round(posLogoY*1.1 ,1)},
-  {x: Math.round(posLogoX*1.1 ,1), y: Math.round(posLogoY*1.5 ,1)},
-  {x: Math.round(posLogoX*1.6 ,1), y: Math.round(posLogoY*1.1 ,1)},
-  {x: Math.round(posLogoX*1.4 ,1), y: Math.round(posLogoY*1.5 ,1)},
-],
-line = lines.shift();
-console.log(line);
-do {
-  ctx.moveTo(line.x, line.y);
-  line = lines.shift();
-  ctx.lineTo(line.x, line.y);
-} while (lines.length);
+  but1.addEventListener('touchstart', left_top, false);
+  but2.addEventListener('touchstart', left_bot, false);
+  but3.addEventListener('touchstart', right_top, false);
+  but4.addEventListener('touchstart', right_bot, false);
+  var imgs = document.getElementsByClassName('imgsGame');
+  for(var i=0; i<imgs.length; i++)
+    imgs[i].style.opacity = 0;
+  var imgs = document.getElementsByClassName('chiken');
+  for(var i=0; i<imgs.length; i++)
+    imgs[i].style.opacity = 1;
+}
+function but_press(event){
+ eo = window.event;
+ eo.preventDefault();
+ if(eo.code === 'ShiftLeft') 
+    left_top();
+ if(eo.code === 'ControlLeft')
+    left_bot();
+ if(eo.code === 'ArrowUp')
+    right_top(eo);
+ if(eo.code === 'ArrowDown')
+    right_bot(eo);
+}
+function left_top(){
+    var volk = document.getElementsByClassName('volk');
+    var hend = document.getElementsByClassName('hend');
+    volk[1].style.opacity = 1;
+    volk[0].style.opacity = 0;
+      for(var i=0; i<hend.length; i++)
+          hend[i].style.opacity = 0;
+      hend[0].style.opacity = 1;
+}
+function left_bot(){
+  eo = window.event;
+  eo.preventDefault();
+    var volk = document.getElementsByClassName('volk');
+    var hend = document.getElementsByClassName('hend');
+    volk[1].style.opacity = 1;
+    volk[0].style.opacity = 0;
+    for(var i=0; i<hend.length; i++)
+      hend[i].style.opacity = 0;
+    hend[3].style.opacity = 1; 
+}
+function right_top(event){
+  eo = window.event;
+  eo.preventDefault();
+    var volk = document.getElementsByClassName('volk');
+    var hend = document.getElementsByClassName('hend');
+    volk[0].style.opacity = 1;
+    volk[1].style.opacity = 0;
+    for(var i=0; i<hend.length; i++)
+      hend[i].style.opacity = 0;
+    hend[2].style.opacity = 1; 
+}
+function right_bot(event){
+  eo = window.event;
+  eo.preventDefault();
+    var volk = document.getElementsByClassName('volk');
+    var hend = document.getElementsByClassName('hend');
+    volk[0].style.opacity = 1;
+    volk[1].style.opacity = 0;
+    for(var i=0; i<hend.length; i++)
+      hend[i].style.opacity = 0;
+    hend[1].style.opacity = 1;  
+}
+function timer_game() {
+  var flag = 1;
+  zayac_move();
+  return flag;
+}
+function randomDiap(n,m) {
+  return Math.floor(Math.random()*(m-n+1))+n;
+}
+function zayac_move(){
+  var zaya = document.getElementById('zayac');
+  var hends = document.getElementsByClassName('hend_z');
+  hends[0].style.opacity = 0;
+  hends[1].style.opacity = 0;  
+  zaya.style.opacity = 0; 
+  const currTime=new Date();
+  const seconds = currTime.getSeconds();
+  var rand = randomDiap(0,1);
+  
 
-//ctx.stroke();
-//ctx.closePath();
+console.log(seconds);
+  if(seconds % 5 === 0)
+    {
+    zaya.style.opacity = 1;
+    hends[rand].style.opacity = 1;
+    }
 
-//ctx.beginPath();
-ctx.lineWidth = 1;
-ctx.fillStyle = "black"; 
-ctx.moveTo(posLogoX*1.1, posLogoY*1.75);
-ctx.lineTo(posLogoX*1.2, posLogoY*1.75);
-ctx.lineTo(posLogoX*1.8, posLogoY*1.3);
-ctx.lineTo(posLogoX*1.6, posLogoY*1.75);
-ctx.lineTo(posLogoX*2, posLogoY*1.3);
-ctx.lineTo(posLogoX*1.8, posLogoY*1.75);
-ctx.stroke();
-ctx.closePath();
 
-var gamePart = document.getElementById('for_game_layer4');
-var game = gamePart.getBoundingClientRect();
-var gameW = (allPartWidth - game.width)/2 * 0.88;
-var gameH = (allPartHeight - game.height)/2 * 1.12;
-var gameX = gamePart.offsetLeft;
-var gameY = gamePart.offsetTop;
-var posGameX = Math.round((gameW - gameX)/2 ,2);
-var posGameY = Math.round((gameH*1.08 - gameY)/2 ,2);
-console.log(gameW, gameH, posGameX, posGameY);
-
-//крыша
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.fillStyle = "#ff0000";  
-ctx.moveTo(posGameX*0.97, posGameY*1.5);
-ctx.lineTo(posGameX*1.15, posGameY*1.02);
-ctx.lineTo(posGameX*1.5, posGameY*2.3);
-ctx.stroke();
-ctx.closePath();
-//труба
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.fillStyle = "#ff0000";  
-ctx.moveTo(posGameX*1.25, posGameY*1.3);
-ctx.lineTo(posGameX*1.35, posGameY*1.3);
-ctx.lineTo(posGameX*1.35, posGameY*1.75);
-ctx.fill();
-ctx.stroke();
-ctx.closePath();
-//выход
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.fillStyle = "#ff0000";  
-ctx.moveTo(posGameX*1.35, posGameY*1.75);
-ctx.lineTo(posGameX*1.35, posGameY*1.45);
-ctx.lineTo(posGameX*1.4, posGameY*1.45);
-ctx.lineTo(posGameX*1.4, posGameY*1.8);
-ctx.lineTo(posGameX*1.5, posGameY*2);
-ctx.lineTo(posGameX*1.5, posGameY*1.3);
-ctx.lineTo(posGameX*1.4, posGameY*1.45);
-ctx.stroke();
-ctx.closePath();
-//окно
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.fillStyle = "#ff0000";  
-ctx.moveTo(posGameX*1.4, posGameY*1.6);
-ctx.lineTo(posGameX*1.5, posGameY*1.62);
-ctx.stroke();
-ctx.closePath();
-//склон
-ctx.beginPath();
-ctx.lineWidth = 2;
-ctx.fillStyle = "#ff0000";  
-ctx.moveTo(posGameX*0.97, posGameY*2.6);//3
-ctx.lineTo(posGameX*1.2, posGameY*2.6);//3
-ctx.lineTo(posGameX*1.6, posGameY*3.2);//3,6
-ctx.stroke();
-ctx.closePath();
-//подпорка
-ctx.beginPath();
-ctx.lineWidth = 1;
-ctx.fillStyle = "#ff0000";  
-ctx.moveTo(posGameX*1.45, posGameY*3);//3,4
-ctx.lineTo(posGameX*1.45, posGameY*3.4);//3,8
-ctx.fillStyle = "#FCCA66";
-ctx.stroke();
-ctx.closePath();
+}
 </script>
