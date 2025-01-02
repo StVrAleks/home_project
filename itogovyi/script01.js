@@ -19,16 +19,16 @@ function addGame() {
   allPartGame = document.getElementById('place_game_out');
 
   if (newWid < 621) {
-    widthEl = newWid * 0.92;
-    heightEl = newHeig * 0.92;
+    widthEl = newWid * 0.93;
+    heightEl = newHeig * 0.93;
 
     var allPartGame = document.getElementById('place_game_out');
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
 
     //для канвас делаем новые размеры после ротейт
-    widthEl = newHeig;// * 0.9;
-    heightEl = newWid;// * 0.95;
+    widthEl = newHeig * 0.83;
+    heightEl = newWid * 0.90;
 
     var placeForGame = document.getElementById('place_for_game');
     var placeGame = placeForGame.getBoundingClientRect();
@@ -43,7 +43,7 @@ function addGame() {
     var imgs = document.getElementById('img_game');
     imgs.style.width = layer4.height + 'px';
     imgs.style.height = layer4.width + 'px';
-    imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+    imgs.style.transform = 'translate(-51%, -51%) rotate(90deg)';
   
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
@@ -56,12 +56,16 @@ function addGame() {
     document.getElementsByClassName('left')[0].style.transform = 'translate(-4px, ' + forLeft + 'px) rotateX(90deg)';
     document.getElementsByClassName('for_label')[0].style.left = elemLabel + 'px';
     document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
-   
-    document.getElementsByClassName('for_label')[0].style.transform = 'rotate(-90deg) translate(0px, -20px)';
-    document.getElementsByClassName('to_bottom')[0].style.transform = 'rotate(-90deg) translate(0px, -50px)';
+    elemLabel = -1*(elemLabel-4);
+    //document.getElementsByClassName('for_label')[0].style.transformOrigin = '0% 0%';   
+    document.getElementsByClassName('for_label')[0].style.transform = 'rotate(-90deg) translate(-50%, ' + elemLabel + 'px)';
+    //document.getElementsByClassName('for_label')[0].style.transform = 'rotate(-90deg) translate(0px, -20px)';
+    //document.getElementsByClassName('to_bottom')[0].style.transformOrigin = '0% 0%'; 
+    document.getElementsByClassName('to_bottom')[0].style.transform = 'rotate(-90deg) translate(-50%, -9px)';
     console.log('lay2', elemLabel.top, elemLabel.left, elemLabel.height, elemLabel.x, elemLabel.y, elemLabel.width);
     
     sizePart.logo = 'rotate(90deg)';
+    sizePart.curcle = 'rotate(90deg) translate(-11px, 2px)';
 
   }
   else if (newWid > 620 && newWid < 1061) {
@@ -92,9 +96,10 @@ function addGame() {
 
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 4px) rotateY(90deg)';
     document.getElementsByClassName('left')[0].style.transform = 'translate(-6px, ' + forLeft + 'px) rotateX(90deg)';
-    document.getElementsByClassName('for_label')[0].style.left = elemLabel + 'px';
+    document.getElementsByClassName('for_label')[0].style.left = '0px';//elemLabel + 
     document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
     sizePart.logo = 'rotate(90deg)';
+    sizePart.curcle = 'rotate(90deg) translate(-12px, 2px)';
 
 
   }
@@ -122,6 +127,7 @@ function addGame() {
     document.getElementsByClassName('right')[0].style.transform = 'translate(' + forRight + 'px, 0px) rotateY(90deg)';
     document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot + 'px';
     sizePart.logo = 'rotate(0deg)';
+    sizePart.curcle = 'rotate(0deg)';
   }
 
 
@@ -207,9 +213,9 @@ function add_svg(transfLogo) {
   svg2.setAttribute('width', controlW);
   svg2.setAttribute('height', controlH);
   svg2.style.position = 'absolute';
-  svg2.style.top = control.top -4 + 'px';
+  svg2.style.top = control.top - 4 + 'px';
   svg2.style.left = control.x - 5 + 'px';
-  svg2.style.transform = transfLogo.logo;
+  svg2.style.transform = transfLogo.curcle;
   document.body.appendChild(svg2);
 }
 
@@ -226,7 +232,7 @@ function add_canvas(sizeP) {
   var posGameY = Math.round(sizeP.gamePartH, 2);
 
   //console.log(posGameX, posGameY);
-
+//pic_eggs(ctx, posGameX, posGameY);
   //крыша
   ctx.beginPath();
   ctx.lineWidth = 8;
@@ -272,7 +278,7 @@ function add_canvas(sizeP) {
   ctx.lineTo(posGameX * 0.21, posGameY * 1.62);
   ctx.stroke();
 
-  //склон left 2 шт
+  //склон  4 шт
   var posY = [0, 0.215, 0, 0.215];
   var posX = {
     0: { 0: 0, 1: 0.11, 2: 0.2, 3: 0.165, 4: 0.165 },
@@ -412,6 +418,8 @@ function control1(event) {
   eo.preventDefault();
   control_event();
   document.getElementById('gameA').style.opacity = 1;
+  document.getElementById('control_4').style.background = 'red';
+  document.getElementById('control_8').style.background = 'black';
   setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control2(event) {
@@ -419,6 +427,8 @@ function control2(event) {
   eo.preventDefault();
   control_event();
   document.getElementById('gameB').style.opacity = 1;
+  document.getElementById('control_4').style.background = 'black';
+  document.getElementById('control_8').style.background = 'red';
   setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control_event(){
@@ -523,6 +533,9 @@ console.log(seconds);
     zaya.style.opacity = 1;
     hends[rand].style.opacity = 1;
     }
-
-
+}
+function game(){
+  var shtraf=0;
+  var ball = 0;
+  
 }
