@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, height=device-height, target-densitydpi=device-dpi, initial-scale=1">
     <title>Ну погоди!</title>
     <link rel="stylesheet" href="style.css" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,99 +11,117 @@
     
 </head>
 <body>
-    
-    <div id="place_game_out">
-        <div id="place_game_in">
-            <div id="place_game_I">
-                <div id="logo"></div>
-                 <div id="but_left">
-                    <div id="img1"></div>
-                    <div id="top_bord" class="borderBut">
-                    <button id="but1" class="for_button" style="position: absolute;">3</button>
-                    </div>
-                    <div id="img2"></div>
-                    <div id="bot_bord" class="borderBut">
-                    <button id="but2" class="for_button" style="position: absolute;">6</button>     
-                    </div>  
-                 </div>
-            </div>
-            <div id="place_game_II">
-                <div id="place_for_game">
-                    <div class="side left"></div>
-                    <div class="side right"></div>
-                    <div class="side top"></div>
-                    <div class="side bottom"></div>
-                    <div id="for_game_layer1"></div>
-                    <div id="for_game_layer2"></div>                    
-                    <div id="top_label" style="color: #DB2323;" class="for_label">НУ, ПОГОДИ!</div>
-                    <div id="bottom_label" style="color: black;" class="for_label to_bottom">ЭЛЕКТРОНИКА</div>
-                    <div id="for_game_layer3"></div> 
-                    <div id="for_game_layer4"></div>  
+  <div id="place_game_out">
+    <div id="place_game_in">
+        <div id="place_game_I">
+            <div id="logo"></div>
+             <div id="but_left">
+                <div id="img1"></div>
+                <div id="top_bord" class="borderBut">
+                <button id="but1" class="for_button" style="position: absolute;">3</button>
                 </div>
-            </div>
-            <div id="img_game" class="img_game_class">
-                <span id="gameA" class="imgsGame var_game">GAME A</span>
-                <span id="gameB" class="imgsGame var_game">GAME B</span>
-                <img id="zayac" class='imgsGame' src="img/zayac.png" alt="zayac">
-                <img id="zayac_top" class='imgsGame hend_z' src="img/zayac_hend_top-fotor.png" alt="zayac_hend">
-                <img id="zayac_bottom" class='imgsGame hend_z' src="img/zayac_hend_bottom.png" alt="zayac_hend">
-                <img id="ch_top_left" class='imgsGame chiken' src="img/chiken_top_left.png" alt="chiken_top_left">
-                <img id="ch_top_right" class='imgsGame chiken' src="img/chiken_top_right.png" alt="chiken_top_right">
-                <img id="ch_bottom_left" class='imgsGame chiken' src="img/chiken_bottom_left.png" alt="chiken_bottom_left">
-                <img id="ch_bottom_right" class='imgsGame chiken' src="img/chiken_bottom_right.png" alt="chiken_bottom_right">
-                <img id="volk_right" class='imgsGame volk' src="img/volk1.png" alt="volk_right">
-                <img id="volk_left" class='imgsGame volk' src="img/volk2.png" alt="volk_left">
-                <img id="hend_top_left" class='imgsGame hend' src="img/hend3.png" alt="hend_left">
-                <img id="hend_top_right" class='imgsGame hend' src="img/hend2.png" alt="hend_right">
-                <img id="hend_bottom_right" class='imgsGame hend' src="img/hend1.png" alt="hend_right">
-                <img id="hend_bottom_left" class='imgsGame hend' src="img/hand4.png" alt="hend_left">                
-                <img id="bant1" class='imgsGame' src="img/bant.png" alt="bant1">
-                <img id="bant2" class='imgsGame' src="img/bant.png" alt="bant2">
-                <img id="bant3" class='imgsGame' src="img/bant.png" alt="bant3">
-                <img id="bdyj_right" class='imgsGame' src="img/bdyj_right.png" alt="bdyj">
-                <img id="bdyj_left" class='imgsGame' src="img/bdyj_right.png" alt="bdyj">
-                <img id="cyplenok1_left" class='imgsGame cyplenok_left' src="img/l1.png" alt="cyplenok1_left">
-                <img id="cyplenok2_left" class='imgsGame cyplenok_left' src="img/l2.png" alt="cyplenok2_left">
-                <img id="cyplenok3_left" class='imgsGame cyplenok_left' src="img/l3.png" alt="cyplenok3_left">
-                <img id="cyplenok4_left" class='imgsGame cyplenok_left' src="img/l4.png" alt="cyplenok4_left">
-                <img id="cyplenok1_right" class='imgsGame cyplenok_right' src="img/r1.png" alt="cyplenok1_right">
-                <img id="cyplenok2_right" class='imgsGame cyplenok_right' src="img/r2.png" alt="cyplenok2_right">
-                <img id="cyplenok3_right" class='imgsGame cyplenok_right' src="img/r3.png" alt="cyplenok3_right">
-                <img id="cyplenok4_right" class='imgsGame cyplenok_right' src="img/r4.png" alt="cyplenok4_right">
-            </div>
-            <div id="place_game_III">
-                <div id="control">
-                    <button id="control_1" class="for_control_button" onclick="control1();"></button>
-                    <div id="control_2"></div>
-                    <div id="control_3" class="for_control_text">игра А</div>
-                    <div id="control_4" class="impuls"></div>
-                    <button id="control_5" class="for_control_button" onclick="control2();"></button>
-                    <div id="control_6">L</div>
-                    <div id="control_7" class="for_control_text">игра Б</div>
-                    <div id="control_8"  class="impuls"></div>
-                    <button id="control_9" class="for_control_button"></button>
-                    <div id="control_10" class="for_control_text">время</div>
-                </div>
-                 <div id="but_right">
-                    <div id="img3"></div>
-                    <div id="top_bord_right" class="borderBut">
-                         <button id="but3" class="for_button" style="position: absolute;">3</button>
-                    </div>
-                    <div id="img4"></div>
-                    <div id="bot_bord_right" class="borderBut">
-                        <button id="but4" class="for_button" style="position: absolute;">6</button>     
-                    </div>  
-                 </div>               
+                <div id="img2"></div>
+                <div id="bot_bord" class="borderBut">
+                <button id="but2" class="for_button" style="position: absolute;">6</button>     
+                </div>  
+             </div>
+        </div>
+        <div id="place_game_II">
+            <div id="place_for_game">
+                <div class="side left"></div>
+                <div class="side right"></div>
+                <div class="side top"></div>
+                <div class="side bottom"></div>
+                <div id="for_game_layer1"></div>
+                <div id="for_game_layer2"></div>                    
+                <div id="top_label" style="color: #DB2323;" class="for_label">НУ, ПОГОДИ!</div>
+                <div id="bottom_label" style="color: black;" class="for_label to_bottom">ЭЛЕКТРОНИКА</div>
+                <div id="for_game_layer3"></div> 
+                <div id="for_game_layer4"></div>  
             </div>
         </div>
+        <div id="img_game" class="img_game_class">
+            <span id="gameA" class="imgsGame var_game">GAME A</span>
+            <span id="gameB" class="imgsGame var_game">GAME B</span>
+            <img id="zayac" class='imgsGame' src="img/zayac.png" alt="zayac">
+            <img id="zayac_top" class='imgsGame hend_z' src="img/zayac_hend_top-fotor.png" alt="zayac_hend">
+            <img id="zayac_bottom" class='imgsGame hend_z' src="img/zayac_hend_bottom.png" alt="zayac_hend">
+            <img id="ch_top_left" class='imgsGame chiken' src="img/chiken_top_left.png" alt="chiken_top_left">
+            <img id="ch_top_right" class='imgsGame chiken' src="img/chiken_top_right.png" alt="chiken_top_right">
+            <img id="ch_bottom_left" class='imgsGame chiken' src="img/chiken_bottom_left.png" alt="chiken_bottom_left">
+            <img id="ch_bottom_right" class='imgsGame chiken' src="img/chiken_bottom_right.png" alt="chiken_bottom_right">
+            <img id="volk_right" class='imgsGame volk' src="img/volk1.png" alt="volk_right">
+            <img id="volk_left" class='imgsGame volk' src="img/volk2.png" alt="volk_left">
+            <img id="hend_top_left" class='imgsGame hend' src="img/hend3.png" alt="hend_left">
+            <img id="hend_top_right" class='imgsGame hend' src="img/hend2.png" alt="hend_right">
+            <img id="hend_bottom_right" class='imgsGame hend' src="img/hend1.png" alt="hend_right">
+            <img id="hend_bottom_left" class='imgsGame hend' src="img/hand4.png" alt="hend_left">                
+            <img id="bant1" class='imgsGame' src="img/bant.png" alt="bant1">
+            <img id="bant2" class='imgsGame' src="img/bant.png" alt="bant2">
+            <img id="bant3" class='imgsGame' src="img/bant.png" alt="bant3">
+            <img id="bdyj_right" class='imgsGame' src="img/bdyj_right.png" alt="bdyj">
+            <img id="bdyj_left" class='imgsGame' src="img/bdyj_right.png" alt="bdyj">
+            <img id="cyplenok1_left" class='imgsGame cyplenok_left' src="img/l1.png" alt="cyplenok1_left">
+            <img id="cyplenok2_left" class='imgsGame cyplenok_left' src="img/l2.png" alt="cyplenok2_left">
+            <img id="cyplenok3_left" class='imgsGame cyplenok_left' src="img/l3.png" alt="cyplenok3_left">
+            <img id="cyplenok4_left" class='imgsGame cyplenok_left' src="img/l4.png" alt="cyplenok4_left">
+            <img id="cyplenok1_right" class='imgsGame cyplenok_right' src="img/r1.png" alt="cyplenok1_right">
+            <img id="cyplenok2_right" class='imgsGame cyplenok_right' src="img/r2.png" alt="cyplenok2_right">
+            <img id="cyplenok3_right" class='imgsGame cyplenok_right' src="img/r3.png" alt="cyplenok3_right">
+            <img id="cyplenok4_right" class='imgsGame cyplenok_right' src="img/r4.png" alt="cyplenok4_right">
+            <img id="eg1_left_top" src="img/eg1.png" class="eggs" alt="eg1">
+            <img id="eg2_left_top" src="img/eg2.png" class="eggs" alt="eg2">
+            <img id="eg3_left_top" src="img/eg3.png" class="eggs" alt="eg3">
+            <img id="eg4_left_top" src="img/eg4.png" class="eggs" alt="eg4">
+            <img id="eg5_left_top" src="img/eg5.png" class="eggs" alt="eg5">
+            <img id="eg1_left_bot" src="img/eg6.png" class="eggs" alt="eg6">
+            <img id="eg2_left_bot" src="img/eg7.png" class="eggs" alt="eg7">
+            <img id="eg3_left_bot" src="img/eg8.png" class="eggs" alt="eg8">
+            <img id="eg4_left_bot" src="img/eg9.png" class="eggs" alt="eg9">
+            <img id="eg5_left_bot" src="img/eg10.png" class="eggs" alt="eg10">      
+            <img id="eg1_right_top" src="img/eg11.png" class="eggs" alt="eg11">
+            <img id="eg2_right_top" src="img/eg12.png" class="eggs" alt="eg12">
+            <img id="eg3_right_top" src="img/eg13.png" class="eggs" alt="eg13">
+            <img id="eg4_right_top" src="img/eg14.png" class="eggs" alt="eg14">
+            <img id="eg5_right_top" src="img/eg15.png" class="eggs" alt="eg15">
+            <img id="eg1_right_bot" src="img/eg16.png" class="eggs" alt="eg16">
+            <img id="eg2_right_bot" src="img/eg17.png" class="eggs" alt="eg17">
+            <img id="eg3_right_bot" src="img/eg18.png" class="eggs" alt="eg18">
+            <img id="eg4_right_bot" src="img/eg19.png" class="eggs" alt="eg19">
+            <img id="eg5_right_bot" src="img/eg20.png" class="eggs" alt="eg20">                                          
+        </div>
+        <div id="place_game_III">
+            <img id="zvon" src="img/zvon.png" alt="zvonok">
+            <div id="control">
+                <button id="control_1" class="for_control_button" onclick="control1();"></button>
+                <div id="control_2"></div>
+                <div id="control_3" class="for_control_text">игра А</div>
+                <div id="control_4" class="impuls"></div>
+                <button id="control_5" class="for_control_button" onclick="control2();"></button>
+                <div id="control_6">L</div>
+                <div id="control_7" class="for_control_text">игра Б</div>
+                <div id="control_8" class="impuls"></div>
+                <button id="control_9" class="for_control_button"></button>
+                <div id="control_10" class="for_control_text">время</div>
+            </div>
+             <div id="but_right">
+                <div id="img3"></div>
+                <div id="top_bord_right" class="borderBut">
+                     <button id="but3" class="for_button" style="position: absolute;">3</button>
+                </div>
+                <div id="img4"></div>
+                <div id="bot_bord_right" class="borderBut">
+                    <button id="but4" class="for_button" style="position: absolute;">6</button>     
+                </div>  
+             </div>               
+        </div>
     </div>
-    <canvas id="game_canvas" ></canvas>
-</body>
-<script src="script01.js"></script>
-</html>
-<style>
+</div>
+<canvas id="game_canvas" ></canvas>
  
- body{
+
+<style>
+body{
   background-color: black;
   width: 100%;
   height: 100%;
@@ -229,35 +247,33 @@
   .left {
     transform: translate(-15px, 0px) rotateY(90deg);
     background-color: #847C7C;
-    width: 30px;/*7%;*/
+    width: 30px;
     height: 100%;
   }
   .right {
     background-color: #847C7C;
-    width:30px;/*7%;*/
+    width:30px;
     height: 100%;
   }
   .top {
     transform: translate(0px, -15px) rotateX(90deg);
     background-color: #9A9EA2;
     width: 100%;
-    height: 30px;/*8%;*/
+    height: 30px;
   }
   .bottom {
     background-color: #7E6961;
     width: 100%;
-    height: 30px;/*8%;*/
+    height: 30px;
   }
   #for_game_layer1{
-    width: 97.5%;
+    width: 98.5%;
     height: 98%;      
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     background: #c3c0c0;
-
   }
   .for_label{
     position: absolute;
@@ -333,7 +349,12 @@
 #control_8{grid-area: control2;}
 #control_9{grid-area: but_control3;}
 #control_10{grid-area: lab3;}
-
+#zvon{
+  position: absolute;
+  width: 3%;
+  top: 3%;
+  left: 95%;
+}
 #but_right{
     width: 85%;
     height: 37.5%; 
@@ -346,7 +367,6 @@
     justify-content: space-between;
     justify-items: end;
     align-items: center;
-   /* padding-left: 10px;*/
 }
 #img3{grid-area: img_3;}
 #top_bord_right{grid-area: bord_3;}
@@ -387,11 +407,8 @@
     background: black;
 }
 #control_6{
-   /* border: dashed black; */
-  /*  padding: 1px;*/
- /*   border-radius: 50%;*/
-margin-bottom: -10px;
-   font-size: 12px;
+    margin-bottom: -10px;
+    font-size: 12px;
     overflow: hidden;
 }
 
@@ -400,7 +417,7 @@ margin-bottom: -10px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-     z-index: 15; 
+  z-index: 15; 
 }
 .var_game{
   position: absolute;  
@@ -464,7 +481,7 @@ margin-bottom: -10px;
 #volk_right{
   width: 20%;
   height: 40%;
-  left: 47%;
+  left: 49%;
   top: 36%;
 }
 #volk_left{
@@ -476,37 +493,37 @@ margin-bottom: -10px;
 #hend_top_left{
   width: 12%;
   height: 16%;
-  left: 23%;
+  left: 22%;
   top: 35%;
 }
 #hend_top_right{
   width: 10%;
   height: 13%;
-  left: 66%;
-  top: 56%;
+  left: 68%;
+  top: 58%;
 }
 #hend_bottom_right{
   width: 10%;
   height: 17%;
-  left: 65%;
+  left: 68%;
   top: 38%;
 }
 #hend_bottom_left{
   width: 12%;
   height: 16%;
-  left: 23%;
-  top: 53%;
+  left: 22%;
+  top: 56%;
 }
 #bdyj_right{
   width: 11%;
   height: 9%;
-  left: 70%;
+  left: 71%;
   top: 82%;
 }
 #bdyj_left{
   width: 11%;
   height: 9%;
-  left: 21%;
+  left: 18%;
   top: 81%;
 }
 .cyplenok_left{
@@ -572,13 +589,121 @@ margin-bottom: -10px;
   position: absolute;
   top:50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%) rotate(-0deg);
   z-index: 10;
+}
+.eggs{
+  position: absolute;
+  width: 3%;
+}
+#eg1_left_top{
+  top: 22%;
+  left: 10%;
+  transform: rotate(15deg);
+}
+#eg2_left_top{
+  top: 25%;
+  left: 13%;
+  transform: rotate(45deg);
+}
+#eg3_left_top{
+  top: 28%;
+  left: 15%;
+  transform: rotate(82deg);
+}
+#eg4_left_top{
+  top: 32%;
+  left: 18%;
+  transform: rotate(114deg);
+}
+#eg5_left_top{
+  top: 36%;
+  left: 21%;
+  transform: rotate(137deg);
+}
+
+#eg1_left_bot{
+  top: 44%;
+  left: 10%;
+  transform: rotate(-45deg);
+}
+#eg2_left_bot{
+  top: 47%;
+  left: 13%;
+  transform: rotate(13deg);
+}
+#eg3_left_bot{
+  top: 50%;
+  left: 15%;
+  transform: rotate(74deg);
+}
+#eg4_left_bot{
+  top: 54%;
+  left: 18%;
+  transform: rotate(160deg);
+}
+#eg5_left_bot{
+  top: 58%;
+  left: 21%;
+  transform: rotate(198deg);
+}
+
+#eg1_right_top{
+  top: 23%;
+  left: 87%;
+  transform: rotate(15deg);
+}
+#eg2_right_top{
+  top: 26%;
+  left: 84%;
+  transform: rotate(-45deg);
+}
+#eg3_right_top{
+  top: 29%;
+  left: 81%;
+  transform: rotate(82deg);
+}
+#eg4_right_top{
+  top: 32%;
+  left: 79%;
+  transform: rotate(-168deg);
+}
+#eg5_right_top{
+  top: 36%;
+  left: 76%;
+  transform: rotate(121deg);
+}
+
+#eg1_right_bot{
+  top: 45%;
+  left: 86%;
+  transform: rotate(45deg);
+}
+#eg2_right_bot{
+  top: 48%;
+  left: 84%;
+  transform: rotate(-13deg);
+}
+#eg3_right_bot{
+  top: 51%;
+  left: 81%;
+  transform: rotate(-74deg);
+}
+#eg4_right_bot{
+  top: 54%;
+  left: 79%;
+  transform: rotate(-160deg);
+}
+#eg5_right_bot{
+  top: 58%;
+  left: 76%;
+  transform: rotate(-198deg);
 }
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /*планшеты в портретной ориентации (вертикально);*/
+
 @media  all and (min-width : 621px) and (max-width : 1060px) {
       body{ width: 50px; height: 50px;}
       #place_game_out{
@@ -596,7 +721,7 @@ margin-bottom: -10px;
         }
         #place_game_I{
           width: 100%;
-          height: 15%;/*19%;*/
+          height: 15%;
           flex-direction: row;
           transform: rotate(180deg);
         }
@@ -605,13 +730,13 @@ margin-bottom: -10px;
         left: 8%;
         }
         #but_left{
-        width: 20%;
+        width: 17%;
         height: 150%;
         transform: rotate(-90deg) translate(-11%, -31%);
         }
         #img1{ 
         border-top: 24px solid black; 
-        transform: rotate(126deg) translate(0px, 0px);
+        transform: rotate(118deg) translate(0px, 0px);
         }
         #img2{ 
         border-left: 24px solid black;
@@ -629,9 +754,8 @@ margin-bottom: -10px;
     
         #place_game_II{
         width: 90%; 
-        height: 70%;/*62%;*/
+        height: 70%;
         transform: rotate(180deg) translate(0%, 0%);
-      /*  margin-top: -25px;*/
         }
         #for_game_layer1,
         #for_game_layer2,
@@ -641,18 +765,15 @@ margin-bottom: -10px;
     
         #place_game_III{
           width: 100%;
-          height: 15%;/*19%;*/
+          height: 15%;
           transform: rotate(180deg);
           justify-content: space-between;
           flex-direction: row;
         }
         /*----*/
         #place_for_game{
-          width: 100%;/*91%; */
-          height: 98%;/*100%;*/
-       /*   margin-top: 5%;*/
-       /*   border-radius: 5px;
-          transform-style: preserve-3d;*/
+          width: 100%;
+          height: 98%;
         }
           .left {
             height: 26px;
@@ -669,17 +790,18 @@ margin-bottom: -10px;
             width: 26px;
     }
           .bottom {
-         /*   transform: translate(288px, 10px) rotateY(90deg);*/
             height: 98%;
             width: 26px;
           }   
           .for_label{
-            /*left: 50%;  */
             top:50%;  
-            transform: rotate(-90deg) translate(0%,0%);
+            left: 0%;
+            transform-origin: 0% 0%;
+            transform: rotate(-90deg) translate(-50%,0%);
             font-size: 14px;
           }
           .to_bottom{
+            transform-origin: 0% 0%;
             height: 15px;
           }
           #for_game_layer1{
@@ -712,9 +834,9 @@ margin-bottom: -10px;
             transform: rotate(-90deg) translate(0px, 16px);
         }
         #but_right{
-          width: 20%;
+          width: 17%;
           height: 150%;
-          transform: rotate(-90deg) translate(11%, -31%);
+          transform: rotate(-90deg) translate(23%, -31%);
         }
         #img3{ 
           border-top: 24px solid black;
@@ -731,6 +853,16 @@ margin-bottom: -10px;
         #game_canvas{
           transform: translate(-50%,-50%) rotate(90deg);
         }
+        #gameB{
+          left: 84%;
+        }
+        #zvon {
+          position: absolute;
+          width: 3%;
+          top: 7%;
+          left: 4%;
+          transform: rotate(-90deg);
+      }
       /*  #game_canvas{
           transform: rotate(180deg);
         }*/
@@ -739,10 +871,10 @@ margin-bottom: -10px;
 @media  all and (min-width : 10px) and (max-width : 620px) {
   body{ width: 50px; height: 50px;}
   #place_game_out{
-    position: relative; 
-    left: 0%;
-    top: 0%;
-    transform: translate(1%, 1%);
+    position: absolute; 
+    left: 50%; /*0*/
+    top: 50%; /*0*/
+    transform: translate(-50%, -50%); /*1.1*/
     }
 
     #place_game_in{
@@ -757,10 +889,9 @@ margin-bottom: -10px;
         transform: rotate(180deg);
     }
     #place_game_II{
-     width: 90%; 
+     width: 94%; 
      height: 64%;
       transform: rotate(180deg) translate(0%, 0%);
-     /* margin-top: -25px;*/
     }
     #place_game_III{
       width: 100%;
@@ -797,61 +928,57 @@ margin-bottom: -10px;
         top: 0;
         left: 0;
     }
-
-
     #for_game_layer1,
     #for_game_layer2,
     #for_game_layer3{
       transform: rotate(180deg) translate(50%, 50%);
     }
-
-
     /*----*/
     #place_for_game{
-      width: 91%; 
+      width: 100%; 
       height: 100%;
       border-radius: 5px;
       transform-style: preserve-3d;
     }
       .left {
-        height: 24px;
-        width: 112%;
+        height: 26px;
+        width: 101.5%;
       }
       .right {
-        height: 24px;
-        width: 111%;
-        transform: translate(-5%, -9px) rotateX(90deg);
+        height: 26px;
+        width: 101.5%;
+        transform: translate(-0.5%, -10px) rotateX(90deg);
       }
       .top {
-        transform: translate(-32px, 1%) rotateY(90deg);
+        transform: translate(-64%, 1%) rotateY(90deg);
         height: 98%;
         width: 26px;
 }
       .bottom {
-        height: 98%;
+        height: 98.5%;
         width: 26px;
       }
 
-      #top_label{
-        top: 50%;    
-      /*  transform: rotate(-90deg) translateY(-50%);*/
-        font-size: 14px;
+      .for_label{
+        top:50%;  
+        transform-origin: 0% 0%;
+        font-size: 13px;
       }
-      #bottom_label{
-        top:50%;
-        height: 15px;
-        font-size: 14px;
+      .to_bottom{
+        transform-origin: 0% 0%;
+        transform: rotate(-90deg) translate(-50%, 0%);
+        height: 13px;
       }
       #for_game_layer1{
-        width: 109%;
+        width: 100%;
         height: 96.5%;
       }
       #for_game_layer2{
-        width: 100%;
+        width: 94%;
         height: 92%;
       }
       #for_game_layer3{
-        width: 92%; 
+        width: 90%; 
         height: 89%;
       }
       #control{
@@ -880,80 +1007,118 @@ margin-bottom: -10px;
         height: 15px;
     }
 #game_canvas{
-  transform: translate(-51%,-52%) rotate(90deg);
+  transform: translate(-50%,-50%) rotate(90deg);
+}
+#gameB{
+  left: 84%;
+}
+#zvon {
+  position: absolute;
+  width: 4%;
+  top: 16%;
+  left: 5%;
+  transform: rotate(-90deg);
 }
 }
 
 </style>
+</body>
 <script>
 
 
+window.addEventListener('load', add_svg);
 window.addEventListener('load', addGame);
+
 window.addEventListener('resize', addGame);
 
 var contr1 = document.getElementById('control_1');
-var contr2 = document.getElementById('control_1');
+var contr2 = document.getElementById('control_2');
 contr1.addEventListener('keydown', control1, false);
 contr2.addEventListener('keydown', control2, false);
+
+setInterval(get_size, 1000);
+function get_size(){
+  var screen_size ={
+    newWid: window.innerWidth,
+    newHeig: window.innerHeight
+  };
+  timer_game();
+  return screen_size; 
+}
 //const sizeP = addGame();
-const n = 1;
+//const n = 1;
 function addGame() {
   var sizePart = {};
   var widthEl = 0;
   var heightEl = 0;
-  const newWid = window.innerWidth;
-  const newHeig = window.innerHeight;
-  allPartGame = document.getElementById('place_game_out');
+  var screen_size = get_size();
+  const newWid = screen_size.newWid;// window.innerWidth;
+  const newHeig = screen_size.newHeig;//window.innerHeight;
+  var allPartGame = document.getElementById('place_game_out');
 
   if (newWid < 621) {
-    widthEl = newWid * 0.92;
-    heightEl = newHeig * 0.92;
+    widthEl = newWid * 0.93;
+    heightEl = newHeig * 0.93;
 
-    var allPartGame = document.getElementById('place_game_out');
+   // var allPartGame = document.getElementById('place_game_out');
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
 
     //для канвас делаем новые размеры после ротейт
-    widthEl = newHeig * 0.87;
-    heightEl = newWid * 0.905;
-
+   /*
+    widthEl = newHeig * 0.83;
+    heightEl = newWid * 0.90;
+*/
     var placeForGame = document.getElementById('place_for_game');
     var placeGame = placeForGame.getBoundingClientRect();
 
     var placeLayer4 = document.getElementById('for_game_layer4');
     placeLayer4.style.width = 0.85 * placeGame.height + 'px';
-    placeLayer4.style.height = 0.88 * placeGame.width + 'px';
-    placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * (0.88 * placeGame.width) + 'px,' + 0.5 * (0.85 * placeGame.height) + 'px)';
+    placeLayer4.style.height = 0.86 * placeGame.width + 'px';
+    placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * (0.86 * placeGame.width) + 'px,' + 0.5 * (0.85 * placeGame.height) + 'px)';
 
-    // var gameLayer4 = document.getElementById('for_game_layer4');
     var layer4 = placeLayer4.getBoundingClientRect();
 
     var imgs = document.getElementById('img_game');
     imgs.style.width = layer4.height + 'px';
     imgs.style.height = layer4.width + 'px';
     imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+  
+    var botGran = document.getElementById('place_for_game');
+    var elemGran = botGran.getBoundingClientRect();
+    var forLeft = elemGran.height - 16;// - document.getElementsByClassName('left')[0].offsetHeight;
+    var forBottom = elemGran.width - 9;// + document.getElementsByClassName('bottom')[0].offsetWidth/2;
+    var forLabelBot = document.getElementById('for_game_layer2');
+    var elemLabel = document.getElementById('for_game_layer2').offsetWidth - document.getElementById('place_for_game').offsetWidth;
 
-    var placeLayer1 = document.getElementById('for_game_layer1');
-    var layer1 = placeLayer1.getBoundingClientRect();
-    var botWidth = document.getElementsByClassName('bottom')[0].offsetWidth;
-    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + (layer1.width - botWidth) + 'px, 3px) rotateY(90deg)';
-    document.getElementsByClassName('left')[0].style.transform = 'translate(-21px, ' + layer1.height + 'px) rotateX(90deg)';
-    var placeLayer2 = document.getElementById('for_game_layer2');
-    var layer2 = placeLayer2.getBoundingClientRect();
-    //console.log(layer1.top, layer1.width, botWidth, placeLayer1.offsetWidth);
-    document.getElementById('bottom_label').style.transform = 'translate(' + layer1.height / 4 + 'px,-50%) rotate(270deg)';
-    document.getElementById('top_label').style.transform = 'translate(-' + layer2.height / 2 + 'px, 0px) rotate(270deg)';
-    sizePart.logo = 'rotate(90deg)';
+    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 3px) rotateY(90deg)';
+    document.getElementsByClassName('left')[0].style.transform = 'translate(-4px, ' + forLeft + 'px) rotateX(90deg)';
+    document.getElementsByClassName('for_label')[0].style.left = elemLabel + 'px';
+    document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
+    elemLabel = -1*(elemLabel-4);  
+    document.getElementsByClassName('for_label')[0].style.transform = 'rotate(-90deg) translate(-50%, ' + elemLabel + 'px)';
+    document.getElementsByClassName('right')[0].style.transform = 'transform: translate(-0.5%, -10px) rotateX(90deg)';
+   
+    var logo1 = document.getElementById('logo');
+    var elem_logo = logo1.getBoundingClientRect(); 
+
+    document.getElementById('svg1').style.transform = 'rotate(90deg)';
+    document.getElementById('svg1').style.top = elem_logo.y + 'px';
+    document.getElementById('svg1').style.left = elem_logo.x + 'px';
+
+    var control_6 = document.getElementById('control_6');
+    var control = control_6.getBoundingClientRect();
+    document.getElementById('svg2').style.top = control.top - 4 + 'px';
+    document.getElementById('svg2').style.left = control.x - 5 + 'px';
+    document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-11px, 2px)';
+
+    var layer4_wid = document.getElementById('for_game_layer4').offsetWidth;
   }
   else if (newWid > 620 && newWid < 1061) {
     widthEl = newWid * 0.92;
     heightEl = newHeig * 0.92;
-    var allPartGame = document.getElementById('place_game_out');
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
-
-    widthEl = newHeig * 0.847;
-    heightEl = newWid * 0.805;
 
     var gameLayer4 = document.getElementById('for_game_layer4');
     var layer4 = gameLayer4.getBoundingClientRect();
@@ -973,10 +1138,23 @@ function addGame() {
 
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 4px) rotateY(90deg)';
     document.getElementsByClassName('left')[0].style.transform = 'translate(-6px, ' + forLeft + 'px) rotateX(90deg)';
-    document.getElementsByClassName('for_label')[0].style.left = elemLabel + 'px';
     document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
-    console.log('lay2', elemLabel.top, elemLabel.left, elemLabel.height, elemLabel.x, elemLabel.y, elemLabel.width);
-    sizePart.logo = 'rotate(90deg)';
+    document.getElementsByClassName('right')[0].style.transform = 'translate(-6px, -10px) rotateX(90deg)';
+
+    var logo1 = document.getElementById('logo');
+    var elem_logo = logo1.getBoundingClientRect(); 
+
+    document.getElementById('svg1').style.transform = 'rotate(90deg)';
+    document.getElementById('svg1').style.top = elem_logo.y + 'px';
+    document.getElementById('svg1').style.left = elem_logo.x + 'px';
+
+
+    var control_6 = document.getElementById('control_6');
+    var control = control_6.getBoundingClientRect();
+    document.getElementById('svg2').style.top = control.top - 4 + 'px';
+    document.getElementById('svg2').style.left = control.x - 5 + 'px';
+    document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-12px, 2px)';
+  
   }
   else if (newWid > 1060) {
     widthEl = 0.68 * newWid;
@@ -990,7 +1168,7 @@ function addGame() {
     var imgs = document.getElementById('img_game');
     imgs.style.width = layer4.width + 'px';
     imgs.style.height = layer4.height + 'px';
-
+    imgs.style.transform = 'translate(-50%, -50%) rotate(0deg)';
 
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
@@ -1000,51 +1178,52 @@ function addGame() {
 
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(0px,' + forBottom + 'px) rotateX(90deg)';
     document.getElementsByClassName('right')[0].style.transform = 'translate(' + forRight + 'px, 0px) rotateY(90deg)';
+    document.getElementsByClassName('left')[0].style.transform = 'translate(-15px, 0px) rotateY(90deg)';
     document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot + 'px';
-    sizePart.logo = 'rotate(0deg)';
 
+    var logo1 = document.getElementById('logo');
+    var elem_logo = logo1.getBoundingClientRect(); 
+
+    document.getElementById('svg1').style.transform = 'rotate(0deg)';
+    document.getElementById('svg1').style.top = elem_logo.y + 'px';
+    document.getElementById('svg1').style.left = elem_logo.x + 'px';
     
+    var control_6 = document.getElementById('control_6');
+    var control = control_6.getBoundingClientRect();
+    document.getElementById('svg2').style.top = control.top - 4 + 'px';
+    document.getElementById('svg2').style.left = control.x - 5 + 'px';
+    document.getElementById('svg2').style.transform = 'rotate(0deg)';
   }
 
 
 
 
+  sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
+  sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;
+  //sizePart.layerW = layer4.x;//(widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2;
+ // sizePart.layerH = layer4.y;//(heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2;
+//console.log(layer4.x, layer4.y);
+//console.log((widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2, (heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2);
+  add_canvas(sizePart);
 
-
-
-
-
-
-  console.log("w", widthEl, 'h', heightEl);
-  sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;//widthEl;
-  sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;// heightEl;
-  sizePart.logoW = document.getElementById('logo').offsetWidth;
-  sizePart.logoH = document.getElementById('logo').offsetHeight;
-  sizePart.logoL = document.getElementById('logo').offsetLeft;
-  sizePart.logoT = document.getElementById('logo').offsetTop;
-  sizePart.layerW = (widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2;
-  sizePart.layerH = (heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2;
-  sizePart.placeIW = document.getElementById('place_game_I').offsetWidth;
-  sizePart.placeIH = document.getElementById('place_game_I').offsetHeight;
-  var add_canva = add_canvas(sizePart);
-  //console.log(document.getElementById('for_game_layer4').offsetWidth, document.getElementById('for_game_layer4').offsetLeft);
-  //return sizePart;
-  add_svg(sizePart);
-  // Время для адаптивной магии!
 }
-function add_svg(transfLogo) {
+
+function add_svg() {
   //рисуем логотип
+  var logo1 = document.getElementById('logo');
+  var elem_logo = logo1.getBoundingClientRect();  
+
   var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  var logoW = transfLogo.logoW;// document.getElementById('logo').offsetWidth;
-  var logoH = transfLogo.logoH;//document.getElementById('logo').offsetHeight;
-  var svgX = transfLogo.placeIW + transfLogo.logoW + transfLogo.logoL;//document.getElementById('place_game_I').offsetWidth + document.getElementById('logo').offsetLeft + document.getElementById('logo').offsetWidth;
-  var svgY = transfLogo.placeIH / 2 - logoH;//document.getElementById('place_game_I').offsetHeight/2 - document.getElementById('logo').offsetHeight;
+  var logoW = document.getElementById('logo').offsetWidth;
+  var logoH = document.getElementById('logo').offsetHeight;
+  var svgX = elem_logo.x;
+  var svgY = elem_logo.y;
   svg.setAttribute('width', logoW);
   svg.setAttribute('height', logoH);
   svg.style.position = 'absolute';
   svg.style.top = svgY + 'px';
   svg.style.left = svgX + 'px';
-  svg.style.transform = transfLogo.logo;
+  svg.id = 'svg1';
 
   var part = [];
   var masXY = {
@@ -1082,10 +1261,10 @@ function add_svg(transfLogo) {
   for (var i = 0; i < 11; i++) {
     if (i < 3 || i > 7) {
       var curcleItem = document.createElementNS(svg2.namespaceURI, 'circle');
-      var curcleItemX = controlW * 0.5 + controlW * 0.5 * Math.sin(360 / 12 / 180 * Math.PI * (i + 1));
-      var curcleItemY = controlW * 0.5 - controlW * 0.5 * Math.cos(360 / 12 / 180 * Math.PI * (i + 1));
-      curcleItem.setAttribute('cx', curcleItemX + 0.5);
-      curcleItem.setAttribute('cy', curcleItemY + 0.5);
+      var curcleItemX = controlW * 0.6 + controlW * 0.5 * Math.sin(360 / 12 / 180 * Math.PI * (i + 1));
+      var curcleItemY = controlW * 0.6 - controlW * 0.5 * Math.cos(360 / 12 / 180 * Math.PI * (i + 1));
+      curcleItem.setAttribute('cx', curcleItemX*0.7);
+      curcleItem.setAttribute('cy', curcleItemY);
       curcleItem.setAttribute('r', 1.5);
       curcleItem.setAttribute("fill", "black");
       svg2.appendChild(curcleItem);
@@ -1095,9 +1274,9 @@ function add_svg(transfLogo) {
   svg2.setAttribute('width', controlW);
   svg2.setAttribute('height', controlH);
   svg2.style.position = 'absolute';
-  svg2.style.top = control.top + 'px';
-  svg2.style.left = control.x - 7 + 'px';
-
+  svg2.style.top = control.top - 4 + 'px';
+  svg2.style.left = control.x - 5 + 'px';
+  svg2.id = 'svg2';
   document.body.appendChild(svg2);
 }
 
@@ -1112,8 +1291,6 @@ function add_canvas(sizeP) {
   const ctx = canvas.getContext("2d");
   var posGameX = Math.round(sizeP.gamePartW, 2);
   var posGameY = Math.round(sizeP.gamePartH, 2);
-
-  //console.log(posGameX, posGameY);
 
   //крыша
   ctx.beginPath();
@@ -1160,7 +1337,7 @@ function add_canvas(sizeP) {
   ctx.lineTo(posGameX * 0.21, posGameY * 1.62);
   ctx.stroke();
 
-  //склон left 2 шт
+  //склон  4 шт
   var posY = [0, 0.215, 0, 0.215];
   var posX = {
     0: { 0: 0, 1: 0.11, 2: 0.2, 3: 0.165, 4: 0.165 },
@@ -1300,31 +1477,40 @@ function control1(event) {
   eo.preventDefault();
   control_event();
   document.getElementById('gameA').style.opacity = 1;
-  setInterval(timer_game, 1000/n); //80 раз в секунду 
+  document.getElementById('control_4').style.background = 'red';
+  document.getElementById('control_8').style.background = 'black';
+  zayac_move();
+ // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control2(event) {
   eo = window.event;
   eo.preventDefault();
   control_event();
   document.getElementById('gameB').style.opacity = 1;
-  setInterval(timer_game, 1000/n); //80 раз в секунду 
+  document.getElementById('control_4').style.background = 'black';
+  document.getElementById('control_8').style.background = 'red';
+  zayac_move();
+ // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control_event(){
+
   var but1 = document.getElementById('but1');
   var but2 = document.getElementById('but2');
   var but3 = document.getElementById('but3');
   var but4 = document.getElementById('but4');
 
-  
+  but1.addEventListener('touchstart', left_top, false);
+  but2.addEventListener('touchstart', left_bot, false);
+  but3.addEventListener('touchstart', right_top, false);
+  but4.addEventListener('touchstart', right_bot, false); 
+
   document.addEventListener('keydown', but_press, false);
   document.addEventListener('keydown', but_press, false);
   document.addEventListener('keydown', but_press, false);
   document.addEventListener('keydown', but_press, false);
 
-  but1.addEventListener('touchstart', left_top, false);
-  but2.addEventListener('touchstart', left_bot, false);
-  but3.addEventListener('touchstart', right_top, false);
-  but4.addEventListener('touchstart', right_bot, false);
+
+
   var imgs = document.getElementsByClassName('imgsGame');
   for(var i=0; i<imgs.length; i++)
     imgs[i].style.opacity = 0;
@@ -1332,6 +1518,8 @@ function control_event(){
   for(var i=0; i<imgs.length; i++)
     imgs[i].style.opacity = 1;
 }
+
+
 function but_press(event){
  eo = window.event;
  eo.preventDefault();
@@ -1387,9 +1575,11 @@ function right_bot(event){
     hend[1].style.opacity = 1;  
 }
 function timer_game() {
-  var flag = 1;
-  zayac_move();
-  return flag;
+  const currTime=new Date();
+  const seconds = currTime.getSeconds();
+  //zayac_move();
+  //game();
+  return seconds;
 }
 function randomDiap(n,m) {
   return Math.floor(Math.random()*(m-n+1))+n;
@@ -1400,18 +1590,55 @@ function zayac_move(){
   hends[0].style.opacity = 0;
   hends[1].style.opacity = 0;  
   zaya.style.opacity = 0; 
-  const currTime=new Date();
-  const seconds = currTime.getSeconds();
+ // const currTime=new Date();
+ // const seconds = currTime.getSeconds();
+  const seconds = timer_game();
   var rand = randomDiap(0,1);
-  
+  console.log(seconds);
 
-console.log(seconds);
+//console.log(seconds);
   if(seconds % 5 === 0)
     {
     zaya.style.opacity = 1;
     hends[rand].style.opacity = 1;
     }
+}
+function game(){
+  var shtraf=0;
+  var ball = 0;
 
+  //игра А. В зависимости от кол-ва штрафных очков - используются разные склоны
+  var num_sklon = {
+    0:{0:1, 1:2, 3:4},
+    0.5:{0:1, 1:2, 3:4},
+    1:{0:1, 1:2, 3:3},
+    1.5:{0:1, 1:2, 3:3},
+    2:{0:2, 1:3, 3:4},
+    2.5:{0:2, 1:3, 3:4},
+  };
+  var num = num_sklon[0][randomDiap(0,3)];
+  console.log(num);
+  var eg1 = document.getElementsByClassName('eg_left_top');
+  var eg2 = document.getElementsByClassName('eg_left_bot');
+  var eg3 = document.getElementsByClassName('eg_right_top');
+  var eg4 = document.getElementsByClassName('eg_right_bot');
+  var eg = {
+    1:eg1,
+    2:eg2,
+    3:eg3,
+    4:eg4
+  }
+  return eg[num];
+ /* console.log('aa', eg[num].length, (eg[num])[0]);
+for(var i=0; i<eg[num].length; i++)
+{
+  (eg[num])[i].style.opacity = 1;
+  console.log('bb', (eg[num])[0]);*/
+ // (eg[num])[i].style.opacity = 0;
+//}
+function add_eggs(){
 
 }
+}
 </script>
+</html>

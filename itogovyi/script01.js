@@ -1,49 +1,62 @@
 
 
-
+window.addEventListener('load', add_svg);
 window.addEventListener('load', addGame);
+
 window.addEventListener('resize', addGame);
 
 var contr1 = document.getElementById('control_1');
-var contr2 = document.getElementById('control_1');
+var contr2 = document.getElementById('control_2');
 contr1.addEventListener('keydown', control1, false);
 contr2.addEventListener('keydown', control2, false);
+
+setInterval(get_size, 1000);
+function get_size(){
+  var screen_size ={
+    newWid: window.innerWidth,
+    newHeig: window.innerHeight
+  };
+  timer_game();
+  return screen_size; 
+}
 //const sizeP = addGame();
-const n = 1;
+//const n = 1;
 function addGame() {
   var sizePart = {};
   var widthEl = 0;
   var heightEl = 0;
-  const newWid = window.innerWidth;
-  const newHeig = window.innerHeight;
-  allPartGame = document.getElementById('place_game_out');
+  var screen_size = get_size();
+  const newWid = screen_size.newWid;// window.innerWidth;
+  const newHeig = screen_size.newHeig;//window.innerHeight;
+  var allPartGame = document.getElementById('place_game_out');
 
   if (newWid < 621) {
     widthEl = newWid * 0.93;
     heightEl = newHeig * 0.93;
 
-    var allPartGame = document.getElementById('place_game_out');
+   // var allPartGame = document.getElementById('place_game_out');
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
 
     //для канвас делаем новые размеры после ротейт
+   /*
     widthEl = newHeig * 0.83;
     heightEl = newWid * 0.90;
-
+*/
     var placeForGame = document.getElementById('place_for_game');
     var placeGame = placeForGame.getBoundingClientRect();
 
     var placeLayer4 = document.getElementById('for_game_layer4');
     placeLayer4.style.width = 0.85 * placeGame.height + 'px';
-    placeLayer4.style.height = 0.88 * placeGame.width + 'px';
-    placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * (0.88 * placeGame.width) + 'px,' + 0.5 * (0.85 * placeGame.height) + 'px)';
+    placeLayer4.style.height = 0.86 * placeGame.width + 'px';
+    placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * (0.86 * placeGame.width) + 'px,' + 0.5 * (0.85 * placeGame.height) + 'px)';
 
     var layer4 = placeLayer4.getBoundingClientRect();
 
     var imgs = document.getElementById('img_game');
     imgs.style.width = layer4.height + 'px';
     imgs.style.height = layer4.width + 'px';
-    imgs.style.transform = 'translate(-51%, -51%) rotate(90deg)';
+    imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
   
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
@@ -56,27 +69,30 @@ function addGame() {
     document.getElementsByClassName('left')[0].style.transform = 'translate(-4px, ' + forLeft + 'px) rotateX(90deg)';
     document.getElementsByClassName('for_label')[0].style.left = elemLabel + 'px';
     document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
-    elemLabel = -1*(elemLabel-4);
-    //document.getElementsByClassName('for_label')[0].style.transformOrigin = '0% 0%';   
+    elemLabel = -1*(elemLabel-4);  
     document.getElementsByClassName('for_label')[0].style.transform = 'rotate(-90deg) translate(-50%, ' + elemLabel + 'px)';
-    //document.getElementsByClassName('for_label')[0].style.transform = 'rotate(-90deg) translate(0px, -20px)';
-    //document.getElementsByClassName('to_bottom')[0].style.transformOrigin = '0% 0%'; 
-    document.getElementsByClassName('to_bottom')[0].style.transform = 'rotate(-90deg) translate(-50%, -9px)';
-    console.log('lay2', elemLabel.top, elemLabel.left, elemLabel.height, elemLabel.x, elemLabel.y, elemLabel.width);
-    
-    sizePart.logo = 'rotate(90deg)';
-    sizePart.curcle = 'rotate(90deg) translate(-11px, 2px)';
+    document.getElementsByClassName('right')[0].style.transform = 'transform: translate(-0.5%, -10px) rotateX(90deg)';
+   
+    var logo1 = document.getElementById('logo');
+    var elem_logo = logo1.getBoundingClientRect(); 
 
+    document.getElementById('svg1').style.transform = 'rotate(90deg)';
+    document.getElementById('svg1').style.top = elem_logo.y + 'px';
+    document.getElementById('svg1').style.left = elem_logo.x + 'px';
+
+    var control_6 = document.getElementById('control_6');
+    var control = control_6.getBoundingClientRect();
+    document.getElementById('svg2').style.top = control.top - 4 + 'px';
+    document.getElementById('svg2').style.left = control.x - 5 + 'px';
+    document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-11px, 2px)';
+
+    var layer4_wid = document.getElementById('for_game_layer4').offsetWidth;
   }
   else if (newWid > 620 && newWid < 1061) {
     widthEl = newWid * 0.92;
     heightEl = newHeig * 0.92;
-    var allPartGame = document.getElementById('place_game_out');
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
-
-    widthEl = newHeig * 0.847;
-    heightEl = newWid * 0.805;
 
     var gameLayer4 = document.getElementById('for_game_layer4');
     var layer4 = gameLayer4.getBoundingClientRect();
@@ -96,12 +112,23 @@ function addGame() {
 
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 4px) rotateY(90deg)';
     document.getElementsByClassName('left')[0].style.transform = 'translate(-6px, ' + forLeft + 'px) rotateX(90deg)';
-    document.getElementsByClassName('for_label')[0].style.left = '0px';//elemLabel + 
     document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
-    sizePart.logo = 'rotate(90deg)';
-    sizePart.curcle = 'rotate(90deg) translate(-12px, 2px)';
+    document.getElementsByClassName('right')[0].style.transform = 'translate(-6px, -10px) rotateX(90deg)';
+
+    var logo1 = document.getElementById('logo');
+    var elem_logo = logo1.getBoundingClientRect(); 
+
+    document.getElementById('svg1').style.transform = 'rotate(90deg)';
+    document.getElementById('svg1').style.top = elem_logo.y + 'px';
+    document.getElementById('svg1').style.left = elem_logo.x + 'px';
 
 
+    var control_6 = document.getElementById('control_6');
+    var control = control_6.getBoundingClientRect();
+    document.getElementById('svg2').style.top = control.top - 4 + 'px';
+    document.getElementById('svg2').style.left = control.x - 5 + 'px';
+    document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-12px, 2px)';
+  
   }
   else if (newWid > 1060) {
     widthEl = 0.68 * newWid;
@@ -115,7 +142,7 @@ function addGame() {
     var imgs = document.getElementById('img_game');
     imgs.style.width = layer4.width + 'px';
     imgs.style.height = layer4.height + 'px';
-
+    imgs.style.transform = 'translate(-50%, -50%) rotate(0deg)';
 
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
@@ -125,44 +152,52 @@ function addGame() {
 
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(0px,' + forBottom + 'px) rotateX(90deg)';
     document.getElementsByClassName('right')[0].style.transform = 'translate(' + forRight + 'px, 0px) rotateY(90deg)';
+    document.getElementsByClassName('left')[0].style.transform = 'translate(-15px, 0px) rotateY(90deg)';
     document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot + 'px';
-    sizePart.logo = 'rotate(0deg)';
-    sizePart.curcle = 'rotate(0deg)';
+
+    var logo1 = document.getElementById('logo');
+    var elem_logo = logo1.getBoundingClientRect(); 
+
+    document.getElementById('svg1').style.transform = 'rotate(0deg)';
+    document.getElementById('svg1').style.top = elem_logo.y + 'px';
+    document.getElementById('svg1').style.left = elem_logo.x + 'px';
+    
+    var control_6 = document.getElementById('control_6');
+    var control = control_6.getBoundingClientRect();
+    document.getElementById('svg2').style.top = control.top - 4 + 'px';
+    document.getElementById('svg2').style.left = control.x - 5 + 'px';
+    document.getElementById('svg2').style.transform = 'rotate(0deg)';
   }
 
 
-  var logo1 = document.getElementById('logo');
-  var elem_logo = logo1.getBoundingClientRect(); 
-
-  //console.log("w", widthEl, 'h', heightEl);
-  sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;//widthEl;
-  sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;// heightEl;
-  sizePart.layerW = (widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2;
-  sizePart.layerH = (heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2;
-  sizePart.logoW = document.getElementById('logo').offsetWidth;
-  sizePart.logoH = document.getElementById('logo').offsetHeight;
-  sizePart.logoL = elem_logo.x;
-  sizePart.logoT =  elem_logo.y;
 
 
+  sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
+  sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;
+  //sizePart.layerW = layer4.x;//(widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2;
+ // sizePart.layerH = layer4.y;//(heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2;
+//console.log(layer4.x, layer4.y);
+//console.log((widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2, (heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2);
   add_canvas(sizePart);
-  add_svg(sizePart);
-  // Время для адаптивной магии!
+
 }
-function add_svg(transfLogo) {
+
+function add_svg() {
   //рисуем логотип
+  var logo1 = document.getElementById('logo');
+  var elem_logo = logo1.getBoundingClientRect();  
+
   var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  var logoW = transfLogo.logoW;
-  var logoH = transfLogo.logoH;
-  var svgX = transfLogo.logoL;
-  var svgY = transfLogo.logoT;
+  var logoW = document.getElementById('logo').offsetWidth;
+  var logoH = document.getElementById('logo').offsetHeight;
+  var svgX = elem_logo.x;
+  var svgY = elem_logo.y;
   svg.setAttribute('width', logoW);
   svg.setAttribute('height', logoH);
   svg.style.position = 'absolute';
   svg.style.top = svgY + 'px';
   svg.style.left = svgX + 'px';
-  svg.style.transform = transfLogo.logo;
-  
+  svg.id = 'svg1';
 
   var part = [];
   var masXY = {
@@ -215,7 +250,7 @@ function add_svg(transfLogo) {
   svg2.style.position = 'absolute';
   svg2.style.top = control.top - 4 + 'px';
   svg2.style.left = control.x - 5 + 'px';
-  svg2.style.transform = transfLogo.curcle;
+  svg2.id = 'svg2';
   document.body.appendChild(svg2);
 }
 
@@ -231,8 +266,6 @@ function add_canvas(sizeP) {
   var posGameX = Math.round(sizeP.gamePartW, 2);
   var posGameY = Math.round(sizeP.gamePartH, 2);
 
-  //console.log(posGameX, posGameY);
-//pic_eggs(ctx, posGameX, posGameY);
   //крыша
   ctx.beginPath();
   ctx.lineWidth = 8;
@@ -420,7 +453,8 @@ function control1(event) {
   document.getElementById('gameA').style.opacity = 1;
   document.getElementById('control_4').style.background = 'red';
   document.getElementById('control_8').style.background = 'black';
-  setInterval(timer_game, 1000/n); //80 раз в секунду 
+  zayac_move();
+ // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control2(event) {
   eo = window.event;
@@ -429,24 +463,28 @@ function control2(event) {
   document.getElementById('gameB').style.opacity = 1;
   document.getElementById('control_4').style.background = 'black';
   document.getElementById('control_8').style.background = 'red';
-  setInterval(timer_game, 1000/n); //80 раз в секунду 
+  zayac_move();
+ // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control_event(){
+
   var but1 = document.getElementById('but1');
   var but2 = document.getElementById('but2');
   var but3 = document.getElementById('but3');
   var but4 = document.getElementById('but4');
 
-  
+  but1.addEventListener('touchstart', left_top, false);
+  but2.addEventListener('touchstart', left_bot, false);
+  but3.addEventListener('touchstart', right_top, false);
+  but4.addEventListener('touchstart', right_bot, false); 
+
   document.addEventListener('keydown', but_press, false);
   document.addEventListener('keydown', but_press, false);
   document.addEventListener('keydown', but_press, false);
   document.addEventListener('keydown', but_press, false);
 
-  but1.addEventListener('touchstart', left_top, false);
-  but2.addEventListener('touchstart', left_bot, false);
-  but3.addEventListener('touchstart', right_top, false);
-  but4.addEventListener('touchstart', right_bot, false);
+
+
   var imgs = document.getElementsByClassName('imgsGame');
   for(var i=0; i<imgs.length; i++)
     imgs[i].style.opacity = 0;
@@ -454,6 +492,8 @@ function control_event(){
   for(var i=0; i<imgs.length; i++)
     imgs[i].style.opacity = 1;
 }
+
+
 function but_press(event){
  eo = window.event;
  eo.preventDefault();
@@ -509,9 +549,11 @@ function right_bot(event){
     hend[1].style.opacity = 1;  
 }
 function timer_game() {
-  var flag = 1;
-  zayac_move();
-  return flag;
+  const currTime=new Date();
+  const seconds = currTime.getSeconds();
+  //zayac_move();
+  //game();
+  return seconds;
 }
 function randomDiap(n,m) {
   return Math.floor(Math.random()*(m-n+1))+n;
@@ -522,12 +564,13 @@ function zayac_move(){
   hends[0].style.opacity = 0;
   hends[1].style.opacity = 0;  
   zaya.style.opacity = 0; 
-  const currTime=new Date();
-  const seconds = currTime.getSeconds();
+ // const currTime=new Date();
+ // const seconds = currTime.getSeconds();
+  const seconds = timer_game();
   var rand = randomDiap(0,1);
-  
+  console.log(seconds);
 
-console.log(seconds);
+//console.log(seconds);
   if(seconds % 5 === 0)
     {
     zaya.style.opacity = 1;
@@ -537,5 +580,37 @@ console.log(seconds);
 function game(){
   var shtraf=0;
   var ball = 0;
-  
+
+  //игра А. В зависимости от кол-ва штрафных очков - используются разные склоны
+  var num_sklon = {
+    0:{0:1, 1:2, 3:4},
+    0.5:{0:1, 1:2, 3:4},
+    1:{0:1, 1:2, 3:3},
+    1.5:{0:1, 1:2, 3:3},
+    2:{0:2, 1:3, 3:4},
+    2.5:{0:2, 1:3, 3:4},
+  };
+  var num = num_sklon[0][randomDiap(0,3)];
+  console.log(num);
+  var eg1 = document.getElementsByClassName('eg_left_top');
+  var eg2 = document.getElementsByClassName('eg_left_bot');
+  var eg3 = document.getElementsByClassName('eg_right_top');
+  var eg4 = document.getElementsByClassName('eg_right_bot');
+  var eg = {
+    1:eg1,
+    2:eg2,
+    3:eg3,
+    4:eg4
+  }
+  return eg[num];
+ /* console.log('aa', eg[num].length, (eg[num])[0]);
+for(var i=0; i<eg[num].length; i++)
+{
+  (eg[num])[i].style.opacity = 1;
+  console.log('bb', (eg[num])[0]);*/
+ // (eg[num])[i].style.opacity = 0;
+//}
+function add_eggs(){
+
+}
 }
