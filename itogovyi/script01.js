@@ -19,8 +19,7 @@ function get_size(){
   timer_game();
   return screen_size; 
 }
-//const sizeP = addGame();
-//const n = 1;
+
 function addGame() {
   var sizePart = {};
   var widthEl = 0;
@@ -33,49 +32,48 @@ function addGame() {
   if (newWid < 621) {
     widthEl = newWid * 0.93;
     heightEl = newHeig * 0.93;
-
-   // var allPartGame = document.getElementById('place_game_out');
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
 
     //для канвас делаем новые размеры после ротейт
-   /*
-    widthEl = newHeig * 0.83;
-    heightEl = newWid * 0.90;
-*/
     var placeForGame = document.getElementById('place_for_game');
     var placeGame = placeForGame.getBoundingClientRect();
 
+    var newW = 0.85 * placeGame.height;
+    var newH = 0.86 * placeGame.width;
+
     var placeLayer4 = document.getElementById('for_game_layer4');
-    placeLayer4.style.width = 0.85 * placeGame.height + 'px';
-    placeLayer4.style.height = 0.86 * placeGame.width + 'px';
-    placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * (0.86 * placeGame.width) + 'px,' + 0.5 * (0.85 * placeGame.height) + 'px)';
+        placeLayer4.style.width = newW + 'px';
+        placeLayer4.style.height = newH + 'px';
+        placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';
 
     var layer4 = placeLayer4.getBoundingClientRect();
 
     var imgs = document.getElementById('img_game');
-    imgs.style.width = layer4.height + 'px';
-    imgs.style.height = layer4.width + 'px';
-    imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+        imgs.style.width = layer4.height + 'px';
+        imgs.style.height = layer4.width + 'px';
+        imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
   
+    var canvas = document.getElementById('game_canvas');
+        canvas.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+
+
+
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
-    var forLeft = elemGran.height - 16;// - document.getElementsByClassName('left')[0].offsetHeight;
-    var forBottom = elemGran.width - 9;// + document.getElementsByClassName('bottom')[0].offsetWidth/2;
-    var forLabelBot = document.getElementById('for_game_layer2');
-    var elemLabel = document.getElementById('for_game_layer2').offsetWidth - document.getElementById('place_for_game').offsetWidth;
+    //плашки
+    var forLeft = elemGran.height - 16;
+    var forBottom = elemGran.width - 9;
+    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 5px) rotateY(90deg)';
+    document.getElementsByClassName('left')[0].style.transform = 'translate(-2px, ' + forLeft + 'px) rotateX(90deg)';
+    document.getElementsByClassName('right')[0].style.transform = 'transform: translate(-0,5%, -9px) rotateX(90deg)';   
+    //подписи
+    var elemLabel = forBottom - document.getElementsByClassName('to_bottom')[0].offsetHeight/2;    
+    document.getElementsByClassName('to_bottom')[0].style.left = elemLabel + 'px';
+    document.getElementsByClassName('to_bottom')[0].style.top = '50%';
 
-    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 3px) rotateY(90deg)';
-    document.getElementsByClassName('left')[0].style.transform = 'translate(-4px, ' + forLeft + 'px) rotateX(90deg)';
-    document.getElementsByClassName('for_label')[0].style.left = elemLabel + 'px';
-    document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
-    elemLabel = -1*(elemLabel-4);  
-    document.getElementsByClassName('for_label')[0].style.transform = 'rotate(-90deg) translate(-50%, ' + elemLabel + 'px)';
-    document.getElementsByClassName('right')[0].style.transform = 'transform: translate(-0.5%, -10px) rotateX(90deg)';
-   
     var logo1 = document.getElementById('logo');
     var elem_logo = logo1.getBoundingClientRect(); 
-
     document.getElementById('svg1').style.transform = 'rotate(90deg)';
     document.getElementById('svg1').style.top = elem_logo.y + 'px';
     document.getElementById('svg1').style.left = elem_logo.x + 'px';
@@ -86,7 +84,6 @@ function addGame() {
     document.getElementById('svg2').style.left = control.x - 5 + 'px';
     document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-11px, 2px)';
 
-    var layer4_wid = document.getElementById('for_game_layer4').offsetWidth;
   }
   else if (newWid > 620 && newWid < 1061) {
     widthEl = newWid * 0.92;
@@ -94,30 +91,43 @@ function addGame() {
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
 
-    var gameLayer4 = document.getElementById('for_game_layer4');
-    var layer4 = gameLayer4.getBoundingClientRect();
 
+    var placeForGame = document.getElementById('place_for_game');
+    var placeGame = placeForGame.getBoundingClientRect();
+    var newW = 0.87 * placeGame.height;
+    var newH = 0.90 * placeGame.width;
+
+    var placeLayer4 = document.getElementById('for_game_layer4');
+        placeLayer4.style.width = newW + 'px';
+        placeLayer4.style.height = newH + 'px';
+        placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';
+
+    var layer4 = placeLayer4.getBoundingClientRect();
     var imgs = document.getElementById('img_game');
-    imgs.style.width = layer4.height + 'px';
-    imgs.style.height = layer4.width + 'px';
-    imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+        imgs.style.width = layer4.height + 'px';
+        imgs.style.height = layer4.width + 'px';
+        imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+
+    var canvas = document.getElementById('game_canvas');
+        canvas.style.transform = 'translate(-50%, -50%) rotate(90deg)';
 
 
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
+    //плашки
     var forLeft = elemGran.height - document.getElementsByClassName('left')[0].offsetHeight / 2 - 2;
     var forBottom = elemGran.width - document.getElementsByClassName('bottom')[0].offsetWidth / 2 + 4;
-    var forLabelBot = document.getElementById('for_game_layer2');
-    var elemLabel = document.getElementById('for_game_layer2').offsetWidth - document.getElementById('place_for_game').offsetWidth;
-
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 4px) rotateY(90deg)';
     document.getElementsByClassName('left')[0].style.transform = 'translate(-6px, ' + forLeft + 'px) rotateX(90deg)';
-    document.getElementsByClassName('to_bottom')[0].style.left = forBottom + 'px';
     document.getElementsByClassName('right')[0].style.transform = 'translate(-6px, -10px) rotateX(90deg)';
+    //подписи
+    var elemLabel = forBottom - document.getElementsByClassName('to_bottom')[0].offsetHeight/2;   
+    document.getElementsByClassName('to_bottom')[0].style.left = elemLabel + 'px';
+    document.getElementsByClassName('to_bottom')[0].style.top = '50%';
+
 
     var logo1 = document.getElementById('logo');
     var elem_logo = logo1.getBoundingClientRect(); 
-
     document.getElementById('svg1').style.transform = 'rotate(90deg)';
     document.getElementById('svg1').style.top = elem_logo.y + 'px';
     document.getElementById('svg1').style.left = elem_logo.x + 'px';
@@ -139,25 +149,38 @@ function addGame() {
     var gameLayer4 = document.getElementById('for_game_layer4');
     var layer4 = gameLayer4.getBoundingClientRect();
 
+
+    var placeLayer4 = document.getElementById('for_game_layer4');
+        placeLayer4.style.width = '87%';
+        placeLayer4.style.height = '82.06%';
+        placeLayer4.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+
+
+    var canvas = document.getElementById('game_canvas');
+        canvas.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+
     var imgs = document.getElementById('img_game');
-    imgs.style.width = layer4.width + 'px';
-    imgs.style.height = layer4.height + 'px';
-    imgs.style.transform = 'translate(-50%, -50%) rotate(0deg)';
+        imgs.style.width = layer4.width + 'px';
+        imgs.style.height = layer4.height + 'px';
+        imgs.style.transform = 'translate(-50%, -50%) rotate(0deg)';
 
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
-    var forRight = elemGran.width - document.getElementsByClassName('right')[0].offsetWidth / 2;
-    var forBottom = elemGran.height - document.getElementsByClassName('bottom')[0].offsetHeight / 2;;
-    var forLabelBot = document.getElementById('for_game_layer2').offsetHeight;
 
+    //плашки
+    var forRight = elemGran.width - document.getElementsByClassName('right')[0].offsetWidth / 2;
+    var forBottom = elemGran.height - document.getElementsByClassName('bottom')[0].offsetHeight / 2;;    
     document.getElementsByClassName('bottom')[0].style.transform = 'translate(0px,' + forBottom + 'px) rotateX(90deg)';
     document.getElementsByClassName('right')[0].style.transform = 'translate(' + forRight + 'px, 0px) rotateY(90deg)';
-    document.getElementsByClassName('left')[0].style.transform = 'translate(-15px, 0px) rotateY(90deg)';
+    document.getElementsByClassName('left')[0].style.transform = 'translate(-15px, 0px) rotateY(90deg)';   
+    //подписи
+    var forLabelBot = document.getElementById('for_game_layer2').offsetHeight;    
     document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot + 'px';
+    document.getElementsByClassName('to_bottom')[0].style.left = '50%';
+
 
     var logo1 = document.getElementById('logo');
     var elem_logo = logo1.getBoundingClientRect(); 
-
     document.getElementById('svg1').style.transform = 'rotate(0deg)';
     document.getElementById('svg1').style.top = elem_logo.y + 'px';
     document.getElementById('svg1').style.left = elem_logo.x + 'px';
@@ -169,9 +192,6 @@ function addGame() {
     document.getElementById('svg2').style.transform = 'rotate(0deg)';
   }
 
-
-
-
   sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
   sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;
   //sizePart.layerW = layer4.x;//(widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2;
@@ -179,7 +199,6 @@ function addGame() {
 //console.log(layer4.x, layer4.y);
 //console.log((widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2, (heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2);
   add_canvas(sizePart);
-
 }
 
 function add_svg() {
