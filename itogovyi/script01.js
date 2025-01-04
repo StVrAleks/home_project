@@ -10,13 +10,21 @@ var contr2 = document.getElementById('control_2');
 contr1.addEventListener('keydown', control1, false);
 contr2.addEventListener('keydown', control2, false);
 
-setInterval(get_size, 1000);
+var time_start = 0;
+var flag_zaya; //отслеживание появление зайца
+var shtraf = 0; //счет штрафных очков
+var ball = 0; //счет пойманных яиц
+setInterval(get_size, 2000);
 function get_size(){
+  var ratio = window.devicePixelRatio || 1;
   var screen_size ={
-    newWid: window.innerWidth,
-    newHeig: window.innerHeight
+    newWid: window.innerWidth || screen.width*ratio,
+    newHeig: window.innerHeight || screen.height*ratio
   };
   timer_game();
+  zayac_move(time_start);
+  gameA(time_start);
+  gameB(time_start)
   return screen_size; 
 }
 
@@ -84,6 +92,17 @@ function addGame() {
     document.getElementById('svg2').style.left = control.x - 5 + 'px';
     document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-11px, 2px)';
 
+  /*  var bdyj_right = document.getElementById('bdyj_right'); 
+    var bdyj_left = document.getElementById('bdyj_left'); 
+    var el_bdyj_right = bdyj_right.getBoundingClientRect();
+    var el_bdyj_left = bdyj_left.getBoundingClientRect();
+    var bdyj = {
+      x1 : el_bdyj_right.x,
+      y1 : el_bdyj_right.y,
+      x2 : el_bdyj_left.x,
+      y2 : el_bdyj_left.x
+    };*/
+
   }
   else if (newWid > 620 && newWid < 1061) {
     widthEl = newWid * 0.92;
@@ -138,7 +157,18 @@ function addGame() {
     document.getElementById('svg2').style.top = control.top - 4 + 'px';
     document.getElementById('svg2').style.left = control.x - 5 + 'px';
     document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-12px, 2px)';
-  
+
+  /*  var bdyj_right = document.getElementById('bdyj_right'); 
+    var bdyj_left = document.getElementById('bdyj_left'); 
+    var el_bdyj_right = bdyj_right.getBoundingClientRect();
+    var el_bdyj_left = bdyj_left.getBoundingClientRect();
+    var bdyj = {
+      x1 : el_bdyj_right.x,
+      y1 : el_bdyj_right.y,
+      x2 : el_bdyj_left.x,
+      y2 : el_bdyj_left.x
+    };*/
+
   }
   else if (newWid > 1060) {
     widthEl = 0.68 * newWid;
@@ -190,6 +220,17 @@ function addGame() {
     document.getElementById('svg2').style.top = control.top - 4 + 'px';
     document.getElementById('svg2').style.left = control.x - 5 + 'px';
     document.getElementById('svg2').style.transform = 'rotate(0deg)';
+
+   /* var bdyj_right = document.getElementById('bdyj_right'); 
+    var bdyj_left = document.getElementById('bdyj_left'); 
+    var el_bdyj_right = bdyj_right.getBoundingClientRect();
+    var el_bdyj_left = bdyj_left.getBoundingClientRect();
+    var bdyj = {
+      x1 : el_bdyj_right.x,
+      y1 : el_bdyj_right.y,
+      x2 : el_bdyj_left.x,
+      y2 : el_bdyj_left.x
+    };*/
   }
 
   sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
@@ -472,7 +513,10 @@ function control1(event) {
   document.getElementById('gameA').style.opacity = 1;
   document.getElementById('control_4').style.background = 'red';
   document.getElementById('control_8').style.background = 'black';
-  zayac_move();
+ // console.log(time_start);
+  // console.log(eo); 
+  time_start = 1;
+  //zayac_move();
  // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control2(event) {
@@ -482,7 +526,9 @@ function control2(event) {
   document.getElementById('gameB').style.opacity = 1;
   document.getElementById('control_4').style.background = 'black';
   document.getElementById('control_8').style.background = 'red';
-  zayac_move();
+  time_start = 2;
+  //time_start = 1;
+  // zayac_move();
  // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control_event(){
@@ -516,6 +562,7 @@ function control_event(){
 function but_press(event){
  eo = window.event;
  eo.preventDefault();
+
  if(eo.code === 'ShiftLeft') 
     left_top();
  if(eo.code === 'ControlLeft')
@@ -524,6 +571,7 @@ function but_press(event){
     right_top(eo);
  if(eo.code === 'ArrowDown')
     right_bot(eo);
+
 }
 function left_top(){
     var volk = document.getElementsByClassName('volk');
@@ -570,66 +618,213 @@ function right_bot(event){
 function timer_game() {
   const currTime=new Date();
   const seconds = currTime.getSeconds();
-  //zayac_move();
-  //game();
   return seconds;
 }
 function randomDiap(n,m) {
   return Math.floor(Math.random()*(m-n+1))+n;
 }
-function zayac_move(){
-  var zaya = document.getElementById('zayac');
-  var hends = document.getElementsByClassName('hend_z');
-  hends[0].style.opacity = 0;
-  hends[1].style.opacity = 0;  
-  zaya.style.opacity = 0; 
- // const currTime=new Date();
- // const seconds = currTime.getSeconds();
-  const seconds = timer_game();
-  var rand = randomDiap(0,1);
-  console.log(seconds);
 
-//console.log(seconds);
-  if(seconds % 5 === 0)
-    {
-    zaya.style.opacity = 1;
-    hends[rand].style.opacity = 1;
-    }
+function createTimerPromiseZaya(obj, obj_next, val, time, result) {
+
+  return new Promise( (resolve,reject) => {
+      setTimeout( () => {
+        flag_zaya = val;
+        obj.style.opacity = val;
+        obj_next.style.opacity = val;
+        resolve(result);
+        if(!obj)
+          reject("ошибка!!!"); 
+      }, 1000*time);
+  });
+
 }
-function game(){
-  var shtraf=0;
-  var ball = 0;
+function zayac_move(time_start){
+  if(time_start === 1 || time_start === 2) //если игра запущена
+  {
+  var zaya = document.getElementById('zayac');
+  var hends = document.getElementsByClassName('hend_z'); 
+  const currTime=new Date();
+  const seconds = currTime.getSeconds();
+  var rand = randomDiap(0,1); //разные руки зайца
+  
+  if(seconds % 6 === 0)
+    {
+      createTimerPromiseZaya(zaya, hends[rand], 1, 4, 2)
+      .then( result => {
+        return createTimerPromiseZaya(zaya, hends[rand], 0, 2, 3);
+        })  
+      .catch( error => {
+        console.log("случилась ошибка: "+error);
+      });
+   }
+ }   
+}
 
-  //игра А. В зависимости от кол-ва штрафных очков - используются разные склоны
-  var num_sklon = {
-    0:{0:1, 1:2, 3:4},
-    0.5:{0:1, 1:2, 3:4},
-    1:{0:1, 1:2, 3:3},
-    1.5:{0:1, 1:2, 3:3},
-    2:{0:2, 1:3, 3:4},
-    2.5:{0:2, 1:3, 3:4},
-  };
-  var num = num_sklon[0][randomDiap(0,3)];
-  console.log(num);
+function createTimerPromise(obj, obj_next, time, result) {
+
+  return new Promise( (resolve,reject) => {
+      setTimeout( () => {
+        obj.style.opacity = 0;
+        obj_next.style.opacity = 1;
+        soundClickEg();
+        resolve(result);
+        if(!obj)
+          reject("ошибка!!!"); 
+      }, 1000/time);
+  });
+
+}
+
+function createTimerPromise2(obj_next, result) {
+
+  return new Promise( (resolve,reject) => {
+     setTimeout( () => {
+       obj_next.style.opacity = 0;
+       resolve(result);
+       if(!obj_next)
+         reject("ошибка!!!"); 
+     }, 1000/2);
+ });
+
+}
+
+function gameA(time_start){
+  if(time_start === 1)
+  {
+
+
+    //игра А. В зависимости от кол-ва штрафных очков - используются разные склоны
+    var num_sklon = {
+      0:{0:1, 1:2, 2:4},
+      0.5:{0:1, 1:2, 2:4},
+      1:{0:1, 1:2, 2:3},
+      1.5:{0:1, 1:2, 2:3},
+      2:{0:2, 1:3, 2:4},
+      2.5:{0:2, 1:3, 2:4},
+    };
+    var num = num_sklon[0][randomDiap(0,2)];
+    game(num);
+  }
+}
+function gameB(time_start){
+  if(time_start === 2)
+  {
+   var shtraf=0;
+    var ball = 0;
+
+    //игра B. Используются все лотки произвольно
+    var num_sklon = {
+      0:{0:1, 1:2, 2:3, 3:4}
+    };
+    var num = num_sklon[0][randomDiap(0,3)];
+    game(num);
+  }
+}
+function game(num)
+{
   var eg1 = document.getElementsByClassName('eg_left_top');
   var eg2 = document.getElementsByClassName('eg_left_bot');
   var eg3 = document.getElementsByClassName('eg_right_top');
   var eg4 = document.getElementsByClassName('eg_right_bot');
+  var bd1 = document.getElementById('bdyj_left1');
+  var bd2 = document.getElementById('bdyj_left2');    
+  var bd3 = document.getElementById('bdyj_right1');
+  var bd4 = document.getElementById('bdyj_right2');
+  var cypL = document.getElementsByClassName('cyplenok_left');
+  var cypR = document.getElementsByClassName('cyplenok_right');
+  var hend = document.getElementsByClassName('hend');
   var eg = {
-    1:eg1,
-    2:eg2,
-    3:eg3,
-    4:eg4
+      1:{"eg": eg1, "bd":bd1, "cyp":cypL, "hend": hend[0]},
+      2:{"eg": eg2,"bd":bd2, "cyp":cypL, "hend": hend[3]},
+      3:{"eg": eg3,"bd":bd3, "cyp":cypR, "hend": hend[2]},
+      4:{"eg": eg4,"bd":bd4, "cyp":cypR, "hend": hend[1]}
   }
-  return eg[num];
- /* console.log('aa', eg[num].length, (eg[num])[0]);
-for(var i=0; i<eg[num].length; i++)
-{
-  (eg[num])[i].style.opacity = 1;
-  console.log('bb', (eg[num])[0]);*/
- // (eg[num])[i].style.opacity = 0;
-//}
-function add_eggs(){
-
+  move_ags(eg[num]);
 }
+
+function move_ags(new_eg){
+  (new_eg.eg)[0].style.opacity = 1;
+ createTimerPromise((new_eg.eg)[0], (new_eg.eg)[1], 1, 0)
+      .then( result => {
+        return createTimerPromise((new_eg.eg)[1], (new_eg.eg)[2], 1, 2)
+        })   
+        .then( result => {
+          return createTimerPromise((new_eg.eg)[2], (new_eg.eg)[3],1, 2)
+          })  
+          .then( result => {
+            return createTimerPromise((new_eg.eg)[3], (new_eg.eg)[4],1, 2)
+            }) 
+          .then( result => {
+             if((new_eg.hend).style.opacity === "1") 
+             {
+                ball = ball + 1;
+                if(ball === 200 || ball ===500) 
+                  shtraf = 0;
+                console.log("Очки: ", ball);
+                return createTimerPromise2((new_eg.eg)[4], 2)
+             }
+             else 
+                return move_bdyj(new_eg);
+            })  
+      .catch( error => {
+        console.log("случилась ошибка: " + error);
+      });
+
+  }
+ function move_bdyj(new_eg){
+  //soundClick();
+  createTimerPromise((new_eg.eg)[4], new_eg.bd, 1, 2)
+    .then( result => {
+       soundClick();
+        return createTimerPromise2(new_eg.bd, 2)
+      })  
+      .then( result => {
+        if(flag_zaya === 1)
+        {
+          shtraf = shtraf + 0.5;
+           move_cyp(new_eg);
+        }  
+        else
+         {
+          shtraf = shtraf + 1;
+          window.navigator.vibrate(200);  
+         }
+          
+        flag_zaya = 0;  
+        })  
+      .catch( error => {
+        console.log("случилась ошибка: " + error);
+      });
+      console.log("Штрафные:", shtraf);
+
+      if(shtraf === 3)
+        time_start === 0;
+ } 
+function move_cyp(new_eg){
+    createTimerPromise(new_eg.bd, (new_eg.cyp)[0], 3, 2)
+    .then( result => {
+      return createTimerPromise((new_eg.cyp)[0], (new_eg.cyp)[1],3, 2)
+      })  
+      .then( result => {
+        return createTimerPromise((new_eg.cyp)[1], (new_eg.cyp)[2],3, 2)
+        }) 
+        .then( result => {
+          return createTimerPromise((new_eg.cyp)[2], (new_eg.cyp)[3],3, 2)
+          }) 
+          .then( result => {
+            return createTimerPromise2((new_eg.cyp)[3], 2)
+            }) 
+.catch( error => {
+console.log("случилась ошибка: "+error);
+});
+}
+function soundClickEg() {
+  var audio = new Audio(); // Создаём новый элемент Audio
+  audio.src = 'audio/eg.mp3'; // Указываем путь к звуку "клика"
+  audio.autoplay = true; // Автоматически запускаем
+}
+function soundClick() {
+  var audio = new Audio(); // Создаём новый элемент Audio
+  audio.src = 'audio/bdyj.mp3'; // Указываем путь к звуку "клика"
+  audio.autoplay = true; // Автоматически запускаем
 }

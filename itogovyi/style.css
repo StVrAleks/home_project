@@ -392,13 +392,15 @@ body{
   left: 22%;
   top: 56%;
 }
-#bdyj_right{
+#bdyj_right1,
+#bdyj_right2{
   width: 11%;
   height: 9%;
   left: 71%;
   top: 82%;
 }
-#bdyj_left{
+#bdyj_left1,
+#bdyj_left2{
   width: 11%;
   height: 9%;
   left: 18%;
