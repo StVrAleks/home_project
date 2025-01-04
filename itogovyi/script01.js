@@ -7,24 +7,29 @@ window.addEventListener('resize', addGame);
 
 var contr1 = document.getElementById('control_1');
 var contr2 = document.getElementById('control_2');
-contr1.addEventListener('keydown', control1, false);
-contr2.addEventListener('keydown', control2, false);
-
+var contr3 = document.getElementById('control_3');
+contr1.addEventListener('touchstart', control1, false);
+contr2.addEventListener('touchstart', control2, false);
+contr3.addEventListener('touchstart', for_control3, false);
 var time_start = 0;
 var flag_zaya; //отслеживание появление зайца
 var shtraf = 0; //счет штрафных очков
 var ball = 0; //счет пойманных яиц
+
 setInterval(get_size, 2000);
+
 function get_size(){
   var ratio = window.devicePixelRatio || 1;
   var screen_size ={
     newWid: window.innerWidth || screen.width*ratio,
     newHeig: window.innerHeight || screen.height*ratio
   };
-  timer_game();
+  console.log('time_start',time_start);
+  control3(time_start);
   zayac_move(time_start);
-  gameA(time_start);
-  gameB(time_start)
+  gameA(time_start); //запуск игры А
+  gameB(time_start); //запуск игры Б
+  document.getElementById('ochki').innerText = ball;
   return screen_size; 
 }
 
@@ -511,13 +516,10 @@ function control1(event) {
   eo.preventDefault();
   control_event();
   document.getElementById('gameA').style.opacity = 1;
+  document.getElementById('ochki').style.opacity = 1;
   document.getElementById('control_4').style.background = 'red';
   document.getElementById('control_8').style.background = 'black';
- // console.log(time_start);
-  // console.log(eo); 
   time_start = 1;
-  //zayac_move();
- // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control2(event) {
   eo = window.event;
@@ -544,10 +546,6 @@ function control_event(){
   but4.addEventListener('touchstart', right_bot, false); 
 
   document.addEventListener('keydown', but_press, false);
-  document.addEventListener('keydown', but_press, false);
-  document.addEventListener('keydown', but_press, false);
-  document.addEventListener('keydown', but_press, false);
-
 
 
   var imgs = document.getElementsByClassName('imgsGame');
@@ -615,10 +613,25 @@ function right_bot(event){
       hend[i].style.opacity = 0;
     hend[1].style.opacity = 1;  
 }
-function timer_game() {
+function for_control3(){
+  time_start = 3;
+  document.getElementById('curTime').style.opacity = 1;
+}
+function control3(time_start) {
+  if(time_start === 3)
+  {
   const currTime=new Date();
-  const seconds = currTime.getSeconds();
-  return seconds;
+  const hour = currTime.getHours();
+  const min = currTime.getMinutes();
+  const sec = currTime.getSeconds();
+  document.getElementById('curTime').innerText = str0l(hour,2) + ':' + str0l(min,2)+ ':' + str0l(sec,2);
+  }
+}
+function str0l(val,len) {
+  let strVal=val.toString();
+  while (strVal.length < len)
+      strVal='0'+strVal;
+  return strVal;
 }
 function randomDiap(n,m) {
   return Math.floor(Math.random()*(m-n+1))+n;
@@ -702,8 +715,11 @@ function gameA(time_start){
       2:{0:2, 1:3, 2:4},
       2.5:{0:2, 1:3, 2:4},
     };
-    var num = num_sklon[0][randomDiap(0,2)];
-    game(num);
+    var num = num_sklon[shtraf][randomDiap(0,2)];
+    if(shtraf < 3.5)
+      game(num);
+    else 
+      time_start = 0;
   }
 }
 function gameB(time_start){
@@ -782,12 +798,16 @@ function move_ags(new_eg){
         if(flag_zaya === 1)
         {
           shtraf = shtraf + 0.5;
+          if(shtraf > 2.5)
+            time_start = 0;
            move_cyp(new_eg);
         }  
         else
          {
           shtraf = shtraf + 1;
           window.navigator.vibrate(200);  
+          if(shtraf > 2.5)
+            time_start = 0;
          }
           
         flag_zaya = 0;  
@@ -797,8 +817,8 @@ function move_ags(new_eg){
       });
       console.log("Штрафные:", shtraf);
 
-      if(shtraf === 3)
-        time_start === 0;
+      if(shtraf > 2.5)
+        time_start = 0;
  } 
 function move_cyp(new_eg){
     createTimerPromise(new_eg.bd, (new_eg.cyp)[0], 3, 2)

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,6 +44,8 @@
             <div id="img_game" class="img_game_class">
                 <span id="gameA" class="imgsGame var_game">GAME A</span>
                 <span id="gameB" class="imgsGame var_game">GAME B</span>
+                <span id="ochki" class="imgsGame"></span>
+                <span id="curTime" class="imgsGame"></span>
                 <img id="zayac" class='imgsGame' src="img/zayac.png" alt="zayac">
                 <img id="zayac_top" class='imgsGame hend_z' src="img/zayac_hend_top-fotor.png" alt="zayac_hend">
                 <img id="zayac_bottom" class='imgsGame hend_z' src="img/zayac_hend_bottom.png" alt="zayac_hend">
@@ -105,7 +106,7 @@
                     <div id="control_6">L</div>
                     <div id="control_7" class="for_control_text">игра Б</div>
                     <div id="control_8" class="impuls"></div>
-                    <button id="control_9" class="for_control_button"></button>
+                    <button id="control_9" class="for_control_button" onclick="for_control3();"></button>
                     <div id="control_10" class="for_control_text">время</div>
                 </div>
                  <div id="but_right">
@@ -124,9 +125,8 @@
     <canvas id="game_canvas" ></canvas>
     <audio src="audio/eg.mp3" autoplay="autoplay"></audio>
     <audio src="audio/bdyj.mp3" autoplay="autoplay"></audio>
-
-<style>
-  body{
+    <style>
+      body{
   background-color: black;
   width: 100%;
   height: 100%;
@@ -436,7 +436,19 @@
   left: 1%;
 }
 #gameB{
-  left: 89%;
+  left: 88%;
+}
+#ochki,
+#curTime{
+  top: 18%;
+  left: 73%;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+}
+#curTime{
+  top: 3%;
+  left: 64%;
 }
 .imgsGame{
   display: block;
@@ -874,6 +886,11 @@
           top: 7%;
           left: 4%;
           transform: rotate(-90deg);
+        #ochki {
+           /* top: 18%;
+            left: 73%;*/
+            font-size: 14px;
+          }
       }
 }
 /*смартфоны в альбомной ориентации (горизонтально)*/
@@ -1029,11 +1046,18 @@
   left: 5%;
   transform: rotate(-90deg);
 }
+#ochki{
+  /* top: 18%;
+   left: 73%;*/
+   font-size: 12px;
+ }
 }
 
-</style>
+    </style>
+</body>
 <script>
   
+
 window.addEventListener('load', add_svg);
 window.addEventListener('load', addGame);
 
@@ -1041,24 +1065,29 @@ window.addEventListener('resize', addGame);
 
 var contr1 = document.getElementById('control_1');
 var contr2 = document.getElementById('control_2');
-contr1.addEventListener('keydown', control1, false);
-contr2.addEventListener('keydown', control2, false);
-
+var contr3 = document.getElementById('control_3');
+contr1.addEventListener('touchstart', control1, false);
+contr2.addEventListener('touchstart', control2, false);
+contr3.addEventListener('touchstart', for_control3, false);
 var time_start = 0;
 var flag_zaya; //отслеживание появление зайца
 var shtraf = 0; //счет штрафных очков
 var ball = 0; //счет пойманных яиц
+
 setInterval(get_size, 2000);
+
 function get_size(){
   var ratio = window.devicePixelRatio || 1;
   var screen_size ={
     newWid: window.innerWidth || screen.width*ratio,
     newHeig: window.innerHeight || screen.height*ratio
   };
-  timer_game();
+  console.log('time_start',time_start);
+  control3(time_start);
   zayac_move(time_start);
-  gameA(time_start);
-  gameB(time_start)
+  gameA(time_start); //запуск игры А
+  gameB(time_start); //запуск игры Б
+  document.getElementById('ochki').innerText = ball;
   return screen_size; 
 }
 
@@ -1545,13 +1574,10 @@ function control1(event) {
   eo.preventDefault();
   control_event();
   document.getElementById('gameA').style.opacity = 1;
+  document.getElementById('ochki').style.opacity = 1;
   document.getElementById('control_4').style.background = 'red';
   document.getElementById('control_8').style.background = 'black';
- // console.log(time_start);
-  // console.log(eo); 
   time_start = 1;
-  //zayac_move();
- // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control2(event) {
   eo = window.event;
@@ -1578,10 +1604,6 @@ function control_event(){
   but4.addEventListener('touchstart', right_bot, false); 
 
   document.addEventListener('keydown', but_press, false);
-  document.addEventListener('keydown', but_press, false);
-  document.addEventListener('keydown', but_press, false);
-  document.addEventListener('keydown', but_press, false);
-
 
 
   var imgs = document.getElementsByClassName('imgsGame');
@@ -1649,10 +1671,25 @@ function right_bot(event){
       hend[i].style.opacity = 0;
     hend[1].style.opacity = 1;  
 }
-function timer_game() {
+function for_control3(){
+  time_start = 3;
+  document.getElementById('curTime').style.opacity = 1;
+}
+function control3(time_start) {
+  if(time_start === 3)
+  {
   const currTime=new Date();
-  const seconds = currTime.getSeconds();
-  return seconds;
+  const hour = currTime.getHours();
+  const min = currTime.getMinutes();
+  const sec = currTime.getSeconds();
+  document.getElementById('curTime').innerText = str0l(hour,2) + ':' + str0l(min,2)+ ':' + str0l(sec,2);
+  }
+}
+function str0l(val,len) {
+  let strVal=val.toString();
+  while (strVal.length < len)
+      strVal='0'+strVal;
+  return strVal;
 }
 function randomDiap(n,m) {
   return Math.floor(Math.random()*(m-n+1))+n;
@@ -1736,8 +1773,11 @@ function gameA(time_start){
       2:{0:2, 1:3, 2:4},
       2.5:{0:2, 1:3, 2:4},
     };
-    var num = num_sklon[0][randomDiap(0,2)];
-    game(num);
+    var num = num_sklon[shtraf][randomDiap(0,2)];
+    if(shtraf < 3.5)
+      game(num);
+    else 
+      time_start = 0;
   }
 }
 function gameB(time_start){
@@ -1816,12 +1856,16 @@ function move_ags(new_eg){
         if(flag_zaya === 1)
         {
           shtraf = shtraf + 0.5;
+          if(shtraf > 2.5)
+            time_start = 0;
            move_cyp(new_eg);
         }  
         else
          {
           shtraf = shtraf + 1;
           window.navigator.vibrate(200);  
+          if(shtraf > 2.5)
+            time_start = 0;
          }
           
         flag_zaya = 0;  
@@ -1831,8 +1875,8 @@ function move_ags(new_eg){
       });
       console.log("Штрафные:", shtraf);
 
-      if(shtraf === 3)
-        time_start === 0;
+      if(shtraf > 2.5)
+        time_start = 0;
  } 
 function move_cyp(new_eg){
     createTimerPromise(new_eg.bd, (new_eg.cyp)[0], 3, 2)
@@ -1864,6 +1908,4 @@ function soundClick() {
 }
 
 </script>
-</body>
-
 </html>

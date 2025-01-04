@@ -308,7 +308,19 @@ body{
   left: 1%;
 }
 #gameB{
-  left: 89%;
+  left: 88%;
+}
+#ochki,
+#curTime{
+  top: 18%;
+  left: 73%;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+}
+#curTime{
+  top: 3%;
+  left: 64%;
 }
 .imgsGame{
   display: block;
@@ -746,6 +758,11 @@ body{
           top: 7%;
           left: 4%;
           transform: rotate(-90deg);
+        #ochki {
+           /* top: 18%;
+            left: 73%;*/
+            font-size: 14px;
+          }
       }
 }
 /*смартфоны в альбомной ориентации (горизонтально)*/
@@ -901,4 +918,9 @@ body{
   left: 5%;
   transform: rotate(-90deg);
 }
+#ochki{
+  /* top: 18%;
+   left: 73%;*/
+   font-size: 12px;
+ }
 }
