@@ -1079,8 +1079,8 @@ setInterval(get_size, 2000);
 function get_size(){
   var ratio = window.devicePixelRatio || 1;
   var screen_size ={
-    newWid: window.innerWidth || screen.width*ratio,
-    newHeig: window.innerHeight || screen.height*ratio
+    newWid: screen.width || window.innerWidth,//*ratio,
+    newHeig: window.innerHeight || screen.height//*ratio
   };
   console.log('time_start',time_start);
   control3(time_start);
@@ -1155,16 +1155,6 @@ function addGame() {
     document.getElementById('svg2').style.left = control.x - 5 + 'px';
     document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-11px, 2px)';
 
-  /*  var bdyj_right = document.getElementById('bdyj_right'); 
-    var bdyj_left = document.getElementById('bdyj_left'); 
-    var el_bdyj_right = bdyj_right.getBoundingClientRect();
-    var el_bdyj_left = bdyj_left.getBoundingClientRect();
-    var bdyj = {
-      x1 : el_bdyj_right.x,
-      y1 : el_bdyj_right.y,
-      x2 : el_bdyj_left.x,
-      y2 : el_bdyj_left.x
-    };*/
 
   }
   else if (newWid > 620 && newWid < 1061) {
@@ -1874,7 +1864,10 @@ function move_ags(new_eg){
         console.log("случилась ошибка: " + error);
       });
       console.log("Штрафные:", shtraf);
-
+if(shtraf >=  0.5)
+{
+   document.getElementsByClassName('');
+}
       if(shtraf > 2.5)
         time_start = 0;
  } 

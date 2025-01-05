@@ -11,25 +11,27 @@ var contr3 = document.getElementById('control_3');
 contr1.addEventListener('touchstart', control1, false);
 contr2.addEventListener('touchstart', control2, false);
 contr3.addEventListener('touchstart', for_control3, false);
-var time_start = 0;
+var time_start = 0; //отслеживание выбора режима игры
 var flag_zaya; //отслеживание появление зайца
 var shtraf = 0; //счет штрафных очков
 var ball = 0; //счет пойманных яиц
-
-setInterval(get_size, 2000);
+var flag = 0; //для обнуления счета
+var time_change =2;
+setInterval(get_size, 1000);
 
 function get_size(){
   var ratio = window.devicePixelRatio || 1;
   var screen_size ={
-    newWid: window.innerWidth || screen.width*ratio,
-    newHeig: window.innerHeight || screen.height*ratio
+    newWid: window.innerWidth || screen.width,//*ratio,
+    newHeig: window.innerHeight || screen.height//*ratio
   };
   console.log('time_start',time_start);
-  control3(time_start);
+  var sec = control3();
   zayac_move(time_start);
-  gameA(time_start); //запуск игры А
-  gameB(time_start); //запуск игры Б
+  gameA(time_start, sec); //запуск игры А
+  gameB(time_start, sec); //запуск игры Б
   document.getElementById('ochki').innerText = ball;
+  console.log('time_change',time_change);
   return screen_size; 
 }
 
@@ -52,8 +54,8 @@ function addGame() {
     var placeForGame = document.getElementById('place_for_game');
     var placeGame = placeForGame.getBoundingClientRect();
 
-    var newW = 0.85 * placeGame.height;
-    var newH = 0.86 * placeGame.width;
+    var newW = 0.855 * placeGame.height;
+    var newH = 0.865 * placeGame.width;
 
     var placeLayer4 = document.getElementById('for_game_layer4');
         placeLayer4.style.width = newW + 'px';
@@ -63,14 +65,17 @@ function addGame() {
     var layer4 = placeLayer4.getBoundingClientRect();
 
     var imgs = document.getElementById('img_game');
-        imgs.style.width = layer4.height + 'px';
-        imgs.style.height = layer4.width + 'px';
-        imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+        imgs.style.width = newW + 'px';
+        imgs.style.height = newH + 'px';
+      //  imgs.style.left = layer4.top + 'px';
+      //  imgs.style.top = 0.5 * heightEl + 'px';
+        imgs.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-'+ 0.5*layer4.height + 'px, -' + + 0.5 * layer4.width+'px) rotate(90deg)';
   
     var canvas = document.getElementById('game_canvas');
-        canvas.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+        canvas.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-50%, -50%) rotate(90deg)';
 
-
+        sizePart.gamePartW = newW;
+        sizePart.gamePartH = newH;
 
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
@@ -96,18 +101,6 @@ function addGame() {
     document.getElementById('svg2').style.top = control.top - 4 + 'px';
     document.getElementById('svg2').style.left = control.x - 5 + 'px';
     document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-11px, 2px)';
-
-  /*  var bdyj_right = document.getElementById('bdyj_right'); 
-    var bdyj_left = document.getElementById('bdyj_left'); 
-    var el_bdyj_right = bdyj_right.getBoundingClientRect();
-    var el_bdyj_left = bdyj_left.getBoundingClientRect();
-    var bdyj = {
-      x1 : el_bdyj_right.x,
-      y1 : el_bdyj_right.y,
-      x2 : el_bdyj_left.x,
-      y2 : el_bdyj_left.x
-    };*/
-
   }
   else if (newWid > 620 && newWid < 1061) {
     widthEl = newWid * 0.92;
@@ -128,13 +121,17 @@ function addGame() {
 
     var layer4 = placeLayer4.getBoundingClientRect();
     var imgs = document.getElementById('img_game');
-        imgs.style.width = layer4.height + 'px';
-        imgs.style.height = layer4.width + 'px';
-        imgs.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+        imgs.style.width = newW + 'px';
+        imgs.style.height = newH + 'px';
+      /*  imgs.style.left = 0.5 * widthEl + 'px';
+        imgs.style.top = 0.5 * heightEl + 'px';*/
+        imgs.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-50%, -50%) rotate(90deg)';
 
     var canvas = document.getElementById('game_canvas');
-        canvas.style.transform = 'translate(-50%, -50%) rotate(90deg)';
+        canvas.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-50%, -50%) rotate(90deg)';
 
+        sizePart.gamePartW = newW;
+        sizePart.gamePartH = newH;
 
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
@@ -163,17 +160,6 @@ function addGame() {
     document.getElementById('svg2').style.left = control.x - 5 + 'px';
     document.getElementById('svg2').style.transform = 'rotate(90deg) translate(-12px, 2px)';
 
-  /*  var bdyj_right = document.getElementById('bdyj_right'); 
-    var bdyj_left = document.getElementById('bdyj_left'); 
-    var el_bdyj_right = bdyj_right.getBoundingClientRect();
-    var el_bdyj_left = bdyj_left.getBoundingClientRect();
-    var bdyj = {
-      x1 : el_bdyj_right.x,
-      y1 : el_bdyj_right.y,
-      x2 : el_bdyj_left.x,
-      y2 : el_bdyj_left.x
-    };*/
-
   }
   else if (newWid > 1060) {
     widthEl = 0.68 * newWid;
@@ -183,20 +169,24 @@ function addGame() {
 
     var gameLayer4 = document.getElementById('for_game_layer4');
     var layer4 = gameLayer4.getBoundingClientRect();
-
+    var newW = 0.57 * widthEl;
+    var newH = 0.7206 * heightEl;
 
     var placeLayer4 = document.getElementById('for_game_layer4');
-        placeLayer4.style.width = '87%';
-        placeLayer4.style.height = '82.06%';
+        placeLayer4.style.width = newW +'px';
+        placeLayer4.style.height = newH +'px';
         placeLayer4.style.transform = 'translate(-50%, -50%) rotate(0deg)';
 
 
     var canvas = document.getElementById('game_canvas');
         canvas.style.transform = 'translate(-50%, -50%) rotate(0deg)';
 
+        sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
+        sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;
+
     var imgs = document.getElementById('img_game');
-        imgs.style.width = layer4.width + 'px';
-        imgs.style.height = layer4.height + 'px';
+        imgs.style.width = newW +'px';
+        imgs.style.height = newH +'px';
         imgs.style.transform = 'translate(-50%, -50%) rotate(0deg)';
 
     var botGran = document.getElementById('place_for_game');
@@ -225,25 +215,7 @@ function addGame() {
     document.getElementById('svg2').style.top = control.top - 4 + 'px';
     document.getElementById('svg2').style.left = control.x - 5 + 'px';
     document.getElementById('svg2').style.transform = 'rotate(0deg)';
-
-   /* var bdyj_right = document.getElementById('bdyj_right'); 
-    var bdyj_left = document.getElementById('bdyj_left'); 
-    var el_bdyj_right = bdyj_right.getBoundingClientRect();
-    var el_bdyj_left = bdyj_left.getBoundingClientRect();
-    var bdyj = {
-      x1 : el_bdyj_right.x,
-      y1 : el_bdyj_right.y,
-      x2 : el_bdyj_left.x,
-      y2 : el_bdyj_left.x
-    };*/
   }
-
-  sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
-  sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;
-  //sizePart.layerW = layer4.x;//(widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2;
- // sizePart.layerH = layer4.y;//(heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2;
-//console.log(layer4.x, layer4.y);
-//console.log((widthEl - document.getElementById('for_game_layer4').offsetWidth) / 2, (heightEl - document.getElementById('for_game_layer4').offsetHeight) / 2);
   add_canvas(sizePart);
 }
 
@@ -529,9 +501,6 @@ function control2(event) {
   document.getElementById('control_4').style.background = 'black';
   document.getElementById('control_8').style.background = 'red';
   time_start = 2;
-  //time_start = 1;
-  // zayac_move();
- // setInterval(timer_game, 1000/n); //80 раз в секунду 
 }
 function control_event(){
 
@@ -614,18 +583,20 @@ function right_bot(event){
     hend[1].style.opacity = 1;  
 }
 function for_control3(){
-  time_start = 3;
+ // time_start = 3;
   document.getElementById('curTime').style.opacity = 1;
 }
-function control3(time_start) {
-  if(time_start === 3)
-  {
+function control3() {
+ // if(time_start === 3)
+  //{
+ // time_change = 1000;
   const currTime=new Date();
   const hour = currTime.getHours();
   const min = currTime.getMinutes();
   const sec = currTime.getSeconds();
   document.getElementById('curTime').innerText = str0l(hour,2) + ':' + str0l(min,2)+ ':' + str0l(sec,2);
-  }
+ // }
+ return sec;
 }
 function str0l(val,len) {
   let strVal=val.toString();
@@ -701,11 +672,10 @@ function createTimerPromise2(obj_next, result) {
 
 }
 
-function gameA(time_start){
-  if(time_start === 1)
+function gameA(time_start, sec){
+   console.log(sec);
+  if(time_start === 1)// && sec % time_change === 0)
   {
-
-
     //игра А. В зависимости от кол-ва штрафных очков - используются разные склоны
     var num_sklon = {
       0:{0:1, 1:2, 2:4},
@@ -723,17 +693,18 @@ function gameA(time_start){
   }
 }
 function gameB(time_start){
+//  time_change = 1.5;
   if(time_start === 2)
   {
-   var shtraf=0;
-    var ball = 0;
-
     //игра B. Используются все лотки произвольно
     var num_sklon = {
       0:{0:1, 1:2, 2:3, 3:4}
     };
     var num = num_sklon[0][randomDiap(0,3)];
-    game(num);
+    if(shtraf < 3.5)
+      game(num);
+    else 
+      time_start = 0;
   }
 }
 function game(num)
@@ -785,10 +756,12 @@ function move_ags(new_eg){
       .catch( error => {
         console.log("случилась ошибка: " + error);
       });
-
+    /*  if(ball < 15)
+        time_change = 2;
+      if(ball % 15 === 0)
+         time_change = parseFloat(time_change * 0.95).toFixed(2);*/
   }
  function move_bdyj(new_eg){
-  //soundClick();
   createTimerPromise((new_eg.eg)[4], new_eg.bd, 1, 2)
     .then( result => {
        soundClick();
@@ -816,9 +789,25 @@ function move_ags(new_eg){
         console.log("случилась ошибка: " + error);
       });
       console.log("Штрафные:", shtraf);
-
+      if(shtraf >=  0.5)
+        {
+           document.getElementsByClassName('bant')[0].style.opacity = 1;
+        }
+        if(shtraf >=  1.5)
+          {
+             document.getElementsByClassName('bant')[1].style.opacity = 1;
+          }
+          if(shtraf >=  2.5)
+            {
+               document.getElementsByClassName('bant')[2].style.opacity = 1;
+            }
       if(shtraf > 2.5)
+      {
         time_start = 0;
+        document.getElementById('game_over').style.opacity = 1;
+        ball = 0;
+        shtraf = 0;
+      }  
  } 
 function move_cyp(new_eg){
     createTimerPromise(new_eg.bd, (new_eg.cyp)[0], 3, 2)

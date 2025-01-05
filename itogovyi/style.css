@@ -326,6 +326,14 @@ body{
   display: block;
   position: absolute;
 }
+#game_over{
+  width: 20%;
+  height: 20%;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -20%);
+  opacity: 0;
+}
 #zayac{
   width: 14%;
   height: 18%;
@@ -606,165 +614,153 @@ body{
         top: 50%;
         transform: translate(-50%, -50%);
         }
-        #place_game_in{
+      #place_game_in{
         max-width: 600px;
         flex-direction: column;
         align-items: center;
         }
-        #place_game_I{
-          width: 100%;
-          height: 15%;
-          flex-direction: row;
-          transform: rotate(180deg);
+      #place_game_I{
+        width: 100%;
+        height: 15%;
+        flex-direction: row;
+        transform: rotate(180deg);
         }
-        #logo{
+      #logo{
         top: 0%;
         left: 8%;
         }
-        #but_left{
+      #but_left{
         width: 17%;
         height: 150%;
         transform: rotate(-90deg) translate(-11%, -31%);
         }
-        #img1{ 
+      #img1{ 
         border-top: 24px solid black; 
         transform: rotate(118deg) translate(0px, 0px);
         }
-        #img2{ 
+      #img2{ 
         border-left: 24px solid black;
         transform: rotate(143deg) translate(0px, 0px);
         }
-        .borderBut,
-        .for_button{
+      .borderBut,
+      .for_button{
         width: 35px;
         height: 35px;
-        }
-        #but1, #but2{
+      }
+      #but1, #but2{
         top: 0;
         left: 0;
-        }
-    
-        #place_game_II{
+      }
+      #place_game_II{
         width: 90%; 
         height: 70%;
         transform: rotate(180deg) translate(0%, 0%);
         }
-        #for_game_layer1,
-        #for_game_layer2,
-        #for_game_layer3{
-          transform: rotate(180deg) translate(50%, 50%);
+      #for_game_layer1,
+      #for_game_layer2,
+      #for_game_layer3{
+        transform: rotate(180deg) translate(50%, 50%);
         }
     
-        #place_game_III{
-          width: 100%;
-          height: 15%;
-          transform: rotate(180deg);
-          justify-content: space-between;
-          flex-direction: row;
+      #place_game_III{
+        width: 100%;
+        height: 15%;
+        transform: rotate(180deg);
+        justify-content: space-between;
+        flex-direction: row;
         }
         /*----*/
-        #place_for_game{
-          width: 100%;
-          height: 98%;
+      #place_for_game{
+        width: 100%;
+        height: 98%;
         }
-          .left {
-            height: 26px;
-            width: 102%;
-          }
-          .right {
-            height: 26px;
-            width: 102%;
-            transform: translate(-6px, -10px) rotateX(90deg);
-          }
-          .top {
-            transform: translate(-18px, 4px) rotateY(90deg);
-            height: 98%;
-            width: 26px;
-    }
-          .bottom {
-            height: 98%;
-            width: 26px;
-          }   
-          #top_label{
-            left: 0%;
-          }
-          .for_label{
-            top:50%;  
+      .left {
+        height: 26px;
+        width: 102%;
+        }
+      .right {
+        height: 26px;
+        width: 102%;
+        transform: translate(-6px, -10px) rotateX(90deg);
+        }
+      .top {
+        transform: translate(-18px, 4px) rotateY(90deg);
+        height: 98%;
+        width: 26px;
+        }
+      .bottom {
+        height: 98%;
+        width: 26px;
+       }   
+      #top_label{
+        left: 0%;
+        }
+      .for_label{
+        top:50%;  
             /*left: 0%;*/
-            transform-origin: 0% 0%;
-            transform: rotate(-90deg) translate(-50%,0%);
-            font-size: 14px;
-          }
-          .to_bottom{
-            transform-origin: 0% 0%;
-            height: 15px;
-          }
-          #for_game_layer1{
-            width: 100%;/*109%;*/
-            height: 96.5%;
-            margin-left: 0;
-          }
-          #for_game_layer2{
-            width: 96%;/*100%;*/
-            height: 92%;
-            margin-left: 0;
-          }
-          #for_game_layer3{
-            width: 92%; 
-            height: 89%;
-          }
-       /*   #for_game_layer4{
-            width: 64%;/*63%;*/
-           /* height: 119%;/*119.06%;*/
-           /* transform: rotate(90deg) translate(-69%, 36.5%);
-          }*/
-      /*  #game_canvas{
-          transform: rotate(90deg) translate(-50%,-50%) ;
-        }*/          
-          #control{
-            width: 105px;
-            height: 100%;
-            grid-template-rows: 25% 25% 25% 25% 33% 18%;
-            grid-template-columns: 50% 21%;
-            transform: translate(4%, -61%);
-            justify-content: center;
-            padding-top: 0;
-            transform: rotate(-90deg) translate(0px, 16px);
+        transform-origin: 0% 0%;
+        transform: rotate(-90deg) translate(-50%,0%);
+        font-size: 14px;
         }
-        #but_right{
-          width: 17%;
-          height: 150%;
-          transform: rotate(-90deg) translate(23%, -31%);
+      .to_bottom{
+        transform-origin: 0% 0%;
+        height: 15px;
         }
-        #img3{ 
-          border-top: 24px solid black;
-          transform: rotate(240deg) translate(2px, -3px);
+      #for_game_layer1{
+        width: 100%;/*109%;*/
+        height: 96.5%;
+        margin-left: 0;
         }
-        #img4{ 
-          border-right: 24px solid black;
-          transform: rotate(215deg) translate(5px, 0px);
+      #for_game_layer2{
+        width: 96%;/*100%;*/
+        height: 92%;
+        margin-left: 0;
+       }
+      #for_game_layer3{
+        width: 92%; 
+        height: 89%;
+        }         
+      #control{
+        width: 105px;
+        height: 100%;
+        grid-template-rows: 25% 25% 25% 25% 33% 18%;
+        grid-template-columns: 50% 21%;
+        transform: translate(4%, -61%);
+        justify-content: center;
+        padding-top: 0;
+        transform: rotate(-90deg) translate(0px, 16px);
         }
-        .for_control_button{
-            width: 30px;
-            height: 15px;
+      #but_right{
+        width: 17%;
+        height: 150%;
+        transform: rotate(-90deg) translate(23%, -31%);
         }
-
-        #gameB{
-          left: 84%;
+      #img3{ 
+        border-top: 24px solid black;
+        transform: rotate(240deg) translate(2px, -3px);
         }
-        #zvon {
-          position: absolute;
-          width: 3%;
-          top: 7%;
-          left: 4%;
-          transform: rotate(-90deg);
-        #ochki {
-           /* top: 18%;
-            left: 73%;*/
-            font-size: 14px;
-          }
+      #img4{ 
+        border-right: 24px solid black;
+        transform: rotate(215deg) translate(5px, 0px);
+        }
+      .for_control_button{
+        width: 30px;
+        height: 15px;
+        }
+      #gameB{
+        left: 84%;
+        }
+      #zvon {
+        position: absolute;
+        width: 3%;
+        top: 7%;
+        left: 4%;
+        transform: rotate(-90deg);}
+      #ochki {
+        font-size: 14px;
+        }
       }
-}
+
 /*смартфоны в альбомной ориентации (горизонтально)*/
 @media  all and (min-width : 10px) and (max-width : 620px) {
   body{ width: 50px; height: 50px;}
