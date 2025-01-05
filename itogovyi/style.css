@@ -5,6 +5,9 @@ body{
   padding: 0;
   margin: 0;
 }
+button{
+  cursor: pointer;
+}
 #place_game_out{
     width: 700px;
     height: 400px;
@@ -83,6 +86,30 @@ body{
 #but1, #but2{
     top: 0;
     left: 0;
+}
+#but1::after,
+#but2::after {
+  content: 'Shift';
+  color: black;
+  font-size: 15px;
+  line-height: 26px;
+  width: 60px;
+  height: calc(60px - 50%);
+  border-radius: 50%;
+  border: 4px solid #DB2323;
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  animation-timing-function: ease-in-out;
+  animation-duration: 800ms;
+  animation-name: rule;
+  opacity: 1;
+  padding-top: 50%;
+ 
+}
+
+#but2::after {
+  content: 'Ctrl';
 }
 .for_button{
     border-radius: 50%;
@@ -263,6 +290,28 @@ body{
     transform: rotate(209deg);
     margin-right: 1px;
     margin-bottom: -39px;
+}
+#but3::after,
+#but4::after{
+    content: '↑';
+    color: black;
+    font-size: 20px;
+    line-height: 26px;
+    width: 60px;
+    height: calc(60px - 50%);
+    border-radius: 50%;
+    border: 4px solid #DB2323;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    animation-timing-function: ease-in-out;
+    animation-duration: 800ms;
+    animation-name: rule;
+    opacity: 1;
+    padding-top: 50%;
+}
+#but4::after{
+  content: '↓';
 }
 .for_control_button{
     width: 30px;
@@ -599,6 +648,38 @@ body{
   left: 76%;
   transform: rotate(-198deg);
 }
+
+@keyframes rule {
+  from {
+    opacity: 0.1;
+    border-top: 0px solid red;
+    border-right: 0px solid red;
+    border-bottom: 0px solid red;
+    border-left: 0px solid red;
+    border-style: dashed;
+  }
+  to {
+    opacity: 0.25;
+    border-top: 4px solid red;
+    border-style: dashed;
+  }
+  to {
+    opacity: 0.5;
+    border-right: 4px solid red;
+    border-style: dashed;
+  }
+  to {
+    opacity: 0.75;
+    border-bottom: 4px solid red;
+    border-style: dashed;
+  }
+  to {
+    opacity: 1;
+    border-left: 4px solid red;
+    border-style: dashed;
+  }
+}
+
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
@@ -609,6 +690,7 @@ body{
       #place_game_out{
         max-width: 600px;
         position: absolute;
+        max-height: 600px;
         height: 30%;
         left: 50%;
         top: 50%;
@@ -616,6 +698,7 @@ body{
         }
       #place_game_in{
         max-width: 600px;
+        max-height: 600px;
         flex-direction: column;
         align-items: center;
         }
@@ -766,6 +849,7 @@ body{
   body{ width: 50px; height: 50px;}
   #place_game_out{
     position: absolute; 
+    max-height: 600px;
     left: 50%; /*0*/
     top: 50%; /*0*/
     transform: translate(-50%, -50%); /*1.1*/
@@ -773,6 +857,7 @@ body{
 
     #place_game_in{
       max-width: 600px;
+      max-height: 600px;
       flex-direction: column;
       align-items: center;
     }

@@ -16,7 +16,7 @@ var flag_zaya; //отслеживание появление зайца
 var shtraf = 0; //счет штрафных очков
 var ball = 0; //счет пойманных яиц
 var flag = 0; //для обнуления счета
-var time_change =2;
+var time_change = 2;
 setInterval(get_size, 1000);
 
 function get_size(){
@@ -31,7 +31,7 @@ function get_size(){
   gameA(time_start, sec); //запуск игры А
   gameB(time_start, sec); //запуск игры Б
   document.getElementById('ochki').innerText = ball;
-  console.log('time_change',time_change);
+//  console.log('time_change',time_change);
   return screen_size; 
 }
 
@@ -81,8 +81,8 @@ function addGame() {
     var elemGran = botGran.getBoundingClientRect();
     //плашки
     var forLeft = elemGran.height - 16;
-    var forBottom = elemGran.width - 9;
-    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 5px) rotateY(90deg)';
+    var forBottom = elemGran.width - document.getElementsByClassName('bottom')[0].offsetWidth / 2 + 4;//9;
+    document.getElementsByClassName('bottom')[0].style.transform = 'translate(' + forBottom + 'px, 3px) rotateY(90deg)';
     document.getElementsByClassName('left')[0].style.transform = 'translate(-2px, ' + forLeft + 'px) rotateX(90deg)';
     document.getElementsByClassName('right')[0].style.transform = 'transform: translate(-0,5%, -9px) rotateX(90deg)';   
     //подписи
@@ -142,7 +142,7 @@ function addGame() {
     document.getElementsByClassName('left')[0].style.transform = 'translate(-6px, ' + forLeft + 'px) rotateX(90deg)';
     document.getElementsByClassName('right')[0].style.transform = 'translate(-6px, -10px) rotateX(90deg)';
     //подписи
-    var elemLabel = forBottom - document.getElementsByClassName('to_bottom')[0].offsetHeight/2;   
+    var elemLabel = forBottom-4  - document.getElementsByClassName('to_bottom')[0].offsetHeight/2;   
     document.getElementsByClassName('to_bottom')[0].style.left = elemLabel + 'px';
     document.getElementsByClassName('to_bottom')[0].style.top = '50%';
 
@@ -199,7 +199,7 @@ function addGame() {
     document.getElementsByClassName('right')[0].style.transform = 'translate(' + forRight + 'px, 0px) rotateY(90deg)';
     document.getElementsByClassName('left')[0].style.transform = 'translate(-15px, 0px) rotateY(90deg)';   
     //подписи
-    var forLabelBot = document.getElementById('for_game_layer2').offsetHeight;    
+    var forLabelBot = forBottom -4 - document.getElementsByClassName('to_bottom')[0].offsetHeight/2;//document.getElementById('for_game_layer2').offsetHeight;    
     document.getElementsByClassName('to_bottom')[0].style.top = forLabelBot + 'px';
     document.getElementsByClassName('to_bottom')[0].style.left = '50%';
 
@@ -673,7 +673,7 @@ function createTimerPromise2(obj_next, result) {
 }
 
 function gameA(time_start, sec){
-   console.log(sec);
+ //  console.log(sec);
   if(time_start === 1)// && sec % time_change === 0)
   {
     //игра А. В зависимости от кол-ва штрафных очков - используются разные склоны
@@ -685,9 +685,11 @@ function gameA(time_start, sec){
       2:{0:2, 1:3, 2:4},
       2.5:{0:2, 1:3, 2:4},
     };
-    var num = num_sklon[shtraf][randomDiap(0,2)];
     if(shtraf < 3.5)
+    {
+    var num = num_sklon[shtraf][randomDiap(0,2)];  
       game(num);
+    } 
     else 
       time_start = 0;
   }
