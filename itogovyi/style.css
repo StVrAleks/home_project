@@ -87,7 +87,7 @@ button{
     top: 0;
     left: 0;
 }
-#but1::after,
+/*#but1::after,
 #but2::after {
   content: 'Shift';
   color: black;
@@ -106,11 +106,11 @@ button{
   opacity: 1;
   padding-top: 50%;
  
-}
-
+}*/
+/*
 #but2::after {
   content: 'Ctrl';
-}
+}*/
 .for_button{
     border-radius: 50%;
     border: 3px solid #B40E07;
@@ -133,8 +133,8 @@ button{
 }
 /*----*/
 #place_for_game{
-    width: 94%; 
-    height: 90%;
+  /*  width: 94%; 
+    height: 90%;*/
     position: absolute;
     left: 50%;
     top:50%;
@@ -291,27 +291,40 @@ button{
     margin-right: 1px;
     margin-bottom: -39px;
 }
+#but1::after,
+#but2::after,
 #but3::after,
 #but4::after{
-    content: '↑';
-    color: black;
+    content: '';
+    color: #CECDC8;
     font-size: 20px;
-    line-height: 26px;
-    width: 60px;
-    height: calc(60px - 50%);
-    border-radius: 50%;
-    border: 4px solid #DB2323;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: 3px solid #B40E07;
     position: absolute;
-    top: -50%;
-    left: -50%;
-    animation-timing-function: ease-in-out;
-    animation-duration: 800ms;
-    animation-name: rule;
-    opacity: 1;
-    padding-top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    animation: 1s linear infinite;
+    line-height: 35px;
+    position: absolute;
+}
+#but1::after {
+  font-size: 15px;
+  font-weight: normal;
+  animation-name: rule1;
+}
+#but2::after {
+  font-size: 15px;
+  font-weight: normal;
+  animation-name: rule2;
+}
+#but3::after{
+  animation-name: rule3;
 }
 #but4::after{
-  content: '↓';
+  animation-name: rule4;
 }
 .for_control_button{
     width: 30px;
@@ -538,7 +551,6 @@ button{
   position: absolute;
   top: 50%;
   left: 50%;
- /* transform: translate(-50%, -50%) rotate(0deg);*/
   z-index: 10;
 }
 .eggs{
@@ -648,38 +660,93 @@ button{
   left: 76%;
   transform: rotate(-198deg);
 }
-
 @keyframes rule {
   from {
-    opacity: 0.1;
-    border-top: 0px solid red;
-    border-right: 0px solid red;
-    border-bottom: 0px solid red;
-    border-left: 0px solid red;
-    border-style: dashed;
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
   }
-  to {
-    opacity: 0.25;
-    border-top: 4px solid red;
-    border-style: dashed;
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
   }
-  to {
-    opacity: 0.5;
-    border-right: 4px solid red;
-    border-style: dashed;
+}
+@keyframes rule1 {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
   }
-  to {
-    opacity: 0.75;
-    border-bottom: 4px solid red;
-    border-style: dashed;
+  20% {
+    transform: scale(0.95) translate(-51%, -50%);
+    content: 'Shift';
+    line-height: 30px;
+    border-top: 4px solid #B40E07;
+    border-left: 4px solid #B40E07;
+    border-bottom: 2px solid #B40E07;
+    border-right: 2px solid #B40E07;
   }
-  to {
-    opacity: 1;
-    border-left: 4px solid red;
-    border-style: dashed;
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
   }
 }
 
+@keyframes rule2 {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+  40% {
+    transform: scale(0.95) translate(-51%, -50%);
+    content: 'Ctrl';
+    line-height: 30px;
+    border-top: 4px solid #B40E07;
+    border-left: 4px solid #B40E07;
+    border-bottom: 2px solid #B40E07;
+    border-right: 2px solid #B40E07;
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+}
+@keyframes rule3 {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+  60% {
+    transform: scale(0.95) translate(-50%, -50%);
+    content: '↑';
+    line-height: 30px;
+    border-top: 4px solid #B40E07;
+    border-left: 4px solid #B40E07;
+    border-bottom: 2px solid #B40E07;
+    border-right: 2px solid #B40E07;
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+}
+@keyframes rule4 {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+  80% {
+    transform: scale(0.95) translate(-50%, -50%);
+    content: '↓';
+    line-height: 30px;
+    border-top: 4px solid #B40E07;
+    border-left: 4px solid #B40E07;
+    border-bottom: 2px solid #B40E07;
+    border-right: 2px solid #B40E07;
+  }
+  50% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+}
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
@@ -690,15 +757,15 @@ button{
       #place_game_out{
         max-width: 600px;
         position: absolute;
-        max-height: 600px;
+        max-height: 800px;
         height: 30%;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
+      /*  transform: translate(-50%, -50%);*/
         }
       #place_game_in{
         max-width: 600px;
-        max-height: 600px;
+        max-height: 800px;
         flex-direction: column;
         align-items: center;
         }
@@ -719,10 +786,12 @@ button{
         }
       #img1{ 
         border-top: 24px solid black; 
+        margin-right: -5px;
         transform: rotate(118deg) translate(0px, 0px);
         }
       #img2{ 
         border-left: 24px solid black;
+        margin-right: -14px;
         transform: rotate(143deg) translate(0px, 0px);
         }
       .borderBut,
@@ -753,17 +822,18 @@ button{
         flex-direction: row;
         }
         /*----*/
-      #place_for_game{
-        width: 100%;
-        height: 98%;
-        }
+     /* #place_for_game{
+        max-width: 75%;
+       /* width: 100%;
+        height: 98%;*/
+       /* }*/
       .left {
         height: 26px;
-        width: 102%;
+        width: 103%;
         }
       .right {
         height: 26px;
-        width: 102%;
+        width: 103%;
         transform: translate(-6px, -10px) rotateX(90deg);
         }
       .top {
@@ -776,7 +846,7 @@ button{
         width: 26px;
        }   
       #top_label{
-        left: 0%;
+        left: -4px;
         }
       .for_label{
         top:50%;  
@@ -820,10 +890,12 @@ button{
         }
       #img3{ 
         border-top: 24px solid black;
+        margin-right: 10px;
         transform: rotate(240deg) translate(2px, -3px);
         }
       #img4{ 
         border-right: 24px solid black;
+        margin-right: 2px;
         transform: rotate(215deg) translate(5px, 0px);
         }
       .for_control_button{
@@ -842,6 +914,102 @@ button{
       #ochki {
         font-size: 14px;
         }
+        #but1::after,
+        #but2::after,
+        #but3::after,
+        #but4::after
+         {
+          width: 30px;
+          height: 30px;
+          font-size: 12px;
+          font-weight: normal;
+        }
+        #but2::after {
+          animation-name: rule2;
+        }
+        #but3::after{
+          animation-name: rule3;
+        }
+        #but4::after{
+          animation-name: rule4;
+        }
+        @keyframes rule1 {
+          from {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+          20% {
+            transform: scale(0.95) translate(-51%, -50%);
+            content: 'touch';
+            line-height: 30px;
+            border-top: 2px solid #B40E07;
+            border-left: 2px solid #B40E07;
+            border-bottom: 4px solid #B40E07;
+            border-right: 4px solid #B40E07;
+          }
+          100% {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+        }
+        
+        @keyframes rule2 {
+          from {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+          40% {
+            transform: scale(0.95) translate(-51%, -50%);
+            content: 'touch';
+            line-height: 30px;
+            border-top: 2px solid #B40E07;
+            border-left: 2px solid #B40E07;
+            border-bottom: 4px solid #B40E07;
+            border-right: 4px solid #B40E07;
+          }
+          100% {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+        }
+        @keyframes rule3 {
+          from {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+          60% {
+            transform: scale(0.95) translate(-50%, -50%);
+            content: 'touch';
+            line-height: 30px;
+            border-top: 2px solid #B40E07;
+            border-left: 2px solid #B40E07;
+            border-bottom: 4px solid #B40E07;
+            border-right: 4px solid #B40E07;
+          }
+          100% {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+        }
+        @keyframes rule4 {
+          from {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+          80% {
+            transform: scale(0.95) translate(-50%, -50%);
+            content: 'touch';
+            line-height: 30px;
+            border-top: 4px solid #B40E07;
+            border-left: 4px solid #B40E07;
+            border-bottom: 2px solid #B40E07;
+            border-right: 2px solid #B40E07;
+          }
+          50% {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+        }
       }
 
 /*смартфоны в альбомной ориентации (горизонтально)*/
@@ -852,7 +1020,7 @@ button{
     max-height: 600px;
     left: 50%; /*0*/
     top: 50%; /*0*/
-    transform: translate(-50%, -50%); /*1.1*/
+   /* transform: translate(-50%, -50%);*/ /*1.1*/
     }
 
     #place_game_in{
@@ -914,8 +1082,9 @@ button{
     }
     /*----*/
     #place_for_game{
-      width: 100%; 
-      height: 100%;
+    /*  width: 100%; 
+      height: 100%;*/
+      max-width: 380px;
       border-radius: 5px;
       transform-style: preserve-3d;
     }
@@ -986,9 +1155,6 @@ button{
         width: 30px;
         height: 15px;
     }
-/*#game_canvas{
-  transform: translate(-50%,-50%) rotate(90deg);
-}*/
 #gameB{
   left: 84%;
 }
@@ -1003,5 +1169,101 @@ button{
   /* top: 18%;
    left: 73%;*/
    font-size: 12px;
+ }
+ #but1::after,
+ #but2::after,
+ #but3::after,
+ #but4::after
+  {
+   width: 28px;
+   height: 28px;
+   font-size: 12px;
+   font-weight: normal;
+ }
+ #but2::after {
+   animation-name: rule2;
+ }
+ #but3::after{
+   animation-name: rule3;
+ }
+ #but4::after{
+   animation-name: rule4;
+ }
+ @keyframes rule1 {
+   from {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+   20% {
+     transform: scale(0.95) translate(-51%, -50%);
+     content: 'touch';
+     line-height: 28px;
+     border-top: 2px solid #B40E07;
+     border-left: 2px solid #B40E07;
+     border-bottom: 4px solid #B40E07;
+     border-right: 4px solid #B40E07;
+   }
+   100% {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+ }
+ 
+ @keyframes rule2 {
+   from {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+   40% {
+     transform: scale(0.95) translate(-51%, -50%);
+     content: 'touch';
+     line-height: 28px;
+     border-top: 2px solid #B40E07;
+     border-left: 2px solid #B40E07;
+     border-bottom: 4px solid #B40E07;
+     border-right: 4px solid #B40E07;
+   }
+   100% {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+ }
+ @keyframes rule3 {
+   from {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+   60% {
+     transform: scale(0.95) translate(-50%, -50%);
+     content: 'touch';
+     line-height: 28px;
+     border-top: 2px solid #B40E07;
+     border-left: 2px solid #B40E07;
+     border-bottom: 4px solid #B40E07;
+     border-right: 4px solid #B40E07;
+   }
+   100% {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+ }
+ @keyframes rule4 {
+   from {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+   80% {
+     transform: scale(0.95) translate(-50%, -50%);
+     content: 'touch';
+     line-height: 30px;
+     border-top: 4px solid #B40E07;
+     border-left: 4px solid #B40E07;
+     border-bottom: 2px solid #B40E07;
+     border-right: 2px solid #B40E07;
+   }
+   50% {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
  }
 }

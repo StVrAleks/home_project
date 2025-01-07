@@ -216,7 +216,7 @@ button{
     top: 0;
     left: 0;
 }
-#but1::after,
+/*#but1::after,
 #but2::after {
   content: 'Shift';
   color: black;
@@ -235,11 +235,11 @@ button{
   opacity: 1;
   padding-top: 50%;
  
-}
-
+}*/
+/*
 #but2::after {
   content: 'Ctrl';
-}
+}*/
 .for_button{
     border-radius: 50%;
     border: 3px solid #B40E07;
@@ -262,8 +262,8 @@ button{
 }
 /*----*/
 #place_for_game{
-    width: 94%; 
-    height: 90%;
+  /*  width: 94%; 
+    height: 90%;*/
     position: absolute;
     left: 50%;
     top:50%;
@@ -420,27 +420,40 @@ button{
     margin-right: 1px;
     margin-bottom: -39px;
 }
+#but1::after,
+#but2::after,
 #but3::after,
 #but4::after{
-    content: '↑';
-    color: black;
+    content: '';
+    color: #CECDC8;
     font-size: 20px;
-    line-height: 26px;
-    width: 60px;
-    height: calc(60px - 50%);
-    border-radius: 50%;
-    border: 4px solid #DB2323;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    border: 3px solid #B40E07;
     position: absolute;
-    top: -50%;
-    left: -50%;
-    animation-timing-function: ease-in-out;
-    animation-duration: 800ms;
-    animation-name: rule;
-    opacity: 1;
-    padding-top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    animation: 1s linear infinite;
+    line-height: 35px;
+    position: absolute;
+}
+#but1::after {
+  font-size: 15px;
+  font-weight: normal;
+  animation-name: rule1;
+}
+#but2::after {
+  font-size: 15px;
+  font-weight: normal;
+  animation-name: rule2;
+}
+#but3::after{
+  animation-name: rule3;
 }
 #but4::after{
-  content: '↓';
+  animation-name: rule4;
 }
 .for_control_button{
     width: 30px;
@@ -667,7 +680,6 @@ button{
   position: absolute;
   top: 50%;
   left: 50%;
- /* transform: translate(-50%, -50%) rotate(0deg);*/
   z-index: 10;
 }
 .eggs{
@@ -777,38 +789,93 @@ button{
   left: 76%;
   transform: rotate(-198deg);
 }
-
 @keyframes rule {
   from {
-    opacity: 0.1;
-    border-top: 0px solid red;
-    border-right: 0px solid red;
-    border-bottom: 0px solid red;
-    border-left: 0px solid red;
-    border-style: dashed;
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
   }
-  to {
-    opacity: 0.25;
-    border-top: 4px solid red;
-    border-style: dashed;
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
   }
-  to {
-    opacity: 0.5;
-    border-right: 4px solid red;
-    border-style: dashed;
+}
+@keyframes rule1 {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
   }
-  to {
-    opacity: 0.75;
-    border-bottom: 4px solid red;
-    border-style: dashed;
+  20% {
+    transform: scale(0.95) translate(-51%, -50%);
+    content: 'Shift';
+    line-height: 30px;
+    border-top: 4px solid #B40E07;
+    border-left: 4px solid #B40E07;
+    border-bottom: 2px solid #B40E07;
+    border-right: 2px solid #B40E07;
   }
-  to {
-    opacity: 1;
-    border-left: 4px solid red;
-    border-style: dashed;
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
   }
 }
 
+@keyframes rule2 {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+  40% {
+    transform: scale(0.95) translate(-51%, -50%);
+    content: 'Ctrl';
+    line-height: 30px;
+    border-top: 4px solid #B40E07;
+    border-left: 4px solid #B40E07;
+    border-bottom: 2px solid #B40E07;
+    border-right: 2px solid #B40E07;
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+}
+@keyframes rule3 {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+  60% {
+    transform: scale(0.95) translate(-50%, -50%);
+    content: '↑';
+    line-height: 30px;
+    border-top: 4px solid #B40E07;
+    border-left: 4px solid #B40E07;
+    border-bottom: 2px solid #B40E07;
+    border-right: 2px solid #B40E07;
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+}
+@keyframes rule4 {
+  from {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+  80% {
+    transform: scale(0.95) translate(-50%, -50%);
+    content: '↓';
+    line-height: 30px;
+    border-top: 4px solid #B40E07;
+    border-left: 4px solid #B40E07;
+    border-bottom: 2px solid #B40E07;
+    border-right: 2px solid #B40E07;
+  }
+  50% {
+    transform: scale(1) translate(-50%, -50%);
+    content: '';
+  }
+}
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
@@ -819,15 +886,15 @@ button{
       #place_game_out{
         max-width: 600px;
         position: absolute;
-        max-height: 600px;
+        max-height: 800px;
         height: 30%;
         left: 50%;
         top: 50%;
-        transform: translate(-50%, -50%);
+      /*  transform: translate(-50%, -50%);*/
         }
       #place_game_in{
         max-width: 600px;
-        max-height: 600px;
+        max-height: 800px;
         flex-direction: column;
         align-items: center;
         }
@@ -848,10 +915,12 @@ button{
         }
       #img1{ 
         border-top: 24px solid black; 
+        margin-right: -5px;
         transform: rotate(118deg) translate(0px, 0px);
         }
       #img2{ 
         border-left: 24px solid black;
+        margin-right: -14px;
         transform: rotate(143deg) translate(0px, 0px);
         }
       .borderBut,
@@ -882,17 +951,18 @@ button{
         flex-direction: row;
         }
         /*----*/
-      #place_for_game{
-        width: 100%;
-        height: 98%;
-        }
+     /* #place_for_game{
+        max-width: 75%;
+       /* width: 100%;
+        height: 98%;*/
+       /* }*/
       .left {
         height: 26px;
-        width: 102%;
+        width: 103%;
         }
       .right {
         height: 26px;
-        width: 102%;
+        width: 103%;
         transform: translate(-6px, -10px) rotateX(90deg);
         }
       .top {
@@ -905,7 +975,7 @@ button{
         width: 26px;
        }   
       #top_label{
-        left: 0%;
+        left: -4px;
         }
       .for_label{
         top:50%;  
@@ -949,10 +1019,12 @@ button{
         }
       #img3{ 
         border-top: 24px solid black;
+        margin-right: 10px;
         transform: rotate(240deg) translate(2px, -3px);
         }
       #img4{ 
         border-right: 24px solid black;
+        margin-right: 2px;
         transform: rotate(215deg) translate(5px, 0px);
         }
       .for_control_button{
@@ -971,6 +1043,102 @@ button{
       #ochki {
         font-size: 14px;
         }
+        #but1::after,
+        #but2::after,
+        #but3::after,
+        #but4::after
+         {
+          width: 30px;
+          height: 30px;
+          font-size: 12px;
+          font-weight: normal;
+        }
+        #but2::after {
+          animation-name: rule2;
+        }
+        #but3::after{
+          animation-name: rule3;
+        }
+        #but4::after{
+          animation-name: rule4;
+        }
+        @keyframes rule1 {
+          from {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+          20% {
+            transform: scale(0.95) translate(-51%, -50%);
+            content: 'touch';
+            line-height: 30px;
+            border-top: 2px solid #B40E07;
+            border-left: 2px solid #B40E07;
+            border-bottom: 4px solid #B40E07;
+            border-right: 4px solid #B40E07;
+          }
+          100% {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+        }
+        
+        @keyframes rule2 {
+          from {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+          40% {
+            transform: scale(0.95) translate(-51%, -50%);
+            content: 'touch';
+            line-height: 30px;
+            border-top: 2px solid #B40E07;
+            border-left: 2px solid #B40E07;
+            border-bottom: 4px solid #B40E07;
+            border-right: 4px solid #B40E07;
+          }
+          100% {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+        }
+        @keyframes rule3 {
+          from {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+          60% {
+            transform: scale(0.95) translate(-50%, -50%);
+            content: 'touch';
+            line-height: 30px;
+            border-top: 2px solid #B40E07;
+            border-left: 2px solid #B40E07;
+            border-bottom: 4px solid #B40E07;
+            border-right: 4px solid #B40E07;
+          }
+          100% {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+        }
+        @keyframes rule4 {
+          from {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+          80% {
+            transform: scale(0.95) translate(-50%, -50%);
+            content: 'touch';
+            line-height: 30px;
+            border-top: 4px solid #B40E07;
+            border-left: 4px solid #B40E07;
+            border-bottom: 2px solid #B40E07;
+            border-right: 2px solid #B40E07;
+          }
+          50% {
+            transform: scale(1) translate(-50%, -50%);
+            content: '';
+          }
+        }
       }
 
 /*смартфоны в альбомной ориентации (горизонтально)*/
@@ -981,7 +1149,7 @@ button{
     max-height: 600px;
     left: 50%; /*0*/
     top: 50%; /*0*/
-    transform: translate(-50%, -50%); /*1.1*/
+   /* transform: translate(-50%, -50%);*/ /*1.1*/
     }
 
     #place_game_in{
@@ -1043,8 +1211,9 @@ button{
     }
     /*----*/
     #place_for_game{
-      width: 100%; 
-      height: 100%;
+    /*  width: 100%; 
+      height: 100%;*/
+      max-width: 380px;
       border-radius: 5px;
       transform-style: preserve-3d;
     }
@@ -1115,9 +1284,6 @@ button{
         width: 30px;
         height: 15px;
     }
-/*#game_canvas{
-  transform: translate(-50%,-50%) rotate(90deg);
-}*/
 #gameB{
   left: 84%;
 }
@@ -1133,11 +1299,108 @@ button{
    left: 73%;*/
    font-size: 12px;
  }
+ #but1::after,
+ #but2::after,
+ #but3::after,
+ #but4::after
+  {
+   width: 28px;
+   height: 28px;
+   font-size: 12px;
+   font-weight: normal;
+ }
+ #but2::after {
+   animation-name: rule2;
+ }
+ #but3::after{
+   animation-name: rule3;
+ }
+ #but4::after{
+   animation-name: rule4;
+ }
+ @keyframes rule1 {
+   from {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+   20% {
+     transform: scale(0.95) translate(-51%, -50%);
+     content: 'touch';
+     line-height: 28px;
+     border-top: 2px solid #B40E07;
+     border-left: 2px solid #B40E07;
+     border-bottom: 4px solid #B40E07;
+     border-right: 4px solid #B40E07;
+   }
+   100% {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+ }
+ 
+ @keyframes rule2 {
+   from {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+   40% {
+     transform: scale(0.95) translate(-51%, -50%);
+     content: 'touch';
+     line-height: 28px;
+     border-top: 2px solid #B40E07;
+     border-left: 2px solid #B40E07;
+     border-bottom: 4px solid #B40E07;
+     border-right: 4px solid #B40E07;
+   }
+   100% {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+ }
+ @keyframes rule3 {
+   from {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+   60% {
+     transform: scale(0.95) translate(-50%, -50%);
+     content: 'touch';
+     line-height: 28px;
+     border-top: 2px solid #B40E07;
+     border-left: 2px solid #B40E07;
+     border-bottom: 4px solid #B40E07;
+     border-right: 4px solid #B40E07;
+   }
+   100% {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+ }
+ @keyframes rule4 {
+   from {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+   80% {
+     transform: scale(0.95) translate(-50%, -50%);
+     content: 'touch';
+     line-height: 30px;
+     border-top: 4px solid #B40E07;
+     border-left: 4px solid #B40E07;
+     border-bottom: 2px solid #B40E07;
+     border-right: 2px solid #B40E07;
+   }
+   50% {
+     transform: scale(1) translate(-50%, -50%);
+     content: '';
+   }
+ }
 }
 
     </style>
 </body>
 <script>
+
   
 
 window.addEventListener('load', add_svg);
@@ -1157,21 +1420,22 @@ var shtraf = 0; //счет штрафных очков
 var ball = 0; //счет пойманных яиц
 var flag = 0; //для обнуления счета
 var time_change = 2;
-setInterval(get_size, 1000);
+var control_sec;
+
+setInterval(get_size, 1000/4);
 
 function get_size(){
   var ratio = window.devicePixelRatio || 1;
   var screen_size ={
-    newWid: window.innerWidth || screen.width,//*ratio,
-    newHeig: window.innerHeight || screen.height//*ratio
+    newWid: window.innerWidth || screen.width*ratio,//*ratio,
+    newHeig: window.innerHeight || screen.height*ratio//*ratio
   };
-  console.log('time_start',time_start);
   var sec = control3();
-  zayac_move(time_start);
+  zayac_move(time_start, sec);
   gameA(time_start, sec); //запуск игры А
   gameB(time_start, sec); //запуск игры Б
   document.getElementById('ochki').innerText = ball;
-//  console.log('time_change',time_change);
+console.log("control_sec", control_sec);
   return screen_size; 
 }
 
@@ -1185,13 +1449,16 @@ function addGame() {
   var allPartGame = document.getElementById('place_game_out');
 
   if (newWid < 621) {
-    widthEl = newWid * 0.93;
+    widthEl = newWid * 0.89;
     heightEl = newHeig * 0.93;
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
-
+    allPartGame.style.transform = 'translate(-' + 0.5 * widthEl + 'px,-' + 0.5 * heightEl + 'px)';
+   
     //для канвас делаем новые размеры после ротейт
     var placeForGame = document.getElementById('place_for_game');
+        placeForGame.style.width = "100%";
+        placeForGame.style.height = "100%";   
     var placeGame = placeForGame.getBoundingClientRect();
 
     var newW = 0.855 * placeGame.height;
@@ -1207,15 +1474,16 @@ function addGame() {
     var imgs = document.getElementById('img_game');
         imgs.style.width = newW + 'px';
         imgs.style.height = newH + 'px';
-      //  imgs.style.left = layer4.top + 'px';
-      //  imgs.style.top = 0.5 * heightEl + 'px';
         imgs.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-'+ 0.5*layer4.height + 'px, -' + + 0.5 * layer4.width+'px) rotate(90deg)';
   
     var canvas = document.getElementById('game_canvas');
+        sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
+        sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;
+      //  sizePart.gamePartW = newW;
+      //  sizePart.gamePartH = newH;   
         canvas.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-50%, -50%) rotate(90deg)';
 
-        sizePart.gamePartW = newW;
-        sizePart.gamePartH = newH;
+
 
     var botGran = document.getElementById('place_for_game');
     var elemGran = botGran.getBoundingClientRect();
@@ -1247,24 +1515,33 @@ function addGame() {
     heightEl = newHeig * 0.92;
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
+    allPartGame.style.transform = 'translate(-50%,-50%)';
 
+    var placeII = document.getElementById('place_game_II');
+    var placeGameII = placeII.getBoundingClientRect();
 
+  //  var placeIIW = placeGameII.width;
+    var placeIIH = placeGameII.height;
+    var pnewH = placeIIH;   
+    var pnewW = 0.75 * placeIIH;      
     var placeForGame = document.getElementById('place_for_game');
     var placeGame = placeForGame.getBoundingClientRect();
-    var newW = 0.87 * placeGame.height;
-    var newH = 0.90 * placeGame.width;
+        placeForGame.style.width = pnewW + 'px';
+        placeForGame.style.height = pnewH + 'px'; 
+    
+    var newW = 0.87 * pnewH;//placeGame.height; 0.87 
+    var newH =  0.88 * pnewW;//placeGame.width;0.90
 
     var placeLayer4 = document.getElementById('for_game_layer4');
         placeLayer4.style.width = newW + 'px';
         placeLayer4.style.height = newH + 'px';
         placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';
+  
 
-    var layer4 = placeLayer4.getBoundingClientRect();
+  //  var layer4 = placeLayer4.getBoundingClientRect();
     var imgs = document.getElementById('img_game');
         imgs.style.width = newW + 'px';
         imgs.style.height = newH + 'px';
-      /*  imgs.style.left = 0.5 * widthEl + 'px';
-        imgs.style.top = 0.5 * heightEl + 'px';*/
         imgs.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-50%, -50%) rotate(90deg)';
 
     var canvas = document.getElementById('game_canvas');
@@ -1283,7 +1560,7 @@ function addGame() {
     document.getElementsByClassName('right')[0].style.transform = 'translate(-6px, -10px) rotateX(90deg)';
     //подписи
     var elemLabel = forBottom-4  - document.getElementsByClassName('to_bottom')[0].offsetHeight/2;   
-    document.getElementsByClassName('to_bottom')[0].style.left = elemLabel + 'px';
+    document.getElementsByClassName('to_bottom')[0].style.left = elemLabel + 7 + 'px';
     document.getElementsByClassName('to_bottom')[0].style.top = '50%';
 
 
@@ -1306,6 +1583,11 @@ function addGame() {
     heightEl = 0.7 * newHeig;
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
+    allPartGame.style.transform = 'translate(-50%,-50%)';
+
+    var placeForGame = document.getElementById('place_for_game');
+      placeForGame.style.width = "94%";
+      placeForGame.style.height = "90%"; 
 
     var gameLayer4 = document.getElementById('for_game_layer4');
     var layer4 = gameLayer4.getBoundingClientRect();
@@ -1631,7 +1913,12 @@ function control1(event) {
   document.getElementById('ochki').style.opacity = 1;
   document.getElementById('control_4').style.background = 'red';
   document.getElementById('control_8').style.background = 'black';
+ /* var after_el = document.querySelector('#but1');
+  after_el.style.animationName = 'rule';
+  after_el.style.transition = 'all 0';*/
   time_start = 1;
+  control_sec = 3;
+  left_top();
 }
 function control2(event) {
   eo = window.event;
@@ -1641,6 +1928,8 @@ function control2(event) {
   document.getElementById('control_4').style.background = 'black';
   document.getElementById('control_8').style.background = 'red';
   time_start = 2;
+  control_sec = 2;
+  left_top();
 }
 function control_event(){
 
@@ -1723,20 +2012,26 @@ function right_bot(event){
     hend[1].style.opacity = 1;  
 }
 function for_control3(){
- // time_start = 3;
   document.getElementById('curTime').style.opacity = 1;
 }
 function control3() {
- // if(time_start === 3)
-  //{
- // time_change = 1000;
   const currTime=new Date();
   const hour = currTime.getHours();
   const min = currTime.getMinutes();
   const sec = currTime.getSeconds();
+  var msec = currTime.getMilliseconds()/1000;
+ // console.log('msec', msec);
+  if(msec < 0.26)
+    msec = 0.25;
+    else if(msec > 0.25 && msec < 0.51)
+      msec = 0.5;
+      else if(msec > 0.5 && msec < 0.76)
+        msec = 0.75;
+        else if(msec > 0.75)
+          msec = 0;
   document.getElementById('curTime').innerText = str0l(hour,2) + ':' + str0l(min,2)+ ':' + str0l(sec,2);
  // }
- return sec;
+ return sec + msec;
 }
 function str0l(val,len) {
   let strVal=val.toString();
@@ -1756,22 +2051,22 @@ function createTimerPromiseZaya(obj, obj_next, val, time, result) {
         obj.style.opacity = val;
         obj_next.style.opacity = val;
         resolve(result);
-        if(!obj)
+        if(!obj || !obj_next)
           reject("ошибка!!!"); 
       }, 1000*time);
   });
 
 }
-function zayac_move(time_start){
+function zayac_move(time_start, sec){
   if(time_start === 1 || time_start === 2) //если игра запущена
   {
   var zaya = document.getElementById('zayac');
   var hends = document.getElementsByClassName('hend_z'); 
-  const currTime=new Date();
-  const seconds = currTime.getSeconds();
+ /* const currTime=new Date();
+  const seconds = currTime.getSeconds();*/
   var rand = randomDiap(0,1); //разные руки зайца
   
-  if(seconds % 6 === 0)
+  if(sec % 6 === 0)
     {
       createTimerPromiseZaya(zaya, hends[rand], 1, 4, 2)
       .then( result => {
@@ -1792,7 +2087,7 @@ function createTimerPromise(obj, obj_next, time, result) {
         obj_next.style.opacity = 1;
         soundClickEg();
         resolve(result);
-        if(!obj)
+        if(!obj || !obj_next)
           reject("ошибка!!!"); 
       }, 1000/time);
   });
@@ -1813,8 +2108,7 @@ function createTimerPromise2(obj_next, result) {
 }
 
 function gameA(time_start, sec){
- //  console.log(sec);
-  if(time_start === 1)// && sec % time_change === 0)
+  if(time_start === 1 && sec % control_sec === 0)//на стартке: 1 в 3 сек
   {
     //игра А. В зависимости от кол-ва штрафных очков - используются разные склоны
     var num_sklon = {
@@ -1873,42 +2167,52 @@ function game(num)
 
 function move_ags(new_eg){
   (new_eg.eg)[0].style.opacity = 1;
- createTimerPromise((new_eg.eg)[0], (new_eg.eg)[1], 1, 0)
+ createTimerPromise((new_eg.eg)[0], (new_eg.eg)[1], control_sec/2, 0)
       .then( result => {
-        return createTimerPromise((new_eg.eg)[1], (new_eg.eg)[2], 1, 2)
+        return createTimerPromise((new_eg.eg)[1], (new_eg.eg)[2], control_sec/2, 2)
         })   
         .then( result => {
-          return createTimerPromise((new_eg.eg)[2], (new_eg.eg)[3],1, 2)
+          return createTimerPromise((new_eg.eg)[2], (new_eg.eg)[3],control_sec/2, 2)
           })  
           .then( result => {
-            return createTimerPromise((new_eg.eg)[3], (new_eg.eg)[4],1, 2)
+            return createTimerPromise((new_eg.eg)[3], (new_eg.eg)[4],control_sec/2, 2)
             }) 
-          .then( result => {
-             if((new_eg.hend).style.opacity === "1") 
-             {
-                ball = ball + 1;
-                if(ball === 200 || ball ===500) 
-                  shtraf = 0;
-                console.log("Очки: ", ball);
-                return createTimerPromise2((new_eg.eg)[4], 2)
-             }
-             else 
-                return move_bdyj(new_eg);
-            })  
+            .then( result => {
+              return createTimerPromise2((new_eg.eg)[4], 2)
+              }) 
+              .then( result => {
+                if((new_eg.hend).style.opacity === "1") 
+                {
+                    ball = ball + 1;
+                    if(ball === 200 || ball ===500) 
+                      shtraf = 0;
+                    console.log("Очки: ", ball);
+                    return createTimerPromise2((new_eg.eg)[4], 2)
+                }
+                else 
+                {
+                soundClick();
+                 new_eg.bd.style.opacity = 1;
+                    return move_bdyj(new_eg);
+                }
+                })  
       .catch( error => {
         console.log("случилась ошибка: " + error);
       });
-    /*  if(ball < 15)
-        time_change = 2;
-      if(ball % 15 === 0)
-         time_change = parseFloat(time_change * 0.95).toFixed(2);*/
+      if(ball < 26)
+        control_sec = 3;
+      else if(ball > 25 && ball < 51)
+        control_sec = 2.5;
+      else if(ball > 50 && ball < 76)
+        control_sec = 2;
+      else if(ball > 75 && ball < 100)
+        control_sec = 1.5; 
+      else if(ball > 99)
+        control_sec = 2;
+
   }
  function move_bdyj(new_eg){
-  createTimerPromise((new_eg.eg)[4], new_eg.bd, 1, 2)
-    .then( result => {
-       soundClick();
-        return createTimerPromise2(new_eg.bd, 2)
-      })  
+  createTimerPromise2(new_eg.bd, 2)
       .then( result => {
         if(flag_zaya === 1)
         {
@@ -1952,15 +2256,15 @@ function move_ags(new_eg){
       }  
  } 
 function move_cyp(new_eg){
-    createTimerPromise(new_eg.bd, (new_eg.cyp)[0], 3, 2)
+    createTimerPromise(new_eg.bd, (new_eg.cyp)[0], control_sec, 2)
     .then( result => {
-      return createTimerPromise((new_eg.cyp)[0], (new_eg.cyp)[1],3, 2)
+      return createTimerPromise((new_eg.cyp)[0], (new_eg.cyp)[1],control_sec, 2)
       })  
       .then( result => {
-        return createTimerPromise((new_eg.cyp)[1], (new_eg.cyp)[2],3, 2)
+        return createTimerPromise((new_eg.cyp)[1], (new_eg.cyp)[2],control_sec, 2)
         }) 
         .then( result => {
-          return createTimerPromise((new_eg.cyp)[2], (new_eg.cyp)[3],3, 2)
+          return createTimerPromise((new_eg.cyp)[2], (new_eg.cyp)[3],control_sec, 2)
           }) 
           .then( result => {
             return createTimerPromise2((new_eg.cyp)[3], 2)
