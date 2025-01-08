@@ -12,45 +12,44 @@ contr1.addEventListener('touchstart', control1, false);
 contr2.addEventListener('touchstart', control2, false);
 contr3.addEventListener('touchstart', for_control3, false);
 var time_start = 0; //отслеживание выбора режима игры
-var flag_zaya; //отслеживание появление зайца
-var shtraf = 0; //счет штрафных очков
-var ball = 0; //счет пойманных яиц
+var flag_zaya=0; //отслеживание появление зайца
+var shtraf; //счет штрафных очков
+var ball; //счет пойманных яиц
 var flag = 0; //для обнуления счета
 var time_change = 2;
-var control_sec;
+var control_sec, flag_sec;
 
 setInterval(get_size, 1000/4);
 
 function get_size(){
-  var ratio = window.devicePixelRatio || 1;
+/*  var ratio = window.devicePixelRatio || 1;
   var screen_size ={
-    newWid: window.innerWidth || screen.width*ratio,//*ratio,
-    newHeig: window.innerHeight || screen.height*ratio//*ratio
-  };
+    newWid: window.innerWidth,// || screen.width*ratio,//*ratio,
+    newHeig: window.innerHeight// || screen.height*ratio//*ratio
+  };*/
   var sec = control3();
   zayac_move(time_start, sec);
   gameA(time_start, sec); //запуск игры А
   gameB(time_start, sec); //запуск игры Б
   document.getElementById('ochki').innerText = ball;
-console.log("control_sec", control_sec);
-  return screen_size; 
+//  return screen_size; 
 }
 
 function addGame() {
   var sizePart = {};
   var widthEl = 0;
   var heightEl = 0;
-  var screen_size = get_size();
-  const newWid = screen_size.newWid;// window.innerWidth;
-  const newHeig = screen_size.newHeig;//window.innerHeight;
+ // var screen_size = get_size();
+  var newWid = window.innerWidth;
+  var newHeig = window.innerHeight;
   var allPartGame = document.getElementById('place_game_out');
 
   if (newWid < 621) {
-    widthEl = newWid * 0.89;
-    heightEl = newHeig * 0.93;
+    widthEl = newWid-20;
+    heightEl = newHeig-20;
+    console.log('tyt', widthEl, heightEl);
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
-    allPartGame.style.transform = 'translate(-' + 0.5 * widthEl + 'px,-' + 0.5 * heightEl + 'px)';
    
     //для канвас делаем новые размеры после ротейт
     var placeForGame = document.getElementById('place_for_game');
@@ -77,7 +76,7 @@ function addGame() {
         sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
         sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;
       //  sizePart.gamePartW = newW;
-      //  sizePart.gamePartH = newH;   
+       // sizePart.gamePartH = newH;   
         canvas.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-50%, -50%) rotate(90deg)';
 
 
@@ -284,7 +283,7 @@ function add_svg() {
 
   var control_6 = document.getElementById('control_6');
   var control = control_6.getBoundingClientRect();
-  console.log('tyt', control.top, control.x);
+ // console.log('tyt', control.top, control.x);
   var controlW = 2.5 * document.getElementById('control_6').offsetWidth;
   var controlH = 2.5 * document.getElementById('control_6').offsetHeight;
 
@@ -515,6 +514,8 @@ function control1(event) {
   after_el.style.transition = 'all 0';*/
   time_start = 1;
   control_sec = 3;
+  shtraf=0;
+  ball = 0;
   left_top();
 }
 function control2(event) {
@@ -522,10 +523,13 @@ function control2(event) {
   eo.preventDefault();
   control_event();
   document.getElementById('gameB').style.opacity = 1;
+  document.getElementById('ochki').style.opacity = 1;
   document.getElementById('control_4').style.background = 'black';
   document.getElementById('control_8').style.background = 'red';
   time_start = 2;
   control_sec = 2;
+  shtraf = 0;
+  ball = 0;
   left_top();
 }
 function control_event(){
@@ -659,8 +663,6 @@ function zayac_move(time_start, sec){
   {
   var zaya = document.getElementById('zayac');
   var hends = document.getElementsByClassName('hend_z'); 
- /* const currTime=new Date();
-  const seconds = currTime.getSeconds();*/
   var rand = randomDiap(0,1); //разные руки зайца
   
   if(sec % 6 === 0)
@@ -725,9 +727,8 @@ function gameA(time_start, sec){
       time_start = 0;
   }
 }
-function gameB(time_start){
-//  time_change = 1.5;
-  if(time_start === 2)
+function gameB(time_start, sec){
+  if(time_start === 2 && sec % control_sec === 0)
   {
     //игра B. Используются все лотки произвольно
     var num_sklon = {
@@ -781,7 +782,7 @@ function move_ags(new_eg){
                 if((new_eg.hend).style.opacity === "1") 
                 {
                     ball = ball + 1;
-                    if(ball === 200 || ball ===500) 
+                    if(ball === 200 || ball === 500)  //обнуление штрафов при достижении некоторого кол-ва баллов
                       shtraf = 0;
                     console.log("Очки: ", ball);
                     return createTimerPromise2((new_eg.eg)[4], 2)
@@ -796,43 +797,39 @@ function move_ags(new_eg){
       .catch( error => {
         console.log("случилась ошибка: " + error);
       });
-      if(ball < 26)
-        control_sec = 3;
-      else if(ball > 25 && ball < 51)
-        control_sec = 2.5;
-      else if(ball > 50 && ball < 76)
-        control_sec = 2;
-      else if(ball > 75 && ball < 100)
-        control_sec = 1.5; 
-      else if(ball > 99)
-        control_sec = 2;
+      //скорость увеличивается и падает в зависимости от кол-ва баллов
+      var ball_flag=0;
+        if(ball > 100)
+          ball_flag = Array.from(ball)[0] + '00';
+      if(ball < (26 + ball_flag))
+        flag_sec = control_sec;
+        else if(ball > (25 + ball_flag) && ball < (51 + ball_flag))
+          control_sec = flag_sec - 0.5;
+          else if(ball > (50 + ball_flag) && ball < (76 + ball_flag))
+            control_sec = flag_sec-1;
+            else if(ball > (75 + ball_flag) && ball < (100 + ball_flag))
+              control_sec = flag_sec-1.5; 
 
   }
  function move_bdyj(new_eg){
   createTimerPromise2(new_eg.bd, 2)
       .then( result => {
         if(flag_zaya === 1)
-        {
+          {
           shtraf = shtraf + 0.5;
-          if(shtraf > 2.5)
-            time_start = 0;
-           move_cyp(new_eg);
-        }  
-        else
-         {
-          shtraf = shtraf + 1;
-          window.navigator.vibrate(200);  
-          if(shtraf > 2.5)
-            time_start = 0;
-         }
-          
-        flag_zaya = 0;  
-        })  
-      .catch( error => {
-        console.log("случилась ошибка: " + error);
-      });
-      console.log("Штрафные:", shtraf);
-      if(shtraf >=  0.5)
+          move_cyp(new_eg);
+          flag_zaya = 0;          
+          }  
+          else if(flag_zaya === 0)
+           {
+            console.log("dlkjngksjdn");
+            shtraf = shtraf + 1;
+            window.navigator.vibrate(200);  
+            }
+      console.log("Штрафные:", shtraf);            
+      if(shtraf > 2.5)
+            time_start = 0;   
+       if(shtraf >=  0.5)
         {
            document.getElementsByClassName('bant')[0].style.opacity = 1;
         }
@@ -846,11 +843,14 @@ function move_ags(new_eg){
             }
       if(shtraf > 2.5)
       {
-        time_start = 0;
         document.getElementById('game_over').style.opacity = 1;
-        ball = 0;
-        shtraf = 0;
-      }  
+        time_start = 0; 
+      }             
+        })  
+      .catch( error => {
+        console.log("случилась ошибка: " + error);
+      });
+     
  } 
 function move_cyp(new_eg){
     createTimerPromise(new_eg.bd, (new_eg.cyp)[0], control_sec, 2)
