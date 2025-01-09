@@ -6,6 +6,7 @@ window.addEventListener('load', addGame);
 window.addEventListener('resize', addGame);
 
 var contr1 = document.getElementById('control_1');
+console.log(contr1);
 var contr2 = document.getElementById('control_2');
 var contr3 = document.getElementById('control_3');
 contr1.addEventListener('touchstart', control1, false);
@@ -18,21 +19,19 @@ var ball; //счет пойманных яиц
 var flag = 0; //для обнуления счета
 var time_change = 2;
 var control_sec, flag_sec;
+var timeStart;
+var numGame=0;
 
 setInterval(get_size, 1000/4);
 
 function get_size(){
-/*  var ratio = window.devicePixelRatio || 1;
-  var screen_size ={
-    newWid: window.innerWidth,// || screen.width*ratio,//*ratio,
-    newHeig: window.innerHeight// || screen.height*ratio//*ratio
-  };*/
   var sec = control3();
   zayac_move(time_start, sec);
   gameA(time_start, sec); //запуск игры А
   gameB(time_start, sec); //запуск игры Б
-  document.getElementById('ochki').innerText = ball;
+  document.getElementById('ochki').innerText = ball || 0;
 //  return screen_size; 
+addGame();
 }
 
 function addGame() {
@@ -47,10 +46,16 @@ function addGame() {
   if (newWid < 621) {
     widthEl = newWid-20;
     heightEl = newHeig-20;
-    console.log('tyt', widthEl, heightEl);
+   // console.log('tyt', widthEl, heightEl);
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
    
+    var recGame = document.getElementById('records');
+      recGame.style.height = widthEl + 'px';
+      recGame.style.width ='0px';
+      //recGame.style.width = heightEl + 'px';
+      recGame.style.transform = 'translate(-50%,-50%) rotate(90deg)';
+
     //для канвас делаем новые размеры после ротейт
     var placeForGame = document.getElementById('place_for_game');
         placeForGame.style.width = "100%";
@@ -65,7 +70,7 @@ function addGame() {
         placeLayer4.style.height = newH + 'px';
         placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';
 
-    var layer4 = placeLayer4.getBoundingClientRect();
+  //  var layer4 = placeLayer4.getBoundingClientRect();
 
     var imgs = document.getElementById('img_game');
         imgs.style.width = newW + 'px';
@@ -112,6 +117,12 @@ function addGame() {
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
     allPartGame.style.transform = 'translate(-50%,-50%)';
+
+    var recGame = document.getElementById('records');
+    recGame.style.height = widthEl + 'px';
+    recGame.style.width = '0px';
+   /* recGame.style.width = heightEl + 'px';*/
+    recGame.style.transform = 'translate(-50%,-50%) rotate(90deg)';
 
     var placeII = document.getElementById('place_game_II');
     var placeGameII = placeII.getBoundingClientRect();
@@ -180,6 +191,12 @@ function addGame() {
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
     allPartGame.style.transform = 'translate(-50%,-50%)';
+
+    var recGame = document.getElementById('records');
+    recGame.style.width = widthEl + 'px';
+  //  recGame.style.height = heightEl + 'px';
+   // recGame.style.height = '0px';
+    recGame.style.transform = 'translate(-50%,-50%)';
 
     var placeForGame = document.getElementById('place_for_game');
       placeForGame.style.width = "94%";
@@ -504,6 +521,7 @@ function add_canvas(sizeP) {
 function control1(event) {
   eo = window.event;
   eo.preventDefault();
+  console.log('trud');
   control_event();
   document.getElementById('gameA').style.opacity = 1;
   document.getElementById('ochki').style.opacity = 1;
@@ -514,8 +532,11 @@ function control1(event) {
   after_el.style.transition = 'all 0';*/
   time_start = 1;
   control_sec = 3;
-  shtraf=0;
+  shtraf = 0;
   ball = 0;
+  numGame = numGame + 1;
+  var getTime = get_time();
+  timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
   left_top();
 }
 function control2(event) {
@@ -530,6 +551,9 @@ function control2(event) {
   control_sec = 2;
   shtraf = 0;
   ball = 0;
+  numGame = numGame +1;
+  var getTime = get_time();
+  timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
   left_top();
 }
 function control_event(){
@@ -553,6 +577,9 @@ function control_event(){
   var imgs = document.getElementsByClassName('chiken');
   for(var i=0; i<imgs.length; i++)
     imgs[i].style.opacity = 1;
+
+  console.log("2");
+
 }
 
 
@@ -614,13 +641,26 @@ function right_bot(event){
 }
 function for_control3(){
   document.getElementById('curTime').style.opacity = 1;
+  time_start = 0;
+}
+function get_time(){
+  const currTime=new Date();
+  var full_time = {};
+  full_time.hour = currTime.getHours();
+  full_time.min = currTime.getMinutes();
+  full_time.sec = currTime.getSeconds();
+  full_time.msec = currTime.getMilliseconds()/1000;
+  return full_time;
 }
 function control3() {
-  const currTime=new Date();
-  const hour = currTime.getHours();
-  const min = currTime.getMinutes();
-  const sec = currTime.getSeconds();
-  var msec = currTime.getMilliseconds()/1000;
+  var time_control = get_time();
+ // const currTime=new Date();
+ 
+  var hour = time_control.hour;
+  var min = time_control.min;
+  var sec = time_control.sec;
+  var msec = time_control.msec;
+  //alert(msec +"$"+ sec);
  // console.log('msec', msec);
   if(msec < 0.26)
     msec = 0.25;
@@ -632,7 +672,7 @@ function control3() {
           msec = 0;
   document.getElementById('curTime').innerText = str0l(hour,2) + ':' + str0l(min,2)+ ':' + str0l(sec,2);
  // }
- return sec + msec;
+ return sec+ msec;
 }
 function str0l(val,len) {
   let strVal=val.toString();
@@ -665,7 +705,7 @@ function zayac_move(time_start, sec){
   var hends = document.getElementsByClassName('hend_z'); 
   var rand = randomDiap(0,1); //разные руки зайца
   
-  if(sec % 6 === 0)
+  if(sec % 24 === 0)
     {
       createTimerPromiseZaya(zaya, hends[rand], 1, 4, 2)
       .then( result => {
@@ -844,7 +884,11 @@ function move_ags(new_eg){
       if(shtraf > 2.5)
       {
         document.getElementById('game_over').style.opacity = 1;
+        var getTime = get_time();
+        timeEnd = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
+        records_game();
         time_start = 0; 
+        return true;
       }             
         })  
       .catch( error => {
@@ -879,4 +923,45 @@ function soundClick() {
   var audio = new Audio(); // Создаём новый элемент Audio
   audio.src = 'audio/bdyj.mp3'; // Указываем путь к звуку "клика"
   audio.autoplay = true; // Автоматически запускаем
+}
+function records_game(){
+  var rec_table = document.querySelectorAll("#recVal tbody")[0];
+
+  var nextTr = document.createElement("tr");
+
+  var tdNumer = document.createElement("td");
+  tdNumer.innerHTML = numGame;
+
+  var tdBall = document.createElement("td");
+  tdBall.innerHTML = ball;
+
+  var tdShtraf = document.createElement("td");
+  tdShtraf.innerHTML = shtraf;
+
+  var tdStart = document.createElement("td");
+  tdStart.innerHTML = timeStart;
+
+  var tdEnd = document.createElement("td");
+  tdEnd.innerHTML = timeEnd;
+
+  nextTr.appendChild(tdNumer);
+  nextTr.appendChild(tdBall);
+  nextTr.appendChild(tdShtraf);
+  nextTr.appendChild(tdStart);
+  nextTr.appendChild(tdEnd);
+  rec_table.appendChild(nextTr);
+}
+function show_records(){
+ 
+  time_start = 0;
+  var allPartGame = document.getElementById('place_game_out');
+  var w1 = allPartGame.style.width;
+  var h1 = allPartGame.style.height;
+  var recGame = document.getElementById('records');
+  recGame.style.transition = "0.8s ease";
+   document.getElementById('records').style.opacity = 1;
+  recGame.style.height = h1; 
+  document.getElementById('place_game_in').style.opacity = 0;
+  document.getElementById('game_canvas').style.opacity = 0;
+  console.log(h1);
 }

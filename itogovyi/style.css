@@ -18,6 +18,7 @@ button{
     border: 10px solid #DB2323;
     
 }
+
 #place_game_in{
     border: 1px solid black;
     border-radius: 5px;
@@ -757,9 +758,8 @@ button{
       body{ width: 50px; height: 50px;}
       #place_game_out{
         max-width: 600px;
+        max-height: 800px;        
         position: absolute;
-        max-height: 800px;
-       /* height: 30%;*/
         left: 50%;
         top: 50%;
       /*  transform: translate(-50%, -50%);*/
@@ -1020,7 +1020,7 @@ button{
     position: absolute; 
     max-height: 650px;
     }
-
+  
     #place_game_in{
       max-width: 600px;
       max-height: 650px;

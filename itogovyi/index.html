@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
     <title>Ну погоди!</title>
     <link rel="stylesheet" href="style.css" media="all">
+    <link rel="stylesheet" href="style_rec.css" media="all">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -13,17 +14,26 @@
 <body>
     
     <div id="place_game_out">
-        <div id="records" style="display: none;">
-            <div id="rec1">Мои рекорды</div>
-            <table id="recVal" style="border-collapse: collapse; border: 1px solid grey;">
-                <tr>
-                    <td>Игра</td>
-                    <td>Очки</td>
-                    <td>Штрафы</td>
-                    <td>Старт</td>
-                    <td>Финиш</td>
-                </tr>                
-            </table>
+        <div id="records">
+            <div id="top_menu">
+                <div id="rec1">Мои рекорды</div>
+                <button>X</button>
+            </div>
+            <div id="table_rec">
+                <table id="recVal">
+                    <tr>
+                        <td>Игра</td>
+                        <td>Очки</td>
+                        <td>Штрафы</td>
+                        <td>Старт</td>
+                        <td>Финиш</td>
+                    </tr>                
+                </table>
+            </div>
+            <div id="post_val">
+                <button id="submit_val" class="but_form" type="submit">Сохранить</button>
+                <button id="close_form" class="but_form">Отмена</button>
+            </div>
         </div>
         <div id="place_game_in">
             <div id="place_game_I">
@@ -111,11 +121,11 @@
             <div id="place_game_III">
                 <img id="zvon" src="img/zvon.png" alt="zvonok">
                 <div id="control">
-                    <button id="control_1" class="for_control_button" onclick="control1();"></button>
+                    <button id="control_1" class="for_control_button" onclick="control1();" ondblclick="show_records();"></button>
                     <div id="control_2"></div>
                     <div id="control_3" class="for_control_text">игра А</div>
                     <div id="control_4" class="impuls"></div>
-                    <button id="control_5" class="for_control_button" onclick="control2();"></button>
+                    <button id="control_5" class="for_control_button" onclick="control2();" ondblclick="show_records();"></button>
                     <div id="control_6">L</div>
                     <div id="control_7" class="for_control_text">игра Б</div>
                     <div id="control_8" class="impuls"></div>
