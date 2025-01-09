@@ -963,5 +963,8 @@ function show_records(){
   recGame.style.height = h1; 
   document.getElementById('place_game_in').style.opacity = 0;
   document.getElementById('game_canvas').style.opacity = 0;
+  var gameSVG = document.getElementsByTagName('svg');
+      for(var i=0; i<gameSVG.length; i++)
+        gameSVG[i].style.opacity = 0;
   console.log(h1);
 }
