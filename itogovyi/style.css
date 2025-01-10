@@ -1018,12 +1018,13 @@ button{
   body{ width: 50px; height: 50px;}
   #place_game_out{
     position: absolute; 
-    max-height: 650px;
+    max-height: 600px;
+    max-width: 450px;
     }
   
     #place_game_in{
-      max-width: 600px;
-      max-height: 650px;
+      max-width: 450px;
+      max-height: 600px;
       flex-direction: column;
       align-items: center;
     }

@@ -17,7 +17,7 @@
         <div id="records">
             <div id="top_menu">
                 <div id="rec1">Мои рекорды</div>
-                <button>X</button>
+                <button onclick="showGame();">X</button>
             </div>
             <div id="table_rec">
                 <table id="recVal">
@@ -31,8 +31,8 @@
                 </table>
             </div>
             <div id="post_val">
-                <button id="submit_val" class="but_form" type="submit">Сохранить</button>
-                <button id="close_form" class="but_form">Отмена</button>
+                <button id="submit_val" class="but_form" type="button" onclick="storeInfo();">Сохранить</button>
+                <button id="close_form" class="but_form" type="button" onclick="restoreInfo();">Все попытки</button>
             </div>
         </div>
         <div id="place_game_in">
@@ -149,5 +149,6 @@
     <audio src="audio/eg.mp3" autoplay="autoplay"></audio>
     <audio src="audio/bdyj.mp3" autoplay="autoplay"></audio>
 </body>
+<script src="https://fe.it-academy.by/JQ/jquery.js"></script>
 <script src="script01.js"></script>
 </html>

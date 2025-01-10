@@ -6,31 +6,37 @@ window.addEventListener('load', addGame);
 window.addEventListener('resize', addGame);
 
 var contr1 = document.getElementById('control_1');
-console.log(contr1);
 var contr2 = document.getElementById('control_2');
 var contr3 = document.getElementById('control_3');
 contr1.addEventListener('touchstart', control1, false);
 contr2.addEventListener('touchstart', control2, false);
 contr3.addEventListener('touchstart', for_control3, false);
-var time_start = 0; //отслеживание выбора режима игры
-var flag_zaya=0; //отслеживание появление зайца
-var shtraf; //счет штрафных очков
-var ball; //счет пойманных яиц
+const ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
+let updatePassword;
+const stringName='LOKTEV_TEST_INFO';
+var numGame = 0;
+var recordVal = {
+  numGame:
+          {"shtraf" : 0,//счет штрафных очков
+          "ball": 0, //счет пойманных яиц
+          "timeStart": '', //начало игры
+          "timeEnd": ""} //щкончание игры
+};
+var timerStart = 0; //отслеживание выбора режима игры
+var flagZaya=0; //отслеживание появление зайца
 var flag = 0; //для обнуления счета
-var time_change = 2;
-var control_sec, flag_sec;
-var timeStart;
-var numGame=0;
+var controlSec, flagSec;
+
 
 setInterval(get_size, 1000/4);
 
 function get_size(){
   var sec = control3();
-  zayac_move(time_start, sec);
-  gameA(time_start, sec); //запуск игры А
-  gameB(time_start, sec); //запуск игры Б
-  document.getElementById('ochki').innerText = ball || 0;
-//  return screen_size; 
+  zayac_move(timerStart, sec);
+  gameA(timerStart, sec); //запуск игры А
+  gameB(timerStart, sec); //запуск игры Б
+  preview_game(timerStart, sec);
+  document.getElementById('ochki').innerText = recordVal.numGame.ball || 0;
 addGame();
 }
 
@@ -53,7 +59,10 @@ function addGame() {
     var recGame = document.getElementById('records');
       recGame.style.height = widthEl + 'px';
       recGame.style.width ='0px';
-      //recGame.style.width = heightEl + 'px';
+      if(recGame.style.opacity === '1')
+        recGame.style.width = heightEl + 'px';
+      else
+         recGame.style.width = '0px';
       recGame.style.transform = 'translate(-50%,-50%) rotate(90deg)';
 
     //для канвас делаем новые размеры после ротейт
@@ -80,10 +89,10 @@ function addGame() {
     var canvas = document.getElementById('game_canvas');
         sizePart.gamePartW = document.getElementById('for_game_layer4').offsetWidth;
         sizePart.gamePartH = document.getElementById('for_game_layer4').offsetHeight;
-      //  sizePart.gamePartW = newW;
-       // sizePart.gamePartH = newH;   
-        canvas.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';//'translate(-50%, -50%) rotate(90deg)';
-
+        sizePart.gamePartW = newW;
+        sizePart.gamePartH = newH;   
+        canvas.style.transform = 'translate(-' + 0.5 * newW + 'px,-' + 0.5 * newH + 'px) rotate(90deg)';//'translate(-50%, -50%) rotate(90deg)';
+        //canvas.style.transition = none;
 
 
     var botGran = document.getElementById('place_for_game');
@@ -121,7 +130,10 @@ function addGame() {
     var recGame = document.getElementById('records');
     recGame.style.height = widthEl + 'px';
     recGame.style.width = '0px';
-   /* recGame.style.width = heightEl + 'px';*/
+    if(recGame.style.opacity === '1')
+       recGame.style.width = heightEl + 'px';
+    else  
+      recGame.style.height = '0px';
     recGame.style.transform = 'translate(-50%,-50%) rotate(90deg)';
 
     var placeII = document.getElementById('place_game_II');
@@ -194,8 +206,10 @@ function addGame() {
 
     var recGame = document.getElementById('records');
     recGame.style.width = widthEl + 'px';
-  //  recGame.style.height = heightEl + 'px';
-   // recGame.style.height = '0px';
+    if(recGame.style.opacity === '1')
+       recGame.style.height = heightEl + 'px';
+    else  
+       recGame.style.height = '0px';
     recGame.style.transform = 'translate(-50%,-50%)';
 
     var placeForGame = document.getElementById('place_for_game');
@@ -521,22 +535,18 @@ function add_canvas(sizeP) {
 function control1(event) {
   eo = window.event;
   eo.preventDefault();
-  console.log('trud');
   control_event();
   document.getElementById('gameA').style.opacity = 1;
   document.getElementById('ochki').style.opacity = 1;
   document.getElementById('control_4').style.background = 'red';
   document.getElementById('control_8').style.background = 'black';
- /* var after_el = document.querySelector('#but1');
-  after_el.style.animationName = 'rule';
-  after_el.style.transition = 'all 0';*/
-  time_start = 1;
-  control_sec = 3;
-  shtraf = 0;
-  ball = 0;
-  numGame = numGame + 1;
+  timerStart = 1;
+  controlSec = 3;
+  recordVal.numGame.shtraf = 0;
+  recordVal.numGame.ball = 0;
+ numGame = numGame + 1;
   var getTime = get_time();
-  timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
+  recordVal.numGame.timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
   left_top();
 }
 function control2(event) {
@@ -547,13 +557,13 @@ function control2(event) {
   document.getElementById('ochki').style.opacity = 1;
   document.getElementById('control_4').style.background = 'black';
   document.getElementById('control_8').style.background = 'red';
-  time_start = 2;
-  control_sec = 2;
-  shtraf = 0;
-  ball = 0;
+  timerStart = 2;
+  controlSec = 2;
+  recordVal.numGame.shtraf = 0;
+  recordVal.numGame.ball = 0;
   numGame = numGame +1;
   var getTime = get_time();
-  timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
+  recordVal.numGame.timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
   left_top();
 }
 function control_event(){
@@ -577,8 +587,6 @@ function control_event(){
   var imgs = document.getElementsByClassName('chiken');
   for(var i=0; i<imgs.length; i++)
     imgs[i].style.opacity = 1;
-
-  console.log("2");
 
 }
 
@@ -641,7 +649,7 @@ function right_bot(event){
 }
 function for_control3(){
   document.getElementById('curTime').style.opacity = 1;
-  time_start = 0;
+  timerStart = 4;
 }
 function get_time(){
   const currTime=new Date();
@@ -688,7 +696,7 @@ function createTimerPromiseZaya(obj, obj_next, val, time, result) {
 
   return new Promise( (resolve,reject) => {
       setTimeout( () => {
-        flag_zaya = val;
+        flagZaya = val;
         obj.style.opacity = val;
         obj_next.style.opacity = val;
         resolve(result);
@@ -698,8 +706,8 @@ function createTimerPromiseZaya(obj, obj_next, val, time, result) {
   });
 
 }
-function zayac_move(time_start, sec){
-  if(time_start === 1 || time_start === 2) //если игра запущена
+function zayac_move(timerStart, sec){
+  if(timerStart === 1 || timerStart === 2) //если игра запущена
   {
   var zaya = document.getElementById('zayac');
   var hends = document.getElementsByClassName('hend_z'); 
@@ -726,7 +734,7 @@ function createTimerPromise(obj, obj_next, time, result) {
         obj_next.style.opacity = 1;
         soundClickEg();
         resolve(result);
-        if(!obj || !obj_next)
+        if(result === 10)
           reject("ошибка!!!"); 
       }, 1000/time);
   });
@@ -746,8 +754,8 @@ function createTimerPromise2(obj_next, result) {
 
 }
 
-function gameA(time_start, sec){
-  if(time_start === 1 && sec % control_sec === 0)//на стартке: 1 в 3 сек
+function gameA(timerStart, sec){
+  if(timerStart === 1  && sec % controlSec === 0)//на стартке: 1 в 3 сек
   {
     //игра А. В зависимости от кол-ва штрафных очков - используются разные склоны
     var num_sklon = {
@@ -758,27 +766,27 @@ function gameA(time_start, sec){
       2:{0:2, 1:3, 2:4},
       2.5:{0:2, 1:3, 2:4},
     };
-    if(shtraf < 3.5)
+    if(recordVal.numGame.shtraf < 3.5)
     {
-    var num = num_sklon[shtraf][randomDiap(0,2)];  
+    var num = num_sklon[recordVal.numGame.shtraf][randomDiap(0,2)];  
       game(num);
     } 
     else 
-      time_start = 0;
+    timerStart = 0;
   }
 }
-function gameB(time_start, sec){
-  if(time_start === 2 && sec % control_sec === 0)
+function gameB(timerStart, sec){
+  if(timerStart === 2 && sec % controlSec === 0)
   {
     //игра B. Используются все лотки произвольно
     var num_sklon = {
       0:{0:1, 1:2, 2:3, 3:4}
     };
     var num = num_sklon[0][randomDiap(0,3)];
-    if(shtraf < 3.5)
+    if(recordVal.numGame.shtraf < 3.5)
       game(num);
     else 
-      time_start = 0;
+    timerStart = 0;
   }
 }
 function game(num)
@@ -803,91 +811,101 @@ function game(num)
   move_ags(eg[num]);
 }
 
-function move_ags(new_eg){
-  (new_eg.eg)[0].style.opacity = 1;
- createTimerPromise((new_eg.eg)[0], (new_eg.eg)[1], control_sec/2, 0)
+function move_ags(newEg){
+  (newEg.eg)[0].style.opacity = 1;
+ createTimerPromise((newEg.eg)[0], (newEg.eg)[1], controlSec/2, 0)
       .then( result => {
-        return createTimerPromise((new_eg.eg)[1], (new_eg.eg)[2], control_sec/2, 2)
+        if(timerStart !=0)
+          return createTimerPromise((newEg.eg)[1], (newEg.eg)[2], controlSec/2, 2)
+        return createTimerPromise((newEg.eg)[1], (newEg.eg)[2], controlSec/2, 10)
         })   
         .then( result => {
-          return createTimerPromise((new_eg.eg)[2], (new_eg.eg)[3],control_sec/2, 2)
+          if(timerStart !=0)
+            return createTimerPromise((newEg.eg)[2], (newEg.eg)[3],controlSec/2, 2)
+          return createTimerPromise((newEg.eg)[2], (newEg.eg)[3],controlSec/2, 10)
           })  
           .then( result => {
-            return createTimerPromise((new_eg.eg)[3], (new_eg.eg)[4],control_sec/2, 2)
+            if(timerStart !=0)
+              return createTimerPromise((newEg.eg)[3], (newEg.eg)[4],controlSec/2, 2)
+            return createTimerPromise((newEg.eg)[3], (newEg.eg)[4],controlSec/2, 10)
             }) 
             .then( result => {
-              return createTimerPromise2((new_eg.eg)[4], 2)
+              if(timerStart !=0)
+                return createTimerPromise2((newEg.eg)[4], 2)
+              return createTimerPromise2(timerStart, 0)
               }) 
               .then( result => {
-                if((new_eg.hend).style.opacity === "1") 
+                if(timerStart !=0)
                 {
-                    ball = ball + 1;
-                    if(ball === 200 || ball === 500)  //обнуление штрафов при достижении некоторого кол-ва баллов
-                      shtraf = 0;
-                    console.log("Очки: ", ball);
-                    return createTimerPromise2((new_eg.eg)[4], 2)
+                  volk_move(timerStart);
+                  if((newEg.hend).style.opacity === "1") 
+                {
+                  recordVal.numGame.ball = recordVal.numGame.ball + 1;
+                    if(recordVal.numGame.ball === 200 || recordVal.numGame.ball === 500)  //обнуление штрафов при достижении некоторого кол-ва баллов
+                    recordVal.numGame.shtraf = 0;
+                    console.log("Очки: ", recordVal.numGame.ball);
+                    return createTimerPromise2((newEg.eg)[4], 2)
                 }
                 else 
                 {
                 soundClick();
-                 new_eg.bd.style.opacity = 1;
-                    return move_bdyj(new_eg);
-                }
+                newEg.bd.style.opacity = 1;
+                    return move_bdyj(newEg);
+                }}
                 })  
       .catch( error => {
         console.log("случилась ошибка: " + error);
       });
       //скорость увеличивается и падает в зависимости от кол-ва баллов
       var ball_flag=0;
-        if(ball > 100)
-          ball_flag = Array.from(ball)[0] + '00';
-      if(ball < (26 + ball_flag))
-        flag_sec = control_sec;
-        else if(ball > (25 + ball_flag) && ball < (51 + ball_flag))
-          control_sec = flag_sec - 0.5;
-          else if(ball > (50 + ball_flag) && ball < (76 + ball_flag))
-            control_sec = flag_sec-1;
-            else if(ball > (75 + ball_flag) && ball < (100 + ball_flag))
-              control_sec = flag_sec-1.5; 
+        if(recordVal.numGame.ball > 100)
+          ball_flag = Array.from(recordVal.numGame.ball)[0] + '00';
+      if(recordVal.numGame.ball < (26 + ball_flag))
+        flagSec = controlSec;
+        else if(recordVal.numGame.ball > (25 + ball_flag) && recordVal.numGame.ball < (51 + ball_flag))
+          controlSec = flagSec - 0.5;
+          else if(recordVal.numGame.ball > (50 + ball_flag) && recordVal.numGame.ball < (76 + ball_flag))
+            controlSec = flagSec-1;
+            else if(recordVal.numGame.ball > (75 + ball_flag) && recordVal.numGame.ball < (100 + ball_flag))
+              controlSec = flagSec-1.5; 
 
   }
- function move_bdyj(new_eg){
-  createTimerPromise2(new_eg.bd, 2)
+ function move_bdyj(newEg){
+  createTimerPromise2(newEg.bd, 2)
       .then( result => {
-        if(flag_zaya === 1)
+        if(flagZaya === 1)
           {
-          shtraf = shtraf + 0.5;
-          move_cyp(new_eg);
-          flag_zaya = 0;          
+            recordVal.numGame.shtraf = recordVal.numGame.shtraf + 0.5;
+          move_cyp(newEg);
+          flagZaya = 0;          
           }  
-          else if(flag_zaya === 0)
+          else if(flagZaya === 0)
            {
-            console.log("dlkjngksjdn");
-            shtraf = shtraf + 1;
+            recordVal.numGame.shtraf = recordVal.numGame.shtraf + 1;
             window.navigator.vibrate(200);  
             }
-      console.log("Штрафные:", shtraf);            
-      if(shtraf > 2.5)
-            time_start = 0;   
-       if(shtraf >=  0.5)
+      console.log("Штрафные:", recordVal.numGame.shtraf);            
+      if(recordVal.numGame.shtraf > 2.5)
+          timerStart = 0;   
+       if(recordVal.numGame.shtraf >=  0.5)
         {
            document.getElementsByClassName('bant')[0].style.opacity = 1;
         }
-        if(shtraf >=  1.5)
+        if(recordVal.numGame.shtraf >=  1.5)
           {
              document.getElementsByClassName('bant')[1].style.opacity = 1;
           }
-          if(shtraf >=  2.5)
+          if(recordVal.numGame.shtraf >=  2.5)
             {
                document.getElementsByClassName('bant')[2].style.opacity = 1;
             }
-      if(shtraf > 2.5)
+      if(recordVal.numGame.shtraf > 2.5)
       {
+        timerStart = 0;         
         document.getElementById('game_over').style.opacity = 1;
         var getTime = get_time();
-        timeEnd = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
-        records_game();
-        time_start = 0; 
+        recordVal.numGame.timeEnd = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
+        records_game(numGame, recordVal);
         return true;
       }             
         })  
@@ -896,19 +914,19 @@ function move_ags(new_eg){
       });
      
  } 
-function move_cyp(new_eg){
-    createTimerPromise(new_eg.bd, (new_eg.cyp)[0], control_sec, 2)
+function move_cyp(newEg){
+    createTimerPromise(newEg.bd, (newEg.cyp)[0], controlSec, 2)
     .then( result => {
-      return createTimerPromise((new_eg.cyp)[0], (new_eg.cyp)[1],control_sec, 2)
+      return createTimerPromise((newEg.cyp)[0], (newEg.cyp)[1],controlSec, 2)
       })  
       .then( result => {
-        return createTimerPromise((new_eg.cyp)[1], (new_eg.cyp)[2],control_sec, 2)
+        return createTimerPromise((newEg.cyp)[1], (newEg.cyp)[2],controlSec, 2)
         }) 
         .then( result => {
-          return createTimerPromise((new_eg.cyp)[2], (new_eg.cyp)[3],control_sec, 2)
+          return createTimerPromise((newEg.cyp)[2], (newEg.cyp)[3],controlSec, 2)
           }) 
           .then( result => {
-            return createTimerPromise2((new_eg.cyp)[3], 2)
+            return createTimerPromise2((newEg.cyp)[3], 2)
             }) 
 .catch( error => {
 console.log("случилась ошибка: "+error);
@@ -924,25 +942,25 @@ function soundClick() {
   audio.src = 'audio/bdyj.mp3'; // Указываем путь к звуку "клика"
   audio.autoplay = true; // Автоматически запускаем
 }
-function records_game(){
+function records_game(num, record){
   var rec_table = document.querySelectorAll("#recVal tbody")[0];
 
   var nextTr = document.createElement("tr");
 
   var tdNumer = document.createElement("td");
-  tdNumer.innerHTML = numGame;
+  tdNumer.innerHTML = num;
 
   var tdBall = document.createElement("td");
-  tdBall.innerHTML = ball;
+  tdBall.innerHTML = record.numGame.ball;
 
   var tdShtraf = document.createElement("td");
-  tdShtraf.innerHTML = shtraf;
+  tdShtraf.innerHTML = record.numGame.shtraf;
 
   var tdStart = document.createElement("td");
-  tdStart.innerHTML = timeStart;
+  tdStart.innerHTML = record.numGame.timeStart;
 
   var tdEnd = document.createElement("td");
-  tdEnd.innerHTML = timeEnd;
+  tdEnd.innerHTML = record.numGame.timeEnd;
 
   nextTr.appendChild(tdNumer);
   nextTr.appendChild(tdBall);
@@ -953,18 +971,143 @@ function records_game(){
 }
 function show_records(){
  
-  time_start = 0;
-  var allPartGame = document.getElementById('place_game_out');
-  var w1 = allPartGame.style.width;
-  var h1 = allPartGame.style.height;
+  timerStart = 0;
+  //var allPartGame = document.getElementById('place_game_out');
   var recGame = document.getElementById('records');
-  recGame.style.transition = "0.8s ease";
-   document.getElementById('records').style.opacity = 1;
-  recGame.style.height = h1; 
+      recGame.style.transition = "0.8s ease";
+      recGame.style.zIndex = 100;
+      recGame.style.opacity = 1;
+      //recGame.style.height = h1; 
   document.getElementById('place_game_in').style.opacity = 0;
   document.getElementById('game_canvas').style.opacity = 0;
   var gameSVG = document.getElementsByTagName('svg');
       for(var i=0; i<gameSVG.length; i++)
         gameSVG[i].style.opacity = 0;
-  console.log(h1);
+}
+function showGame(){
+  timerStart = 0;
+  var recGame = document.getElementById('records');
+
+document.getElementById('records').style.opacity = 0;
+recGame.style.height = "0px"; 
+recGame.style.zIndex = 1;
+ document.getElementById('place_game_in').style.opacity = 1;
+ document.getElementById('game_canvas').style.opacity = 1;
+  var gameSVG = document.getElementsByTagName('svg');
+      for(var i=0; i<gameSVG.length; i++)
+      {
+        gameSVG[i].style.opacity = 1;
+        gameSVG[i].style.transition = "0.8s ease";  
+      }  
+  document.getElementById('place_game_in').style.transition = "0.8s ease";  
+  document.getElementById('game_canvas').style.transition = "0.8s ease";  
+}
+function volk_move(timerStart){
+  if(timerStart === 4)
+  {
+    var eg1 = document.getElementById("eg5_left_top").style.opacity;
+    var eg2 = document.getElementById("eg5_left_bot").style.opacity;
+    var eg3 = document.getElementById("eg5_right_top").style.opacity;
+    var eg4 = document.getElementById("eg5_right_bot").style.opacity;
+    if(eg1 === "1")
+      left_top();
+    else if(eg2 === "1")
+      left_bot();
+    else if(eg3 === "1")
+      right_top();
+    else if(eg4 === "1")
+      right_bot();
+  }
+}
+function preview_game(timerStart, sec){
+  
+  if(timerStart === 4)
+  {
+    control_event();
+    controlSec = 3;
+    gameA(timerStart, sec);
+    volk_move(timerStart);
+   // console.log("1");
+  } 
+ // shtraf = 0;
+  //ball = 0;
+  //numGame = numGame + 1;
+ // var getTime = get_time();
+ // timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//----AJAX
+function storeInfo() {
+  updatePassword=Math.random();
+  $.ajax({
+          url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+          data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+          success : lockGetReady, error : errorHandler
+      }
+  );
+}
+
+function lockGetReady(callresult) {
+  if ( callresult.error!=undefined )
+      alert(callresult.error);
+  else {
+      const info={
+          name : 'game',
+          age : recordVal
+      };
+      $.ajax( {
+              url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+              data : { f : 'UPDATE', n : stringName,
+                  v : JSON.stringify(info), p : updatePassword },
+              success : updateReady, error : errorHandler
+          }
+      );
+      alert('Данные оттправлены на сервер!');
+  }
+}
+
+function updateReady(callresult) {
+  if ( callresult.error!=undefined )
+      alert(callresult.error);
+}
+
+function restoreInfo() {
+  $.ajax(
+      {
+          url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+          data : { f : 'READ', n : stringName },
+          success : readReady, error : errorHandler
+      }
+  );
+}
+
+function readReady(callresult) {
+  if ( callresult.error!=undefined )
+      alert(callresult.error);
+  else if ( callresult.result!="" ) {
+      const info=JSON.parse(callresult.result);
+      alert(info.age.numGame);
+      var colGame = info[age].length;
+      for(var i=0; i<colGame; i++) 
+      {
+        records_game(i, info.age);
+      }
+      
+  }
+}
+
+function errorHandler(jqXHR,statusStr,errorStr) {
+  alert(statusStr+' '+errorStr);
 }
