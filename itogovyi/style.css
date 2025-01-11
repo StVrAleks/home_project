@@ -18,7 +18,7 @@ button{
     border: 10px solid #DB2323;
     
 }
-
+#modal_win,
 #place_game_in{
     border: 1px solid black;
     border-radius: 5px;
@@ -27,6 +27,9 @@ button{
     background-color: #CECDC8;
     display: flex;
     flex-direction: row;
+}
+#modal_win{
+  display: block;
 }
 #place_game_I{
     width: 15%;
@@ -89,30 +92,7 @@ button{
     top: 0;
     left: 0;
 }
-/*#but1::after,
-#but2::after {
-  content: 'Shift';
-  color: black;
-  font-size: 15px;
-  line-height: 26px;
-  width: 60px;
-  height: calc(60px - 50%);
-  border-radius: 50%;
-  border: 4px solid #DB2323;
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  animation-timing-function: ease-in-out;
-  animation-duration: 800ms;
-  animation-name: rule;
-  opacity: 1;
-  padding-top: 50%;
- 
-}*/
-/*
-#but2::after {
-  content: 'Ctrl';
-}*/
+
 .for_button{
     border-radius: 50%;
     border: 3px solid #B40E07;
@@ -135,8 +115,6 @@ button{
 }
 /*----*/
 #place_for_game{
-  /*  width: 94%; 
-    height: 90%;*/
     position: absolute;
     left: 50%;
     top:50%;
@@ -293,7 +271,7 @@ button{
     margin-right: 1px;
     margin-bottom: -39px;
 }
-#but1::after,
+/*#but1::after,
 #but2::after,
 #but3::after,
 #but4::after{
@@ -327,7 +305,7 @@ button{
 }
 #but4::after{
   animation-name: rule4;
-}
+}*/
 .for_control_button{
     width: 30px;
     height: 15px;
@@ -662,7 +640,7 @@ button{
   left: 76%;
   transform: rotate(-198deg);
 }
-@keyframes rule {
+/*@keyframes rule {
   from {
     transform: scale(1) translate(-50%, -50%);
     content: '';
@@ -748,7 +726,7 @@ button{
     transform: scale(1) translate(-50%, -50%);
     content: '';
   }
-}
+}*/
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
 /*--------------------------------------------------*/
@@ -764,6 +742,7 @@ button{
         top: 50%;
       /*  transform: translate(-50%, -50%);*/
         }
+      #modal_win,
       #place_game_in{
         max-width: 600px;
         max-height: 800px;
@@ -915,7 +894,7 @@ button{
       #ochki {
         font-size: 14px;
         }
-        #but1::after,
+      /*  #but1::after,
         #but2::after,
         #but3::after,
         #but4::after
@@ -1010,7 +989,11 @@ button{
             transform: scale(1) translate(-50%, -50%);
             content: '';
           }
-        }
+        }*/
+        #img_game,
+        #game_canvas{
+          top: calc(50% - 2px);
+         }
       }
 
 /*смартфоны в альбомной ориентации (горизонтально)*/
@@ -1021,7 +1004,7 @@ button{
     max-height: 600px;
     max-width: 450px;
     }
-  
+    #modal_win,
     #place_game_in{
       max-width: 450px;
       max-height: 600px;
@@ -1165,11 +1148,13 @@ button{
   transform: rotate(-90deg);
 }
 #ochki{
-  /* top: 18%;
-   left: 73%;*/
    font-size: 12px;
  }
- #but1::after,
+ #img_game,
+ #game_canvas{
+  top: calc(50% - 2px);
+ }
+ /*#but1::after,
  #but2::after,
  #but3::after,
  #but4::after
@@ -1264,5 +1249,5 @@ button{
      transform: scale(1) translate(-50%, -50%);
      content: '';
    }
- }
+ }*/
 }

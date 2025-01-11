@@ -14,13 +14,15 @@ contr3.addEventListener('touchstart', for_control3, false);
 const ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
 let updatePassword;
 const stringName='LOKTEV_TEST_INFO';
-var numGame = 0;
+var num =0; //номер игры
+//var numGame = 0;
+var recordValNew = {};
 var recordVal = {
   numGame:
-          {"shtraf" : 0,//счет штрафных очков
+          {"shtraf" : '',//счет штрафных очков
           "ball": 0, //счет пойманных яиц
           "timeStart": '', //начало игры
-          "timeEnd": ""} //щкончание игры
+          "timeEnd": ""} //окончание игры
 };
 var timerStart = 0; //отслеживание выбора режима игры
 var flagZaya=0; //отслеживание появление зайца
@@ -35,7 +37,8 @@ function get_size(){
   zayac_move(timerStart, sec);
   gameA(timerStart, sec); //запуск игры А
   gameB(timerStart, sec); //запуск игры Б
-  preview_game(timerStart, sec);
+//  preview_game(timerStart, sec);
+
   document.getElementById('ochki').innerText = recordVal.numGame.ball || 0;
 addGame();
 }
@@ -55,7 +58,11 @@ function addGame() {
    // console.log('tyt', widthEl, heightEl);
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
-   
+   document.getElementById('div_icon').style.display = "none";
+
+   document.getElementById('conteiner').style.opacity = 0;
+   document.querySelector('#modal_win > div:nth-child(1) > button').style.opacity = 0;
+   document.querySelector('#modal_win').style.opacity = 0;
     var recGame = document.getElementById('records');
       recGame.style.height = widthEl + 'px';
       recGame.style.width ='0px';
@@ -79,7 +86,6 @@ function addGame() {
         placeLayer4.style.height = newH + 'px';
         placeLayer4.style.transform = 'rotate(90deg) translate(-' + 0.5 * newH + 'px,' + 0.5 * newW + 'px)';
 
-  //  var layer4 = placeLayer4.getBoundingClientRect();
 
     var imgs = document.getElementById('img_game');
         imgs.style.width = newW + 'px';
@@ -126,7 +132,11 @@ function addGame() {
     allPartGame.style.width = widthEl + 'px';
     allPartGame.style.height = heightEl + 'px';
     allPartGame.style.transform = 'translate(-50%,-50%)';
-
+    document.getElementById('div_icon').style.display = "none";
+  
+    document.querySelector('#modal_win > div:nth-child(1) > button').style.opacity = 0;
+    document.querySelector('#modal_win').style.opacity = 0;
+    document.getElementById('conteiner').style.opacity = 0;
     var recGame = document.getElementById('records');
     recGame.style.height = widthEl + 'px';
     recGame.style.width = '0px';
@@ -204,6 +214,31 @@ function addGame() {
     allPartGame.style.height = heightEl + 'px';
     allPartGame.style.transform = 'translate(-50%,-50%)';
 
+    document.getElementById('div_icon').style.display = "block";
+    var myDialod = document.getElementById('modal_win');
+    if(!myDialod.open)
+      {
+          myDialod.style.width = '0px';
+          myDialod.style.height = '0px'; 
+          myDialod.style.padding = '0px'; 
+          myDialod.style.margin = '0px';  
+          myDialod.style.zIndex = '-2';   
+          document.getElementById('conteiner').style.opacity = 0;
+          document.querySelector('#modal_win > div:nth-child(1) > button').style.opacity = 0;
+      } 
+      else{
+        document.querySelector('#modal_win').style.opacity = 1;
+        myDialod.style.width = widthEl + 'px';
+        myDialod.style.height = heightEl + 'px';   
+        myDialod.style.left = '50%';
+        myDialod.style.top = '50%'; 
+        myDialod.style.transform = 'translate(-50%,-50%)';
+        myDialod.style.zIndex = '10'; 
+        document.getElementById('conteiner').style.opacity = 1;
+        document.getElementById('conteiner').height = heightEl*0.94 + 'px';  
+        document.querySelector('#modal_win > div:nth-child(1) > button').style.opacity = 1;
+      }
+        
     var recGame = document.getElementById('records');
     recGame.style.width = widthEl + 'px';
     if(recGame.style.opacity === '1')
@@ -542,11 +577,13 @@ function control1(event) {
   document.getElementById('control_8').style.background = 'black';
   timerStart = 1;
   controlSec = 3;
+
   recordVal.numGame.shtraf = 0;
   recordVal.numGame.ball = 0;
- numGame = numGame + 1;
+
   var getTime = get_time();
   recordVal.numGame.timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
+  //numGame = num + 1; 
   left_top();
 }
 function control2(event) {
@@ -559,9 +596,9 @@ function control2(event) {
   document.getElementById('control_8').style.background = 'red';
   timerStart = 2;
   controlSec = 2;
+ 
   recordVal.numGame.shtraf = 0;
   recordVal.numGame.ball = 0;
-  numGame = numGame +1;
   var getTime = get_time();
   recordVal.numGame.timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
   left_top();
@@ -735,7 +772,7 @@ function createTimerPromise(obj, obj_next, time, result) {
         soundClickEg();
         resolve(result);
         if(result === 10)
-          reject("ошибка!!!"); 
+          reject("игра окончена!!!"); 
       }, 1000/time);
   });
 
@@ -745,10 +782,13 @@ function createTimerPromise2(obj_next, result) {
 
   return new Promise( (resolve,reject) => {
      setTimeout( () => {
-       obj_next.style.opacity = 0;
-       resolve(result);
+      if(obj_next)
+      {
+        obj_next.style.opacity = 0;
+        resolve(result);
+      }
        if(!obj_next)
-         reject("ошибка!!!"); 
+         reject("игра окончена!!!"); 
      }, 1000/2);
  });
 
@@ -837,7 +877,6 @@ function move_ags(newEg){
               .then( result => {
                 if(timerStart !=0)
                 {
-                  volk_move(timerStart);
                   if((newEg.hend).style.opacity === "1") 
                 {
                   recordVal.numGame.ball = recordVal.numGame.ball + 1;
@@ -905,7 +944,7 @@ function move_ags(newEg){
         document.getElementById('game_over').style.opacity = 1;
         var getTime = get_time();
         recordVal.numGame.timeEnd = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
-        records_game(numGame, recordVal);
+        records_game(recordVal);
         return true;
       }             
         })  
@@ -942,25 +981,32 @@ function soundClick() {
   audio.src = 'audio/bdyj.mp3'; // Указываем путь к звуку "клика"
   audio.autoplay = true; // Автоматически запускаем
 }
-function records_game(num, record){
+function records_game(record){
   var rec_table = document.querySelectorAll("#recVal tbody")[0];
-
   var nextTr = document.createElement("tr");
+ num = num + 1;
 
+ 
   var tdNumer = document.createElement("td");
   tdNumer.innerHTML = num;
 
   var tdBall = document.createElement("td");
   tdBall.innerHTML = record.numGame.ball;
 
+
   var tdShtraf = document.createElement("td");
   tdShtraf.innerHTML = record.numGame.shtraf;
 
+
   var tdStart = document.createElement("td");
   tdStart.innerHTML = record.numGame.timeStart;
+  
+
 
   var tdEnd = document.createElement("td");
   tdEnd.innerHTML = record.numGame.timeEnd;
+
+
 
   nextTr.appendChild(tdNumer);
   nextTr.appendChild(tdBall);
@@ -972,12 +1018,10 @@ function records_game(num, record){
 function show_records(){
  
   timerStart = 0;
-  //var allPartGame = document.getElementById('place_game_out');
   var recGame = document.getElementById('records');
       recGame.style.transition = "0.8s ease";
       recGame.style.zIndex = 100;
-      recGame.style.opacity = 1;
-      //recGame.style.height = h1; 
+      recGame.style.opacity = 1; 
   document.getElementById('place_game_in').style.opacity = 0;
   document.getElementById('game_canvas').style.opacity = 0;
   var gameSVG = document.getElementsByTagName('svg');
@@ -1027,23 +1071,9 @@ function preview_game(timerStart, sec){
     controlSec = 3;
     gameA(timerStart, sec);
     volk_move(timerStart);
-   // console.log("1");
   } 
- // shtraf = 0;
-  //ball = 0;
-  //numGame = numGame + 1;
- // var getTime = get_time();
- // timeStart = str0l(getTime.hour,2) + ':' + str0l(getTime.min,2)+ ':' + str0l(getTime.sec,2);
 
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -1067,6 +1097,7 @@ function lockGetReady(callresult) {
           name : 'game',
           age : recordVal
       };
+
       $.ajax( {
               url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
               data : { f : 'UPDATE', n : stringName,
@@ -1098,12 +1129,7 @@ function readReady(callresult) {
       alert(callresult.error);
   else if ( callresult.result!="" ) {
       const info=JSON.parse(callresult.result);
-      alert(info.age.numGame);
-      var colGame = info[age].length;
-      for(var i=0; i<colGame; i++) 
-      {
-        records_game(i, info.age);
-      }
+      records_game(info.age);
       
   }
 }
@@ -1111,3 +1137,109 @@ function readReady(callresult) {
 function errorHandler(jqXHR,statusStr,errorStr) {
   alert(statusStr+' '+errorStr);
 }
+function showModal(){
+  var myDialod = document.getElementById('modal_win');
+  
+  myDialod.show();
+  updateSlider();
+}
+function closeModal(){
+  var myDialod = document.getElementById('modal_win');
+  
+  myDialod.close();
+}
+//слайдер
+const slider = document.querySelector('.slider');
+const prevButton = document.querySelector('.prev-button');
+const nextButton = document.querySelector('.next-button');
+const slides = Array.from(slider.querySelectorAll('img'));
+/*for mini*/ 
+
+const sliderMIN = document.querySelector('.slider-min');
+const slidesMIN = Array.from(sliderMIN.querySelectorAll('img'));
+const prevButtonMIN = document.querySelector('.prev-button-min');
+const nextButtonMIN = document.querySelector('.next-button-min');
+
+
+
+const slideCount = slides.length;
+const slideCountMIN = slidesMIN.length;
+var slideIndex = 0;
+var slideIndexMIN = 0;
+var infoImg = {
+  0: 'лапа волка идет вверх и влево - Shift/touch',
+  1: 'лапа волка идет вверх и вправо - стрелка вверх/touch',
+  2: 'лапа волка идет вниз и влево - Ctrl/touch',
+  3: 'лапа волка идет вниз и вправо - стрелка вниз/touch',
+  4: 'выбрать режим игры "А" - click мышью/touch',
+  5: 'выбрать режим игры "B" - click мышью/touch',
+  6: 'выбрать "Bремя" - click мышью/touch',
+  7: 'показать общие результаты игры" - двойной click мышью "Bремя"'
+};
+slidesMIN[slideIndex].style.border = '2px solid white';
+
+
+// Устанавливаем обработчики событий для кнопок
+prevButton.addEventListener('click', showPreviousSlide);
+nextButton.addEventListener('click', showNextSlide);
+prevButtonMIN.addEventListener('click', showPreviousSlide);
+nextButtonMIN.addEventListener('click', showNextSlide);
+
+// Функция для показа предыдущего слайда
+function showPreviousSlide() {
+  slideIndex = (slideIndex - 1 + slideCount) % slideCount;
+  updateSliderMIN();
+}
+/*2*/ 
+// Функция для показа предыдущего слайда
+function showPreviousSlideMIN() {
+  slideIndexMIN = (slideIndexMIN - 1 + slideCountMIN) % slideCountMIN;
+  updateSliderMIN();
+}
+
+// Функция для показа следующего слайда
+function showNextSlide() {
+  slideIndex = (slideIndex + 1) % slideCount;
+  updateSlider();
+}
+/*2 */
+// Функция для показа следующего слайда
+function showNextSlideMIN() {
+  slideIndexMIN = (slideIndexMIN + 1) % slideCountMIN;
+  updateSliderMIN();
+}
+// Функция для обновления отображения слайдера
+function updateSlider() {
+  var scrollLeft = slidesMIN.scrollLeft;
+  var textImg = document.getElementById('mainText');
+  slides.forEach((slide, index) => {
+    if (index === slideIndex) {
+      slide.style.display = 'block';
+      textImg.innerText = 'Управление игрой: ' + infoImg[index];
+      slidesMIN.forEach((element) => 
+        element.style.border = 'none');
+      slidesMIN[slideIndex].style.border = '2px solid white';
+    } else {
+      slide.style.display = 'none';
+    }
+  });
+}
+
+/*2 */
+// Функция для обновления отображения слайдера
+function updateSliderMIN() {
+  slidesMIN.forEach((slideMIN, index) => {
+    if (index === slideIndexMIN) {; 
+        slideIndex = slideIndexMIN;     
+        updateSlider();
+    } 
+  });
+}
+
+slidesMIN.forEach((slideMIN, index) => {
+  slideMIN.addEventListener('click', () => {
+    slideIndex = index;     
+        updateSlider();
+    console.log(index);
+    });
+});

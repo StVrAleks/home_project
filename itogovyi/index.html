@@ -37,6 +37,10 @@
         </div>
         <div id="place_game_in">
             <div id="place_game_I">
+                <div id="div_icon">
+                    <span id="span_icon">Инструкция</span>
+                    <button id="icon" style="background-image: url('img/free-icon.png');" onclick="showModal();"></button>
+                </div>
                 <div id="logo"></div>
                  <div id="but_left">
                     <div id="img1"></div>
@@ -121,15 +125,15 @@
             <div id="place_game_III">
                 <img id="zvon" src="img/zvon.png" alt="zvonok">
                 <div id="control">
-                    <button id="control_1" class="for_control_button" onclick="control1();" ondblclick="show_records();"></button>
+                    <button id="control_1" class="for_control_button" onclick="control1();"></button>
                     <div id="control_2"></div>
                     <div id="control_3" class="for_control_text">игра А</div>
                     <div id="control_4" class="impuls"></div>
-                    <button id="control_5" class="for_control_button" onclick="control2();" ondblclick="show_records();"></button>
+                    <button id="control_5" class="for_control_button" onclick="control2();" ></button>
                     <div id="control_6">L</div>
                     <div id="control_7" class="for_control_text">игра Б</div>
                     <div id="control_8" class="impuls"></div>
-                    <button id="control_9" class="for_control_button" onclick="for_control3();"></button>
+                    <button id="control_9" class="for_control_button" onclick="for_control3();" ondblclick="show_records();"></button>
                     <div id="control_10" class="for_control_text">время</div>
                 </div>
                  <div id="but_right">
@@ -144,8 +148,51 @@
                  </div>               
             </div>
         </div>
+     <canvas id="game_canvas" ></canvas>   
     </div>
-    <canvas id="game_canvas" ></canvas>
+    <dialog id="modal_win">
+        <div style="width: 100%;">
+            <button onclick="closeModal();" style="margin-left: 96%;">X</button>
+        </div>
+        <div id="conteiner" style="width: 100%;">
+            <div class="main">
+                <div class="content_catalog">
+                    <h3 id="mainText"></h3> 
+                </div> 
+            </div>     
+            <div id="slider-container">
+                <div class="slider">
+                    <img src="img/instr/1.png" alt="">
+                    <img src="img/instr/2.png" alt="">
+                    <img src="img/instr/3.png" alt="">
+                    <img src="img/instr/4.png" alt="">
+                    <img src="img/instr/5.png" alt="">
+                    <img src="img/instr/7.png" alt="">
+                    <img src="img/instr/8.png" alt="">
+                    <img src="img/instr/9.png" alt="">
+                </div>
+                <button class="prev-button" aria-label="Посмотреть предыдущий слайд">&lt;</button>
+                <button class="next-button" aria-label="Посмотреть следующий слайд">&gt</button>
+            </div>
+            <div class="min">
+                <div class="slider-container-min">  
+                  <div class="slider-min">
+                    <img src="img/instr/1.png" alt="">
+                    <img src="img/instr/2.png" alt="">
+                    <img src="img/instr/3.png" alt="">
+                    <img src="img/instr/4.png" alt="">
+                    <img src="img/instr/5.png" alt="">
+                    <img src="img/instr/6.png" alt="">
+                    <img src="img/instr/7.png" alt="">
+                    <img src="img/instr/8.png" alt="">
+                    <img src="img/instr/9.png" alt="">
+                  </div> 
+                  <button class="prev-button-min" aria-label="Посмотреть предыдущий слайд">&lt;</button>
+                  <button class="next-button-min" aria-label="Посмотреть следующий слайд">&gt</button>
+                </div>  
+              </div>  
+        </div>
+    </dialog>
     <audio src="audio/eg.mp3" autoplay="autoplay"></audio>
     <audio src="audio/bdyj.mp3" autoplay="autoplay"></audio>
 </body>
