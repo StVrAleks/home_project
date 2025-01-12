@@ -13,7 +13,7 @@ contr2.addEventListener('touchstart', control2, false);
 contr3.addEventListener('touchstart', for_control3, false);
 const ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
 let updatePassword;
-const stringName='LOKTEV_TEST_INFO';
+const stringName='RECORD_INFO';
 var num =0; //номер игры
 //var numGame = 0;
 var recordValNew = {};
