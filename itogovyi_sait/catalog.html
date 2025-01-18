@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="my_menu.css" media="all">
+    <link rel="stylesheet" href="style_catalog.css" media="all">
+    <script src="lib/jquery-1.8.2.min.js"></script>
+    <script src="lib/jquery-3.7.0.min.js"></script>
+    <script src="lib/jquery.SPServices.min.js"></script>
+
+    <script src="script.js"></script>
+    <title>Кирплюк Евгений</title>
+</head>
+<body>
+  <div class = "my_menu">
+        <ul class = "my_menu_ul">
+            <li>
+                <a href="index.html">О мастере</a>
+            </li>                
+            <li>
+                <a href="about_tree.html">О древесине</a>
+            </li>
+            <li>
+                <a href="interior.html">В интерьере</a>   
+            </li>
+            <li>
+                <a href="rules_of_care.html">Правила ухода</a>
+            </li>
+            <li>
+                <a href="catalog.html">&#8226; Мои работы</a>
+            </li>
+            <li>
+                <input type="checkbox" id="menu_check">
+                <label for="menu_check" class="last_li"><span class="open-menu">&#926;</span><span class="close-menu">&#10007;</span></label>
+                <div class="dop_menu">
+                    <a href="about_tree.html">О древесине</a>
+                    <a href="interior.html">В интерьере</a>
+                    <a href="rules_of_care.html">Правила ухода</a>
+                </div>
+            </li>
+        </ul>
+    </div>                      
+<!--    </header>-->
+<div class="page_find">
+    <input class="place_for_search" type="text" id="text-to-find" value="" placeholder="Найти изделие" > 
+    <input class="button_for_search" type="button" onclick="RedirectUrl()" value=" " title="Начать поиск">
+    <input id="button_clear" class="button_for_turn_back" type="button" onclick="ClearUrl()" value="Х" title="Отменить поиск">
+</div>
+
+<div class="vse_mebel_inoe" id="vse_mebel_inoe_id">
+        <input type="checkbox" id="vse_catalog" class="skryt">
+            <label for="vse_catalog" class="all_item">Мои работы <span id="vid_mebel">/ Мебель</span> <span id="vid_inoe">/ Другие изделия</span></label>
+        <input type="checkbox" id="mebel_catalog" class="mebel_item_0 skryt mebel" >
+              <label for="mebel_catalog" id="chek_mebel" class="mebel_item_0 viz">Мебель</label>      
+       <input type="checkbox" id="inoe_catalog" class="skryt" >
+              <label for="inoe_catalog" id="chek_inoe" class="viz">Другие изделия</label>  
+   
+        <div id="form_mebel_id" class="mebel">
+            <div class="form_mebel">
+                <input type="checkbox" id="etajerka_catalog" class="mebel_item">
+                    <label for="etajerka_catalog" class="mebel_item">Этажерка</label>
+                <input type="checkbox" id="komod_catalog" class="mebel_item">
+                    <label for="komod_catalog" class="mebel_item">Комод</label>
+                <input type="checkbox" id="krovat_catalog" class="mebel_item">
+                    <label for="krovat_catalog" class="mebel_item">Кровать</label>
+                <input type="checkbox" id="kuhnya_catalog" class="mebel_item">
+                    <label for="kuhnya_catalog" class="mebel_item">Кухонный гарнитур</label>
+                <input type="checkbox" id="lavka_catalog" class="mebel_item">
+                    <label for="lavka_catalog" class="mebel_item">Лавка</label>
+                <input type="checkbox" id="modul_catalog" class="mebel_item">
+                    <label for="modul_catalog" class="mebel_item">Модульная мебель</label>
+                <input type="checkbox" id="shkaf_catalog" class="mebel_item">
+                    <label for="shkaf_catalog" class="mebel_item">Шкаф</label>
+                <input type="checkbox" id="stol_catalog" class="mebel_item">
+                    <label for="stol_catalog" class="mebel_item">Столы и стулья</label>
+                <input type="checkbox" id="tumba_catalog" class="mebel_item">
+                    <label for="tumba_catalog" class="mebel_item">Тумбы</label>
+                <input type="checkbox" id="vannaya_catalog" class="mebel_item">
+                    <label for="vannaya_catalog" class="mebel_item">Ванный гарнитур</label>
+            </div>
+            <input id="mebel_but"  class="mebel_item_but" onclick="ClearMebel()" type="button" value="Применить"/>
+        </div>   
+
+        <div id="form_inoe_id" class="form_inoe">
+            <div class="form_inoe">                   
+                <input type="checkbox" id="shkatulka_catalog" class="inoe_item">
+                    <label for="shkatulka_catalog" class="inoe_item" >Шкатулка</label>
+                <input type="checkbox" id="lestnitsa_catalog" class="inoe_item"> 
+                    <label for="lestnitsa_catalog" class="inoe_item" >Лестница</label>   
+                <input type="checkbox" id="osveschenie_catalog" class="inoe_item">
+                    <label for="osveschenie_catalog" class="inoe_item" >Освещение</label>
+                <input type="checkbox" id="obsadnaya_korobka_catalog" class="inoe_item">
+                    <label for="obsadnaya_korobka_catalog" class="inoe_item" >Обсадная коробка</label>
+                <input type="checkbox" id="music_catalog" class="inoe_item">
+                    <label for="music_catalog" class="inoe_item">Музыкальный инструмент</label>
+                <input type="checkbox" id="yaschik_catalog" class="inoe_item">
+                    <label for="yaschik_catalog" class="inoe_item" >Ящик для хранения</label>
+                <input type="checkbox" id="stropil_catalog" class="inoe_item">
+                    <label for="stropil_catalog" class="inoe_item" >Стропильная система</label>    
+            </div>
+                <input id="inoe_but"  class="inoe_item_but"  onclick="ClearInoe()" type="button" value="Применить"/>
+        </div> 
+    </div>
+
+    <ul class="catalog"> 
+        <li class="etajerka all_group mebel_group">
+            <img src="img/catalog/etajerka/1/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Этажерка</h2>  
+                <input type="button" class = "catalog_click" onclick="window.open('products/etajerka_02.html')" value="Подробнее">
+            </div> 
+       </li> 
+       <li class="vannaya all_group mebel_group">
+            <img src="img\catalog\vannaya\1\1.jpg" alt="">       
+            <div class="content_catalog">
+                <h2>Ванный гарнитур</h2>  
+                <input type="button" class = "catalog_click" onclick="window.open('products/vannay_01.html')" value="Подробнее">
+            </div> 
+      </li>        
+        <li class="komod all_group mebel_group">
+            <img src="img/catalog/komod/1/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Комод</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/komod_01.html')"  value="Подробнее"> 
+            </div>
+        </li> 
+        <li class="komod all_group mebel_group">
+            <img src="img/catalog/komod/2/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Комод</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/komod_02.html')"  value="Подробнее"> 
+            </div>
+        </li>    
+        <li class="komod all_group mebel_group">
+            <img src="img/catalog/komod/3/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Комод</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/komod_03.html')"  value="Подробнее"> 
+            </div>
+        </li>
+        <li class="komod all_group mebel_group">
+            <img src="img/catalog/komod/4/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Комод</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/komod_04.html')"  value="Подробнее">          
+            </div>
+        </li> 
+        <li class="modul all_group mebel_group">
+            <img src="img/catalog/modul/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Модульная система</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/modul_01.html')"  value="Подробнее"> 
+            </div>
+        </li>
+        <li class="krovat all_group mebel_group">
+            <img src="img/catalog/krovat/1/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Кровать</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/krovat_01.html')"  value="Подробнее"> 
+            </div>
+        </li> 
+        <li class="krovat all_group mebel_group">
+            <img src="img/catalog/krovat/2/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Кровать</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/krovat_02.html')"  value="Подробнее"> 
+            </div>
+        </li> 
+        <li class="krovat all_group mebel_group">
+            <img src="img/catalog/krovat/3/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Кровать</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/krovat_03.html')"  value="Подробнее">            
+            </div>
+        </li>  
+        <li class="kuhnya all_group mebel_group">
+            <img src="img/catalog/kuhnya/1/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Кухонный гарнитур</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/kuhnya_01.html')"  value="Подробнее"> 
+            </div>
+        </li>   
+        <li class="kuhnya all_group mebel_group">
+            <img src="img/catalog/kuhnya/2/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Кухонный гарнитур</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/kuhnya_02.html')"  value="Подробнее">              
+            </div>
+        </li>   
+        <li class="lavka all_group inoe_group">
+            <img src="img/catalog/lavka/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Лавка</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/lavka_01.html')"  value="Подробнее"> 
+            </div>
+        </li>    
+  
+        <li class="music all_group inoe_group">
+            <img src="img/catalog/musik/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Электрическая гитара</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/music_01.html')"  value="Подробнее"> 
+            </div>
+        </li>     
+        <li class="osveschenie all_group inoe_group">
+            <img src="img/catalog/osveschenie/1/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Настенный светильник</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/osveschenie_01.html')"  value="Подробнее"> 
+            </div>
+        </li>   
+        <li class="osveschenie all_group inoe_group">
+            <img src="img/catalog/osveschenie/2/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Потолочный светильник</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/osveschenie_02.html')" value="Подробнее">           
+            </div>
+        </li>    
+        <li class="osveschenie all_group inoe_group">
+            <img src="img/catalog/osveschenie/3/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Настольный светильник</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/osveschenie_03.html')" value="Подробнее">               
+            </div>
+        </li>
+        <li class="osveschenie all_group inoe_group">
+            <img src="img/catalog/osveschenie/4/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Потолочный светильник</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/osveschenie_04.html')"  value="Подробнее">            
+            </div>
+        </li>   
+        <li class="shkaf all_group mebel_group">
+            <img src="img/catalog/shkaf/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Шкаф распашной</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/shkaf_01.html')" value="Подробнее">            
+            </div>
+        </li>
+        <li class="shkatulka all_group inoe_group">
+            <img src="img/catalog/shkatulka/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Шкатулка</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/shkatulka_01.html')" value="Подробнее">                
+            </div>
+        </li>  
+        <li class="stol all_group mebel_group">
+            <img src="img/catalog/stol/1/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Стол и стулья</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stol_01.html')" value="Подробнее"> 
+            </div>            
+        </li>  
+        <li class="stol all_group mebel_group">
+            <img src="img/catalog/stol/2/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Стол кухонный</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stol_02.html')" value="Подробнее"> 
+            </div>
+        </li> 
+        <li class="stol all_group mebel_group">
+            <img src="img/catalog/stol/3/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Стол кухонный</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stol_03.html')" value="Подробнее"> 
+            </div>
+        </li>  
+        <li class="stol all_group mebel_group">
+            <img src="img/catalog/stol/4/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Стол кухонный</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stol_04.html')" value="Подробнее"> 
+            </div>
+        </li> 
+        <li class="stol all_group mebel_group">
+            <img src="img/catalog/stol/5/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Стол кухонный</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stol_05.html')" value="Подробнее"> 
+            </div>
+        </li>   
+        <li class="stol all_group mebel_group">
+            <img src="img/catalog/stol/6/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Стол пристенный</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stol_06.html')" value="Подробнее"> 
+            </div>
+        </li>
+        <li class="stol all_group mebel_group">
+            <img src="img/catalog/stol/7/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Журнальные столики</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stol_07.html')" value="Подробнее"> 
+            </div>
+        </li>
+        <li class="stol all_group mebel_group">
+            <img src="img/catalog/stol/8/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Столик с шуфлядами</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stol_08.html')" value="Подробнее"> 
+            </div>
+        </li>       
+        <li class="tumba all_group mebel_group">
+            <img src="img/catalog/tumba/1/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Тумба</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/tumba_01.html')" value="Подробнее">          
+            </div>
+        </li>  
+        <li class="tumba all_group mebel_group">
+            <img src="img/catalog/tumba/2/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Прикроватная тумба</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/tumba_02.html')" value="Подробнее"> 
+            </div>
+        </li> 
+        <li class="yaschik all_group inoe_group">
+            <img src="img/catalog/yaschik/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Ящик для хранения</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/yaschik_01.html')" value="Подробнее">                
+            </div>
+        </li> 
+        <li class="strop_sys all_group inoe_group">
+            <img src="img/catalog/besedka/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Стропильная система</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/stropil_system_01.html')" value="Подробнее"> 
+            </div>
+        </li>
+        <li class="obsad all_group inoe_group">
+            <img src="img/catalog/obsadnaya_korobka/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Обсадная коробка</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/obsadnaya_korobka_01.html')"  value="Подробнее">           
+            </div>
+        </li> 
+        <li class="lestnitsa all_group inoe_group">
+            <img src="img/catalog/lestnitsa/1/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Лестница</h2>  
+                <input type="button" class = "catalog_click"  onclick="window.open('products/lestnitsa_01.html')" value="Подробнее"> 
+            </div>
+        </li>
+        <li class="lestnitsa all_group inoe_group">
+            <img src="img/catalog/lestnitsa/2/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Лестница</h2>  
+                <input type="button" class = "catalog_click" onclick="window.open('products/lestnitsa_02.html')" value="Подробнее">           
+            </div>
+        </li>   
+        <li class="lestnitsa all_group inoe_group">
+            <img src="img/catalog/lestnitsa/3/1.jpg" alt="">
+            <div class="content_catalog">
+                <h2>Лестница</h2>  
+                <input type="button" class = "catalog_click" onclick="window.open('products/lestnitsa_03.html')" value="Подробнее">             
+            </div>
+        </li> 
+    </ul>
+
+
+    <div class="footer">
+        <div>
+            <img class="stolyar" src="img/stolyar_wh.png" alt="stolyar">
+        </div>
+        <div>Кирплюк Евгений</div>
+        <div class="propysk"></div>
+        <div class="phone"><img src="img/phone-solid.svg" alt="phone"></div>
+        <div> +375 - 29 - 505 - 00 - 64</div>
+        <div class="propysk"></div>
+        <div><a href="https://www.instagram.com"><img src="img/instagram-brands-solid.svg" alt="insta"></a></div>
+    </div>    
+
+
+
+    <script src="catalog.js"></script>
+</body>
+</html>

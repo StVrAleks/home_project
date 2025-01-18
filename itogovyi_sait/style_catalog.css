@@ -1,0 +1,226 @@
+/*find*/
+input, button{cursor: pointer;}
+.page_find{
+  width: 40%;
+  padding: 3% 2vh;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: flex-start;
+  left: 58%;
+}
+.place_for_search{
+  display: block;
+  width: 70%;
+  height: 5vh;
+  color: #568FA6;
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #568FA6;
+  border-left: none;
+}
+
+.button_for_search{
+  display: block;
+  height: 4.5vh;
+  width: 5.3%;
+  background: white;
+  position: relative;
+  border: none;
+  background-image: url(img/magnifying-glass-solid.svg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.button_for_turn_back{
+  height: 5vh;
+  width: 32%;
+  background: white;
+  display: none;
+   color: #568FA6;
+}
+label{
+  color: #568FA6;
+  cursor: pointer;
+}
+
+.vse_mebel_inoe{
+  padding-left: 6%;
+  margin-top: -9vh;
+  height: 5vh;
+}
+.all_item{
+   text-decoration: underline;
+}
+.all_item > span {
+  padding-left: 10px;
+}
+/*
+#vse_catalog{
+padding-left: 3%;
+position: relative;
+}*/
+/*sort*/
+
+.viz, .skryt{
+  position: absolute;
+  top: -10000px;
+}
+#vid_mebel, #vid_inoe{
+  display: none;
+}
+
+#form_mebel_id{
+     visibility: hidden; 
+     height: 11vh;
+     position: relative;
+     display: block;
+}
+ #form_inoe_id{
+  position: relative;
+  visibility: hidden; 
+  top: -10vh;
+  height: 13vh;
+  display: block;
+}
+.form_mebel, .form_inoe{
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-items: start;
+  justify-content: start;
+  align-items: start;
+  gap: 1.5%;
+  padding-top: 2vh;
+}
+#mebel_but, #inoe_but {
+  display: block;
+  margin-left: 3%;
+  margin-top: 2vh;
+  color: white;
+  background-color:#568FA6;
+  border: none;
+  height: 4vh;
+  border-radius: 15%;
+}
+input{
+  border: #025373;
+}
+
+
+
+/*catalog*/
+.catalog {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0 auto;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 10vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5vw;
+    padding-bottom: 4vh;
+    margin-bottom: 4vh;
+  }
+.catalog > li {
+    width: 90%; /*12rem;*/
+    height: 18rem;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    color:rgb(240, 240, 240);
+    box-shadow: 0 10px 30px 5px rgba(0, 0, 0, 0.2);
+}
+
+img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0.9;
+    transition: opacity .2s ease-out;
+  }
+
+ .content_catalog, h2 {
+    position: absolute;
+    inset: auto auto 10px /*2rem*/6%;
+    margin: 0;
+    transition: inset .3s .3s ease-out;
+    font-weight: bold;
+    text-transform: uppercase;
+    backdrop-filter: blur(20px);
+    font-size: 20px;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: 
+    linear-gradient(45deg, #F17C58, #E94584, #24AADB, #27DBB1, #FFDC18, #FF3706);
+  }
+  .content_catalog {
+    width: 100%;
+    height: 70px;
+    inset: auto auto 0px 0px;
+  }
+.catalog_click{
+    position: absolute;
+    opacity: 0;
+    max-width: 80%;
+    transition: opacity .3s ease-out;
+    inset: auto auto 20px 6%;
+    border-radius: 9%;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #592B02;
+    background: #568FA6;
+    font-size: inherit;
+    padding: 4px;
+}
+.catalog > li:hover  h2 {
+    inset: auto auto 15rem 6%;
+    transition: inset .3s ease-out;
+    backdrop-filter: blur(20px);
+    width: 100%;
+    color: #592B02;
+    font-weight: bold;
+  }
+  .catalog > li:hover input.catalog_click  {
+    opacity: 1;
+    transition: opacity .5s .1s ease-in;
+    backdrop-filter: blur(10px);
+  }
+  .catalog > li:hover img {
+    opacity: 1;
+    transition: opacity .5s .1s ease-in;
+  }
+
+  @media  all and (min-width : 768px) and (max-width : 1024px) {
+ 
+
+  }
+  @media  all and (min-width: 651px) and (max-width: 767px) {
+    h2{font-size: 16px;}
+    .catalog_click{
+      font-size: 14px;
+    }
+  }
+  @media  all and (max-width: 650px) {
+    .my_menu > ul > li{height: 15vh;}
+    .my_menu > ul > li:nth-child(2),
+    .my_menu > ul > li:nth-child(3),
+    .my_menu > ul > li:nth-child(4){
+      display: none;
+    }
+    .vse_mebel_inoe{margin-top: -4vh;}
+    .catalog{padding-left: 3%; 
+      padding-right: 3%;
+      grid-template-columns: 1fr 1fr;}
+    h2{font-size: 16px;}
+    .catalog_click{
+      font-size: 14px;
+    }
+
+
+  }

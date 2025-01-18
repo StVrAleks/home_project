@@ -1,0 +1,109 @@
+.main, .min {
+    text-align: center;
+    width: 100%;
+  }
+  .min{
+    padding-right: 30%;
+    padding-left: 30%;
+  }
+ .content_catalog{
+  width: 100%;
+  color: white;
+  background-color: #568FA6;
+ } 
+ h2{margin-top: 0;}
+ h2 a{color:white;}
+ h4:first-of-type{margin-bottom: 15px;}
+ h4:last-of-type{margin-top: 15px;}
+  .slider-container{
+    position: relative;
+    width: 100%;
+    height: 80%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    object-fit: cover;
+    padding-right: 30%;
+    padding-left: 30%;
+  }
+  .slider-container-min{
+    position: relative;
+    width: 100%;
+    padding-left: 9%;
+    padding-right: 9%;
+    background-color: #5e6b70;
+  }
+  .slider,
+  .slider-min{
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slider img{
+    width: 100%;
+    height: 20%;
+    object-fit: cover;
+    box-sizing: border-box;
+  }
+  
+  .prev-button,
+  .next-button,
+   .prev-button-min,
+   .next-button-min{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: white;
+  }
+  
+  .prev-button {
+    left: 31%;
+  }
+  
+  .next-button {
+    right: 31%;
+  }
+
+  .min{
+    margin-top: 2vh;
+  margin-bottom: 2vh;}
+  .slider-min{
+     text-align: center; 
+     overflow-x: auto; 
+     width: 100%;
+     justify-content: flex-start;
+    position: relative;     
+  }
+  .prev-button-min {
+    left: 10px;
+  }
+  
+  .next-button-min {
+    right: 10px;
+  }
+
+  .slider-min img{
+    width: 10%;
+    height: 65px;
+    object-fit: cover;
+    margin-right: 15px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+  }
+  .slider-min img:nth-last-child(){
+    margin-right: 30px;
+  }
+
+  @media  all and (max-width: 650px) {
+    .my_menu > ul > li:nth-child(2),
+    .my_menu > ul > li:nth-child(3),
+    .my_menu > ul > li:nth-child(4){
+      display: none;
+    }
+    .min{display: none;}
+    .slider-container{margin-bottom: 2vh;}
+  }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модульная система</title>
+    <link rel="stylesheet" href="../my_menu.css" media="all">
+    <link rel="stylesheet" href="slider.css" media="all">
+</head>
+<body>
+  <div class = "my_menu">    
+    <ul class = "my_menu_ul">
+        <li><a href="../index.html">О мастере</a>
+        </li>                
+        <li><a href="../about_tree.html">О древесине</a>
+        </li>
+        <li><a href="../interior.html">В интерьере</a>   
+        </li>
+        <li><a href="../rules_of_care.html">Правила ухода</a>
+        </li>
+        <li><a href="../catalog.html">Мои работы</a>
+        </li>
+        <li>
+            <input type="checkbox" id="menu_check">
+            <label for="menu_check" class="last_li"><span class="open-menu">&#926;</span><span class="close-menu">&#10007;</span></label>
+            <div class="dop_menu">
+                <a href="about_tree.html">О древесине</a>
+                <a href="interior.html">В интерьере</a>
+                <a href="rules_of_care.html">Правила ухода</a>
+            </div>
+        </li>
+    </ul>
+</div>
+    <div class="main">
+        <div class="content_catalog">
+            <h2>Модульная система</h2>  
+            <h4>Материал: MDF</h4>
+            <h4>Отделка: краска Remmers, полированный лак</h4>  
+        </div>      
+        <div class="slider-container">  
+          <div class="slider">
+            <img src="catalog/modul/1.jpg" alt="">
+            <img src="catalog/modul/2.jpg" alt="">
+            <img src="catalog/modul/3.jpg" alt="">
+            <img src="catalog/modul/4.jpg" alt="">
+            <img src="catalog/modul/5.jpg" alt="">
+          </div>   
+            <button class="prev-button" aria-label="Посмотреть предыдущий слайд">&lt;</button>
+            <button class="next-button" aria-label="Посмотреть следующий слайд">&gt</button>
+        </div>  
+    </div>  
+    <div class="min">
+      <div class="slider-container-min">  
+        <div class="slider-min">
+          <img src="catalog/modul/1.jpg" alt="">
+          <img src="catalog/modul/2.jpg" alt="">
+          <img src="catalog/modul/3.jpg" alt="">
+          <img src="catalog/modul/4.jpg" alt="">
+          <img src="catalog/modul/5.jpg" alt="">
+        </div> 
+        <button class="prev-button-min" aria-label="Посмотреть предыдущий слайд">&lt;</button>
+        <button class="next-button-min" aria-label="Посмотреть следующий слайд">&gt</button>
+      </div>  
+    </div>  
+    <div class="footer">
+      <div>
+          <img class="stolyar" src="../img/stolyar_wh.png" alt="stolyar">
+      </div>
+      <div>Кирплюк Евгений</div>
+      <div class="propysk"></div>
+      <div class="phone"><img src="../img/phone-solid.svg" alt="phone"></div>
+      <div> +375 - 29 - 505 - 00 - 64</div>
+      <div class="propysk"></div>
+      <div><a href="https://www.instagram.com"><img src="../img/instagram-brands-solid.svg" alt="insta"></a></div>
+  </div>
+<script src="sliders.js"></script>
+</body>
+</html>
