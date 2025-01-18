@@ -1,0 +1,9 @@
+.krasota{
+    width: 22%; 
+    height: 6vh; 
+    border-radius: 15px; 
+    display: block;
+    margin-bottom: 1vh;
+    margin-left: 7%;
+    cursor: pointer;
+}

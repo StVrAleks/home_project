@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLOCK_DOM</title>
+</head>
+<body>
+    <input type="number" min="200" max="800" onblur="validInp();">
+    <button onclick="addClock();">Построить часы</button>
+</body>
+<script src="script.js"></script>
+
+
+<style>
+#bigClock{
+    background-color: #FCCA66;
+    border-radius: 50%;  
+    position: absolute;
+}
+
+#clockMin{
+    width: 0.5%;
+    position: absolute;
+}
+#clockSec{
+    width: 0.3%;
+    position: absolute;
+}
+#clockHour{
+    width: 0.9%;    
+    position: absolute;
+}
+#clockMin,
+#clockSec,
+#clockHour{
+  background-color: black;
+  border-radius: 5px;  
+  transform-origin: 0px 20px;    
+  left: calc(50% + 0px);
+  top: calc(50% - 20px); 
+
+}
+</style>
+
+</html>
